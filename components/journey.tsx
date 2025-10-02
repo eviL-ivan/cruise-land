@@ -1,9 +1,31 @@
 'use client'
 
 import { useLanguage } from "@/lib/language-context"
+import { useRef } from "react"
 
 export function Journey() {
   const { content } = useLanguage()
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
+
+  const handleMouseEnter = (index: number) => {
+    const video = videoRefs.current[index]
+    if (video) {
+      video.play()
+    }
+  }
+
+  const handleMouseLeave = (index: number) => {
+    const video = videoRefs.current[index]
+    if (video) {
+      video.pause()
+      video.currentTime = 0
+    }
+  }
+
+  const getVideoSrc = (imageSrc: string) => {
+    return imageSrc.replace(/\.(jpg|jpeg|png|webp)$/i, '.mp4')
+  }
+
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
@@ -18,12 +40,23 @@ export function Journey() {
 
         <div className="grid md:grid-cols-4 gap-6 max-w-7xl mx-auto mb-16">
           {content.journey.destinations.map((destination, index) => (
-            <div key={index} className="relative group">
+            <div
+              key={index}
+              className="relative group"
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={() => handleMouseLeave(index)}
+            >
               <div className="relative h-64 rounded-lg overflow-hidden mb-4">
-                <img
-                  src={destination.image}
-                  alt={destination.alt}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                <video
+                  ref={(el) => {
+                    videoRefs.current[index] = el
+                  }}
+                  src={getVideoSrc(destination.image)}
+                  poster={destination.image}
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">

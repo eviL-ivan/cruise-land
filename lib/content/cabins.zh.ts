@@ -2,7 +2,9 @@ import { images } from "./images"
 
 export const cabins = {
   title: "舱房",
-  description: "选择您在探险船SH Diana号上的舱房",
+  subtitle: "选择您在探险船SH Diana号上的舱房",
+  popularBadge: "热门选择",
+  selectButton: "询价",
   categories: [
     {
       name: "海景舱",

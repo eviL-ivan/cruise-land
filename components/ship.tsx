@@ -1,13 +1,27 @@
 'use client'
 
-import { Waves, Utensils, Dumbbell, Sparkles } from "lucide-react"
+import { Waves, Utensils, Dumbbell, Sparkles, Ship as ShipIcon, Shield } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
 
 const amenityIcons = {
   "Бассейн-инфинити": Waves,
+  "Infinity Pool": Waves,
+  "无边泳池": Waves,
   "Высокая кухня": Utensils,
+  "Fine Dining": Utensils,
+  "精致餐饮": Utensils,
   "Спа-центр": Sparkles,
+  "Spa Center": Sparkles,
+  "水疗中心": Sparkles,
   "Тренажерный зал": Dumbbell,
+  "Gym": Dumbbell,
+  "健身房": Dumbbell,
+  "Ледовый класс PC6": ShipIcon,
+  "PC6 Ice Class": ShipIcon,
+  "PC6冰级": ShipIcon,
+  "Безопасность": Shield,
+  "Safety": Shield,
+  "安全性": Shield,
 }
 
 export function Ship() {
@@ -22,7 +36,7 @@ export function Ship() {
             </h2>
             <p className="text-xl mb-8 text-primary-foreground/90 leading-relaxed">{content.ship.description}</p>
 
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
               {content.ship.amenities.map((amenity, index) => {
                 const Icon = amenityIcons[amenity.title as keyof typeof amenityIcons] || Waves
                 return (

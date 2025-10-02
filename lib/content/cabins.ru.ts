@@ -4,7 +4,7 @@ export const cabins = {
   title: "Категории кают",
   subtitle: "Светлые и просторные каюты — «уютный дом вдали от дома»",
   popularBadge: "Популярный выбор",
-  selectButton: "Выбрать каюту",
+  selectButton: "Запросить цену",
   categories: [
     {
       name: "Каюта с окном",

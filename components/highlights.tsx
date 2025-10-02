@@ -19,7 +19,7 @@ export function Highlights() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+  }, [isAutoPlaying, content.highlights.length]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % content.highlights.length);

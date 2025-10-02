@@ -58,7 +58,7 @@ export const content = {
     subtitle:
       "South Atlantic Islands, South Georgia, and the Antarctic Peninsula aboard the expedition vessel SH Diana",
     highlight: "3 Continents & 2 Oceans",
-    bookButton: "Book Cruise",
+    bookButton: "Request a quote",
     learnMoreButton: "Learn More",
     imageAlt: "Antarctica",
     image: images.hero.image,
@@ -199,6 +199,8 @@ export const content = {
       { title: "Fine Dining", description: "Swan Hellenic restaurants" },
       { title: "Spa Center", description: "Jacuzzi, sauna, beauty salon" },
       { title: "Gym", description: "Modern equipment" },
+      { title: "PC6 Ice Class", description: "Highest Arctic ice class vessel" },
+      { title: "Safety", description: "All ship systems have redundancy" },
     ],
     features: [
       "Infinity pool on the open deck",

@@ -45,7 +45,10 @@ export function Cabins() {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full" variant={cabin.featured ? "default" : "outline"}>
+                <Button
+                  className="w-full bg-white text-foreground border-2 border-border hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors"
+                  variant="outline"
+                >
                   {content.cabins.selectButton}
                 </Button>
               </div>

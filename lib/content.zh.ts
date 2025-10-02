@@ -57,7 +57,7 @@ export const content = {
     titleAccent: "前往南极",
     subtitle: "搭乘 SH Diana 探险船，探索南大西洋群岛、南乔治亚岛和南极半岛",
     highlight: "3 大洲 & 2 大洋",
-    bookButton: "预订邮轮",
+    bookButton: "询价",
     learnMoreButton: "了解更多",
     imageAlt: "南极洲",
     image: images.hero.image,
@@ -188,6 +188,8 @@ export const content = {
       { title: "精致餐饮", description: "Swan Hellenic 餐厅" },
       { title: "水疗中心", description: "按摩浴缸、桑拿、美容院" },
       { title: "健身房", description: "现代化设备" },
+      { title: "PC6冰级", description: "最高北极冰级船舶" },
+      { title: "安全性", description: "所有船舶系统均有冗余备份" },
     ],
     features: [
       "开放甲板上的无边泳池",

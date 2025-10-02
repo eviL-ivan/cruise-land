@@ -2,7 +2,9 @@ import { images } from "./images"
 
 export const cabins = {
   title: "Cabins",
-  description: "Choose your cabin aboard the expedition vessel SH Diana",
+  subtitle: "Choose your cabin aboard the expedition vessel SH Diana",
+  popularBadge: "Popular choice",
+  selectButton: "Request a quote",
   categories: [
     {
       name: "Oceanview Cabin",
