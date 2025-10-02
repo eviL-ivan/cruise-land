@@ -20,24 +20,17 @@ export function Cabins() {
           {content.cabins.categories.map((cabin, index) => (
             <div
               key={index}
-              className={`bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow ${
-                cabin.featured ? "ring-2 ring-accent" : ""
-              }`}
+              className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col"
             >
               <div className="relative h-64">
                 <img src={cabin.image || "/placeholder.svg"} alt={cabin.name} className="w-full h-full object-cover" />
-                {cabin.featured && (
-                  <div className="absolute top-4 right-4 bg-accent text-accent-foreground px-4 py-2 rounded-full text-sm font-bold">
-                    {content.cabins.popularBadge}
-                  </div>
-                )}
               </div>
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="font-serif text-2xl font-bold">{cabin.name}</h3>
-                  <span className="text-lg font-bold text-secondary">{cabin.size}</span>
+                  <span className="text-lg font-bold text-secondary whitespace-nowrap">{cabin.size}</span>
                 </div>
-                <ul className="space-y-2 mb-6">
+                <ul className="space-y-2 mb-6 flex-grow">
                   {cabin.features.map((feature, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-muted-foreground">
                       <Check className="w-5 h-5 text-secondary flex-shrink-0" />
@@ -46,7 +39,7 @@ export function Cabins() {
                   ))}
                 </ul>
                 <Button
-                  className="w-full bg-white text-foreground border-2 border-border hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors"
+                  className="w-full bg-white text-foreground border-2 border-border hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors mt-auto"
                   variant="outline"
                 >
                   {content.cabins.selectButton}
