@@ -48,6 +48,7 @@ export const content = {
     priceNote: "per person",
     mapImage: images.overview.map,
     mapAlt: "Cruise route map",
+    mapButton: "Map",
   },
 
   // Hero Section

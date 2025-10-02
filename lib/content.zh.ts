@@ -48,6 +48,7 @@ export const content = {
     priceNote: "每人",
     mapImage: images.overview.map,
     mapAlt: "邮轮航线图",
+    mapButton: "地图",
   },
 
   // 主页横幅 (Hero)

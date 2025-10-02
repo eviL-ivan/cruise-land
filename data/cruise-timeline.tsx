@@ -1,8 +1,6 @@
 "use client"
 
-import type React from "react"
 import { useEffect, useState } from "react"
-import { Ship, Anchor, Mountain, Snowflake, Waves, MapPin } from "lucide-react"
 import { Card } from "@/components/ui/card"
 
 interface TimelineEvent {
@@ -11,7 +9,6 @@ interface TimelineEvent {
   location: string
   description: string
   image: string
-  icon: React.ReactNode
   highlights?: string[]
 }
 
@@ -22,7 +19,6 @@ const cruiseEvents: TimelineEvent[] = [
     location: "Южная Африка",
     description: "Один из самых красивых мегаполисов мира и главный культурный центр Южной Африки",
     image: "/cape-town-table-mountain-sunset-cityscape.jpg",
-    icon: <MapPin className="w-6 h-6" />,
     highlights: ["Мыс Доброй Надежды", "Столовая гора", "Набережная V&A Waterfront"],
   },
   {
@@ -31,7 +27,6 @@ const cruiseEvents: TimelineEvent[] = [
     location: "Атлантический океан",
     description: "Экспедиция через Атлантику на борту экспедиционного судна высокого ледового класса",
     image: "/atlantic-ocean-waves-expedition-ship-sailing.jpg",
-    icon: <Waves className="w-6 h-6" />,
     highlights: ["Лекции о полярных исследователях", "Наблюдение за китами", "Мастер-классы по фотографии"],
   },
   {
@@ -40,7 +35,6 @@ const cruiseEvents: TimelineEvent[] = [
     location: "Самый отдаленный остров",
     description: "Самый отдаленный от других материков остров на Земле с уникальной природой",
     image: "/tristan-da-cunha-remote-island-volcanic-peaks-ocea.jpg",
-    icon: <Mountain className="w-6 h-6" />,
     highlights: ["Встреча рассвета", "Северные хохлатые пингвины", "Морские львы"],
   },
   {
@@ -49,7 +43,6 @@ const cruiseEvents: TimelineEvent[] = [
     location: "Южный океан",
     description: "Погружение в воды Южного океана с температурой от -2°C до +10°C",
     image: "/southern-ocean-icebergs-albatross-flying-dramatic-.jpg",
-    icon: <Waves className="w-6 h-6" />,
     highlights: ["Странствующие альбатросы", "Пересечение 50-й параллели", "Полярные лекции"],
   },
   {
@@ -58,7 +51,6 @@ const cruiseEvents: TimelineEvent[] = [
     location: "Субантарктика",
     description: "Мир, где дикая природа торжествует над временем и пространством",
     image: "/south-georgia-king-penguins-colony-mountains-glaci.jpg",
-    icon: <Snowflake className="w-6 h-6" />,
     highlights: ["Королевские пингвины", "Могила Шеклтона", "Заброшенные китобойные станции"],
   },
   {
@@ -67,7 +59,6 @@ const cruiseEvents: TimelineEvent[] = [
     location: "Южный океан",
     description: "Продолжение экспедиции к самому холодному материку планеты",
     image: "/antarctic-waters-icebergs-seals-expedition-ship.jpg",
-    icon: <Waves className="w-6 h-6" />,
     highlights: ["Айсберги", "Морские котики", "Подготовка к Антарктиде"],
   },
   {
@@ -76,7 +67,6 @@ const cruiseEvents: TimelineEvent[] = [
     location: "Антарктида",
     description: "Самый труднодоступный и последний открытый континент планеты",
     image: "/antarctica-peninsula-glaciers-penguins-pristine-ic.jpg",
-    icon: <Snowflake className="w-6 h-6" />,
     highlights: ["5 видов пингвинов", "Круизы на Зодиаках", "Высадки на континент"],
   },
   {
@@ -85,7 +75,6 @@ const cruiseEvents: TimelineEvent[] = [
     location: "Возвращение",
     description: "Пересечение легендарного пролива Дрейка на пути к Южной Америке",
     image: "/drake-passage-rough-seas-albatross-dramatic-ocean.jpg",
-    icon: <Ship className="w-6 h-6" />,
     highlights: ["Прощание с Антарктидой", "Подведение итогов", "Сертификаты участников"],
   },
   {
@@ -94,7 +83,6 @@ const cruiseEvents: TimelineEvent[] = [
     location: "Аргентина",
     description: "Самый южный город мира - завершение великой экспедиции",
     image: "/ushuaia-argentina-harbor-mountains-end-of-world-ci.jpg",
-    icon: <Anchor className="w-6 h-6" />,
     highlights: ["Высадка в порту", "Город на краю света", "Завершение круиза"],
   },
 ]
@@ -218,12 +206,6 @@ export function CruiseTimeline() {
                         <div className="font-serif italic text-white/90 text-lg tracking-wide">{event.days}</div>
                       </div>
 
-                      <div className="absolute top-6 right-6">
-                        <div className="w-14 h-14 rounded-full bg-primary/90 text-primary-foreground flex items-center justify-center shadow-lg backdrop-blur-sm">
-                          {event.icon}
-                        </div>
-                      </div>
-
                       <div className="absolute bottom-6 left-6 right-6">
                         <h3 className="text-4xl font-serif font-light text-white mb-2 text-balance">{event.title}</h3>
                         <p className="text-base text-white/95 font-medium">{event.location}</p>
@@ -262,12 +244,6 @@ export function CruiseTimeline() {
                   <div className="font-serif italic text-white/90 text-base tracking-wide">{event.days}</div>
                 </div>
 
-                <div className="absolute top-4 right-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/90 text-primary-foreground flex items-center justify-center shadow-lg backdrop-blur-sm">
-                    {event.icon}
-                  </div>
-                </div>
-
                 <div className="absolute bottom-4 left-4 right-4">
                   <h3 className="text-3xl font-serif font-light text-white mb-1 text-balance">{event.title}</h3>
                   <p className="text-sm text-white/95 font-medium">{event.location}</p>
@@ -295,7 +271,6 @@ export function CruiseTimeline() {
       {/* Footer */}
       <div className="max-w-4xl mx-auto text-center mt-32 md:mt-64">
         <div className="inline-block p-8 bg-card rounded-2xl border-2 shadow-xl">
-          <Ship className="w-12 h-12 mx-auto mb-4 text-primary" />
           <h2 className="text-3xl font-serif font-light mb-3">SH Diana</h2>
           <p className="text-muted-foreground mb-6 max-w-2xl">
             Бутик-отель на воде с открытым бассейном-инфинити, ресторанами высокой кухни и просторными каютами с

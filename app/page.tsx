@@ -2,8 +2,7 @@ import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
 import { Overview } from "@/components/overview"
 import { Journey } from "@/components/journey"
-import { Highlights } from "@/components/highlights"
-import { Itinerary } from "@/components/itinerary"
+import { CruiseTimeline } from "@/components/cruise-timeline"
 import { Wildlife } from "@/components/wildlife"
 import { Ship } from "@/components/ship"
 import { Cabins } from "@/components/cabins"
@@ -18,8 +17,7 @@ export default function Home() {
         <Hero />
         <Overview />
         <Journey />
-        <Highlights />
-        <Itinerary />
+        <CruiseTimeline />
         <Wildlife />
         <Ship />
         <Cabins />

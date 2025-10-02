@@ -1,41 +1,43 @@
-'use client'
+"use client";
 
-
-import { useState, useEffect } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-import { useLanguage } from "@/lib/language-context"
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { useLanguage } from "@/lib/language-context";
 
 export function Highlights() {
-  const { content } = useLanguage()
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const { content } = useLanguage();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
-    if (!isAutoPlaying) return
+    if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % content.highlights.length)
-    }, 5000)
+      setCurrentSlide((prev) => (prev + 1) % content.highlights.length);
+    }, 5000);
 
-    return () => clearInterval(interval)
-  }, [isAutoPlaying])
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % content.highlights.length)
-    setIsAutoPlaying(false)
-  }
+    setCurrentSlide((prev) => (prev + 1) % content.highlights.length);
+    setIsAutoPlaying(false);
+  };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + content.highlights.length) % content.highlights.length)
-    setIsAutoPlaying(false)
-  }
+    setCurrentSlide(
+      (prev) =>
+        (prev - 1 + content.highlights.length) % content.highlights.length
+    );
+    setIsAutoPlaying(false);
+  };
 
   const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-    setIsAutoPlaying(false)
-  }
+    setCurrentSlide(index);
+    setIsAutoPlaying(false);
+  };
 
   return (
     <section className="py-24 bg-muted/30">
@@ -61,9 +63,9 @@ export function Highlights() {
 
                     <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
                       <div className="max-w-3xl">
-                        <div className="inline-block px-4 py-2 bg-accent/90 rounded-full text-accent-foreground font-bold mb-4">
+                        {/* <div className="inline-block px-4 py-2 bg-accent/90 rounded-full text-accent-foreground font-bold mb-4">
                           {highlight.number}
-                        </div>
+                        </div> */}
                         <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-balance">
                           {highlight.title}
                         </h3>
@@ -103,7 +105,9 @@ export function Highlights() {
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`h-2 rounded-full transition-all ${
-                  index === currentSlide ? "w-8 bg-secondary" : "w-2 bg-secondary/30 hover:bg-secondary/50"
+                  index === currentSlide
+                    ? "w-8 bg-secondary"
+                    : "w-2 bg-secondary/30 hover:bg-secondary/50"
                 }`}
                 aria-label={`${content.ui.slideLabel} ${index + 1}`}
               />
@@ -112,5 +116,5 @@ export function Highlights() {
         </div>
       </div>
     </section>
-  )
+  );
 }

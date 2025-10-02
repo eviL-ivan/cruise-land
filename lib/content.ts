@@ -48,6 +48,7 @@ export const content = {
     priceNote: "Per Person",
     mapImage: images.overview.map,
     mapAlt: "Карта маршрута круиза",
+    mapButton: "Карта",
   },
 
   // Главный экран (Hero)
