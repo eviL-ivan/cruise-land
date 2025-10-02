@@ -16,12 +16,22 @@ export default function Home() {
       <main className="min-h-screen">
         <Hero />
         <Overview />
-        <Journey />
-        <CruiseTimeline />
+        <div id="journey">
+          <Journey />
+        </div>
+        <div id="itinerary">
+          <CruiseTimeline />
+        </div>
         <Wildlife />
-        <Ship />
-        <Cabins />
-        <CTA />
+        <div id="ship">
+          <Ship />
+        </div>
+        <div id="cabins">
+          <Cabins />
+        </div>
+        <div id="contact">
+          <CTA />
+        </div>
         <Footer />
       </main>
     </>

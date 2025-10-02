@@ -9,7 +9,7 @@ export function Overview() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [showMapModal, setShowMapModal] = useState(false)
 
-  const slideImages = content.journey.destinations
+  const slideImages = content.highlights
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slideImages.length)
@@ -29,14 +29,14 @@ export function Overview() {
               <div className="relative h-[450px] lg:h-[550px] w-full rounded-lg overflow-hidden shadow-2xl group">
                 <img
                   src={slideImages[currentSlide].image}
-                  alt={slideImages[currentSlide].alt}
+                  alt={slideImages[currentSlide].title}
                   className="w-full h-full object-cover transition-all duration-500"
                 />
 
                 {/* Slide title overlay */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
                   <h3 className="text-white font-serif text-3xl font-bold mb-2">
-                    {slideImages[currentSlide].name}
+                    {slideImages[currentSlide].title}
                   </h3>
                   <p className="text-white/90 text-sm">{slideImages[currentSlide].description}</p>
                 </div>

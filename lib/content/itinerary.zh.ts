@@ -131,7 +131,7 @@ export const itinerary = {
       title: "乌斯怀亚与飞往布宜诺斯艾利斯",
       description:
         "经比格尔海峡返回乌斯怀亚。随后乘坐包含在行程内的航班飞往布宜诺斯艾利斯；可选延展行程：伊瓜苏瀑布或阿根廷境内陆地游。",
-      image: images.itinerary.day9,
+      image: images.itinerary.day10,
       activities: [
         "下船",
         "乌斯怀亚 — 布宜诺斯艾利斯航班（已包含）",

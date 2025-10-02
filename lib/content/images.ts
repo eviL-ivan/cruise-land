@@ -26,7 +26,8 @@ export const images = {
     day6: "/days/day6.jpg",
     day7: "/days/day7.jpg",
     day8: "/days/day8.jpg",
-    day9: "/days/day9.jpg",
+    day9: "/days/day9.png",
+    day10: "/days/day10.png",
   },
 
   cabins: {
@@ -54,10 +55,10 @@ export const images = {
     "/images/explorers-history.jpg",
     "/images/south-georgia-wildlife.jpg",
     "/images/onboard-workshop.jpg",
-    "/images/southern-ocean-waters.jpg",
+    "/images/water.png",
     "/images/antarctica-landing.jpg",
-    "/images/kayaking-icebergs.jpg",
-    "/images/polar-summer.jpg",
+    "/images/kayak.png",
+    "/images/iceberg.png",
   ],
 
   wildlife: [

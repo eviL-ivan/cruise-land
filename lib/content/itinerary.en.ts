@@ -142,7 +142,7 @@ export const itinerary = {
       title: "Ushuaia and flight to Buenos Aires",
       description:
         "Return through the Beagle Channel to Ushuaia. Then — included flight to Buenos Aires (as per program); optional extensions available: Iguazu and/or land tours across Argentina.",
-      image: images.itinerary.day9,
+      image: images.itinerary.day10,
       activities: [
         "Disembarkation",
         "Flight Ushuaia — Buenos Aires (included)",
