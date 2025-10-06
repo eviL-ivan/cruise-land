@@ -164,8 +164,18 @@ export function Overview() {
                   </a>
                   <button
                     onClick={() => setShowVideoModal(true)}
-                    className="inline-flex items-center gap-2 text-white px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase"
-                    style={{backgroundColor: '#004657'}}
+                    className="inline-flex items-center gap-2 px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase border-2"
+                    style={{backgroundColor: 'transparent', color: '#004657', borderColor: '#004657'}}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#004657'
+                      e.currentTarget.style.color = 'white'
+                      e.currentTarget.style.borderColor = '#004657'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent'
+                      e.currentTarget.style.color = '#004657'
+                      e.currentTarget.style.borderColor = '#004657'
+                    }}
                   >
                     <Play className="w-5 h-5" />
                     {content.overview.experienceButton}

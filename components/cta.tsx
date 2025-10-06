@@ -16,12 +16,12 @@ export function CTA() {
           <p className="text-xl mb-12 text-white/90 text-pretty leading-relaxed">{content.cta.subtitle}</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <button className="text-lg px-8 py-6 min-w-[200px] bg-white rounded-md transition-all duration-300 flex items-center justify-center" style={{color: '#004657'}}>
+            <button className="text-base px-8 py-3 min-w-[200px] bg-white rounded-md transition-all duration-300 flex items-center justify-center font-semibold uppercase" style={{color: '#004657'}}>
               <Mail className="w-5 h-5 mr-2" />
               {content.cta.emailButton}
             </button>
             <button
-              className="text-lg px-8 py-6 min-w-[200px] bg-transparent text-white border-2 border-white rounded-md transition-all duration-300 flex items-center justify-center"
+              className="text-base px-8 py-3 min-w-[200px] bg-transparent text-white border-2 border-white rounded-md transition-all duration-300 flex items-center justify-center font-semibold uppercase"
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = 'white'
                 e.currentTarget.style.color = '#004657'
