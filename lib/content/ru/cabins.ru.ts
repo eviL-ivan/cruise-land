@@ -7,7 +7,7 @@ export const cabins = {
   priceNote: "Цены указаны за человека за круиз",
   categories: [
     {
-      name: "Oceanview D4",
+      name: "Oceanview",
       size: "20 м²",
       capacity: "2",
       price: "От $13,780",
@@ -17,23 +17,10 @@ export const cabins = {
         "Декоративный камин",
         "Роскошная ванная комната",
       ],
-      images: [images.cabins.oceanview, images.cabins.oceanview],
+      images: images.cabins.oceanview,
     },
     {
-      name: "Oceanview M4",
-      size: "20 м²",
-      capacity: "2",
-      price: "Лист ожидания",
-      features: [
-        "Две односпальные или одна двуспальная кровать",
-        "Спальня с гостиной зоной",
-        "Декоративный камин",
-        "Роскошная ванная комната",
-      ],
-      images: [images.cabins.panoramicWindow, images.cabins.panoramicWindow],
-    },
-    {
-      name: "Balcony D5",
+      name: "Balcony",
       size: "25 м²",
       capacity: "2-3",
       price: "От $13,780",
@@ -44,35 +31,7 @@ export const cabins = {
         "Декоративный камин",
         "Роскошная ванная комната",
       ],
-      images: [images.cabins.balcony, images.cabins.balcony],
-    },
-    {
-      name: "Balcony M5",
-      size: "25 м²",
-      capacity: "2-3",
-      price: "От $13,780",
-      features: [
-        "Приватный балкон 5 м²",
-        "Две односпальные или одна двуспальная кровать",
-        "Спальня с гостиной зоной",
-        "Декоративный камин",
-        "Роскошная ванная комната",
-      ],
-      images: [images.cabins.panoramicBalcony, images.cabins.panoramicBalcony],
-    },
-    {
-      name: "Balcony D6",
-      size: "25 м²",
-      capacity: "2-3",
-      price: "От $13,780",
-      features: [
-        "Приватный балкон 5 м²",
-        "Две односпальные или одна двуспальная кровать",
-        "Спальня с гостиной зоной",
-        "Декоративный камин",
-        "Роскошная ванная комната",
-      ],
-      images: [images.cabins.balcony, images.cabins.balcony],
+      images: images.cabins.balcony,
     },
     {
       name: "Junior Suite",
@@ -85,7 +44,7 @@ export const cabins = {
         "Отдельная гостиная зона",
         "Роскошная ванная комната",
       ],
-      images: [images.cabins.juniorSuite, images.cabins.juniorSuite],
+      images: images.cabins.juniorSuite,
     },
     {
       name: "Suite",
@@ -99,7 +58,7 @@ export const cabins = {
         "Декоративный камин",
         "Роскошная ванная с ванной и душевой кабиной",
       ],
-      images: [images.cabins.suite, images.cabins.suite],
+      images: images.cabins.suite,
     },
     {
       name: "Premium Suite",
@@ -114,7 +73,7 @@ export const cabins = {
         "Роскошная ванная с ванной и душевой кабиной",
         "Гардеробная",
       ],
-      images: [images.cabins.premiumSuite, images.cabins.premiumSuite],
+      images: images.cabins.premiumSuite,
     },
   ],
 } as const

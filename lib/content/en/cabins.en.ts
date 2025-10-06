@@ -7,7 +7,7 @@ export const cabins = {
   priceNote: "Prices are quoted per person per cruise",
   categories: [
     {
-      name: "Oceanview D4",
+      name: "Oceanview",
       size: "20 m²",
       capacity: "2",
       price: "From $13,780",
@@ -17,23 +17,10 @@ export const cabins = {
         "Flame-effect fireplace",
         "Luxurious bathroom",
       ],
-      images: [images.cabins.oceanview, images.cabins.oceanview],
+      images: images.cabins.oceanview,
     },
     {
-      name: "Oceanview M4",
-      size: "20 m²",
-      capacity: "2",
-      price: "Waiting list",
-      features: [
-        "Two single beds or a double bed",
-        "Bedroom with living room area",
-        "Flame-effect fireplace",
-        "Luxurious bathroom",
-      ],
-      images: [images.cabins.panoramicWindow, images.cabins.panoramicWindow],
-    },
-    {
-      name: "Balcony D5",
+      name: "Balcony",
       size: "25 m²",
       capacity: "2-3",
       price: "From $13,780",
@@ -44,35 +31,7 @@ export const cabins = {
         "Flame-effect fireplace",
         "Luxurious bathroom",
       ],
-      images: [images.cabins.balcony, images.cabins.balcony],
-    },
-    {
-      name: "Balcony M5",
-      size: "25 m²",
-      capacity: "2-3",
-      price: "From $13,780",
-      features: [
-        "5 m² private balcony",
-        "Two single beds or a double bed",
-        "Bedroom with living room area",
-        "Flame-effect fireplace",
-        "Luxurious bathroom",
-      ],
-      images: [images.cabins.panoramicBalcony, images.cabins.panoramicBalcony],
-    },
-    {
-      name: "Balcony D6",
-      size: "25 m²",
-      capacity: "2-3",
-      price: "From $13,780",
-      features: [
-        "5 m² private balcony",
-        "Two single beds or a double bed",
-        "Bedroom with living room area",
-        "Flame-effect fireplace",
-        "Luxurious bathroom",
-      ],
-      images: [images.cabins.balcony, images.cabins.balcony],
+      images: images.cabins.balcony,
     },
     {
       name: "Junior Suite",
@@ -85,7 +44,7 @@ export const cabins = {
         "Separate living room area",
         "Luxurious en-suite bathroom",
       ],
-      images: [images.cabins.juniorSuite, images.cabins.juniorSuite],
+      images: images.cabins.juniorSuite,
     },
     {
       name: "Suite",
@@ -99,7 +58,7 @@ export const cabins = {
         "Flame-effect fireplace",
         "Luxurious ensuite bathroom with separate bath tub and walk-in shower",
       ],
-      images: [images.cabins.suite, images.cabins.suite],
+      images: images.cabins.suite,
     },
     {
       name: "Premium Suite",
@@ -114,7 +73,7 @@ export const cabins = {
         "Luxurious ensuite bathroom with separate bath tub and shower",
         "Walk-in wardrobe",
       ],
-      images: [images.cabins.premiumSuite, images.cabins.premiumSuite],
+      images: images.cabins.premiumSuite,
     },
   ],
 } as const

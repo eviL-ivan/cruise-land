@@ -7,7 +7,7 @@ export const cabins = {
   priceNote: "价格为每人每航次",
   categories: [
     {
-      name: "Oceanview D4",
+      name: "Oceanview",
       size: "20 m²",
       capacity: "2",
       price: "从 $13,780 起",
@@ -17,23 +17,10 @@ export const cabins = {
         "仿真壁炉",
         "豪华浴室",
       ],
-      images: [images.cabins.oceanview, images.cabins.oceanview],
+      images: images.cabins.oceanview,
     },
     {
-      name: "Oceanview M4",
-      size: "20 m²",
-      capacity: "2",
-      price: "候补名单",
-      features: [
-        "两张单人床或一张双人床",
-        "带起居区的卧室",
-        "仿真壁炉",
-        "豪华浴室",
-      ],
-      images: [images.cabins.panoramicWindow, images.cabins.panoramicWindow],
-    },
-    {
-      name: "Balcony D5",
+      name: "Balcony",
       size: "25 m²",
       capacity: "2-3",
       price: "从 $13,780 起",
@@ -44,35 +31,7 @@ export const cabins = {
         "仿真壁炉",
         "豪华浴室",
       ],
-      images: [images.cabins.balcony, images.cabins.balcony],
-    },
-    {
-      name: "Balcony M5",
-      size: "25 m²",
-      capacity: "2-3",
-      price: "从 $13,780 起",
-      features: [
-        "5 m² 私人阳台",
-        "两张单人床或一张双人床",
-        "带起居区的卧室",
-        "仿真壁炉",
-        "豪华浴室",
-      ],
-      images: [images.cabins.panoramicBalcony, images.cabins.panoramicBalcony],
-    },
-    {
-      name: "Balcony D6",
-      size: "25 m²",
-      capacity: "2-3",
-      price: "从 $13,780 起",
-      features: [
-        "5 m² 私人阳台",
-        "两张单人床或一张双人床",
-        "带起居区的卧室",
-        "仿真壁炉",
-        "豪华浴室",
-      ],
-      images: [images.cabins.balcony, images.cabins.balcony],
+      images: images.cabins.balcony,
     },
     {
       name: "Junior Suite",
@@ -85,7 +44,7 @@ export const cabins = {
         "独立起居区",
         "豪华套内浴室",
       ],
-      images: [images.cabins.juniorSuite, images.cabins.juniorSuite],
+      images: images.cabins.juniorSuite,
     },
     {
       name: "Suite",
@@ -99,7 +58,7 @@ export const cabins = {
         "仿真壁炉",
         "带独立浴缸和步入式淋浴的豪华套内浴室",
       ],
-      images: [images.cabins.suite, images.cabins.suite],
+      images: images.cabins.suite,
     },
     {
       name: "Premium Suite",
@@ -114,7 +73,7 @@ export const cabins = {
         "带独立浴缸和淋浴的豪华套内浴室",
         "步入式衣柜",
       ],
-      images: [images.cabins.premiumSuite, images.cabins.premiumSuite],
+      images: images.cabins.premiumSuite,
     },
   ],
 } as const
