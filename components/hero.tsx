@@ -123,8 +123,8 @@ export function Hero() {
           setDisplayedText(currentFullText.slice(0, displayedText.length + 1))
           setTypingSpeed(50)
         } else {
-          // Pause at end before deleting (7 seconds)
-          setTimeout(() => setIsDeleting(true), 7000)
+          // Pause at end before deleting (13 seconds)
+          setTimeout(() => setIsDeleting(true), 13000)
         }
       } else {
         // Deleting
