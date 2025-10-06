@@ -109,34 +109,34 @@ export function Overview() {
                   </button>
                 </div>
 
-                <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
+                <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground">
                   {content.overview.route}
                 </h2>
 
-                <div className="grid grid-cols-2 gap-6 py-6">
+                <div className="grid grid-cols-2 gap-6 py-4">
                   <div className="space-y-2">
                     <p className="text-sm text-muted-foreground uppercase tracking-wide">{content.overview.datesLabel}</p>
-                    <p className="text-xl font-semibold text-foreground">{content.overview.dates}</p>
+                    <p className="text-xl font-normal text-foreground">{content.overview.dates}</p>
                   </div>
                   <div className="space-y-2">
                     <p className="text-sm text-muted-foreground uppercase tracking-wide">{content.overview.durationLabel}</p>
-                    <p className="text-xl font-semibold text-foreground">{content.overview.nights}</p>
+                    <p className="text-xl font-normal text-foreground">{content.overview.nights}</p>
                   </div>
                   <div className="space-y-2">
                     <p className="text-sm text-muted-foreground uppercase tracking-wide">{content.overview.shipLabel}</p>
-                    <p className="text-xl font-semibold text-foreground">{content.overview.ship}</p>
+                    <p className="text-xl font-normal text-foreground">{content.overview.ship}</p>
                   </div>
                   <div className="space-y-2">
                     <p className="text-sm text-muted-foreground uppercase tracking-wide">{content.overview.priceLabel}</p>
                     <div>
-                      <p className="text-3xl font-bold text-[#be8f74]">{content.overview.price}</p>
+                      <p className="text-3xl font-normal text-[#be8f74]">{content.overview.price}</p>
                       <p className="text-sm text-muted-foreground">{content.overview.priceNote}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Description */}
-                <div className="py-6 space-y-4 border-t border-border">
+                <div className="py-4 space-y-4 border-t border-border">
                   <p className="text-lg leading-relaxed text-foreground/90">
                     {content.overview.description}
                   </p>
@@ -149,13 +149,23 @@ export function Overview() {
                 <div className="pt-4 flex flex-wrap gap-4">
                   <a
                     href="#contact"
-                    className="inline-block bg-white text-primary hover:bg-[#be8f74] hover:text-white border-2 border-white hover:border-[#be8f74] px-8 py-3 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase"
+                    className="inline-block bg-white px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase border-2"
+                    style={{color: '#004657', borderColor: '#004657'}}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#004657'
+                      e.currentTarget.style.color = 'white'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'white'
+                      e.currentTarget.style.color = '#004657'
+                    }}
                   >
                     {content.header.bookButton}
                   </a>
                   <button
                     onClick={() => setShowVideoModal(true)}
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-8 py-3 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase"
+                    className="inline-flex items-center gap-2 text-white px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase"
+                    style={{backgroundColor: '#004657'}}
                   >
                     <Play className="w-5 h-5" />
                     {content.overview.experienceButton}

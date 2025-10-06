@@ -37,13 +37,13 @@ export function Header() {
   }
 
   return (
-    <header className="text-white py-4 sticky top-0 z-50 shadow-md backdrop-blur-sm bg-opacity-95" style={{backgroundColor: '#004657'}}>
+    <header className="bg-white py-4 sticky top-0 z-50 shadow-md" style={{color: '#004657'}}>
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center transition-transform hover:scale-105">
             <Image
-              src="/logo.png"
+              src="/logo_green.png"
               alt="Swan Hellenic"
               width={180}
               height={67}
@@ -57,28 +57,32 @@ export function Header() {
             <a
               href="#journey"
               onClick={(e) => scrollToSection(e, '#journey')}
-              className="text-sm font-medium tracking-wide text-white hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer"
+              className="text-sm font-medium tracking-wide hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer"
+              style={{color: '#004657'}}
             >
               {content.header.nav.route}
             </a>
             <a
               href="#itinerary"
               onClick={(e) => scrollToSection(e, '#itinerary')}
-              className="text-sm font-medium tracking-wide text-white hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer"
+              className="text-sm font-medium tracking-wide hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer"
+              style={{color: '#004657'}}
             >
               {content.header.nav.itinerary}
             </a>
             <a
               href="#ship"
               onClick={(e) => scrollToSection(e, '#ship')}
-              className="text-sm font-medium tracking-wide text-white hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer"
+              className="text-sm font-medium tracking-wide hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer"
+              style={{color: '#004657'}}
             >
               {content.header.nav.ship}
             </a>
             <a
               href="#cabins"
               onClick={(e) => scrollToSection(e, '#cabins')}
-              className="text-sm font-medium tracking-wide text-white hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer"
+              className="text-sm font-medium tracking-wide hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer"
+              style={{color: '#004657'}}
             >
               {content.header.nav.cabins}
             </a>
@@ -90,29 +94,33 @@ export function Header() {
             <div className="relative">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1 text-sm font-medium tracking-wide text-white hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer"
+                className="flex items-center gap-1 text-sm font-medium tracking-wide hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer"
+                style={{color: '#004657'}}
               >
                 {LANGUAGES[language]}
                 <ChevronDown className={`w-4 h-4 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {isLangOpen && (
-                <div className="absolute top-full right-0 mt-2 border border-white/20 rounded-md shadow-lg overflow-hidden min-w-[80px]" style={{backgroundColor: '#004657'}}>
+                <div className="absolute top-full right-0 mt-2 bg-white border rounded-md shadow-lg overflow-hidden min-w-[80px]" style={{borderColor: '#004657'}}>
                   <button
                     onClick={() => handleLangChange('ru')}
-                    className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
+                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
+                    style={{color: '#004657'}}
                   >
                     {LANGUAGES.ru}
                   </button>
                   <button
                     onClick={() => handleLangChange('en')}
-                    className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
+                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
+                    style={{color: '#004657'}}
                   >
                     {LANGUAGES.en}
                   </button>
                   <button
                     onClick={() => handleLangChange('zh')}
-                    className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
+                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
+                    style={{color: '#004657'}}
                   >
                     {LANGUAGES.zh}
                   </button>
@@ -124,7 +132,18 @@ export function Header() {
             <a
               href="#contact"
               onClick={(e) => scrollToSection(e, '#contact')}
-              className="bg-white text-primary hover:bg-[#be8f74] hover:text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 border-2 border-white hover:border-[#be8f74] uppercase cursor-pointer"
+              className="bg-white px-6 py-2.5 md:px-8 md:py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 border-2 uppercase cursor-pointer"
+              style={{color: '#004657', borderColor: '#004657'}}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#004657'
+                e.currentTarget.style.borderColor = '#004657'
+                e.currentTarget.style.color = 'white'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'white'
+                e.currentTarget.style.borderColor = '#004657'
+                e.currentTarget.style.color = '#004657'
+              }}
             >
               {content.header.bookButton}
             </a>

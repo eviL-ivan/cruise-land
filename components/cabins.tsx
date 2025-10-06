@@ -49,7 +49,7 @@ export function Cabins() {
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance">
             {content.cabins.title}
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground text-pretty">{content.cabins.subtitle}</p>
@@ -66,7 +66,7 @@ export function Cabins() {
                 className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col"
               >
                 <div
-                  className="relative h-80 group"
+                  className="relative h-96 group"
                   onTouchStart={(e) => handleTouchStart(e, index)}
                   onTouchMove={(e) => handleTouchMove(e, index)}
                   onTouchEnd={() => handleTouchEnd(index, cabinImages.length)}
@@ -123,12 +123,12 @@ export function Cabins() {
                       </li>
                     ))}
                   </ul>
-                  <Button
-                    className="w-full bg-white text-foreground border-2 border-border hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors mt-auto"
-                    variant="outline"
+                  <button
+                    className="w-full text-white border-2 border-white rounded-md px-6 py-3 font-semibold transition-all duration-300 mt-auto"
+                    style={{backgroundColor: '#004657'}}
                   >
                     {content.cabins.selectButton}
-                  </Button>
+                  </button>
                 </div>
               </div>
             )

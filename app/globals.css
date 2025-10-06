@@ -160,7 +160,7 @@
      ======================================== */
 
   /* Font Families */
-  --font-display: "NON Natural Grotesk", system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-space-grotesk), "Space Grotesk", system-ui, -apple-system, sans-serif;
   --font-main: "Neue Montreal", system-ui, -apple-system, sans-serif;
   --font-logographic: var(--font-noto-jp), var(--font-noto-sc), "Noto Sans JP", "Noto Sans SC", sans-serif;
 
@@ -264,7 +264,7 @@
      FONT FAMILIES (Brand Guidelines)
      ======================================== */
   --font-sans: "Neue Montreal", system-ui, -apple-system, sans-serif;
-  --font-display: "NON Natural Grotesk", system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-space-grotesk), "Space Grotesk", system-ui, -apple-system, sans-serif;
   --font-logographic: var(--font-noto-jp), var(--font-noto-sc), "Noto Sans JP", "Noto Sans SC", sans-serif;
   --font-mono: ui-monospace, "SF Mono", Consolas, monospace;
 

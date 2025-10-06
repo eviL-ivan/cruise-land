@@ -13,7 +13,9 @@
       "Bash(git commit:*)",
       "Bash(mv:*)",
       "Bash(find:*)",
-      "Bash(magick:*)"
+      "Bash(magick:*)",
+      "Bash(for file in highlights.tsx overview.tsx itinerary.tsx ship.tsx cabins.tsx cta.tsx wildlife.tsx journey.tsx hero.tsx)",
+      "Bash(do sed -i 's/text-4xl md:text-5xl lg:text-6xl font-bold/text-4xl md:text-5xl lg:text-6xl font-light/g' \"$file\")"
     ],
     "deny": [],
     "ask": []

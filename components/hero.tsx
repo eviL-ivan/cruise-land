@@ -27,7 +27,7 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white space-y-4">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-balance leading-tight text-white">
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-balance leading-tight text-white">
           <span className="inline-block bg-primary/10 backdrop-blur-sm px-6 py-3 rounded-xl">
             {content.hero.title}
           </span>
@@ -42,16 +42,22 @@ export function Hero() {
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-          <Button size="lg" className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-white">
+          <button className="text-lg px-8 py-6 rounded-md text-white border-2 border-white transition-all duration-300" style={{backgroundColor: '#004657'}}>
             {content.hero.bookButton}
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="text-lg px-8 py-6 bg-transparent text-white border-white hover:bg-white hover:text-primary"
+          </button>
+          <button
+            className="text-lg px-8 py-6 rounded-md bg-transparent text-white border-2 border-white transition-all duration-300"
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#004657'
+              e.currentTarget.style.color = 'white'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent'
+              e.currentTarget.style.color = 'white'
+            }}
           >
             {content.hero.learnMoreButton}
-          </Button>
+          </button>
         </div>
       </div>
 

@@ -31,7 +31,7 @@ export function Ship() {
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
           <div>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance text-white">
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-white">
               {content.ship.name}
             </h2>
             <p className="text-xl mb-8 text-white/90 leading-relaxed">{content.ship.description}</p>

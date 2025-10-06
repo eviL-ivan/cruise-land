@@ -30,7 +30,7 @@ export function Wildlife() {
     <section className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance">
             {content.wildlife.title}
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
