@@ -16,16 +16,91 @@ const typingTexts = {
     "бутик-экспедиционной яхты для тех, кто ищет приключения и изысканность.",
     "где каждый горизонт открывает новую главу чудес, комфорта и открытий.",
     "современной экспедиционной яхты, переосмысляющей полярные исследования.",
+    "элегантная экспедиция, где открытия раскрываются в комфорте вневременного дизайна и пятизвездочной роскоши.",
+    "одиссея, созданная для исследователей, которые желают острых ощущений неизведанного и безмятежности истинной роскоши.",
+    "где каждый рассвет открывает неизведанную красоту в обрамлении непревзойденного комфорта.",
+    "бутик-экспедиционная яхта, где изысканность и дикая природа существуют в совершенной гармонии.",
+    "путешествие для тех, кто считает, что приключения должны быть изысканными.",
+    "где современная элегантность переносит вас через древние моря к краю света.",
+    "где тишина льдов встречается с теплом гостеприимства в путешествии, не похожем ни на одно другое.",
+    "редкая возможность исследовать последний рубеж Земли в бутик-изысканности.",
+    "где открытие — это опыт изящества, величия и мягкого приключения.",
+    "приглашение стать свидетелем нетронутого величия нашей планеты в абсолютном комфорте.",
+    "симфония льда, океана и безупречного дизайна для современного исследователя.",
+    "гармоничное сочетание приключений, артистизма и сдержанной элегантности.",
+    "где каждый момент становится празднованием поэзии природы и человеческого любопытства.",
+    "путешествие для тех, кто ищет красоту как в самом путешествии, так и в пункте назначения.",
+    "где дух Шеклтона встречается с душой современной роскоши.",
+    "где каждый горизонт обещает обновление, благоговение и изысканное приключение.",
+    "интимное исследование для тех, кто видит в путешествии трансформацию.",
+    "поэтическое путешествие в точке встречи дикой природы и изящества.",
+    "где лед и небо сливаются в постоянно меняющийся шедевр.",
+    "где исследование становится искусством, а роскошь ощущается как принадлежность.",
+    "незабываемый баланс приключений, просветления и непринужденного стиля.",
+    "где любопытство встречается с мастерством, и каждая волна несет тихое чудо.",
+    "вершина современного экспедиционного круиза для смелых и взыскательных.",
+    "путешествие в девственную дикую природу, окутанное изысканным европейским дизайном.",
+    "экстраординарное плавание, где роскошь измеряется не в роскоши, а в благоговении.",
   ],
   en: [
     "a boutique expedition yacht designed for those who seek both adventure and refinement.",
     "where every horizon reveals a new chapter of wonder, comfort, and discovery.",
     "the state-of-the-art expedition yacht redefining modern polar exploration.",
+    "an elegant expedition where discovery unfolds in the comfort of timeless design and five-star indulgence.",
+    "an odyssey crafted for explorers who desire both the thrill of the unknown and the serenity of true luxury.",
+    "where each sunrise reveals uncharted beauty framed by unparalleled comfort.",
+    "a boutique expedition yacht where refinement and raw nature exist in perfect harmony.",
+    "a journey designed for those who believe adventure should be exquisite.",
+    "where modern elegance carries you across ancient seas to the edge of the world.",
+    "where the silence of ice meets the warmth of hospitality in a voyage unlike any other.",
+    "a rare opportunity to explore Earth's final frontier in boutique sophistication.",
+    "where discovery is an experience of grace, grandeur, and gentle adventure.",
+    "an invitation to witness the untouched majesty of our planet in ultimate comfort.",
+    "a symphony of ice, ocean, and impeccable design for the modern explorer.",
+    "a seamless blend of adventure, artistry, and understated elegance.",
+    "where each moment becomes a celebration of nature's poetry and human curiosity.",
+    "a voyage reserved for those who seek beauty in both the journey and the destination.",
+    "where the spirit of Shackleton meets the soul of contemporary luxury.",
+    "where every horizon promises renewal, awe, and refined adventure.",
+    "an intimate exploration for those who see travel as transformation.",
+    "a poetic voyage at the meeting point of wilderness and grace.",
+    "where ice and sky merge into an ever-changing masterpiece.",
+    "where exploration becomes art and luxury feels like belonging.",
+    "an unforgettable balance of adventure, enlightenment, and effortless style.",
+    "where curiosity meets craftsmanship and every wave carries quiet wonder.",
+    "the pinnacle of modern expedition cruising for the bold and the discerning.",
+    "a journey into pristine wilderness wrapped in refined European design.",
+    "an extraordinary passage where luxury is measured not in opulence, but in awe.",
   ],
   zh: [
     "为寻求冒险与精致的精品探险游艇。",
     "每个地平线都揭示着奇迹、舒适和发现的新篇章。",
     "重新定义现代极地探险的最先进探险游艇。",
+    "优雅的探险之旅，在永恒设计和五星级奢华的舒适中展开发现。",
+    "为渴望未知刺激和真正奢华宁静的探险家精心打造的奥德赛之旅。",
+    "每个日出都展现出无与伦比舒适环绕下的未知之美。",
+    "精品探险游艇，精致与原始自然完美和谐共存。",
+    "为相信冒险应该精致的人设计的旅程。",
+    "现代优雅带您穿越古老海洋到达世界边缘。",
+    "冰的寂静与热情好客的温暖在独一无二的航程中相遇。",
+    "在精品复杂性中探索地球最后边疆的难得机会。",
+    "发现是优雅、宏伟和温和冒险的体验。",
+    "在终极舒适中见证我们星球未受触及的壮丽的邀请。",
+    "为现代探险家呈现的冰、海洋和无可挑剔设计的交响乐。",
+    "冒险、艺术和低调优雅的完美融合。",
+    "每个时刻都成为自然诗意和人类好奇心的庆典。",
+    "为在旅程和目的地都寻求美的人保留的航行。",
+    "沙克尔顿的精神与当代奢华的灵魂相遇。",
+    "每个地平线都承诺更新、敬畏和精致的冒险。",
+    "为将旅行视为转变的人而设的亲密探索。",
+    "在荒野与优雅交汇点的诗意航程。",
+    "冰与天空融合成不断变化的杰作。",
+    "探索成为艺术，奢华感觉像归属。",
+    "冒险、启蒙和轻松风格的难忘平衡。",
+    "好奇心与工艺相遇，每一波浪都带着宁静的奇迹。",
+    "为大胆和挑剔者提供的现代探险巡航巅峰。",
+    "进入被精致欧洲设计包裹的原始荒野的旅程。",
+    "非凡的航程，奢华不以奢侈衡量，而以敬畏衡量。",
   ],
 }
 
@@ -57,9 +132,13 @@ export function Hero() {
           setDisplayedText(currentFullText.slice(0, displayedText.length - 1))
           setTypingSpeed(30)
         } else {
-          // Move to next text
+          // Move to random next text (not the same as current)
           setIsDeleting(false)
-          setCurrentTextIndex((prev) => (prev + 1) % texts.length)
+          let nextIndex
+          do {
+            nextIndex = Math.floor(Math.random() * texts.length)
+          } while (nextIndex === currentTextIndex && texts.length > 1)
+          setCurrentTextIndex(nextIndex)
           setTypingSpeed(50)
         }
       }
