@@ -31,20 +31,46 @@ export const images = {
   },
 
   cabins: {
-    oceanview: ["/cabins/ocean/ocean1.jpg", "/cabins/ocean/ocean2.jpg", "/cabins/ocean/ocean3.jpg", "/cabins/ocean/ocean4.jpg"],
-    panoramicWindow: ["/cabins/ocean/ocean3.jpg", "/cabins/ocean/ocean1.jpg", "/cabins/ocean/ocean2.jpg"],
-    balcony: ["/cabins/balcony/bal1.jpg", "/cabins/balcony/bal2.jpg", "/cabins/balcony/bal3.jpg", "/cabins/balcony/bal4.jpg"],
+    oceanview: [
+      "/cabins/ocean/ocean1.jpg",
+      "/cabins/ocean/ocean2.jpg",
+      "/cabins/ocean/ocean3.jpg",
+      "/cabins/ocean/ocean4.jpg",
+    ],
+    panoramicWindow: [
+      "/cabins/ocean/ocean3.jpg",
+      "/cabins/ocean/ocean1.jpg",
+      "/cabins/ocean/ocean2.jpg",
+    ],
+    balcony: [
+      "/cabins/balcony/bal1.jpg",
+      "/cabins/balcony/bal2.jpg",
+      "/cabins/balcony/bal3.jpg",
+    ],
     panoramicBalcony: ["/cabins/Balcony M51.webp", "/cabins/Balcony M51.webp"],
-    juniorSuite: ["/cabins/junsuite/jun1.jpg", "/cabins/junsuite/jun2.webp", "/cabins/junsuite/jun3.webp"],
-    suite: ["/cabins/suite/suite1.jpg", "/cabins/suite/suite2.jpg", "/cabins/suite/suite3.webp", "/cabins/suite/suite4.jpg", "/cabins/suite/suite5.webp", "/cabins/suite/suite6.jpg"],
-    premiumSuite: ["/cabins/premiumsuite/suite1.jpg", "/cabins/premiumsuite/suite2.jpg", "/cabins/premiumsuite/suite3.jpg", "/cabins/premiumsuite/suite4.jpg", "/cabins/premiumsuite/suite5.jpg"],
+    juniorSuite: [
+      "/cabins/junsuite/jun1.jpg",
+      "/cabins/junsuite/jun2.webp",
+      "/cabins/junsuite/jun3.webp",
+    ],
+    suite: [
+      "/cabins/suite/suite1.jpg",
+      "/cabins/suite/suite2.jpg",
+      "/cabins/suite/suite3.webp",
+      "/cabins/suite/suite4.jpg",
+      "/cabins/suite/suite5.webp",
+      "/cabins/suite/suite6.jpg",
+    ],
+    premiumSuite: [
+      "/cabins/premiumsuite/suite1.jpg",
+      "/cabins/premiumsuite/suite2.jpg",
+      "/cabins/premiumsuite/suite3.jpg",
+      "/cabins/premiumsuite/suite4.jpg",
+      "/cabins/premiumsuite/suite5.jpg",
+    ],
   },
 
-  ship: [
-    "/ship_diana.jpg",
-    "/ship_pool.jpg",
-    "/ship_rest.jpg",
-  ],
+  ship: ["/ship_diana.jpg", "/ship_pool.jpg", "/ship_rest.jpg"],
 
   highlights: [
     "/images/capetown-table-mountain.jpg",
@@ -66,4 +92,4 @@ export const images = {
     "/images/whale-ocean.jpg",
     "/images/albatross.jpg",
   ],
-} as const
+} as const;

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useLanguage } from "@/lib/language-context"
 import { Map, ChevronLeft, ChevronRight, X, Play } from "lucide-react"
 
@@ -9,6 +9,8 @@ export function Overview() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [showMapModal, setShowMapModal] = useState(false)
   const [showVideoModal, setShowVideoModal] = useState(false)
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
 
   const slideImages = content.highlights
 
@@ -20,6 +22,23 @@ export function Overview() {
     setCurrentSlide((prev) => (prev - 1 + slideImages.length) % slideImages.length)
   }
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 50) {
+      nextSlide()
+    }
+    if (touchStartX.current - touchEndX.current < -50) {
+      prevSlide()
+    }
+  }
+
   return (
     <>
       <section className="py-16 bg-background">
@@ -27,7 +46,12 @@ export function Overview() {
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Image Slider */}
-              <div className="relative h-[450px] lg:h-[550px] w-full rounded-lg overflow-hidden shadow-2xl group">
+              <div
+                className="relative h-[450px] lg:h-[550px] w-full rounded-lg overflow-hidden shadow-2xl group"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
                 <img
                   src={slideImages[currentSlide].image}
                   alt={slideImages[currentSlide].title}
@@ -186,6 +210,7 @@ export function Overview() {
               src="/swan_4.webm"
               controls
               autoPlay
+              preload="metadata"
               className="w-full h-full rounded-lg shadow-2xl"
             >
               Your browser does not support the video tag.

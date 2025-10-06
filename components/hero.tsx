@@ -16,6 +16,7 @@ export function Hero() {
           loop
           muted
           playsInline
+          preload="auto"
           poster="/bg.webp"
           className="w-full h-full object-cover"
         >
@@ -25,8 +26,8 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground space-y-4">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-balance leading-tight">
+      <div className="relative z-10 container mx-auto px-4 text-center text-white space-y-4">
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-balance leading-tight text-white">
           <span className="inline-block bg-primary/10 backdrop-blur-sm px-6 py-3 rounded-xl">
             {content.hero.title}
           </span>
@@ -36,7 +37,7 @@ export function Hero() {
           </span>
         </h1>
         <div className="inline-block bg-primary/10 backdrop-blur-sm px-6 py-3 rounded-xl mt-4">
-          <p className="text-lg md:text-xl text-primary-foreground/90 max-w-3xl text-pretty">
+          <p className="text-lg md:text-xl text-white/90 max-w-3xl text-pretty">
             {content.hero.subtitle}
           </p>
         </div>
@@ -47,7 +48,7 @@ export function Hero() {
           <Button
             size="lg"
             variant="outline"
-            className="text-lg px-8 py-6 bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary"
+            className="text-lg px-8 py-6 bg-transparent text-white border-white hover:bg-white hover:text-primary"
           >
             {content.hero.learnMoreButton}
           </Button>
@@ -56,7 +57,7 @@ export function Hero() {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-        <ChevronDown className="w-8 h-8 text-primary-foreground" />
+        <ChevronDown className="w-8 h-8 text-white" />
       </div>
     </section>
   )

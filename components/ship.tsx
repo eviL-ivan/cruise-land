@@ -27,26 +27,25 @@ const amenityIcons = {
 export function Ship() {
   const { content } = useLanguage()
   return (
-    <section className="py-24 bg-primary text-primary-foreground">
+    <section className="py-24 text-white" style={{backgroundColor: '#004657'}}>
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
           <div>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance text-white">
               {content.ship.name}
             </h2>
-            <p className="text-xl mb-8 text-primary-foreground/90 leading-relaxed">{content.ship.description}</p>
+            <p className="text-xl mb-8 text-white/90 leading-relaxed">{content.ship.description}</p>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
               {content.ship.amenities.map((amenity, index) => {
-                const Icon = amenityIcons[amenity.title as keyof typeof amenityIcons] || Waves
                 return (
                   <div key={index} className="flex gap-4">
-                    <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-6 h-6 text-secondary" />
+                    <div className="flex-shrink-0 mt-1">
+                      <span className="text-[#be8f74] text-2xl">•</span>
                     </div>
                     <div>
-                      <h3 className="font-bold mb-1">{amenity.title}</h3>
-                      <p className="text-sm text-primary-foreground/80">{amenity.description}</p>
+                      <h3 className="font-bold mb-1 text-white">{amenity.title}</h3>
+                      <p className="text-sm text-white/80">{amenity.description}</p>
                     </div>
                   </div>
                 )

@@ -3,8 +3,192 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ========================================
+   NEUE MONTREAL - Main Font
+   ======================================== */
+
+/* Light (300) - Namibia */
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Light.woff2") format("woff2"),
+       url("/fonts/NeueMontreal-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Light Italic (300) - Argentina */
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-LightItalic.woff2") format("woff2"),
+       url("/fonts/NeueMontreal-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Regular (400) - Antarctica */
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Regular.woff2") format("woff2"),
+       url("/fonts/NeueMontreal-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Italic (400) - Ecuador */
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Italic.woff2") format("woff2"),
+       url("/fonts/NeueMontreal-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Medium (500) - Iceland */
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Medium.woff2") format("woff2"),
+       url("/fonts/NeueMontreal-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Medium Italic (500) - Greenland */
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-MediumItalic.woff2") format("woff2"),
+       url("/fonts/NeueMontreal-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Bold (700) - Madagascar */
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Bold.woff2") format("woff2"),
+       url("/fonts/NeueMontreal-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bold Italic (700) - Norway */
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-BoldItalic.woff2") format("woff2"),
+       url("/fonts/NeueMontreal-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ========================================
+   NON NATURAL GROTESK - Display Font
+   ======================================== */
+
+/* Light (300) */
+@font-face {
+  font-family: "NON Natural Grotesk";
+  src: url("/fonts/non-natural-grotesk-plain-light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Regular (400) */
+@font-face {
+  font-family: "NON Natural Grotesk";
+  src: url("/fonts/non-natural-grotesk-plain-light.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Medium (500) */
+@font-face {
+  font-family: "NON Natural Grotesk";
+  src: url("/fonts/nonnatural-groteskplainbold.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bold (700) */
+@font-face {
+  font-family: "NON Natural Grotesk";
+  src: url("/fonts/nonnatural-groteskplainbold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  /* Premium Antarctic cruise theme with deep ocean blues, ice accents, and warm gold */
+  /* ========================================
+     COLORS (Brand Guidelines)
+     ======================================== */
+
+  /* Primary Colors */
+  --color-fathom-100: #004657;
+  --color-fathom-100-cmyk: 100% 10% 20% 70%;
+  --color-fathom-100-rgb: 0, 70, 87;
+
+  --color-fathom-60: #4d8a98;
+  --color-fathom-40: #99bdc5;
+
+  --color-accent: #be8f74;
+  --color-accent-cmyk: 9% 31% 31% 16%;
+  --color-accent-rgb: 190, 143, 118;
+
+  /* Neutrals */
+  --color-black: #6d6e71;
+  --color-black-cmyk: 0% 0% 0% 80%;
+  --color-black-rgb: 109, 110, 113;
+
+  --color-white: #ffffff;
+
+  --color-grey: #e8e6e5;
+  --color-grey-cmyk: 5% 5% 5% 5%;
+  --color-grey-rgb: 232, 231, 230;
+
+  /* ========================================
+     TYPOGRAPHY (Brand Guidelines)
+     ======================================== */
+
+  /* Font Families */
+  --font-display: "NON Natural Grotesk", system-ui, -apple-system, sans-serif;
+  --font-main: "Neue Montreal", system-ui, -apple-system, sans-serif;
+  --font-logographic: var(--font-noto-jp), var(--font-noto-sc), "Noto Sans JP", "Noto Sans SC", sans-serif;
+
+  /* Font Weights */
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+
+  /* Font Sizes (Brand Guidelines) */
+  --text-10: 10pt;
+  --text-12: 12pt;
+  --text-14: 14pt;
+  --text-16: 16pt;
+  --text-18: 18pt;
+  --text-20: 20pt;
+  --text-22: 22pt;
+  --text-24: 24pt;
+
+  /* Line Heights */
+  --leading-tight: 1.3;
+  --leading-normal: 1.4;
+  --leading-relaxed: 1.5;
+  --leading-loose: 1.6;
+
+  /* Legacy variables for compatibility */
   --background: oklch(0.98 0.005 240);
   --foreground: oklch(0.15 0.02 240);
   --card: oklch(1 0 0);
@@ -76,8 +260,50 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ========================================
+     FONT FAMILIES (Brand Guidelines)
+     ======================================== */
+  --font-sans: "Neue Montreal", system-ui, -apple-system, sans-serif;
+  --font-display: "NON Natural Grotesk", system-ui, -apple-system, sans-serif;
+  --font-logographic: var(--font-noto-jp), var(--font-noto-sc), "Noto Sans JP", "Noto Sans SC", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Consolas, monospace;
+
+  /* ========================================
+     FONT WEIGHTS (Brand Guidelines)
+     ======================================== */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* ========================================
+     FONT SIZES (Brand Guidelines - pt to rem)
+     ======================================== */
+  --font-size-10: 0.694rem; /* 10pt */
+  --font-size-12: 0.833rem; /* 12pt */
+  --font-size-14: 0.972rem; /* 14pt */
+  --font-size-16: 1.111rem; /* 16pt */
+  --font-size-18: 1.25rem; /* 18pt */
+  --font-size-20: 1.389rem; /* 20pt */
+  --font-size-22: 1.528rem; /* 22pt */
+  --font-size-24: 1.667rem; /* 24pt */
+
+  /* ========================================
+     BRAND COLORS
+     ======================================== */
+  --color-fathom: var(--color-fathom-100);
+  --color-fathom-60: #4d8a98;
+  --color-fathom-40: #99bdc5;
+  --color-accent: #be8f74;
+  --color-black: #6d6e71;
+  --color-grey: #e8e6e5;
+  --color-white: #ffffff;
+
+  /* ========================================
+     LEGACY VARIABLES
+     ======================================== */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -90,7 +316,6 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
@@ -119,9 +344,119 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: var(--text-16);
+    line-height: 1.6;
+    color: var(--color-black);
+    background-color: var(--color-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ========================================
+     HEADINGS
+     ======================================== */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    color: var(--color-fathom-100);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: var(--text-24);
+    line-height: 1.3;
+    font-weight: 700; /* Bold - Madagascar */
+  }
+
+  h2 {
+    font-size: var(--text-22);
+    line-height: 1.3;
+    font-weight: 500; /* Medium - Iceland */
+  }
+
+  h3 {
+    font-size: var(--text-20);
+    line-height: 1.4;
+    font-weight: 400; /* Regular - Antarctica */
+  }
+
+  h4 {
+    font-size: var(--text-18);
+    line-height: 1.4;
+    font-weight: 500; /* Medium */
+  }
+
+  h5 {
+    font-size: var(--text-16);
+    line-height: 1.5;
+    font-weight: 600; /* Semibold */
+  }
+
+  h6 {
+    font-size: var(--text-14);
+    line-height: 1.5;
+    font-weight: 700; /* Bold */
+  }
+
+  /* ========================================
+     TEXT ELEMENTS
+     ======================================== */
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  strong,
+  b {
+    font-weight: 700; /* Bold - Madagascar */
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  small {
+    font-size: var(--text-12);
+  }
+
+  /* ========================================
+     LINKS
+     ======================================== */
+
+  a {
+    color: var(--color-fathom-100);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  /* ========================================
+     LANGUAGE SPECIFIC
+     ======================================== */
+
+  :lang(ja),
+  :lang(zh) {
+    font-family: var(--font-logographic);
   }
 }
 

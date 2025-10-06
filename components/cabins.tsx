@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Check, ChevronLeft, ChevronRight } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
@@ -8,6 +8,8 @@ import { useLanguage } from "@/lib/language-context"
 export function Cabins() {
   const { content } = useLanguage()
   const [currentImageIndex, setCurrentImageIndex] = useState<Record<number, number>>({})
+  const touchStartX = useRef<Record<number, number>>({})
+  const touchEndX = useRef<Record<number, number>>({})
 
   const handlePrevImage = (cabinIndex: number, imagesLength: number) => {
     setCurrentImageIndex(prev => ({
@@ -21,6 +23,26 @@ export function Cabins() {
       ...prev,
       [cabinIndex]: ((prev[cabinIndex] || 0) + 1) % imagesLength
     }))
+  }
+
+  const handleTouchStart = (e: React.TouchEvent, cabinIndex: number) => {
+    touchStartX.current[cabinIndex] = e.touches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent, cabinIndex: number) => {
+    touchEndX.current[cabinIndex] = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = (cabinIndex: number, imagesLength: number) => {
+    const startX = touchStartX.current[cabinIndex] || 0
+    const endX = touchEndX.current[cabinIndex] || 0
+
+    if (startX - endX > 50) {
+      handleNextImage(cabinIndex, imagesLength)
+    }
+    if (startX - endX < -50) {
+      handlePrevImage(cabinIndex, imagesLength)
+    }
   }
 
   return (
@@ -43,7 +65,12 @@ export function Cabins() {
                 key={index}
                 className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col"
               >
-                <div className="relative h-64 group">
+                <div
+                  className="relative h-80 group"
+                  onTouchStart={(e) => handleTouchStart(e, index)}
+                  onTouchMove={(e) => handleTouchMove(e, index)}
+                  onTouchEnd={() => handleTouchEnd(index, cabinImages.length)}
+                >
                   <img
                     src={cabinImages[currentIndex] || "/placeholder.svg"}
                     alt={`${cabin.name} - Image ${currentIndex + 1}`}
