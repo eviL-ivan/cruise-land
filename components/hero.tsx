@@ -1,13 +1,73 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronDown, Play, X } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
 
+const staticText = {
+  ru: "Путешествие через острова Южной Атлантики, Южную Георгию и Антарктический полуостров на борту SH Diana — ",
+  en: "South Atlantic Islands, South Georgia, and the Antarctic Peninsula aboard SH Diana — ",
+  zh: "南大西洋群岛、南乔治亚岛和南极半岛，乘坐 SH Diana —— ",
+}
+
+const typingTexts = {
+  ru: [
+    "бутик-экспедиционной яхты для тех, кто ищет приключения и изысканность.",
+    "где каждый горизонт открывает новую главу чудес, комфорта и открытий.",
+    "современной экспедиционной яхты, переосмысляющей полярные исследования.",
+  ],
+  en: [
+    "a boutique expedition yacht designed for those who seek both adventure and refinement.",
+    "where every horizon reveals a new chapter of wonder, comfort, and discovery.",
+    "the state-of-the-art expedition yacht redefining modern polar exploration.",
+  ],
+  zh: [
+    "为寻求冒险与精致的精品探险游艇。",
+    "每个地平线都揭示着奇迹、舒适和发现的新篇章。",
+    "重新定义现代极地探险的最先进探险游艇。",
+  ],
+}
+
 export function Hero() {
-  const { content } = useLanguage()
+  const { content, language } = useLanguage()
   const [showVideoModal, setShowVideoModal] = useState(false)
+  const [currentTextIndex, setCurrentTextIndex] = useState(0)
+  const [displayedText, setDisplayedText] = useState("")
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [typingSpeed, setTypingSpeed] = useState(50)
+
+  useEffect(() => {
+    const texts = typingTexts[language as keyof typeof typingTexts]
+    const currentFullText = texts[currentTextIndex]
+
+    const handleTyping = () => {
+      if (!isDeleting) {
+        // Typing forward
+        if (displayedText.length < currentFullText.length) {
+          setDisplayedText(currentFullText.slice(0, displayedText.length + 1))
+          setTypingSpeed(50)
+        } else {
+          // Pause at end before deleting (7 seconds)
+          setTimeout(() => setIsDeleting(true), 7000)
+        }
+      } else {
+        // Deleting
+        if (displayedText.length > 0) {
+          setDisplayedText(currentFullText.slice(0, displayedText.length - 1))
+          setTypingSpeed(30)
+        } else {
+          // Move to next text
+          setIsDeleting(false)
+          setCurrentTextIndex((prev) => (prev + 1) % texts.length)
+          setTypingSpeed(50)
+        }
+      }
+    }
+
+    const timer = setTimeout(handleTyping, typingSpeed)
+    return () => clearTimeout(timer)
+  }, [displayedText, isDeleting, currentTextIndex, typingSpeed, language])
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -30,17 +90,19 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white space-y-4">
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-balance leading-tight text-white">
-          <span className="inline-block bg-primary/10 backdrop-blur-sm px-6 py-3 rounded-xl">
+          <span className="inline-block bg-primary/5 backdrop-blur-sm px-6 py-3 rounded-xl">
             {content.hero.title}
           </span>
           <br />
-          <span className="inline-block bg-secondary/10 backdrop-blur-sm px-6 py-3 rounded-xl mt-3">
+          <span className="inline-block bg-primary/5 backdrop-blur-sm px-6 py-3 rounded-xl mt-3">
             {content.hero.titleAccent}
           </span>
         </h1>
-        <div className="inline-block bg-primary/10 backdrop-blur-sm px-6 py-3 rounded-xl mt-4">
+        <div className="inline-block bg-primary/5 backdrop-blur-sm px-6 py-3 rounded-xl mt-4 transition-all duration-300 ease-in-out">
           <p className="text-lg md:text-xl text-white/90 max-w-3xl text-pretty">
-            {content.hero.subtitle}
+            {staticText[language as keyof typeof staticText]}
+            {displayedText}
+            <span className="ml-1 inline-block animate-[pulse_2s_ease-in-out_infinite]">|</span>
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
