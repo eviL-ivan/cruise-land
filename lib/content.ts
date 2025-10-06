@@ -3,9 +3,9 @@
 // Данные взяты из официального PDF брендбука
 
 import { images } from "./content/images"
-import { journey } from "./content/journey.ru"
-import { itinerary } from "./content/itinerary.ru"
-import { cabins } from "./content/cabins.ru"
+import { journey } from "./content/ru/journey.ru"
+import { itinerary } from "./content/ru/itinerary.ru"
+import { cabins } from "./content/ru/cabins.ru"
 
 export const content = {
   // Метаданные
@@ -49,6 +49,9 @@ export const content = {
     mapImage: images.overview.map,
     mapAlt: "Карта маршрута круиза",
     mapButton: "Карта",
+    description: "Это не просто круиз — это интеллектуальная и эмоциональная экспедиция через три мира, где встречаются Африка, Атлантика и Антарктика.",
+    detailedDescription: "Только здесь гости могут увидеть редких северных хохлатых пингвинов, исследовать самый изолированный остров планеты и встретить рассвет рядом со скульптурными айсбергами — всё это в элегантном комфорте новейшего флагмана Swan Hellenic, SH Diana.",
+    experienceButton: "Смотреть опыт",
   },
 
   // Главный экран (Hero)

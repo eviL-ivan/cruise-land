@@ -41,9 +41,9 @@ export const images = {
   },
 
   ship: [
-    "/images/ship-pool.jpg",
-    "/images/ship-restaurant.jpg",
-    "/images/ship-exterior.jpg",
+    "/ship_diana.jpg",
+    "/ship_pool.jpg",
+    "/ship_rest.jpg",
   ],
 
   highlights: [

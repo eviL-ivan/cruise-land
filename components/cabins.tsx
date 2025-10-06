@@ -1,11 +1,28 @@
 'use client'
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Check } from "lucide-react"
+import { Check, ChevronLeft, ChevronRight } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
 
 export function Cabins() {
   const { content } = useLanguage()
+  const [currentImageIndex, setCurrentImageIndex] = useState<Record<number, number>>({})
+
+  const handlePrevImage = (cabinIndex: number, imagesLength: number) => {
+    setCurrentImageIndex(prev => ({
+      ...prev,
+      [cabinIndex]: ((prev[cabinIndex] || 0) - 1 + imagesLength) % imagesLength
+    }))
+  }
+
+  const handleNextImage = (cabinIndex: number, imagesLength: number) => {
+    setCurrentImageIndex(prev => ({
+      ...prev,
+      [cabinIndex]: ((prev[cabinIndex] || 0) + 1) % imagesLength
+    }))
+  }
+
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
@@ -16,37 +33,79 @@ export function Cabins() {
           <p className="text-lg md:text-xl text-muted-foreground text-pretty">{content.cabins.subtitle}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {content.cabins.categories.map((cabin, index) => (
-            <div
-              key={index}
-              className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col"
-            >
-              <div className="relative h-64">
-                <img src={cabin.image || "/placeholder.svg"} alt={cabin.name} className="w-full h-full object-cover" />
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="font-serif text-2xl font-bold">{cabin.name}</h3>
-                  <span className="text-lg font-bold text-secondary whitespace-nowrap">{cabin.size}</span>
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+          {content.cabins.categories.map((cabin, index) => {
+            const currentIndex = currentImageIndex[index] || 0
+            const cabinImages = cabin.images || [cabin.image]
+
+            return (
+              <div
+                key={index}
+                className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col"
+              >
+                <div className="relative h-64 group">
+                  <img
+                    src={cabinImages[currentIndex] || "/placeholder.svg"}
+                    alt={`${cabin.name} - Image ${currentIndex + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                  {cabinImages.length > 1 && (
+                    <>
+                      <button
+                        onClick={() => handlePrevImage(index, cabinImages.length)}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={() => handleNextImage(index, cabinImages.length)}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+                        {cabinImages.map((_, imgIndex) => (
+                          <div
+                            key={imgIndex}
+                            className={`w-2 h-2 rounded-full transition-colors ${
+                              imgIndex === currentIndex ? 'bg-white' : 'bg-white/50'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
-                <ul className="space-y-2 mb-6 flex-grow">
-                  {cabin.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-muted-foreground">
-                      <Check className="w-5 h-5 text-secondary flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  className="w-full bg-white text-foreground border-2 border-border hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors mt-auto"
-                  variant="outline"
-                >
-                  {content.cabins.selectButton}
-                </Button>
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="font-serif text-2xl font-bold">{cabin.name}</h3>
+                    <span className="text-lg font-bold text-secondary whitespace-nowrap">{cabin.size}</span>
+                  </div>
+                  {cabin.price && (
+                    <div className="text-lg font-semibold text-primary mb-4">
+                      {cabin.price}
+                    </div>
+                  )}
+                  <ul className="space-y-2 mb-6 flex-grow">
+                    {cabin.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-muted-foreground">
+                        <Check className="w-5 h-5 text-secondary flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    className="w-full bg-white text-foreground border-2 border-border hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors mt-auto"
+                    variant="outline"
+                  >
+                    {content.cabins.selectButton}
+                  </Button>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

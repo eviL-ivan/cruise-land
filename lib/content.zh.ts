@@ -3,9 +3,9 @@
 // 数据来源于官方品牌手册 PDF
 
 import { images } from "./content/images";
-import { journey } from "./content/journey.zh";
-import { itinerary } from "./content/itinerary.zh";
-import { cabins } from "./content/cabins.zh";
+import { journey } from "./content/zh/journey.zh";
+import { itinerary } from "./content/zh/itinerary.zh";
+import { cabins } from "./content/zh/cabins.zh";
 
 export const content = {
   // 元数据
@@ -49,6 +49,9 @@ export const content = {
     mapImage: images.overview.map,
     mapAlt: "邮轮航线图",
     mapButton: "地图",
+    description: "这不仅仅是一次邮轮——这是一次穿越非洲、大西洋和南极三个世界交汇处的智识与情感探险。",
+    detailedDescription: "只有在这里，宾客才能目睹稀有的北跳岩企鹅，探索地球上最与世隔绝的岛屿，在雕塑般的冰山旁迎接黎明——这一切都在天鹅海伦尼克最新旗舰SH Diana号的优雅舒适中进行。",
+    experienceButton: "观看体验",
   },
 
   // 主页横幅 (Hero)

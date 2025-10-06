@@ -2,12 +2,13 @@
 
 import { useState } from "react"
 import { useLanguage } from "@/lib/language-context"
-import { Map, ChevronLeft, ChevronRight, X } from "lucide-react"
+import { Map, ChevronLeft, ChevronRight, X, Play } from "lucide-react"
 
 export function Overview() {
   const { content } = useLanguage()
   const [currentSlide, setCurrentSlide] = useState(0)
   const [showMapModal, setShowMapModal] = useState(false)
+  const [showVideoModal, setShowVideoModal] = useState(false)
 
   const slideImages = content.highlights
 
@@ -110,13 +111,31 @@ export function Overview() {
                   </div>
                 </div>
 
-                <div className="pt-4">
+                {/* Description */}
+                <div className="py-6 space-y-4 border-t border-border">
+                  <p className="text-lg leading-relaxed text-foreground/90">
+                    {content.overview.description}
+                  </p>
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    {content.overview.detailedDescription}
+                  </p>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="pt-4 flex flex-wrap gap-4">
                   <a
                     href="#contact"
                     className="inline-block bg-white text-primary hover:bg-[#be8f74] hover:text-white border-2 border-white hover:border-[#be8f74] px-8 py-3 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase"
                   >
                     {content.header.bookButton}
                   </a>
+                  <button
+                    onClick={() => setShowVideoModal(true)}
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-8 py-3 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase"
+                  >
+                    <Play className="w-5 h-5" />
+                    {content.overview.experienceButton}
+                  </button>
                 </div>
               </div>
             </div>
@@ -142,6 +161,35 @@ export function Overview() {
               alt={content.overview.mapAlt}
               className="w-full h-auto rounded-lg shadow-2xl"
             />
+          </div>
+        </div>
+      )}
+
+      {/* Video Modal */}
+      {showVideoModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm animate-in fade-in duration-300"
+          onClick={() => setShowVideoModal(false)}
+        >
+          <button
+            onClick={() => setShowVideoModal(false)}
+            className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+            aria-label="Close video"
+          >
+            <X className="w-8 h-8" />
+          </button>
+          <div
+            className="relative w-full max-w-6xl mx-4 aspect-video animate-in zoom-in duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video
+              src="/swan_4.webm"
+              controls
+              autoPlay
+              className="w-full h-full rounded-lg shadow-2xl"
+            >
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       )}

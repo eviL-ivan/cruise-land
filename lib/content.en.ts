@@ -3,9 +3,9 @@
 // Data sourced from the official brandbook PDF
 
 import { images } from "./content/images";
-import { journey } from "./content/journey.en";
-import { itinerary } from "./content/itinerary.en";
-import { cabins } from "./content/cabins.en";
+import { journey } from "./content/en/journey.en";
+import { itinerary } from "./content/en/itinerary.en";
+import { cabins } from "./content/en/cabins.en";
 
 export const content = {
   // Metadata
@@ -49,6 +49,9 @@ export const content = {
     mapImage: images.overview.map,
     mapAlt: "Cruise route map",
     mapButton: "Map",
+    description: "This is not just a cruise — it's an intellectual and emotional expedition through three worlds where Africa, the Atlantic, and Antarctica meet.",
+    detailedDescription: "Only here can guests witness the rare Northern Rockhopper penguins, explore the planet's most isolated island, and greet the dawn beside sculpted icebergs — all from the elegant comfort of Swan Hellenic's newest flagship, SH Diana.",
+    experienceButton: "Watch Experience",
   },
 
   // Hero Section
