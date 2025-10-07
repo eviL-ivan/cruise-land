@@ -39,30 +39,31 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center transition-all duration-300 ${
+      className={`fixed inset-0 z-[99999] flex items-center justify-center transition-all duration-300 ${
         isOpen ? 'bg-black/70 backdrop-blur-sm pointer-events-auto' : 'bg-transparent pointer-events-none'
       }`}
       onClick={onClose}
       style={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0 }}
     >
       <div
-        className={`relative w-full max-w-2xl mx-4 bg-white rounded-lg shadow-2xl overflow-hidden transition-transform duration-300 ${
+        className={`relative w-full h-full sm:h-auto sm:max-w-2xl sm:mx-4 bg-white sm:rounded-xl shadow-2xl overflow-hidden transition-transform duration-300 ${
           isOpen ? 'scale-100' : 'scale-95'
         }`}
         onClick={(e) => e.stopPropagation()}
+        style={{ maxHeight: '100%' }}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/90 hover:bg-white transition-colors shadow-lg"
+          className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 p-1.5 sm:p-2 rounded-full bg-white/90 hover:bg-white transition-colors shadow-lg"
           aria-label="Close"
         >
-          <X className="w-6 h-6 text-gray-700" />
+          <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
         </button>
 
         {/* iframe всегда загружен */}
         <iframe
           src="https://swanhellenc-cruise-land-vercel.bitrix24.site/crm_form_nmrul/"
-          className="w-full h-[80vh] border-0"
+          className="w-full h-full sm:h-[80vh] border-0"
           title="Booking Form"
         />
       </div>

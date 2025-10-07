@@ -91,7 +91,7 @@ export function Header() {
           </nav>
 
           {/* Language Switcher & CTA Button */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4 ml-2 md:ml-0">
             {/* Language Dropdown */}
             <div className="relative">
               <button
