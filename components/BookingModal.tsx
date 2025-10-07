@@ -1,7 +1,9 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { X } from "lucide-react"
+import Image from "next/image"
+// import { BookingForm } from "./BookingForm" // Сохранено для будущего использования
 
 interface BookingModalProps {
   isOpen: boolean
@@ -9,6 +11,9 @@ interface BookingModalProps {
 }
 
 export function BookingModal({ isOpen, onClose }: BookingModalProps) {
+  const formContainerRef = useRef<HTMLDivElement>(null)
+  const scriptLoadedRef = useRef(false)
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
@@ -37,6 +42,28 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
     }
   }, [isOpen, onClose])
 
+  // Загружаем скрипт Bitrix24 формы
+  useEffect(() => {
+    if (!isOpen || scriptLoadedRef.current || !formContainerRef.current) return
+
+    const script = document.createElement('script')
+    script.setAttribute('data-b24-form', 'inline/19/3a5j4r')
+    script.setAttribute('data-skip-moving', 'true')
+    script.async = true
+    script.src = `https://crm.swanhellenic.com/upload/crm/form/loader_19_3a5j4r.js?${Math.floor(Date.now() / 180000)}`
+
+    formContainerRef.current.appendChild(script)
+    scriptLoadedRef.current = true
+
+    return () => {
+      // Очистка при размонтировании
+      if (formContainerRef.current) {
+        formContainerRef.current.innerHTML = ''
+      }
+      scriptLoadedRef.current = false
+    }
+  }, [isOpen])
+
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${
@@ -60,11 +87,22 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
           <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
         </button>
 
-        {/* iframe всегда загружен */}
-        <iframe
-          src="https://swanhellenc-cruise-land-vercel.bitrix24.site/crm_form_nmrul/"
-          className="w-full h-full sm:h-[80vh] border-0"
-          title="Booking Form"
+        {/* Логотип */}
+        <div className="flex justify-center py-4 border-b border-gray-200">
+          <Image
+            src="/logo_green.png"
+            alt="Swan Hellenic"
+            width={150}
+            height={56}
+            className="h-10 w-auto sm:h-12"
+            priority
+          />
+        </div>
+
+        {/* Контейнер для Bitrix24 формы */}
+        <div
+          ref={formContainerRef}
+          className="bitrix-form-container w-full h-full sm:h-auto sm:max-h-[70vh] overflow-y-auto pb-20 sm:pb-0"
         />
       </div>
     </div>

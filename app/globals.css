@@ -477,3 +477,10 @@
 elevenlabs-convai {
   z-index: 10 !important;
 }
+
+/* Отступ снизу для Bitrix24 формы на мобильных */
+@media (max-width: 640px) {
+  .bitrix-form-container {
+    padding-bottom: 80px !important;
+  }
+}
