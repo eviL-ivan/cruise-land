@@ -472,3 +472,8 @@
 .animate-gradient {
   animation: gradient 8s ease infinite;
 }
+
+/* Установка z-index для виджета Elevenlabs */
+elevenlabs-convai {
+  z-index: 10 !important;
+}

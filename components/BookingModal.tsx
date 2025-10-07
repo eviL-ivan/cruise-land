@@ -39,7 +39,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-[99999] flex items-center justify-center transition-all duration-300 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${
         isOpen ? 'bg-black/70 backdrop-blur-sm pointer-events-auto' : 'bg-transparent pointer-events-none'
       }`}
       onClick={onClose}
