@@ -118,25 +118,15 @@ export default function AntarcticaMap() {
   }, [selectedMarker])
 
   useEffect(() => {
-    // Проверяем что токен существует
-    const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN
-    if (!mapboxToken) {
-      setLoadState({
-        isLoading: false,
-        error: "Mapbox token не найден. Добавьте NEXT_PUBLIC_MAPBOX_TOKEN в .env.local",
-      })
-      return
-    }
-
     // Проверяем что контейнер существует и карта еще не создана
     if (!mapContainer.current || map.current) return
 
     try {
-      mapboxgl.accessToken = mapboxToken
+      mapboxgl.accessToken = "pk.eyJ1IjoiZXZpbGl2IiwiYSI6ImNtZ2dmczEyYTBoczUyanA5YTJtcXNhbWoifQ.A03X4JmODtOp3lArOIF3-Q"
 
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        style: process.env.NEXT_PUBLIC_MAPBOX_STYLE_URL || "mapbox://styles/mapbox/standard",
+        style: "mapbox://styles/eviliv/cmggfvpcp000j01s5dalac7z5",
         center: MAP_CONFIG.center,
         zoom: MAP_CONFIG.zoom,
         projection: MAP_CONFIG.projection,
@@ -187,6 +177,23 @@ export default function AntarcticaMap() {
             },
           })
 
+          // Добавляем слой с свечением под основной линией
+          map.current.addLayer({
+            id: "route-glow",
+            type: "line",
+            source: "route",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": "#fff",
+              "line-width": 8,
+              "line-blur": 8,
+              "line-opacity": 0.4,
+            },
+          })
+
           // Добавляем анимированный пунктирный слой
           map.current.addLayer({
             id: "route-animated",
@@ -197,13 +204,13 @@ export default function AntarcticaMap() {
               "line-cap": "round",
             },
             paint: {
-              "line-color": "#9ca3af",
+              "line-color": "#e5e7eb",
               "line-width": 3.5,
               "line-dasharray": [0, 3, 3],
             },
           })
 
-          // Анимация пунктира
+          // Анимация пунктира и свечения
           let dashOffset = 0
           let lastTimestamp = 0
 
@@ -213,6 +220,7 @@ export default function AntarcticaMap() {
             lastTimestamp = timestamp
 
             if (map.current && map.current.getLayer("route-animated")) {
+              // Анимация движения пунктира
               dashOffset += (deltaTime / 1000) * 0.12
               const offset = dashOffset % 6
               map.current.setPaintProperty("route-animated", "line-dasharray", [
@@ -220,6 +228,10 @@ export default function AntarcticaMap() {
                 3,
                 3,
               ])
+
+              // Анимация пульсации свечения
+              const glowOpacity = 0.3 + Math.sin(timestamp / 1000) * 0.2
+              map.current.setPaintProperty("route-glow", "line-opacity", glowOpacity)
             }
             requestAnimationFrame(animateDash)
           }
