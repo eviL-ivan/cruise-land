@@ -1,0 +1,473 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+import mapboxgl from "mapbox-gl"
+import "mapbox-gl/dist/mapbox-gl.css"
+import { ROUTE_WAYPOINTS, MARKER_POINTS, MAP_CONFIG, FOG_CONFIG } from './constants'
+import { MapLoadState } from './types'
+import MapControls from './MapControls'
+import { MapPopup } from './MapPopup'
+import { useLanguage } from "@/lib/language-context"
+import { X } from "lucide-react"
+import { Button } from "@/components/ui/button"
+
+// Catmull-Rom сплайн для плавной линии
+const createSmoothCurve = (points: number[][]): number[][] => {
+  const smoothPoints: number[][] = []
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[Math.max(0, i - 1)]
+    const p1 = points[i]
+    const p2 = points[i + 1]
+    const p3 = points[Math.min(points.length - 1, i + 2)]
+
+    smoothPoints.push(p1)
+
+    for (let t = 0.02; t < 1; t += 0.02) {
+      const t2 = t * t
+      const t3 = t2 * t
+
+      const x =
+        0.5 *
+        (2 * p1[0] +
+          (-p0[0] + p2[0]) * t +
+          (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * t2 +
+          (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * t3)
+
+      const y =
+        0.5 *
+        (2 * p1[1] +
+          (-p0[1] + p2[1]) * t +
+          (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * t2 +
+          (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * t3)
+
+      smoothPoints.push([x, y])
+    }
+  }
+
+  smoothPoints.push(points[points.length - 1])
+  return smoothPoints
+}
+
+export default function AntarcticaMap() {
+  const { content } = useLanguage()
+  const mapContainer = useRef<HTMLDivElement>(null)
+  const map = useRef<mapboxgl.Map | null>(null)
+  const isMarkerClickRef = useRef(false)
+  const [loadState, setLoadState] = useState<MapLoadState>({
+    isLoading: true,
+    error: null,
+  })
+  const [selectedMarker, setSelectedMarker] = useState<{
+    name: string
+    description: string
+    image?: string
+    x: number
+    y: number
+    coordinates: [number, number]
+  } | null>(null)
+
+  // Update popup position when map moves
+  useEffect(() => {
+    if (!map.current || !selectedMarker) return
+
+    const updatePopupPosition = () => {
+      if (!map.current || !selectedMarker) return
+      const point = map.current.project(selectedMarker.coordinates)
+      setSelectedMarker(prev => prev ? { ...prev, x: point.x, y: point.y } : null)
+    }
+
+    map.current.on('move', updatePopupPosition)
+    map.current.on('zoom', updatePopupPosition)
+
+    return () => {
+      if (map.current) {
+        map.current.off('move', updatePopupPosition)
+        map.current.off('zoom', updatePopupPosition)
+      }
+    }
+  }, [selectedMarker?.coordinates])
+
+  // Close popup on click outside
+  useEffect(() => {
+    if (!selectedMarker) return
+
+    const handleClickOutside = (e: MouseEvent) => {
+      // Skip if this was a marker click
+      if (isMarkerClickRef.current) {
+        isMarkerClickRef.current = false
+        return
+      }
+
+      const target = e.target as HTMLElement
+      // Check if click is outside popup
+      if (!target.closest('.map-popup-content')) {
+        setSelectedMarker(null)
+      }
+    }
+
+    // Add slight delay to prevent immediate closure
+    const timeoutId = setTimeout(() => {
+      document.addEventListener('mousedown', handleClickOutside)
+    }, 100)
+
+    return () => {
+      clearTimeout(timeoutId)
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [selectedMarker])
+
+  useEffect(() => {
+    // Проверяем что токен существует
+    const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN
+    if (!mapboxToken) {
+      setLoadState({
+        isLoading: false,
+        error: "Mapbox token не найден. Добавьте NEXT_PUBLIC_MAPBOX_TOKEN в .env.local",
+      })
+      return
+    }
+
+    // Проверяем что контейнер существует и карта еще не создана
+    if (!mapContainer.current || map.current) return
+
+    try {
+      mapboxgl.accessToken = mapboxToken
+
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: process.env.NEXT_PUBLIC_MAPBOX_STYLE_URL || "mapbox://styles/mapbox/standard",
+        center: MAP_CONFIG.center,
+        zoom: MAP_CONFIG.zoom,
+        projection: MAP_CONFIG.projection,
+        pitch: MAP_CONFIG.pitch,
+        attributionControl: false,
+      })
+
+      map.current.addControl(new mapboxgl.NavigationControl(), "top-right")
+
+      // Обработчик загрузки стиля
+      map.current.on("style.load", () => {
+        if (!map.current) return
+
+        try {
+          map.current.setFog(FOG_CONFIG)
+          console.log("✓ Fog applied")
+        } catch (error) {
+          console.warn("Fog not supported:", error)
+        }
+      })
+
+      // Обработчик ошибок
+      map.current.on("error", (e) => {
+        console.error("Mapbox error:", e)
+        setLoadState({
+          isLoading: false,
+          error: "Ошибка загрузки карты. Проверьте токен и стиль.",
+        })
+      })
+
+      // Обработчик загрузки карты
+      map.current.on("load", () => {
+        if (!map.current || !map.current.isStyleLoaded()) return
+
+        try {
+          const smoothCoordinates = createSmoothCurve(ROUTE_WAYPOINTS)
+
+          // Добавляем источник маршрута
+          map.current.addSource("route", {
+            type: "geojson",
+            data: {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "LineString",
+                coordinates: smoothCoordinates,
+              },
+            },
+          })
+
+          // Добавляем анимированный пунктирный слой
+          map.current.addLayer({
+            id: "route-animated",
+            type: "line",
+            source: "route",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": "#9ca3af",
+              "line-width": 3.5,
+              "line-dasharray": [0, 3, 3],
+            },
+          })
+
+          // Анимация пунктира
+          let dashOffset = 0
+          let lastTimestamp = 0
+
+          const animateDash = (timestamp: number) => {
+            if (!lastTimestamp) lastTimestamp = timestamp
+            const deltaTime = timestamp - lastTimestamp
+            lastTimestamp = timestamp
+
+            if (map.current && map.current.getLayer("route-animated")) {
+              dashOffset += (deltaTime / 1000) * 0.12
+              const offset = dashOffset % 6
+              map.current.setPaintProperty("route-animated", "line-dasharray", [
+                offset,
+                3,
+                3,
+              ])
+            }
+            requestAnimationFrame(animateDash)
+          }
+
+          requestAnimationFrame(animateDash)
+
+          // Добавляем маркеры как Symbol layer
+          const markersGeoJSON = {
+            type: "FeatureCollection" as const,
+            features: MARKER_POINTS.map((point) => ({
+              type: "Feature" as const,
+              properties: {
+                name: point.name,
+              },
+              geometry: {
+                type: "Point" as const,
+                coordinates: point.coordinates,
+              },
+            })),
+          }
+
+          map.current.addSource("markers", {
+            type: "geojson",
+            data: markersGeoJSON,
+          })
+
+          // Слой с кружками
+          map.current.addLayer({
+            id: "markers-circle",
+            type: "circle",
+            source: "markers",
+            paint: {
+              "circle-radius": 8,
+              "circle-color": "#374151",
+              "circle-stroke-width": 3,
+              "circle-stroke-color": "#ffffff",
+              "circle-opacity": 1,
+            },
+          })
+
+          // Слой с подписями
+          map.current.addLayer({
+            id: "markers-label",
+            type: "symbol",
+            source: "markers",
+            layout: {
+              "text-field": ["get", "name"],
+              "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+              "text-offset": [0, 1.5],
+              "text-anchor": "top",
+              "text-size": 12,
+            },
+            paint: {
+              "text-color": "#1f2937",
+              "text-halo-color": "#ffffff",
+              "text-halo-width": 2,
+            },
+          })
+
+          // Интерактивность
+          map.current.on("mouseenter", "markers-circle", (e) => {
+            if (!map.current) return
+            map.current.getCanvas().style.cursor = "pointer"
+
+            if (e.features && e.features[0]) {
+              map.current.setPaintProperty("markers-circle", "circle-radius", [
+                "case",
+                ["==", ["get", "name"], e.features[0].properties.name],
+                11,
+                8,
+              ])
+            }
+          })
+
+          map.current.on("mouseleave", "markers-circle", () => {
+            if (!map.current) return
+            map.current.getCanvas().style.cursor = ""
+            map.current.setPaintProperty("markers-circle", "circle-radius", 8)
+          })
+
+          map.current.on("click", "markers-circle", (e) => {
+            if (!map.current || !e.features || !e.features[0]) return
+
+            // Mark this as marker click
+            isMarkerClickRef.current = true
+
+            const coordinates = e.features[0].geometry.coordinates.slice() as [number, number]
+            const name = e.features[0].properties.name
+
+            // Найдём данные маркера с картинкой
+            const markerData = MARKER_POINTS.find(m => m.name === name)
+            const markerIndex = MARKER_POINTS.findIndex(m => m.name === name)
+            const pointData = markerIndex >= 0 ? content.map.points[markerIndex] : null
+
+            // Конвертируем координаты в пиксели на экране
+            const point = map.current.project(coordinates)
+
+            setSelectedMarker({
+              name: pointData?.name || name,
+              description: pointData?.description || '',
+              image: markerData?.image,
+              x: point.x,
+              y: point.y,
+              coordinates: coordinates
+            })
+          })
+
+          setLoadState({ isLoading: false, error: null })
+          console.log("✓ Map loaded successfully")
+        } catch (error) {
+          console.error("Error setting up map:", error)
+          setLoadState({
+            isLoading: false,
+            error: "Ошибка при настройке карты",
+          })
+        }
+      })
+    } catch (error) {
+      console.error("Error initializing map:", error)
+      setLoadState({
+        isLoading: false,
+        error: "Ошибка инициализации карты",
+      })
+    }
+
+    // Cleanup
+    return () => {
+      if (map.current) {
+        map.current.remove()
+        map.current = null
+      }
+    }
+  }, [])
+
+  return (
+    <section className="w-full">
+      <div className="relative w-full h-[70vh]" style={{
+        boxShadow: 'inset 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 -20px 60px rgba(0, 0, 0, 0.4), inset 0 0 100px rgba(0, 0, 0, 0.3)',
+        border: '1px solid rgba(0, 0, 0, 0.1)'
+      }}>
+      {/* Loading state */}
+      {loadState.isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 z-50">
+          <div className="text-center">
+            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <p className="text-gray-600">Загрузка карты...</p>
+          </div>
+        </div>
+      )}
+
+      {/* Error state */}
+      {loadState.error && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 z-50">
+          <div className="text-center max-w-md p-6">
+            <div className="text-red-500 text-4xl mb-4">⚠️</div>
+            <h2 className="text-xl font-bold text-gray-800 mb-2">Ошибка загрузки карты</h2>
+            <p className="text-gray-600">{loadState.error}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Map container */}
+      <div ref={mapContainer} className="w-full h-full" />
+
+      {/* Controls */}
+      {!loadState.error && <MapControls />}
+
+      {/* Custom Popup */}
+      {selectedMarker && (() => {
+        const containerWidth = mapContainer.current?.clientWidth || 0
+        const containerHeight = mapContainer.current?.clientHeight || 0
+        const popupWidth = 340
+        const popupHeight = 420 // Approximate height with padding
+        const padding = 10
+
+        // Calculate horizontal position (keep within bounds)
+        let left = selectedMarker.x
+        if (left - popupWidth / 2 < padding) {
+          left = popupWidth / 2 + padding
+        } else if (left + popupWidth / 2 > containerWidth - padding) {
+          left = containerWidth - popupWidth / 2 - padding
+        }
+
+        // Calculate vertical position - smart positioning
+        let top = selectedMarker.y
+        let transform = ''
+
+        const spaceAbove = selectedMarker.y
+        const spaceBelow = containerHeight - selectedMarker.y
+
+        // Try to show above marker
+        if (spaceAbove >= popupHeight + 30) {
+          // Enough space above
+          top = selectedMarker.y
+          transform = 'translate(-50%, calc(-100% - 20px))'
+        }
+        // Try to show below marker
+        else if (spaceBelow >= popupHeight + 30) {
+          // Enough space below
+          top = selectedMarker.y
+          transform = 'translate(-50%, 20px)'
+        }
+        // Not enough space in either direction - position to fit
+        else {
+          // Center vertically in available space, or pin to edges
+          if (containerHeight < popupHeight + padding * 2) {
+            // Container too small, pin to top
+            top = padding
+            transform = 'translate(-50%, 0)'
+          } else {
+            // Position so popup fits in container
+            const idealTop = Math.min(
+              containerHeight - popupHeight - padding,
+              Math.max(padding, selectedMarker.y - popupHeight / 2)
+            )
+            top = idealTop
+            transform = 'translate(-50%, 0)'
+          }
+        }
+
+        return (
+          <div
+            className="absolute z-[999999] pointer-events-none max-h-full overflow-visible"
+            style={{
+              left: `${left}px`,
+              top: `${top}px`,
+              transform
+            }}
+          >
+            <div className="pointer-events-auto relative map-popup-content">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute -top-2 -right-2 z-10 h-8 w-8 rounded-full bg-black/50 hover:bg-black/70 text-white shadow-lg"
+                onClick={() => setSelectedMarker(null)}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+              <MapPopup
+                name={selectedMarker.name}
+                description={selectedMarker.description}
+                image={selectedMarker.image}
+              />
+            </div>
+          </div>
+        )
+      })()}
+      </div>
+    </section>
+  )
+}

@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
 import { Overview } from "@/components/overview"
+import AntarcticaMap from "@/components/AntarcticaMap/AntarcticaMap"
 import { Journey } from "@/components/journey"
 import { CruiseTimeline } from "@/components/cruise-timeline"
 import { Wildlife } from "@/components/wildlife"
@@ -16,6 +17,7 @@ export default function Home() {
       <main className="min-h-screen">
         <Hero />
         <Overview />
+        <AntarcticaMap />
         <div id="journey">
           <Journey />
         </div>

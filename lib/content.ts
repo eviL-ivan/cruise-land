@@ -6,6 +6,7 @@ import { images } from "./content/images"
 import { journey } from "./content/ru/journey.ru"
 import { itinerary } from "./content/ru/itinerary.ru"
 import { cabins } from "./content/ru/cabins.ru"
+import { map } from "./content/ru/map.ru"
 
 export const content = {
   // Метаданные
@@ -70,6 +71,9 @@ export const content = {
 
   // Секция "Путешествие" - импортируется из модуля
   journey,
+
+  // Карта маршрута
+  map,
 
   // Highlights
   highlights: [

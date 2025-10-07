@@ -6,6 +6,7 @@ import { images } from "./content/images";
 import { journey } from "./content/en/journey.en";
 import { itinerary } from "./content/en/itinerary.en";
 import { cabins } from "./content/en/cabins.en";
+import { map } from "./content/en/map.en";
 
 export const content = {
   // Metadata
@@ -70,6 +71,9 @@ export const content = {
 
   // Journey Section - imported from module
   journey,
+
+  // Map Route
+  map,
 
   // Highlights
   highlights: [

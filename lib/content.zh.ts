@@ -6,6 +6,7 @@ import { images } from "./content/images";
 import { journey } from "./content/zh/journey.zh";
 import { itinerary } from "./content/zh/itinerary.zh";
 import { cabins } from "./content/zh/cabins.zh";
+import { map } from "./content/zh/map.zh";
 
 export const content = {
   // 元数据
@@ -67,8 +68,11 @@ export const content = {
     video: images.hero.video,
   },
 
-  // “旅程”部分 - 从模块导入
+  // "旅程"部分 - 从模块导入
   journey,
+
+  // 地图路线
+  map,
 
   // 精彩亮点
   highlights: [
