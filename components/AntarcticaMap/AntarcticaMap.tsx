@@ -54,6 +54,9 @@ export default function AntarcticaMap() {
   const mapContainer = useRef<HTMLDivElement>(null)
   const map = useRef<mapboxgl.Map | null>(null)
   const isMarkerClickRef = useRef(false)
+  const idleTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const isUserInteractingRef = useRef(false)
+  const animationFrameRef = useRef<number | null>(null)
   const [loadState, setLoadState] = useState<MapLoadState>({
     isLoading: true,
     error: null,
@@ -124,14 +127,22 @@ export default function AntarcticaMap() {
     try {
       mapboxgl.accessToken = "pk.eyJ1IjoiZXZpbGl2IiwiYSI6ImNtZ2dmczEyYTBoczUyanA5YTJtcXNhbWoifQ.A03X4JmODtOp3lArOIF3-Q"
 
+      // Определяем зум в зависимости от размера экрана
+      const isMobile = window.innerWidth < 768
+      const initialZoom = isMobile ? 1.5 : MAP_CONFIG.zoom
+
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: "mapbox://styles/eviliv/cmggfvpcp000j01s5dalac7z5",
         center: MAP_CONFIG.center,
-        zoom: MAP_CONFIG.zoom,
+        zoom: initialZoom,
         projection: MAP_CONFIG.projection,
         pitch: MAP_CONFIG.pitch,
         attributionControl: false,
+        // Оптимизация загрузки
+        preserveDrawingBuffer: false,
+        refreshExpiredTiles: false,
+        fadeDuration: 0,
       })
 
       map.current.addControl(new mapboxgl.NavigationControl(), "top-right")
@@ -238,13 +249,14 @@ export default function AntarcticaMap() {
 
           requestAnimationFrame(animateDash)
 
-          // Добавляем маркеры как Symbol layer
+          // Добавляем маркеры как Symbol layer с локализованными названиями
           const markersGeoJSON = {
             type: "FeatureCollection" as const,
-            features: MARKER_POINTS.map((point) => ({
+            features: MARKER_POINTS.map((point, index) => ({
               type: "Feature" as const,
               properties: {
                 name: point.name,
+                localizedName: content.map.points[index]?.name || point.name,
               },
               geometry: {
                 type: "Point" as const,
@@ -272,13 +284,13 @@ export default function AntarcticaMap() {
             },
           })
 
-          // Слой с подписями
+          // Слой с подписями (используем локализованное название)
           map.current.addLayer({
             id: "markers-label",
             type: "symbol",
             source: "markers",
             layout: {
-              "text-field": ["get", "name"],
+              "text-field": ["get", "localizedName"],
               "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
               "text-offset": [0, 1.5],
               "text-anchor": "top",
@@ -341,6 +353,58 @@ export default function AntarcticaMap() {
 
           setLoadState({ isLoading: false, error: null })
           console.log("✓ Map loaded successfully")
+
+          // Добавляем обработчики взаимодействия пользователя
+          const handleUserInteraction = () => {
+            isUserInteractingRef.current = true
+            if (idleTimeoutRef.current) {
+              clearTimeout(idleTimeoutRef.current)
+            }
+            if (animationFrameRef.current) {
+              cancelAnimationFrame(animationFrameRef.current)
+            }
+            // Возобновить покачивание через 3 секунды после последнего взаимодействия
+            idleTimeoutRef.current = setTimeout(() => {
+              isUserInteractingRef.current = false
+              startIdleAnimation()
+            }, 3000)
+          }
+
+          map.current.on('mousedown', handleUserInteraction)
+          map.current.on('touchstart', handleUserInteraction)
+          map.current.on('wheel', handleUserInteraction)
+          map.current.on('drag', handleUserInteraction)
+
+          // Функция анимации покачивания
+          const startIdleAnimation = () => {
+            if (!map.current || isUserInteractingRef.current) return
+
+            const initialBearing = map.current.getBearing()
+            let startTime: number | null = null
+
+            const animate = (timestamp: number) => {
+              if (!map.current || isUserInteractingRef.current) return
+
+              if (!startTime) startTime = timestamp
+              const elapsed = timestamp - startTime
+
+              // Плавное покачивание: синусоида от -3 до +3 градусов, период 6 секунд
+              const bearing = initialBearing + Math.sin(elapsed / 3000) * 3
+
+              map.current.setBearing(bearing)
+
+              animationFrameRef.current = requestAnimationFrame(animate)
+            }
+
+            animationFrameRef.current = requestAnimationFrame(animate)
+          }
+
+          // Начать покачивание через 2 секунды после загрузки
+          setTimeout(() => {
+            if (!isUserInteractingRef.current) {
+              startIdleAnimation()
+            }
+          }, 2000)
         } catch (error) {
           console.error("Error setting up map:", error)
           setLoadState({
@@ -359,6 +423,12 @@ export default function AntarcticaMap() {
 
     // Cleanup
     return () => {
+      if (idleTimeoutRef.current) {
+        clearTimeout(idleTimeoutRef.current)
+      }
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current)
+      }
       if (map.current) {
         map.current.remove()
         map.current = null
@@ -367,17 +437,18 @@ export default function AntarcticaMap() {
   }, [])
 
   return (
-    <section className="w-full">
-      <div className="relative w-full h-[70vh]" style={{
-        boxShadow: 'inset 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 -20px 60px rgba(0, 0, 0, 0.4), inset 0 0 100px rgba(0, 0, 0, 0.3)',
-        border: '1px solid rgba(0, 0, 0, 0.1)'
+    <section className="w-full bg-gray-50">
+      <div className="relative w-full h-[50vh] md:h-[70vh]" style={{
+        boxShadow: 'inset 0 10px 30px -5px rgba(0, 0, 0, 0.6), inset 0 -10px 30px -5px rgba(0, 0, 0, 0.5), inset 8px 0 15px -8px rgba(0, 0, 0, 0.4), inset -8px 0 15px -8px rgba(0, 0, 0, 0.4)',
+        borderTop: '2px solid rgba(0, 0, 0, 0.15)',
+        borderBottom: '2px solid rgba(0, 0, 0, 0.15)'
       }}>
       {/* Loading state */}
       {loadState.isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-50 z-50">
           <div className="text-center">
             <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-            <p className="text-gray-600">Загрузка карты...</p>
+            <p className="text-gray-600">{content.map.loading}</p>
           </div>
         </div>
       )}

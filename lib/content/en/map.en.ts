@@ -1,5 +1,6 @@
 export const map = {
   title: "Journey Route",
+  loading: "Loading map...",
   points: [
     {
       name: "Cape Town",

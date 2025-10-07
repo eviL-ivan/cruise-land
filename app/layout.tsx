@@ -45,6 +45,12 @@ export default function RootLayout({
   return (
     <html lang="ru" className={`${spaceGrotesk.variable} ${notoSansJP.variable} ${notoSansSC.variable}`}>
       <head>
+        <link rel="preconnect" href="https://api.mapbox.com" />
+        <link rel="dns-prefetch" href="https://api.mapbox.com" />
+        <link rel="preconnect" href="https://a.tiles.mapbox.com" />
+        <link rel="dns-prefetch" href="https://a.tiles.mapbox.com" />
+        <link rel="preconnect" href="https://swanhellenc-cruise-land-vercel.bitrix24.site" />
+        <link rel="dns-prefetch" href="https://swanhellenc-cruise-land-vercel.bitrix24.site" />
         <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </head>
       <body className="font-sans antialiased">

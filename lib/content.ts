@@ -26,7 +26,7 @@ export const content = {
       cabins: "Каюты",
       contact: "Контакты",
     },
-    bookButton: "Забронировать",
+    bookButton: "Резерв",
     languages: {
       ru: "RU",
       en: "EN",

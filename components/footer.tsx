@@ -64,7 +64,14 @@ export function Footer() {
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-sm text-white/60">{content.footer.copyright}</p>
               <p className="text-sm text-white/60">
-                <span className="text-[#be8f74]">Swan Hellenic</span> — Cultural Expedition Cruises
+                <a
+                  href="https://swanhellenic.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#be8f74] transition-colors"
+                >
+                  <span className="text-[#be8f74]">Swan Hellenic</span>
+                </a> — Cultural Expedition Cruises
               </p>
             </div>
           </div>

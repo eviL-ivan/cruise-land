@@ -3,12 +3,14 @@
 import { useState, useRef } from "react"
 import { useLanguage } from "@/lib/language-context"
 import { Map, ChevronLeft, ChevronRight, X, Play } from "lucide-react"
+import { BookingModal } from "./BookingModal"
 
 export function Overview() {
   const { content } = useLanguage()
   const [currentSlide, setCurrentSlide] = useState(0)
   const [showMapModal, setShowMapModal] = useState(false)
   const [showVideoModal, setShowVideoModal] = useState(false)
+  const [showBookingModal, setShowBookingModal] = useState(false)
   const touchStartX = useRef(0)
   const touchEndX = useRef(0)
 
@@ -147,8 +149,8 @@ export function Overview() {
 
                 {/* Action Buttons */}
                 <div className="pt-4 flex flex-wrap gap-4">
-                  <a
-                    href="#contact"
+                  <button
+                    onClick={() => setShowBookingModal(true)}
                     className="inline-block bg-white px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase border-2"
                     style={{color: '#004657', borderColor: '#004657'}}
                     onMouseEnter={(e) => {
@@ -161,7 +163,7 @@ export function Overview() {
                     }}
                   >
                     {content.header.bookButton}
-                  </a>
+                  </button>
                   <button
                     onClick={() => setShowVideoModal(true)}
                     className="inline-flex items-center gap-2 px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase border-2"
@@ -238,6 +240,9 @@ export function Overview() {
           </div>
         </div>
       )}
+
+      {/* Booking Modal */}
+      <BookingModal isOpen={showBookingModal} onClose={() => setShowBookingModal(false)} />
     </>
   )
 }

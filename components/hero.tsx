@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronDown, Play, X } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
+import { BookingModal } from "./BookingModal"
 
 const staticText = {
   ru: "Путешествие через острова Южной Атлантики, Южную Георгию и Антарктический полуостров на борту SH Diana — ",
@@ -107,6 +108,7 @@ const typingTexts = {
 export function Hero() {
   const { content, language } = useLanguage()
   const [showVideoModal, setShowVideoModal] = useState(false)
+  const [showBookingModal, setShowBookingModal] = useState(false)
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
   const [displayedText, setDisplayedText] = useState("")
   const [isDeleting, setIsDeleting] = useState(false)
@@ -181,7 +183,11 @@ export function Hero() {
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-          <button className="text-base px-8 py-3 rounded-md text-white border-2 border-white transition-all duration-300 font-semibold uppercase" style={{backgroundColor: '#004657'}}>
+          <button
+            onClick={() => setShowBookingModal(true)}
+            className="text-base px-8 py-3 rounded-md text-white border-2 border-white transition-all duration-300 font-semibold uppercase"
+            style={{backgroundColor: '#004657'}}
+          >
             {content.hero.bookButton}
           </button>
           <button
@@ -236,6 +242,9 @@ export function Hero() {
           </div>
         </div>
       )}
+
+      {/* Booking Modal */}
+      <BookingModal isOpen={showBookingModal} onClose={() => setShowBookingModal(false)} />
     </section>
   )
 }

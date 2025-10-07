@@ -1,5 +1,6 @@
 export const map = {
   title: "Маршрут путешествия",
+  loading: "Загрузка карты...",
   points: [
     {
       name: "Кейптаун",

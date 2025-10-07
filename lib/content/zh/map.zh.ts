@@ -1,5 +1,6 @@
 export const map = {
   title: "旅程路线",
+  loading: "加载地图中...",
   points: [
     {
       name: "开普敦",

@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useLanguage } from "@/lib/language-context"
 import { ChevronDown } from "lucide-react"
+import { BookingModal } from "./BookingModal"
 
 const LANGUAGES = {
   ru: "RU",
@@ -14,6 +15,7 @@ const LANGUAGES = {
 
 export function Header() {
   const [isLangOpen, setIsLangOpen] = useState(false)
+  const [showBookingModal, setShowBookingModal] = useState(false)
   const { language, setLanguage, content } = useLanguage()
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -129,10 +131,9 @@ export function Header() {
             </div>
 
             {/* CTA Button */}
-            <a
-              href="#contact"
-              onClick={(e) => scrollToSection(e, '#contact')}
-              className="bg-white px-6 py-2.5 md:px-8 md:py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 border-2 uppercase cursor-pointer"
+            <button
+              onClick={() => setShowBookingModal(true)}
+              className="bg-white px-4 py-2 md:px-8 md:py-3 rounded-md font-semibold text-xs md:text-sm tracking-wide transition-all duration-300 border-2 uppercase cursor-pointer"
               style={{color: '#004657', borderColor: '#004657'}}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = '#004657'
@@ -146,10 +147,13 @@ export function Header() {
               }}
             >
               {content.header.bookButton}
-            </a>
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Booking Modal */}
+      <BookingModal isOpen={showBookingModal} onClose={() => setShowBookingModal(false)} />
     </header>
   )
 }
