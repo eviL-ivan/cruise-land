@@ -169,16 +169,12 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white space-y-4">
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-balance leading-tight text-white">
-          <span className="inline-block bg-primary/5 backdrop-blur-sm px-6 py-3 rounded-xl">
-            {content.hero.title}
-          </span>
+          {content.hero.title}
           <br />
-          <span className="inline-block bg-primary/5 backdrop-blur-sm px-6 py-3 rounded-xl mt-3">
-            {content.hero.titleAccent}
-          </span>
+          {content.hero.titleAccent}
         </h1>
-        <div className="inline-block bg-primary/5 backdrop-blur-sm px-6 py-3 rounded-xl mt-4 transition-all duration-300 ease-in-out">
-          <p className="text-lg md:text-xl text-white/90 max-w-3xl text-pretty">
+        <div className="mt-4 transition-all duration-300 ease-in-out">
+          <p className="text-lg md:text-xl text-white max-w-3xl mx-auto text-pretty">
             {staticText[language as keyof typeof staticText]}
             {displayedText}
             <span className="ml-1 inline-block animate-[pulse_2s_ease-in-out_infinite]">|</span>
