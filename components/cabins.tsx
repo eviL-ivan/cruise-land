@@ -42,7 +42,7 @@ export function Cabins() {
         </div>
 
         {/* Cabins Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 gap-8 lg:gap-10 max-w-6xl mx-auto">
           {content.cabins.categories.map((cabin, index) => (
             <CabinCard
               key={index}
