@@ -77,11 +77,13 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                     <video
                       src={media}
                       className="absolute inset-0 w-full h-full object-cover"
-                      // autoPlay
-                      // loop
+                      autoPlay
+                      loop
                       muted
                       playsInline
-                    />
+                    >
+                        <source src={media} type="video/webm; codecs=vp9,opus" />
+                    </video>
                   ) : (
                     /* Image slide */
                     <Image
