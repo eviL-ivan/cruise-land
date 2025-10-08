@@ -18,6 +18,7 @@ export const cabins = {
         "Роскошная ванная комната",
       ],
       images: images.cabins.oceanview,
+      videos: images.cabinVideos.oceanview,
     },
     {
       name: "Balcony",
@@ -32,6 +33,7 @@ export const cabins = {
         "Роскошная ванная комната",
       ],
       images: images.cabins.balcony,
+      videos: images.cabinVideos.balcony,
     },
     {
       name: "Junior Suite",
@@ -45,6 +47,7 @@ export const cabins = {
         "Роскошная ванная комната",
       ],
       images: images.cabins.juniorSuite,
+      videos: images.cabinVideos.juniorSuite,
     },
     {
       name: "Suite",
@@ -59,6 +62,7 @@ export const cabins = {
         "Роскошная ванная с ванной и душевой кабиной",
       ],
       images: images.cabins.suite,
+      videos: images.cabinVideos.suite,
     },
     {
       name: "Premium Suite",
@@ -74,6 +78,7 @@ export const cabins = {
         "Гардеробная",
       ],
       images: images.cabins.premiumSuite,
+      videos: images.cabinVideos.premiumSuite,
     },
   ],
 } as const

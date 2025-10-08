@@ -18,6 +18,7 @@ export const cabins = {
         "豪华浴室",
       ],
       images: images.cabins.oceanview,
+      videos: images.cabinVideos.oceanview,
     },
     {
       name: "Balcony",
@@ -32,6 +33,7 @@ export const cabins = {
         "豪华浴室",
       ],
       images: images.cabins.balcony,
+      videos: images.cabinVideos.balcony,
     },
     {
       name: "Junior Suite",
@@ -45,6 +47,7 @@ export const cabins = {
         "豪华套内浴室",
       ],
       images: images.cabins.juniorSuite,
+      videos: images.cabinVideos.juniorSuite,
     },
     {
       name: "Suite",
@@ -59,6 +62,7 @@ export const cabins = {
         "带独立浴缸和步入式淋浴的豪华套内浴室",
       ],
       images: images.cabins.suite,
+      videos: images.cabinVideos.suite,
     },
     {
       name: "Premium Suite",
@@ -74,6 +78,7 @@ export const cabins = {
         "步入式衣柜",
       ],
       images: images.cabins.premiumSuite,
+      videos: images.cabinVideos.premiumSuite,
     },
   ],
 } as const

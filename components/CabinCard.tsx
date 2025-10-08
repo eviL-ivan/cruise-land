@@ -13,6 +13,7 @@ interface CabinCardProps {
     features: string[]
     image?: string
     images?: string[]
+    videos?: string[]
     badge?: string
   }
   onBook: () => void
@@ -24,6 +25,8 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
   const [isCardHovered, setIsCardHovered] = useState(false) // Hover on entire card - removes overlay
   const [isPanelHovered, setIsPanelHovered] = useState(false) // Hover on panel - expands panel
   const cabinImages = cabin.images || [cabin.image || '/placeholder.svg']
+  const cabinVideos = cabin.videos || []
+  const allMedia = [...cabinImages, ...cabinVideos] // Combine images and videos
   const isEven = index % 2 === 0
 
   const {
@@ -48,19 +51,35 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
       <div className="relative h-[350px] lg:absolute lg:inset-0 lg:h-auto">
         <div className="embla h-full" ref={emblaRef}>
           <div className="embla__container h-full" {...touchHandlers}>
-            {cabinImages.map((image, imgIndex) => (
-              <div key={imgIndex} className="embla__slide relative min-w-0 flex-[0_0_100%]">
-                <Image
-                  src={image}
-                  alt={`${cabin.name} - Image ${imgIndex + 1}`}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 100vw"
-                  className="object-cover"
-                  loading="eager"
-                  priority={imgIndex === 0}
-                />
-              </div>
-            ))}
+            {allMedia.map((media, mediaIndex) => {
+              const isVideo = mediaIndex >= cabinImages.length
+
+              return (
+                <div key={mediaIndex} className="embla__slide relative min-w-0 flex-[0_0_100%]">
+                  {isVideo ? (
+                    <video
+                      src={media}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    />
+                  ) : (
+                    /* Image slide */
+                    <Image
+                      src={media}
+                      alt={`${cabin.name} - Image ${mediaIndex + 1}`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 100vw"
+                      className="object-cover"
+                      loading="eager"
+                      priority={mediaIndex === 0}
+                    />
+                  )}
+                </div>
+              )
+            })}
           </div>
         </div>
 
@@ -68,7 +87,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
         <div className={`absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 transition-all duration-700 pointer-events-none hidden lg:block ${isCardHovered && !isPanelHovered ? 'opacity-0' : 'opacity-80'}`} />
 
         {/* Navigation Arrows - positioned relative to image container */}
-        {cabinImages.length > 1 && (
+        {allMedia.length > 1 && (
           <>
             <button
               onClick={scrollPrev}
@@ -95,16 +114,16 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
 
             {/* Slide Indicators - hide when hovering panel on desktop */}
             <div className={`absolute bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 gap-2 z-30 flex transition-opacity duration-300 ${isPanelHovered ? 'lg:opacity-0' : 'opacity-100'}`}>
-              {cabinImages.map((_, imgIndex) => (
+              {allMedia.map((_, mediaIdx) => (
                 <button
-                  key={imgIndex}
-                  onClick={() => scrollTo(imgIndex)}
+                  key={mediaIdx}
+                  onClick={() => scrollTo(mediaIdx)}
                   className={`h-1 rounded-full transition-all duration-500 ${
-                    imgIndex === selectedIndex
+                    mediaIdx === selectedIndex
                       ? 'w-10 bg-white shadow-lg'
                       : 'w-1.5 bg-white/50 hover:bg-white/70'
                   }`}
-                  aria-label={`Go to image ${imgIndex + 1}`}
+                  aria-label={`Go to slide ${mediaIdx + 1}`}
                 />
               ))}
             </div>
