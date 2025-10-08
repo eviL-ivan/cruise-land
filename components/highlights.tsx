@@ -81,7 +81,7 @@ export function Highlights() {
                       alt={highlight.title}
                       fill
                       className="object-cover"
-                      priority={index === 0}
+                      loading="eager"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 

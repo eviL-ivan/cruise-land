@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 interface MapPopupProps {
@@ -11,11 +12,14 @@ export function MapPopup({ name, description, image }: MapPopupProps) {
   return (
     <Card className="w-[340px] overflow-hidden border-0 shadow-2xl">
       {image && (
-        <div className="w-full h-[220px] overflow-hidden">
-          <img
+        <div className="relative w-full h-[220px] overflow-hidden">
+          <Image
             src={image}
             alt={name}
-            className="w-full h-full object-cover"
+            fill
+            sizes="340px"
+            className="object-cover"
+            loading="eager"
           />
         </div>
       )}

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { useLanguage } from "@/lib/language-context"
 import { useScreens } from "@/hooks/useScreens"
@@ -107,10 +108,12 @@ export function CruiseTimeline() {
                 >
                   <Card className="w-full max-w-md overflow-hidden group hover:shadow-2xl transition-shadow duration-500 border-2 hover:scale-[1.02] hover:rotate-0 transition-transform">
                     <div className="relative h-48 overflow-hidden">
-                      <img
+                      <Image
                         src={event.image || "/placeholder.svg"}
                         alt={event.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        fill
+                        sizes="448px"
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
@@ -149,7 +152,13 @@ export function CruiseTimeline() {
           {cruiseEvents.map((event, index) => (
             <Card key={index} className="overflow-hidden border-2 shadow-lg">
               <div className="relative h-56 overflow-hidden">
-                <img src={event.image || "/placeholder.svg"} alt={event.title} className="w-full h-full object-cover" />
+                <Image
+                  src={event.image || "/placeholder.svg"}
+                  alt={event.title}
+                  fill
+                  sizes="(max-width: 768px) calc(100vw - 2rem), 448px"
+                  className="object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
                 <div className="absolute top-4 left-4">
