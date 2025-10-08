@@ -12,6 +12,7 @@ interface UseEmblaSliderOptions {
   loop?: boolean
   align?: 'start' | 'center' | 'end'
   slidesToScroll?: number
+  startIndex?: number
 }
 
 export function useEmblaSlider(options: UseEmblaSliderOptions = {}) {
@@ -22,6 +23,7 @@ export function useEmblaSlider(options: UseEmblaSliderOptions = {}) {
     loop = true,
     align = 'start',
     slidesToScroll = 1,
+    startIndex = 0,
   } = options
 
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -34,6 +36,7 @@ export function useEmblaSlider(options: UseEmblaSliderOptions = {}) {
     loop,
     align,
     slidesToScroll,
+    startIndex,
   }
 
   // Setup plugins

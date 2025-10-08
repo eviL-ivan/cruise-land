@@ -4,6 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from "lucide-react"
 import { useEmblaSlider } from "@/hooks/useEmblaSlider"
+import { MediaGalleryDialog } from "./MediaGalleryDialog"
 
 interface CabinCardProps {
   cabin: {
@@ -24,6 +25,8 @@ interface CabinCardProps {
 export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardProps) {
   const [isCardHovered, setIsCardHovered] = useState(false) // Hover on entire card - removes overlay
   const [isPanelHovered, setIsPanelHovered] = useState(false) // Hover on panel - expands panel
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false) // Fullscreen gallery dialog
+  const [selectedMediaIndex, setSelectedMediaIndex] = useState(0) // Selected media for gallery
   const cabinImages = cabin.images || [cabin.image || '/placeholder.svg']
   const cabinVideos = cabin.videos || []
   const allMedia = [...cabinImages, ...cabinVideos] // Combine images and videos
@@ -41,6 +44,12 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
     loop: true,
   })
 
+  // Sync main carousel with gallery when gallery index changes
+  const handleGalleryIndexChange = (index: number) => {
+    setSelectedMediaIndex(index) // Update state for lightbox
+    scrollTo(index) // Sync main carousel
+  }
+
   return (
     <div
       className="group overflow-hidden rounded-[32px] flex flex-col lg:block lg:relative lg:min-h-[520px]"
@@ -55,7 +64,14 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
               const isVideo = mediaIndex >= cabinImages.length
 
               return (
-                <div key={mediaIndex} className="embla__slide relative min-w-0 flex-[0_0_100%]">
+                <div
+                  key={mediaIndex}
+                  className="embla__slide relative min-w-0 flex-[0_0_100%] cursor-pointer"
+                  onClick={() => {
+                    setSelectedMediaIndex(mediaIndex)
+                    setIsGalleryOpen(true)
+                  }}
+                >
                   {isVideo ? (
                     <video
                       src={media}
@@ -242,6 +258,17 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
           )}
         </div>
       </div>
+
+      {/* Fullscreen Media Gallery */}
+      <MediaGalleryDialog
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        media={allMedia}
+        initialIndex={selectedMediaIndex}
+        cabinName={cabin.name}
+        imageCount={cabinImages.length}
+        onIndexChange={handleGalleryIndexChange}
+      />
     </div>
   )
 }
