@@ -73,10 +73,10 @@ export const images = {
   // 360° Videos for cabins
   cabinVideos: {
     oceanview: [
-      "/cabins-videos/Oceanview/oceanview1.mp4",
-      "/cabins-videos/Oceanview/oceanview2.mp4",
-      "/cabins-videos/Oceanview/oceanview3.mp4",
-      "/cabins-videos/Oceanview/oceanview4.mp4",
+      "/cabins-videos/Oceanview/Oceanview1.mp4",
+      "/cabins-videos/Oceanview/Oceanview2.mp4",
+      "/cabins-videos/Oceanview/Oceanview3.mp4",
+      "/cabins-videos/Oceanview/Oceanview4.mp4",
     ],
     balcony: [
       "/cabins-videos/Balcony/Balcony1.mp4",
