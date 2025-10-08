@@ -64,33 +64,37 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
           </div>
         </div>
 
-        {/* Dark overlay - Desktop only, disappears on card hover */}
-        <div className={`absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 transition-all duration-700 pointer-events-none hidden lg:block ${isCardHovered ? 'opacity-0' : 'opacity-80'}`} />
+        {/* Dark overlay - Desktop only, disappears on card hover (except when hovering panel) */}
+        <div className={`absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 transition-all duration-700 pointer-events-none hidden lg:block ${isCardHovered && !isPanelHovered ? 'opacity-0' : 'opacity-80'}`} />
 
         {/* Navigation Arrows - positioned relative to image container */}
         {cabinImages.length > 1 && (
           <>
             <button
               onClick={scrollPrev}
-              className={`absolute top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-700 shadow-2xl hover:scale-110 z-30 left-4 lg:left-6 ${
-                !isEven && (isPanelHovered ? 'lg:!left-[675px]' : 'lg:!left-[475px]')
-              }`}
+              className={`absolute top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full shadow-2xl hover:scale-110 z-30 left-4 lg:left-6
+                opacity-100 lg:opacity-0 transition-all duration-700
+                ${isCardHovered && !isPanelHovered ? 'lg:!opacity-100' : ''}
+                ${!isEven && (isPanelHovered ? 'lg:!left-[675px]' : 'lg:!left-[475px]')}
+              `}
               aria-label="Previous image"
             >
               <ChevronLeft className="w-4 h-4 lg:w-5 lg:h-5" strokeWidth={2.5} />
             </button>
             <button
               onClick={scrollNext}
-              className={`absolute top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-700 shadow-2xl hover:scale-110 z-30 right-4 lg:right-6 ${
-                isEven && (isPanelHovered ? 'lg:!right-[675px]' : 'lg:!right-[475px]')
-              }`}
+              className={`absolute top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full shadow-2xl hover:scale-110 z-30 right-4 lg:right-6
+                opacity-100 lg:opacity-0 transition-all duration-700
+                ${isCardHovered && !isPanelHovered ? 'lg:!opacity-100' : ''}
+                ${isEven && (isPanelHovered ? 'lg:!right-[675px]' : 'lg:!right-[475px]')}
+              `}
               aria-label="Next image"
             >
               <ChevronRight className="w-4 h-4 lg:w-5 lg:h-5" strokeWidth={2.5} />
             </button>
 
-            {/* Slide Indicators */}
-            <div className="absolute bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 gap-2 z-30 flex">
+            {/* Slide Indicators - hide when hovering panel on desktop */}
+            <div className={`absolute bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 gap-2 z-30 flex transition-opacity duration-300 ${isPanelHovered ? 'lg:opacity-0' : 'opacity-100'}`}>
               {cabinImages.map((_, imgIndex) => (
                 <button
                   key={imgIndex}
