@@ -18,7 +18,8 @@
       "Bash(do sed -i 's/text-4xl md:text-5xl lg:text-6xl font-bold/text-4xl md:text-5xl lg:text-6xl font-light/g' \"$file\")",
       "Bash(npm install:*)",
       "Bash(dir:*)",
-      "Read(//c/Users/Someo/Downloads/Refactoring ui/**)"
+      "Read(//c/Users/Someo/Downloads/Refactoring ui/**)",
+      "Bash(npx shadcn@latest add:*)"
     ],
     "deny": [],
     "ask": []

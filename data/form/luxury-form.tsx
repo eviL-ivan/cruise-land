@@ -172,8 +172,8 @@ export function LuxuryForm({ className }: LuxuryFormProps) {
           id="comment"
           value={formData.comment}
           onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
-          rows={4}
-          className="bg-input/50 border-border/50 focus:bg-input focus:border-border transition-all duration-200 text-base font-light resize-none"
+          rows={1}
+          className="bg-input/50 border-border/50 focus:bg-input focus:border-border transition-all duration-200 text-base font-light resize-y min-h-[3rem]"
         />
       </div>
 
@@ -186,7 +186,11 @@ export function LuxuryForm({ className }: LuxuryFormProps) {
             onCheckedChange={(checked) => setFormData({ ...formData, isTravelAgent: checked as boolean })}
             className="mt-1"
           />
-          <Label htmlFor="travelAgent" className="text-sm font-light text-foreground cursor-pointer leading-relaxed">
+          <Label
+            htmlFor="travelAgent"
+            className="text-sm font-light text-foreground cursor-pointer leading-relaxed"
+            onClick={() => setFormData({ ...formData, isTravelAgent: !formData.isTravelAgent })}
+          >
             I'm Travel Agent
           </Label>
         </div>
@@ -199,7 +203,11 @@ export function LuxuryForm({ className }: LuxuryFormProps) {
             onCheckedChange={(checked) => setFormData({ ...formData, consent: checked as boolean })}
             className="mt-1"
           />
-          <Label htmlFor="consent" className="text-sm font-light text-muted-foreground cursor-pointer leading-relaxed">
+          <Label
+            htmlFor="consent"
+            className="text-sm font-light text-muted-foreground cursor-pointer leading-relaxed"
+            onClick={() => setFormData({ ...formData, consent: !formData.consent })}
+          >
             I confirm that my personal data may be used for contractual processing and further information about the
             products and services offered by Swan Hellenic
           </Label>
@@ -207,12 +215,12 @@ export function LuxuryForm({ className }: LuxuryFormProps) {
       </div>
 
       {/* Submit Button */}
-      <div className="mt-8">
+      <div className="mt-8 flex justify-center">
         <Button
           type="submit"
           className="w-full md:w-auto px-12 h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-light text-base tracking-wide transition-all duration-200"
         >
-          Submit
+          Begin Your Journey
         </Button>
       </div>
     </form>

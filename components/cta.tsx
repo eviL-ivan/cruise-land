@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useLanguage } from "@/lib/language-context"
 import { BookingModal } from "./BookingModal"
+import { ContactForm } from "./ContactForm"
 
 export function CTA() {
   const { content } = useLanguage()
@@ -18,16 +19,10 @@ export function CTA() {
           <p className="text-lg md:text-xl text-muted-foreground text-pretty">{content.cta.subtitle}</p>
         </div>
 
-        <div className="max-w-4xl mx-auto text-center">
-
-          <div className="flex justify-center items-center mb-12">
-            <button
-              onClick={() => setShowBookingModal(true)}
-              className="text-base px-12 py-4 bg-white rounded-md transition-all duration-300 font-semibold uppercase hover:shadow-2xl border-2"
-              style={{color: '#004155', borderColor: '#004155'}}
-            >
-              Contact Us
-            </button>
+        <div className="max-w-4xl mx-auto">
+          {/* Inline Contact Form */}
+          <div className="mb-12">
+            <ContactForm inCard={false} />
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 pt-12 border-t border-border">
