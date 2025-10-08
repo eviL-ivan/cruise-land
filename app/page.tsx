@@ -45,30 +45,30 @@ export default function Home() {
   return (
     <>
       <Header />
-      {/*<main className="min-h-screen">*/}
-      {/*  <Hero />*/}
-      {/*  <Overview />*/}
-      {/*  /!*<div id="map">*!/*/}
-      {/*  /!*  {preloadMap && <AntarcticaMap />}*!/*/}
-      {/*  /!*</div>*!/*/}
-      {/*  <div id="journey">*/}
-      {/*    <Journey />*/}
-      {/*  </div>*/}
-      {/*  <div id="itinerary">*/}
-      {/*    <CruiseTimeline />*/}
-      {/*  </div>*/}
-      {/*  <Wildlife />*/}
-      {/*  <div id="ship">*/}
-      {/*    <Ship />*/}
-      {/*  </div>*/}
-      {/*  <div id="cabins">*/}
-      {/*    <Cabins />*/}
-      {/*  </div>*/}
-      {/*  <div id="contact">*/}
-      {/*    <CTA />*/}
-      {/*  </div>*/}
-      {/*  <Footer />*/}
-      {/*</main>*/}
+      <main className="min-h-screen">
+        <Hero />
+        <Overview />
+        {/*<div id="map">*/}
+        {/*  {preloadMap && <AntarcticaMap />}*/}
+        {/*</div>*/}
+        <div id="journey">
+          <Journey />
+        </div>
+        <div id="itinerary">
+          <CruiseTimeline />
+        </div>
+        <Wildlife />
+        <div id="ship">
+          <Ship />
+        </div>
+        <div id="cabins">
+          <Cabins />
+        </div>
+        {/*<div id="contact">*/}
+        {/*  <CTA />*/}
+        {/*</div>*/}
+        <Footer />
+      </main>
     </>
   )
 }
