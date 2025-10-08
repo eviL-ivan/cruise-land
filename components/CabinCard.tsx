@@ -77,8 +77,8 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                     <video
                       src={media}
                       className="absolute inset-0 w-full h-full object-cover"
-                      autoPlay
-                      loop
+                      // autoPlay
+                      // loop
                       muted
                       playsInline
                     />
