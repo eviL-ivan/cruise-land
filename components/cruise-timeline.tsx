@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/lib/language-context";
@@ -45,32 +45,44 @@ export function CruiseTimeline() {
     };
   }, [isMdScreen]);
 
-  const getCardTopPosition = (index: number) => {
-    if (index === 0) return 0;
-
-    let position = 0;
-    for (let i = 1; i <= index; i++) {
-      if (i % 2 === 1) {
-        position += 250;
-      } else {
-        position += 400;
-      }
-    }
-    return position;
-  };
-
   const cruiseEvents = content.itinerary.days;
 
-  // Рассчитываем реальную высоту блока на основе последней карточки
-  const getTotalHeight = () => {
-    if (cruiseEvents.length === 0) return 0;
-    const lastCardPosition = getCardTopPosition(cruiseEvents.length - 1);
-    const cardHeight = 450; // примерная высота карточки (изображение + контент)
-    return lastCardPosition + cardHeight;
+  // Мемоизируем вычисление позиций карточек
+  const cardPositions = useMemo(() => {
+    const positions: number[] = [];
+    for (let index = 0; index < cruiseEvents.length; index++) {
+      if (index === 0) {
+        positions.push(0); // Первая карточка без отступа
+      } else {
+        let position = positions[index - 1];
+        const isLastTwo = index >= cruiseEvents.length - 2;
+
+        if (index % 2 === 1) {
+          position += isLastTwo ? 250 : 200; // Больше отступ для последних двух
+        } else {
+          position += isLastTwo ? 450 : 350; // Больше отступ для последних двух
+        }
+        positions.push(position);
+      }
+    }
+    return positions;
+  }, [cruiseEvents.length]);
+
+  const getCardTopPosition = (index: number) => {
+    return cardPositions[index] || 0;
   };
 
+  // Рассчитываем реальную высоту блока на основе последней карточки
+  const getTotalHeight = useMemo(() => {
+    if (cruiseEvents.length === 0) return 0;
+    const lastCardPosition = cardPositions[cruiseEvents.length - 1] || 0;
+    const cardHeight = 450; // примерная высота карточки (изображение + контент)
+    const bottomPadding = 50; // Отступ снизу после последней карточки
+    return lastCardPosition + cardHeight + bottomPadding;
+  }, [cruiseEvents.length, cardPositions]);
+
   return (
-    <div className="relative py-20 px-4 md:px-8 lg:px-16">
+    <div className="relative pb-20 px-4 md:px-8 lg:px-16 pt-24">
       {/* Header */}
       <div className="max-w-4xl mx-auto text-center mb-8">
         <h1 className="text-5xl md:text-7xl font-serif font-light mb-6 text-balance">
@@ -86,12 +98,13 @@ export function CruiseTimeline() {
         {/* Desktop/Tablet version - absolute positioning */}
         <div
           className="hidden md:block relative"
-          style={{ minHeight: `${getTotalHeight()}px` }}
+          style={{ minHeight: `${getTotalHeight}px` }}
         >
           {cruiseEvents.map((event, index) => {
             const isLeft = index % 2 === 0;
 
-            const parallaxOffset = (scrollY - index * 400) * 0.05;
+            // Отключаем параллакс для первой карточки
+            const parallaxOffset = index === 0 ? 0 : (scrollY - index * 400) * 0.05;
 
             const topPosition = getCardTopPosition(index);
 
