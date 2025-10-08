@@ -44,11 +44,11 @@ export function MediaGalleryDialog({
     const isVideo = index >= imageCount
 
     if (isVideo) {
-      // Video slide
+      // Video slide - Video plugin automatically plays only active slide
       return {
         type: "video" as const,
         title: `${cabinName} - 360° Video`,
-        autoPlay: true,
+        autoPlay: true, // Plugin ensures only active slide plays
         loop: true,
         muted: true,
         playsInline: true,

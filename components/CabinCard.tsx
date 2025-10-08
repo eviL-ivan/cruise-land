@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from "lucide-react"
 import { useEmblaSlider } from "@/hooks/useEmblaSlider"
@@ -44,6 +44,27 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
     loop: true,
   })
 
+  // Refs for video elements
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
+
+  // Control video playback based on active slide
+  useEffect(() => {
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        if (index === selectedIndex) {
+          // Play video on active slide
+          video.play().catch(() => {
+            // Ignore autoplay errors
+          })
+        } else {
+          // Pause and reset video on inactive slides
+          video.pause()
+          video.currentTime = 0
+        }
+      }
+    })
+  }, [selectedIndex])
+
   // Sync main carousel with gallery when gallery index changes
   const handleGalleryIndexChange = (index: number) => {
     setSelectedMediaIndex(index) // Update state for lightbox
@@ -74,9 +95,11 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                 >
                   {isVideo ? (
                     <video
+                      ref={(el) => {
+                        videoRefs.current[mediaIndex] = el
+                      }}
                       src={media}
                       className="absolute inset-0 w-full h-full object-cover"
-                      autoPlay
                       loop
                       muted
                       playsInline
