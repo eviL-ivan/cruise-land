@@ -56,7 +56,7 @@ export function MediaGalleryDialog({
         sources: [
           {
             src: item,
-            type: "video/webm",
+            type: "video/mp4",
           },
         ],
       }
