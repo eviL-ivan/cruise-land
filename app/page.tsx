@@ -15,7 +15,7 @@ import { useEffect, useState } from "react"
 
 // Динамический импорт карты с preload
 const AntarcticaMap = dynamic(() => import("@/components/AntarcticaMap/AntarcticaMap"), {
-  loading: () => <div className="w-full h-[50vh] md:h-[70vh] bg-gray-50" />,
+  loading: () => <div className="w-full h-[50svh] md:h-[70svh] bg-gray-50" />,
   ssr: false
 })
 
@@ -51,9 +51,9 @@ export default function Home() {
         {/*<div id="cabins">*/}
         {/*  <Cabins />*/}
         {/*</div>*/}
-        <div id="contact">
-          <CTA />
-        </div>
+        {/*<div id="contact">*/}
+        {/*  <CTA />*/}
+        {/*</div>*/}
         <Footer />
       </main>
     </>
