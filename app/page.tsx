@@ -41,13 +41,13 @@ export default function Home() {
         <div id="journey">
           <Journey />
         </div>
-        <div id="itinerary">
-          <CruiseTimeline />
-        </div>
+        {/*<div id="itinerary">*/}
+        {/*  <CruiseTimeline />*/}
+        {/*</div>*/}
         {/*<Wildlife />*/}
-        <div id="ship">
-          <Ship />
-        </div>
+        {/*<div id="ship">*/}
+        {/*  <Ship />*/}
+        {/*</div>*/}
         <div id="cabins">
           <Cabins />
         </div>
