@@ -127,16 +127,16 @@ export function CruiseTimeline() {
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       <div className="absolute top-4 left-4">
-                        <div className="font-serif italic text-white/90 text-base tracking-wide">
+                        <div className="font-serif italic text-white text-base tracking-wide [text-shadow:_0_0_15px_rgb(0_0_0),_0_0_10px_rgb(0_0_0),_2px_2px_8px_rgb(0_0_0),_-2px_-2px_8px_rgb(0_0_0),_2px_-2px_8px_rgb(0_0_0),_-2px_2px_8px_rgb(0_0_0)]">
                           {event.day}
                         </div>
                       </div>
 
                       <div className="absolute bottom-3 left-4 right-4">
-                        <h3 className="text-3xl font-serif font-light text-white mb-1 text-balance">
+                        <h3 className="text-3xl font-serif font-light text-white mb-1 text-balance [text-shadow:_0_0_20px_rgb(0_0_0),_0_0_15px_rgb(0_0_0),_3px_3px_10px_rgb(0_0_0),_-3px_-3px_10px_rgb(0_0_0),_3px_-3px_10px_rgb(0_0_0),_-3px_3px_10px_rgb(0_0_0)]">
                           {event.title}
                         </h3>
-                        <p className="text-sm text-white/95 font-medium">
+                        <p className="text-sm text-white font-medium [text-shadow:_0_0_15px_rgb(0_0_0),_0_0_10px_rgb(0_0_0),_2px_2px_8px_rgb(0_0_0),_-2px_-2px_8px_rgb(0_0_0),_2px_-2px_8px_rgb(0_0_0),_-2px_2px_8px_rgb(0_0_0)]">
                           {event.location}
                         </p>
                       </div>
@@ -178,19 +178,17 @@ export function CruiseTimeline() {
                   sizes="(max-width: 768px) calc(100vw - 2rem), 448px"
                   className="object-cover"
                 />
-                <div className="absolute inset-0 " />
-
                 <div className="absolute top-4 left-4">
-                  <div className="font-serif italic text-white/90 text-base tracking-wide">
+                  <div className="font-serif italic text-white text-base tracking-wide [text-shadow:_0_0_15px_rgb(0_0_0),_0_0_10px_rgb(0_0_0),_2px_2px_8px_rgb(0_0_0),_-2px_-2px_8px_rgb(0_0_0),_2px_-2px_8px_rgb(0_0_0),_-2px_2px_8px_rgb(0_0_0)]">
                     {event.day}
                   </div>
                 </div>
 
                 <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-3xl font-serif font-light text-white mb-1 text-balance">
+                  <h3 className="text-3xl font-serif font-light text-white mb-1 text-balance [text-shadow:_0_0_20px_rgb(0_0_0),_0_0_15px_rgb(0_0_0),_3px_3px_10px_rgb(0_0_0),_-3px_-3px_10px_rgb(0_0_0),_3px_-3px_10px_rgb(0_0_0),_-3px_3px_10px_rgb(0_0_0)]">
                     {event.title}
                   </h3>
-                  <p className="text-sm text-white/95 font-medium">
+                  <p className="text-sm text-white font-medium [text-shadow:_0_0_15px_rgb(0_0_0),_0_0_10px_rgb(0_0_0),_2px_2px_8px_rgb(0_0_0),_-2px_-2px_8px_rgb(0_0_0),_2px_-2px_8px_rgb(0_0_0),_-2px_2px_8px_rgb(0_0_0)]">
                     {event.location}
                   </p>
                 </div>
