@@ -25,8 +25,8 @@ export function Cabins() {
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-[#be8f74]/10 text-[#be8f74] px-4 py-2 rounded-full text-sm font-semibold tracking-wider uppercase mb-6">
-            <Sparkles className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#be8f74]/5 via-[#d4a98a]/5 to-[#be8f74]/5 border border-[#be8f74]/20 text-[#be8f74] px-5 py-2.5 rounded-full text-xs font-bold tracking-[0.15em] uppercase mb-8 shadow-sm">
+            <Sparkles className="w-3.5 h-3.5" strokeWidth={2.5} />
             <span>Your Sanctuary at Sea</span>
           </div>
 
@@ -34,7 +34,7 @@ export function Cabins() {
             {content.cabins.title}
           </h2>
 
-          <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#be8f74] to-transparent mx-auto mb-6" />
+          <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#be8f74]/60 to-transparent mx-auto mb-8" />
 
           <p className="text-base md:text-lg text-[#6d6e71]/80 text-pretty leading-relaxed max-w-2xl mx-auto">
             {content.cabins.subtitle}
