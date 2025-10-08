@@ -42,9 +42,9 @@ export default function Home() {
           <Journey />
         </div>
         <div id="itinerary">
-          {/*<CruiseTimeline />*/}
+          <CruiseTimeline />
         </div>
-        <Wildlife />
+        {/*<Wildlife />*/}
         <div id="ship">
           <Ship />
         </div>
