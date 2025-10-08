@@ -16,7 +16,9 @@
       "Bash(magick:*)",
       "Bash(for file in highlights.tsx overview.tsx itinerary.tsx ship.tsx cabins.tsx cta.tsx wildlife.tsx journey.tsx hero.tsx)",
       "Bash(do sed -i 's/text-4xl md:text-5xl lg:text-6xl font-bold/text-4xl md:text-5xl lg:text-6xl font-light/g' \"$file\")",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(dir:*)",
+      "Read(//c/Users/Someo/Downloads/Refactoring ui/**)"
     ],
     "deny": [],
     "ask": []
