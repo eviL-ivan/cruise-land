@@ -48,9 +48,9 @@ export default function Home() {
         {/*<div id="ship">*/}
         {/*  <Ship />*/}
         {/*</div>*/}
-        <div id="cabins">
-          <Cabins />
-        </div>
+        {/*<div id="cabins">*/}
+        {/*  <Cabins />*/}
+        {/*</div>*/}
         <div id="contact">
           <CTA />
         </div>
