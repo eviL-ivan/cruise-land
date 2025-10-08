@@ -90,7 +90,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
         {/* Логотип */}
         <div className="flex justify-center py-4 border-b border-gray-200">
           <Image
-            src="/logo_green.png"
+            src="/logo_green.svg"
             alt="Swan Hellenic"
             width={150}
             height={56}
