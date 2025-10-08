@@ -29,7 +29,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0) // Selected media for gallery
   const cabinImages = cabin.images || [cabin.image || '/placeholder.svg']
   const cabinVideos = cabin.videos || []
-  const allMedia = [...cabinImages] // Combine images and videos
+  const allMedia = [...cabinImages, ...cabinVideos] // Combine images and videos
   const isEven = index % 2 === 0
 
   const {
