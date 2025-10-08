@@ -9,7 +9,6 @@ import { BookingModal } from "./BookingModal"
 export function Overview() {
   const { content } = useLanguage()
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [showMapModal, setShowMapModal] = useState(false)
   const [showVideoModal, setShowVideoModal] = useState(false)
   const [showBookingModal, setShowBookingModal] = useState(false)
   const touchStartX = useRef(0)
@@ -106,13 +105,13 @@ export function Overview() {
                   <div className="inline-block bg-secondary/20 text-secondary px-4 py-2 rounded-full text-sm font-semibold tracking-wide">
                     {content.overview.cruiseCode}
                   </div>
-                  <button
-                    onClick={() => setShowMapModal(true)}
+                  <a
+                    href="#map"
                     className="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-colors"
                   >
                     <Map className="w-4 h-4" />
                     <span>{content.overview.mapButton}</span>
-                  </button>
+                  </a>
                 </div>
 
                 <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground">
@@ -192,31 +191,6 @@ export function Overview() {
           </div>
         </div>
       </section>
-
-      {/* Map Modal */}
-      {showMapModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
-          onClick={() => setShowMapModal(false)}
-        >
-          <div className="relative max-w-6xl w-full" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setShowMapModal(false)}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
-            >
-              <X className="w-8 h-8" />
-            </button>
-            <Image
-              src={content.overview.mapImage}
-              alt={content.overview.mapAlt}
-              width={1200}
-              height={800}
-              sizes="(max-width: 1536px) calc(100vw - 2rem), 1152px"
-              className="w-full h-auto rounded-lg shadow-2xl"
-            />
-          </div>
-        </div>
-      )}
 
       {/* Video Modal */}
       {showVideoModal && (

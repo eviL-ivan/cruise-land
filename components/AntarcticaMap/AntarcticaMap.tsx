@@ -437,7 +437,16 @@ export default function AntarcticaMap() {
   }, [])
 
   return (
-    <section className="w-full bg-gray-50">
+    <section className="w-full relative overflow-hidden" style={{
+      backgroundColor: '#2d3748',
+      backgroundImage: `radial-gradient(1px 1px at 20px 30px, white, transparent),
+                        radial-gradient(1px 1px at 60px 70px, white, transparent),
+                        radial-gradient(1px 1px at 50px 50px, white, transparent),
+                        radial-gradient(1px 1px at 130px 80px, white, transparent),
+                        radial-gradient(1px 1px at 90px 10px, white, transparent)`,
+      backgroundSize: '150px 150px',
+      backgroundRepeat: 'repeat'
+    }}>
       <div className="relative w-full h-[50vh] md:h-[70vh]" style={{
         boxShadow: 'inset 0 10px 30px -5px rgba(0, 0, 0, 0.6), inset 0 -10px 30px -5px rgba(0, 0, 0, 0.5), inset 8px 0 15px -8px rgba(0, 0, 0, 0.4), inset -8px 0 15px -8px rgba(0, 0, 0, 0.4)',
         borderTop: '2px solid rgba(0, 0, 0, 0.15)',
@@ -445,10 +454,10 @@ export default function AntarcticaMap() {
       }}>
       {/* Loading state */}
       {loadState.isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 z-50">
+        <div className="absolute inset-0 flex items-center justify-center z-50 backdrop-blur-sm">
           <div className="text-center">
-            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-            <p className="text-gray-600">{content.map.loading}</p>
+            <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <p className="text-white">{content.map.loading}</p>
           </div>
         </div>
       )}

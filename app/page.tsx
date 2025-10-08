@@ -15,7 +15,18 @@ import { useEffect, useState } from "react"
 
 // Динамический импорт карты с preload
 const AntarcticaMap = dynamic(() => import("@/components/AntarcticaMap/AntarcticaMap"), {
-  loading: () => <div className="w-full h-[50vh] md:h-[70vh] bg-gray-50" />,
+  loading: () => (
+    <div className="w-full h-[50vh] md:h-[70vh] relative overflow-hidden" style={{
+      backgroundColor: '#2d3748',
+      backgroundImage: `radial-gradient(1px 1px at 20px 30px, white, transparent),
+                        radial-gradient(1px 1px at 60px 70px, white, transparent),
+                        radial-gradient(1px 1px at 50px 50px, white, transparent),
+                        radial-gradient(1px 1px at 130px 80px, white, transparent),
+                        radial-gradient(1px 1px at 90px 10px, white, transparent)`,
+      backgroundSize: '150px 150px',
+      backgroundRepeat: 'repeat'
+    }} />
+  ),
   ssr: false
 })
 
@@ -37,7 +48,9 @@ export default function Home() {
       <main className="min-h-screen">
         <Hero />
         <Overview />
-        {preloadMap && <AntarcticaMap />}
+        <div id="map">
+          {preloadMap && <AntarcticaMap />}
+        </div>
         <div id="journey">
           <Journey />
         </div>

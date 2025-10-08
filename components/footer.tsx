@@ -46,127 +46,22 @@ export function Footer() {
   return (
     <footer id="contact" className="text-white py-12" style={{backgroundColor: '#004155'}}>
       <div className="max-w-[800px] xl:max-w-[1272px] mx-auto px-4">
-          {/* Main Content Grid - 4 columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
-              {/* About Us */}
-              <div>
-                <button
-                  onClick={() => toggleSection('aboutUs')}
-                  className="flex items-center justify-between w-full text-left md:pointer-events-none"
-                >
-                  <h4 className="text-base font-medium mb-6 uppercase inline-block p-0 cursor-default leading-[22px] whitespace-nowrap" style={{color: '#668d99', letterSpacing: '-0.1px'}}>
-                    {content.footer.aboutUs.title}
-                  </h4>
-                  <ChevronDown
-                    className={`w-5 h-5 md:hidden transition-transform ${openSections.aboutUs ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                <ul className={`flex flex-col items-start gap-6 transition-all duration-300 md:!h-auto md:!overflow-visible ${openSections.aboutUs ? 'h-auto' : 'h-0 overflow-hidden'}`}>
-                  {content.footer.aboutUs.links.map((link, index) => (
-                    <li key={index}>
-                      <a
-                        href={link.href}
-                        target={link.target}
-                        className="text-white hover:text-black transition-colors duration-300 text-base font-normal no-underline hover:no-underline leading-5"
-                        style={{letterSpacing: '-0.2px'}}
-                      >
-                        {link.text}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Legal Information */}
-              <div>
-                <button
-                  onClick={() => toggleSection('legalInfo')}
-                  className="flex items-center justify-between w-full text-left md:pointer-events-none"
-                >
-                  <h4 className="text-base font-medium mb-6 uppercase inline-block p-0 cursor-default leading-[22px] whitespace-nowrap" style={{color: '#668d99', letterSpacing: '-0.1px'}}>
-                    {content.footer.legalInfo.title}
-                  </h4>
-                  <ChevronDown
-                    className={`w-5 h-5 md:hidden transition-transform ${openSections.legalInfo ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                <ul className={`flex flex-col items-start gap-6 transition-all duration-300 md:!h-auto md:!overflow-visible ${openSections.legalInfo ? 'h-auto' : 'h-0 overflow-hidden'}`}>
-                  {content.footer.legalInfo.links.map((link, index) => (
-                    <li key={index}>
-                      <a
-                        href={link.href}
-                        className="text-white hover:text-black transition-colors duration-300 text-base font-normal no-underline hover:no-underline leading-5"
-                        style={{letterSpacing: '-0.2px'}}
-                      >
-                        {link.text}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* The Swan Experience */}
-              <div>
-                <button
-                  onClick={() => toggleSection('swanExperience')}
-                  className="flex items-center justify-between w-full text-left md:pointer-events-none"
-                >
-                  <h4 className="text-base font-medium mb-6 uppercase inline-block p-0 cursor-default leading-[22px] whitespace-nowrap" style={{color: '#668d99', letterSpacing: '-0.1px'}}>
-                    {content.footer.swanExperience.title}
-                  </h4>
-                  <ChevronDown
-                    className={`w-5 h-5 md:hidden transition-transform ${openSections.swanExperience ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                <ul className={`flex flex-col items-start gap-6 transition-all duration-300 md:!h-auto md:!overflow-visible ${openSections.swanExperience ? 'h-auto' : 'h-0 overflow-hidden'}`}>
-                  {content.footer.swanExperience.links.map((link, index) => (
-                    <li key={index}>
-                      <a
-                        href={link.href}
-                        className="text-white hover:text-black transition-colors duration-300 text-base font-normal no-underline hover:no-underline leading-5"
-                        style={{letterSpacing: '-0.2px'}}
-                      >
-                        {link.text}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Useful Links */}
-              <div>
-                <button
-                  onClick={() => toggleSection('usefulLinks')}
-                  className="flex items-center justify-between w-full text-left md:pointer-events-none"
-                >
-                  <h4 className="text-base font-medium mb-6 uppercase inline-block p-0 cursor-default leading-[22px] whitespace-nowrap" style={{color: '#668d99', letterSpacing: '-0.1px'}}>
-                    {content.footer.usefulLinks.title}
-                  </h4>
-                  <ChevronDown
-                    className={`w-5 h-5 md:hidden transition-transform ${openSections.usefulLinks ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                <ul className={`flex flex-col items-start gap-6 transition-all duration-300 md:!h-auto md:!overflow-visible ${openSections.usefulLinks ? 'h-auto' : 'h-0 overflow-hidden'}`}>
-                  {content.footer.usefulLinks.links.map((link, index) => (
-                    <li key={index}>
-                      <a
-                        href={link.href}
-                        className="text-white hover:text-black transition-colors duration-300 text-base font-normal no-underline hover:no-underline leading-5"
-                        style={{letterSpacing: '-0.2px'}}
-                      >
-                        {link.text}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          {/* Website Link and Social Media */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+            {/* Website Link */}
+            <div>
+              <a
+                href="https://swanhellenic.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-white/80 transition-colors text-2xl md:text-3xl font-medium uppercase no-underline hover:no-underline whitespace-nowrap"
+                style={{letterSpacing: '-0.1px'}}
+              >
+                Swan Hellenic
+              </a>
             </div>
 
-          {/* Social Media */}
-          <div className="mb-12">
-            <h4 className="text-base font-medium mb-4 uppercase inline-block p-0 cursor-default leading-[22px] whitespace-nowrap" style={{color: '#668d99', letterSpacing: '-0.1px'}}>
-              {content.footer.social.title}
-            </h4>
+            {/* Social Media */}
             <div className="flex gap-3">
               {content.footer.social.links.map((social) => (
                 <a
@@ -174,7 +69,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white flex items-center justify-center cursor-pointer"
+                  className="w-10 h-10 rounded-full bg-white flex items-center justify-center cursor-pointer hover:bg-white/90 transition-colors"
                   aria-label={social.name}
                   style={{color: '#004155'}}
                 >

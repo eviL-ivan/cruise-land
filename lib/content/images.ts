@@ -74,16 +74,16 @@ export const images = {
 
   highlights: [
     "/images/capetown-table-mountain.jpg",
-    "/images/ship-ocean-expedition.jpg",
-    "/images/ocean-horizon.jpg",
+    "/slider/slide2.jpg",
+    "/slider/slide3.jpg",
     "/images/penguins-variety.jpg",
     "/images/tristan-da-cunha.jpg",
-    "/images/explorers-history.jpg",
+    "/slider/slide6.jpg",
     "/images/south-georgia-wildlife.jpg",
-    "/images/onboard-workshop.jpg",
+    "/slider/slide8.jpg",
     "/images/water.png",
     "/images/antarctica-landing.jpg",
-    "/images/kayak.png",
+    "/slider/slide11.jpg",
     "/images/iceberg.png",
   ],
 

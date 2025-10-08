@@ -242,21 +242,58 @@ export const content = {
 
   // 页脚
   footer: {
-    shipName: "SH Diana",
-    brand: "Swan Hellenic",
-    description: "乘坐高冰级 PC6 探险船的豪华南极邮轮",
-    routeTitle: "航线",
-    routeStops: [
-      "开普敦，南非",
-      "特里斯坦-达库尼亚",
-      "南乔治亚岛",
-      "南极洲",
-      "乌斯怀亚，阿根廷",
-    ],
-    contactTitle: "联系方式",
-    contactDescription: "如有任何问题或预订需求，请联系您的旅行经理",
-    contactButton: "联系我们",
-    copyright: "© 2025 SH Diana 南极邮轮。版权所有。",
+    aboutUs: {
+      title: "关于我们",
+      links: [
+        { text: "我们的故事", href: "https://swanhellenic.com/our-story" },
+        { text: "我们的团队", href: "https://swanhellenic.com/our-team" },
+        { text: "可持续发展", href: "https://swanhellenic.com/sustainability" },
+        { text: "Swan Hellenic 基金会", href: "https://swanhellenic.com/swan-hellenic-foundation" },
+        { text: "Swan Hellenic 学院", href: "https://swanhellenic.com/swan-hellenic-academy" },
+        { text: "职业机会", href: "https://swanhellenic.com/careers" },
+      ]
+    },
+    legalInfo: {
+      title: "法律信息",
+      links: [
+        { text: "使用条款", href: "https://swanhellenic.com/terms" },
+        { text: "隐私政策", href: "https://swanhellenic.com/privacy" },
+        { text: "Cookie 政策", href: "https://swanhellenic.com/cookie" },
+        { text: "安全政策", href: "https://swanhellenic.com/security-policy" },
+        { text: "销售条款与条件", href: "https://swanhellenic.com/terms-conditions-sale" },
+        { text: "预订条款", href: "https://swanhellenic.com/booking-conditions" },
+        { text: "现代奴隶制法案", href: "https://swanhellenic.com/modern-slavery-act" },
+      ]
+    },
+    swanExperience: {
+      title: "天鹅体验",
+      links: [
+        { text: "最新消息", href: "https://swanhellenic.com/latest-news/" },
+        { text: "常见问题", href: "https://swanhellenic.com/faq" },
+        { text: "单人旅行者", href: "https://swanhellenic.com/solo-traveller" },
+        { text: "Swan Hellenic 杂志", href: "https://swanhellenic.com/magazine" },
+        { text: "推荐计划", href: "https://swanhellenic.com/refer-a-friend" },
+      ]
+    },
+    usefulLinks: {
+      title: "有用链接",
+      links: [
+        { text: "寻找旅行代理", href: "https://swanhellenic.com/travelagents" },
+        { text: "宣传册", href: "https://swanhellenic.com/brochures" },
+        { text: "促销活动", href: "https://swanhellenic.com/promotions" },
+      ]
+    },
+    social: {
+      title: "联系我们",
+      links: [
+        { name: "facebook", href: "https://www.facebook.com/swanhellenic" },
+        { name: "instagram", href: "https://www.instagram.com/swanhelleniccruises/" },
+        { name: "youtube", href: "https://www.youtube.com/user/swanhellenic" },
+        { name: "linkedin", href: "https://www.linkedin.com/company/swan-hellenic/" },
+      ]
+    },
+    copyright: "© 2025 Swan Hellenic Ltd. 版权所有。",
+    disclaimerWildlife: "* 虽然我们希望看到各种野生动物，但我们无法保证一定能看到。",
   },
 
   // 界面 UI
