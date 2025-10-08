@@ -85,9 +85,9 @@ export const images = {
       "/cabins-videos/Balcony/Balcony4.mp4",
     ],
     juniorSuite: [
-      "/cabins-videos/Junior Suite/JuniorSuite1.mp4",
-      "/cabins-videos/Junior Suite/JuniorSuite2.mp4",
-      "/cabins-videos/Junior Suite/JuniorSuite3.mp4",
+      "/cabins-videos/Junior Suite/Juniorsuite1.mp4",
+      "/cabins-videos/Junior Suite/Juniorsuite2.mp4",
+      "/cabins-videos/Junior Suite/Juniorsuite3.mp4",
     ],
     suite: [
       "/cabins-videos/PremiumSuite & Suite/Premiumsuite 1.mp4",
