@@ -41,20 +41,20 @@ export default function Home() {
         <div id="journey">
           <Journey />
         </div>
-        {/*<div id="itinerary">*/}
-        {/*  <CruiseTimeline />*/}
-        {/*</div>*/}
-        {/*<Wildlife />*/}
-        {/*<div id="ship">*/}
-        {/*  <Ship />*/}
-        {/*</div>*/}
-        {/*<div id="cabins">*/}
-        {/*  <Cabins />*/}
-        {/*</div>*/}
-        {/*<div id="contact">*/}
-        {/*  <CTA />*/}
-        {/*</div>*/}
-        <Footer />
+        <div id="itinerary">
+          <CruiseTimeline />
+        </div>
+        <Wildlife />
+        <div id="ship">
+          <Ship />
+        </div>
+        <div id="cabins">
+          <Cabins />
+        </div>
+        <div id="contact">
+          <CTA />
+        </div>
+        {/*<Footer />*/}
       </main>
     </>
   )
