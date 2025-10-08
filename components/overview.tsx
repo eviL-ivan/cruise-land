@@ -1,46 +1,34 @@
 'use client'
 
-import { useState, useRef } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import { useLanguage } from "@/lib/language-context"
 import { Map, ChevronLeft, ChevronRight, X, Play } from "lucide-react"
 import { BookingModal } from "./BookingModal"
+import { useEmblaSlider } from "@/hooks/useEmblaSlider"
 
 export function Overview() {
   const { content } = useLanguage()
-  const [currentSlide, setCurrentSlide] = useState(0)
   const [showMapModal, setShowMapModal] = useState(false)
   const [showVideoModal, setShowVideoModal] = useState(false)
   const [showBookingModal, setShowBookingModal] = useState(false)
-  const touchStartX = useRef(0)
-  const touchEndX = useRef(0)
 
   const slideImages = content.highlights
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slideImages.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slideImages.length) % slideImages.length)
-  }
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX
-  }
-
-  const handleTouchEnd = () => {
-    if (touchStartX.current - touchEndX.current > 50) {
-      nextSlide()
-    }
-    if (touchStartX.current - touchEndX.current < -50) {
-      prevSlide()
-    }
-  }
+  const {
+    emblaRef,
+    selectedIndex,
+    scrollSnaps,
+    scrollPrev,
+    scrollNext,
+    scrollTo,
+    touchHandlers,
+  } = useEmblaSlider({
+    autoplay: true,
+    autoplayDelay: 4000,
+    stopOnInteraction: false,
+    loop: true,
+  })
 
   return (
     <>
@@ -49,51 +37,54 @@ export function Overview() {
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Image Slider */}
-              <div
-                className="relative h-[450px] lg:h-[550px] w-full rounded-lg overflow-hidden shadow-2xl group"
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-              >
-                <Image
-                  src={slideImages[currentSlide].image}
-                  alt={slideImages[currentSlide].title}
-                  fill
-                  sizes="(max-width: 1024px) calc(100vw - 2rem), 50vw"
-                  className="object-cover transition-all duration-500"
-                  loading="eager"
-                />
+              <div className="relative h-[450px] lg:h-[550px] w-full rounded-lg overflow-hidden shadow-2xl group">
+                <div className="embla h-full" ref={emblaRef}>
+                  <div className="embla__container h-full" {...touchHandlers}>
+                    {slideImages.map((slide, index) => (
+                      <div key={index} className="embla__slide relative min-w-0 flex-[0_0_100%]">
+                        <Image
+                          src={slide.image}
+                          alt={slide.title}
+                          fill
+                          sizes="(max-width: 1024px) calc(100vw - 2rem), 50vw"
+                          className="object-cover"
+                          loading="eager"
+                        />
 
-                {/* Slide title overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <h3 className="text-white font-serif text-3xl font-bold mb-2">
-                    {slideImages[currentSlide].title}
-                  </h3>
-                  <p className="text-white/90 text-sm">{slideImages[currentSlide].description}</p>
+                        {/* Slide title overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                          <h3 className="text-white font-serif text-3xl font-bold mb-2">
+                            {slide.title}
+                          </h3>
+                          <p className="text-white/90 text-sm">{slide.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Navigation buttons */}
                 <button
-                  onClick={prevSlide}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={scrollPrev}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
                 <button
-                  onClick={nextSlide}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={scrollNext}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
 
                 {/* Slide indicators */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                   {slideImages.map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => setCurrentSlide(index)}
+                      onClick={() => scrollTo(index)}
                       className={`w-2 h-2 rounded-full transition-all ${
-                        index === currentSlide ? "bg-white w-8" : "bg-white/50"
+                        index === selectedIndex ? "bg-white w-8" : "bg-white/50"
                       }`}
                     />
                   ))}
