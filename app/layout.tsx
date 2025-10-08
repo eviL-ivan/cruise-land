@@ -6,6 +6,7 @@ import "./globals.css"
 import { Suspense } from "react"
 import { content } from "@/lib/content"
 import { LanguageProvider } from "@/lib/language-context"
+import { ErudaInit } from "@/components/eruda-init"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -54,6 +55,7 @@ export default function RootLayout({
         <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </head>
       <body className="font-sans antialiased">
+        <ErudaInit />
         <LanguageProvider>
           <Suspense fallback={null}>{children}</Suspense>
         </LanguageProvider>
