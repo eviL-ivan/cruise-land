@@ -48,9 +48,9 @@ export default function Home() {
       <main className="min-h-screen">
         <Hero />
         <Overview />
-        {/*<div id="map">*/}
-        {/*  {preloadMap && <AntarcticaMap />}*/}
-        {/*</div>*/}
+        <div id="map">
+          {preloadMap && <AntarcticaMap />}
+        </div>
         <div id="journey">
           <Journey />
         </div>
@@ -64,9 +64,9 @@ export default function Home() {
         {/*<div id="cabins">*/}
         {/*  <Cabins />*/}
         {/*</div>*/}
-        {/*<div id="contact">*/}
-        {/*  <CTA />*/}
-        {/*</div>*/}
+        <div id="contact">
+          <CTA />
+        </div>
         <Footer />
       </main>
     </>
