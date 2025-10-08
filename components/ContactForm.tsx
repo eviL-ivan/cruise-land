@@ -291,7 +291,10 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
           <Label
             htmlFor="travelAgent"
             className="text-sm font-normal text-foreground/90 cursor-pointer leading-relaxed"
-            onClick={() => setFormData({ ...formData, isTravelAgent: !formData.isTravelAgent })}
+            onClick={(e) => {
+              e.preventDefault()
+              setFormData({ ...formData, isTravelAgent: !formData.isTravelAgent })
+            }}
           >
             I'm Travel Agent
           </Label>
@@ -308,7 +311,10 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
           <Label
             htmlFor="consent"
             className="text-sm font-normal text-foreground/80 cursor-pointer leading-relaxed"
-            onClick={() => setFormData({ ...formData, consent: !formData.consent })}
+            onClick={(e) => {
+              e.preventDefault()
+              setFormData({ ...formData, consent: !formData.consent })
+            }}
           >
             I confirm that my personal data may be used for contractual processing and further information about the
             products and services offered by Swan Hellenic <span className="text-destructive">*</span>

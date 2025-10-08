@@ -189,7 +189,10 @@ export function LuxuryForm({ className }: LuxuryFormProps) {
           <Label
             htmlFor="travelAgent"
             className="text-sm font-light text-foreground cursor-pointer leading-relaxed"
-            onClick={() => setFormData({ ...formData, isTravelAgent: !formData.isTravelAgent })}
+            onClick={(e) => {
+              e.preventDefault()
+              setFormData({ ...formData, isTravelAgent: !formData.isTravelAgent })
+            }}
           >
             I'm Travel Agent
           </Label>
@@ -206,7 +209,10 @@ export function LuxuryForm({ className }: LuxuryFormProps) {
           <Label
             htmlFor="consent"
             className="text-sm font-light text-muted-foreground cursor-pointer leading-relaxed"
-            onClick={() => setFormData({ ...formData, consent: !formData.consent })}
+            onClick={(e) => {
+              e.preventDefault()
+              setFormData({ ...formData, consent: !formData.consent })
+            }}
           >
             I confirm that my personal data may be used for contractual processing and further information about the
             products and services offered by Swan Hellenic
