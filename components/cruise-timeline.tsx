@@ -3,18 +3,46 @@
 import { useEffect, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { useLanguage } from "@/lib/language-context"
+import { useScreens } from "@/hooks/useScreens"
 
 export function CruiseTimeline() {
   const { content } = useLanguage()
   const [scrollY, setScrollY] = useState(0)
+  const { isMdScreen } = useScreens()
 
+  // RAF-based scroll handler for optimal performance
   useEffect(() => {
+    // Skip scroll listener on mobile devices
+    if (!isMdScreen) return
+
+    let rafId: number | null = null
+    let lastScrollY = 0
+
     const handleScroll = () => {
-      setScrollY(window.scrollY)
+      // Cancel previous RAF if still pending
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
+
+      rafId = requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY
+        // Only update if scroll position actually changed
+        if (currentScrollY !== lastScrollY) {
+          lastScrollY = currentScrollY
+          setScrollY(currentScrollY)
+        }
+        rafId = null
+      })
     }
+
     window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
+    }
+  }, [isMdScreen])
 
   const getCardTopPosition = (index: number) => {
     if (index === 0) return 0
@@ -74,10 +102,10 @@ export function CruiseTimeline() {
                   style={{
                     zIndex: 10,
                     transform: `translateY(${parallaxOffset}px) rotate(${isLeft ? -1 : 1}deg)`,
-                    transition: "transform 0.1s ease-out",
+                    willChange: isMdScreen ? "transform" : "auto",
                   }}
                 >
-                  <Card className="w-full max-w-md overflow-hidden group hover:shadow-2xl transition-all duration-500 border-2 hover:scale-[1.02] hover:rotate-0">
+                  <Card className="w-full max-w-md overflow-hidden group hover:shadow-2xl transition-shadow duration-500 border-2 hover:scale-[1.02] hover:rotate-0 transition-transform">
                     <div className="relative h-48 overflow-hidden">
                       <img
                         src={event.image || "/placeholder.svg"}
