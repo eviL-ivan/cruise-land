@@ -60,7 +60,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
         </div>
 
         {/* Dark overlay - increases on hover */}
-        <div className={`absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 transition-all duration-700 ${isHovered ? 'opacity-100' : 'opacity-80'}`} />
+        <div className={`absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 transition-all duration-700 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-80'}`} />
       </div>
 
       {/* Navigation Arrows */}
@@ -113,7 +113,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
 
       {/* Badge */}
       {cabin.badge && (
-        <div className="absolute top-8 left-8 z-20 flex items-center gap-2 bg-gradient-to-r from-[#be8f74] to-[#d4a98a] text-white px-5 py-2.5 rounded-full text-[11px] font-bold tracking-[0.15em] uppercase shadow-2xl">
+        <div className="absolute top-8 left-8 z-20 flex items-center gap-2 bg-gradient-to-r from-[#be8f74] to-[#d4a98a] text-white px-5 py-2.5 rounded-full text-[11px] font-bold tracking-[0.15em] uppercase shadow-2xl pointer-events-none">
           <Sparkles className="w-3.5 h-3.5" />
           {cabin.badge}
         </div>
