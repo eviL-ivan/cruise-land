@@ -1,5 +1,6 @@
 'use client'
 
+import Image from "next/image"
 import { Waves, Utensils, Dumbbell, Sparkles, Ship as ShipIcon, Shield } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
 
@@ -55,14 +56,32 @@ export function Ship() {
 
           <div className="space-y-4">
             <div className="relative h-[300px] rounded-lg overflow-hidden shadow-2xl">
-              <img src={content.ship.images[0].src} alt={content.ship.images[0].alt} className="w-full h-full object-cover" />
+              <Image
+                src={content.ship.images[0].src}
+                alt={content.ship.images[0].alt}
+                fill
+                sizes="(max-width: 1024px) calc(100vw - 2rem), 50vw"
+                className="object-cover"
+              />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="relative h-[200px] rounded-lg overflow-hidden shadow-lg">
-                <img src={content.ship.images[1].src} alt={content.ship.images[1].alt} className="w-full h-full object-cover" />
+                <Image
+                  src={content.ship.images[1].src}
+                  alt={content.ship.images[1].alt}
+                  fill
+                  sizes="(max-width: 1024px) calc(50vw - 1.5rem), 25vw"
+                  className="object-cover"
+                />
               </div>
               <div className="relative h-[200px] rounded-lg overflow-hidden shadow-lg">
-                <img src={content.ship.images[2].src} alt={content.ship.images[2].alt} className="w-full h-full object-cover" />
+                <Image
+                  src={content.ship.images[2].src}
+                  alt={content.ship.images[2].alt}
+                  fill
+                  sizes="(max-width: 1024px) calc(50vw - 1.5rem), 25vw"
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from "react"
+import Image from "next/image"
 import { useLanguage } from "@/lib/language-context"
 import { Map, ChevronLeft, ChevronRight, X, Play } from "lucide-react"
 import { BookingModal } from "./BookingModal"
@@ -54,10 +55,13 @@ export function Overview() {
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
               >
-                <img
+                <Image
                   src={slideImages[currentSlide].image}
                   alt={slideImages[currentSlide].title}
-                  className="w-full h-full object-cover transition-all duration-500"
+                  fill
+                  sizes="(max-width: 1024px) calc(100vw - 2rem), 50vw"
+                  className="object-cover transition-all duration-500"
+                  loading="eager"
                 />
 
                 {/* Slide title overlay */}
@@ -202,9 +206,12 @@ export function Overview() {
             >
               <X className="w-8 h-8" />
             </button>
-            <img
+            <Image
               src={content.overview.mapImage}
               alt={content.overview.mapAlt}
+              width={1200}
+              height={800}
+              sizes="(max-width: 1536px) calc(100vw - 2rem), 1152px"
               className="w-full h-auto rounded-lg shadow-2xl"
             />
           </div>

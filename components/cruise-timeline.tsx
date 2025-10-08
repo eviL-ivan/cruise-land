@@ -1,20 +1,49 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { useLanguage } from "@/lib/language-context"
+import { useScreens } from "@/hooks/useScreens"
 
 export function CruiseTimeline() {
   const { content } = useLanguage()
   const [scrollY, setScrollY] = useState(0)
+  const { isMdScreen } = useScreens()
 
+  // RAF-based scroll handler for optimal performance
   useEffect(() => {
+    // Skip scroll listener on mobile devices
+    if (!isMdScreen) return
+
+    let rafId: number | null = null
+    let lastScrollY = 0
+
     const handleScroll = () => {
-      setScrollY(window.scrollY)
+      // Cancel previous RAF if still pending
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
+
+      rafId = requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY
+        // Only update if scroll position actually changed
+        if (currentScrollY !== lastScrollY) {
+          lastScrollY = currentScrollY
+          setScrollY(currentScrollY)
+        }
+        rafId = null
+      })
     }
+
     window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
+    }
+  }, [isMdScreen])
 
   const getCardTopPosition = (index: number) => {
     if (index === 0) return 0
@@ -74,15 +103,17 @@ export function CruiseTimeline() {
                   style={{
                     zIndex: 10,
                     transform: `translateY(${parallaxOffset}px) rotate(${isLeft ? -1 : 1}deg)`,
-                    transition: "transform 0.1s ease-out",
+                    willChange: isMdScreen ? "transform" : "auto",
                   }}
                 >
-                  <Card className="w-full max-w-md overflow-hidden group hover:shadow-2xl transition-all duration-500 border-2 hover:scale-[1.02] hover:rotate-0">
+                  <Card className="w-full max-w-md overflow-hidden group hover:shadow-2xl transition-shadow duration-500 border-2 hover:scale-[1.02] hover:rotate-0 transition-transform">
                     <div className="relative h-48 overflow-hidden">
-                      <img
+                      <Image
                         src={event.image || "/placeholder.svg"}
                         alt={event.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        fill
+                        sizes="448px"
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
@@ -121,7 +152,13 @@ export function CruiseTimeline() {
           {cruiseEvents.map((event, index) => (
             <Card key={index} className="overflow-hidden border-2 shadow-lg">
               <div className="relative h-56 overflow-hidden">
-                <img src={event.image || "/placeholder.svg"} alt={event.title} className="w-full h-full object-cover" />
+                <Image
+                  src={event.image || "/placeholder.svg"}
+                  alt={event.title}
+                  fill
+                  sizes="(max-width: 768px) calc(100vw - 2rem), 448px"
+                  className="object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
                 <div className="absolute top-4 left-4">

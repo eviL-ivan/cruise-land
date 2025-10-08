@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Check, ChevronLeft, ChevronRight } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
@@ -73,10 +74,13 @@ export function Cabins() {
                   onTouchMove={(e) => handleTouchMove(e, index)}
                   onTouchEnd={() => handleTouchEnd(index, cabinImages.length)}
                 >
-                  <img
+                  <Image
                     src={cabinImages[currentIndex] || "/placeholder.svg"}
                     alt={`${cabin.name} - Image ${currentIndex + 1}`}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) calc(100vw - 2rem), 50vw"
+                    className="object-cover"
+                    loading="eager"
                   />
                   {cabinImages.length > 1 && (
                     <>
