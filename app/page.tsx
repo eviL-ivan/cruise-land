@@ -37,7 +37,7 @@ export default function Home() {
       <main className="min-h-screen">
         <Hero />
         <Overview />
-        {preloadMap && <AntarcticaMap />}
+        {/*{preloadMap && <AntarcticaMap />}*/}
         <div id="journey">
           <Journey />
         </div>
