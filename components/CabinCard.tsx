@@ -21,7 +21,8 @@ interface CabinCardProps {
 }
 
 export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isCardHovered, setIsCardHovered] = useState(false) // Hover on entire card - removes overlay
+  const [isPanelHovered, setIsPanelHovered] = useState(false) // Hover on panel - expands panel
   const cabinImages = cabin.images || [cabin.image || '/placeholder.svg']
   const isEven = index % 2 === 0
 
@@ -38,7 +39,11 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
   })
 
   return (
-    <div className="group overflow-hidden rounded-[32px] flex flex-col lg:block lg:relative lg:min-h-[520px]">
+    <div
+      className="group overflow-hidden rounded-[32px] flex flex-col lg:block lg:relative lg:min-h-[520px]"
+      onMouseEnter={() => setIsCardHovered(true)}
+      onMouseLeave={() => setIsCardHovered(false)}
+    >
       {/* Full Background Image - Mobile: relative block, Desktop: absolute full */}
       <div className="relative h-[350px] lg:absolute lg:inset-0 lg:h-auto">
         <div className="embla h-full" ref={emblaRef}>
@@ -59,8 +64,8 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
           </div>
         </div>
 
-        {/* Dark overlay - increases on hover */}
-        <div className={`absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 transition-all duration-700 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-80'}`} />
+        {/* Dark overlay - Desktop only, disappears on card hover */}
+        <div className={`absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 transition-all duration-700 pointer-events-none hidden lg:block ${isCardHovered ? 'opacity-0' : 'opacity-80'}`} />
 
         {/* Navigation Arrows - positioned relative to image container */}
         {cabinImages.length > 1 && (
@@ -68,7 +73,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
             <button
               onClick={scrollPrev}
               className={`absolute top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-700 shadow-2xl hover:scale-110 z-30 left-4 lg:left-6 ${
-                !isEven && (isHovered ? 'lg:!left-[675px]' : 'lg:!left-[475px]')
+                !isEven && (isPanelHovered ? 'lg:!left-[675px]' : 'lg:!left-[475px]')
               }`}
               aria-label="Previous image"
             >
@@ -77,7 +82,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
             <button
               onClick={scrollNext}
               className={`absolute top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-700 shadow-2xl hover:scale-110 z-30 right-4 lg:right-6 ${
-                isEven && (isHovered ? 'lg:!right-[675px]' : 'lg:!right-[475px]')
+                isEven && (isPanelHovered ? 'lg:!right-[675px]' : 'lg:!right-[475px]')
               }`}
               aria-label="Next image"
             >
@@ -116,10 +121,10 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
         className={`bg-gradient-to-br from-[#7a6a58] to-[#6d5d4b] border-t-0 lg:backdrop-blur-2xl lg:bg-white/10 lg:bg-none lg:border-t border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-700 overflow-hidden z-20
           p-6 lg:rounded-3xl
           lg:absolute lg:top-8 lg:p-8 ${isEven ? 'lg:right-8 lg:left-auto' : 'lg:left-8 lg:right-auto'}
-          ${isHovered ? 'lg:bg-white/15 lg:w-[620px]' : 'lg:w-[420px]'}
+          ${isPanelHovered ? 'lg:bg-white/15 lg:w-[620px]' : 'lg:w-[420px]'}
         `}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => setIsPanelHovered(true)}
+        onMouseLeave={() => setIsPanelHovered(false)}
       >
 
         <div className={`flex flex-col lg:gap-8 ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
@@ -173,7 +178,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                   </div>
                 ))}
                 {cabin.features.length > 2 && (
-                  <div className={`text-white/70 text-xs font-semibold tracking-wide pt-1 transition-opacity duration-300 ${isHovered ? 'opacity-0 invisible' : 'opacity-100'}`}>
+                  <div className={`text-white/70 text-xs font-semibold tracking-wide pt-1 transition-opacity duration-300 ${isPanelHovered ? 'opacity-0 invisible' : 'opacity-100'}`}>
                     +{cabin.features.length - 2} more amenities
                   </div>
                 )}
@@ -196,9 +201,9 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
             </button>
           </div>
 
-          {/* Extended Column - Extended Features (Desktop only, appears on hover) */}
+          {/* Extended Column - Extended Features (Desktop only, appears on panel hover) */}
           {cabin.features.length > 2 && (
-            <div className={`hidden lg:block transition-all duration-700 ${isEven ? 'border-r border-white/20 pr-8' : 'border-l border-white/20 pl-8'} ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={`hidden lg:block transition-all duration-700 ${isEven ? 'border-r border-white/20 pr-8' : 'border-l border-white/20 pl-8'} ${isPanelHovered ? 'opacity-100' : 'opacity-0'}`}>
               <h4 className="text-white/90 text-xs font-bold tracking-[0.15em] uppercase mb-4">
                 Additional Amenities
               </h4>
