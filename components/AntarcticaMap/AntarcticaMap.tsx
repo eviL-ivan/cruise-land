@@ -446,11 +446,17 @@ export default function AntarcticaMap() {
           (window as any).__mapStartIdleAnimation = startIdleAnimation;
 
           // Начать покачивание через 2 секунды после загрузки
-          setTimeout(() => {
+          const initialTimeout = setTimeout(() => {
             if (!isUserInteractingRef.current && isMapVisibleRef.current) {
               startIdleAnimation();
             }
           }, 2000);
+
+          // Сохраняем timeout для очистки
+          if (idleTimeoutRef.current) {
+            clearTimeout(idleTimeoutRef.current);
+          }
+          idleTimeoutRef.current = initialTimeout;
         } catch (error) {
           console.error("Error setting up map:", error);
           setLoadState({
@@ -474,6 +480,10 @@ export default function AntarcticaMap() {
       }
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
+      }
+      // Очистка глобальной функции
+      if ((window as any).__mapStartIdleAnimation) {
+        delete (window as any).__mapStartIdleAnimation;
       }
       if (map.current) {
         map.current.remove();

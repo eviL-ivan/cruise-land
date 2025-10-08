@@ -45,9 +45,9 @@ const defaultCountryByLanguage: Record<string, string> = {
 
 const getUserCountry = async () => {
   try {
-    const response = await fetch('http://ip-api.com/json/')
+    const response = await fetch('https://ipapi.co/json/')
     const data = await response.json()
-    return data.countryCode?.toLowerCase() || null
+    return data.country_code?.toLowerCase() || null
   } catch (error) {
     return null
   }
@@ -81,23 +81,40 @@ export function CountryAutocomplete({
     if (!autoDetect || hasAutoDetected.current) return
 
     hasAutoDetected.current = true
+    let isMounted = true
 
     const detectCountry = async () => {
-      const detectedCountry = await getUserCountry()
+      try {
+        const detectedCountry = await getUserCountry()
 
-      // Проверяем что страна есть в списке
-      const countryExists = countries.some(c => c.value === detectedCountry)
+        // Проверяем что компонент все еще смонтирован
+        if (!isMounted) return
 
-      if (detectedCountry && countryExists) {
-        onValueChange?.(detectedCountry)
-      } else {
-        // Fallback на дефолтную страну по языку
-        const defaultCountry = defaultCountryByLanguage[language] || "us"
-        onValueChange?.(defaultCountry)
+        // Проверяем что страна есть в списке
+        const countryExists = countries.some(c => c.value === detectedCountry)
+
+        if (detectedCountry && countryExists) {
+          onValueChange?.(detectedCountry)
+        } else {
+          // Fallback на дефолтную страну по языку
+          const defaultCountry = defaultCountryByLanguage[language] || "us"
+          onValueChange?.(defaultCountry)
+        }
+      } catch (error) {
+        // Игнорируем ошибки геолокации в Safari
+        console.warn('Country detection failed:', error)
+        if (isMounted) {
+          const defaultCountry = defaultCountryByLanguage[language] || "us"
+          onValueChange?.(defaultCountry)
+        }
       }
     }
 
     detectCountry()
+
+    return () => {
+      isMounted = false
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
