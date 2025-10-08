@@ -1,51 +1,48 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
-import { Mail, Phone } from "lucide-react"
+import { useState } from "react"
 import { useLanguage } from "@/lib/language-context"
+import { BookingModal } from "./BookingModal"
 
 export function CTA() {
   const { content } = useLanguage()
+  const [showBookingModal, setShowBookingModal] = useState(false)
+
   return (
-    <section className="py-24 text-white" style={{backgroundColor: '#004657'}}>
+    <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-white">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance">
             {content.cta.title}
           </h2>
-          <p className="text-xl mb-12 text-white/90 text-pretty leading-relaxed">{content.cta.subtitle}</p>
+          <p className="text-lg md:text-xl text-muted-foreground text-pretty">{content.cta.subtitle}</p>
+        </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <button className="text-base px-8 py-3 min-w-[200px] bg-white rounded-md transition-all duration-300 flex items-center justify-center font-semibold uppercase" style={{color: '#004657'}}>
-              <Mail className="w-5 h-5 mr-2" />
-              {content.cta.emailButton}
-            </button>
+        <div className="max-w-4xl mx-auto text-center">
+
+          <div className="flex justify-center items-center mb-12">
             <button
-              className="text-base px-8 py-3 min-w-[200px] bg-transparent text-white border-2 border-white rounded-md transition-all duration-300 flex items-center justify-center font-semibold uppercase"
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'white'
-                e.currentTarget.style.color = '#004657'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent'
-                e.currentTarget.style.color = 'white'
-              }}
+              onClick={() => setShowBookingModal(true)}
+              className="text-base px-12 py-4 bg-white rounded-md transition-all duration-300 font-semibold uppercase hover:shadow-2xl border-2"
+              style={{color: '#004155', borderColor: '#004155'}}
             >
-              <Phone className="w-5 h-5 mr-2" />
-              {content.cta.phoneButton}
+              Contact Us
             </button>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 pt-12 border-t border-white/20">
+          <div className="grid md:grid-cols-3 gap-8 pt-12 border-t border-border">
             {content.cta.stats.map((stat, index) => (
               <div key={index}>
                 <div className="text-4xl font-serif font-bold mb-2 text-accent">{stat.number}</div>
-                <p className="text-white/80">{stat.label}</p>
+                <p className="text-muted-foreground">{stat.label}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Booking Modal */}
+      <BookingModal isOpen={showBookingModal} onClose={() => setShowBookingModal(false)} />
     </section>
   )
 }

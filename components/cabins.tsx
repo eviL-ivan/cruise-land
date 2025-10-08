@@ -4,10 +4,12 @@ import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Check, ChevronLeft, ChevronRight } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
+import { BookingModal } from "./BookingModal"
 
 export function Cabins() {
   const { content } = useLanguage()
   const [currentImageIndex, setCurrentImageIndex] = useState<Record<number, number>>({})
+  const [showBookingModal, setShowBookingModal] = useState(false)
   const touchStartX = useRef<Record<number, number>>({})
   const touchEndX = useRef<Record<number, number>>({})
 
@@ -124,8 +126,9 @@ export function Cabins() {
                     ))}
                   </ul>
                   <button
+                    onClick={() => setShowBookingModal(true)}
                     className="w-full text-white border-2 border-white rounded-md px-6 py-3 font-semibold transition-all duration-300 mt-auto"
-                    style={{backgroundColor: '#004657'}}
+                    style={{backgroundColor: '#004155'}}
                   >
                     {content.cabins.selectButton}
                   </button>
@@ -135,6 +138,9 @@ export function Cabins() {
           })}
         </div>
       </div>
+
+      {/* Booking Modal */}
+      <BookingModal isOpen={showBookingModal} onClose={() => setShowBookingModal(false)} />
     </section>
   )
 }

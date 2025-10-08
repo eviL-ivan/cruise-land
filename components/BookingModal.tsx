@@ -42,7 +42,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
     }
   }, [isOpen, onClose])
 
-  // Загружаем скрипт Bitrix24 формы
+  // Загружаем скрипт Bitrix24 формы при открытии модального окна
   useEffect(() => {
     if (!isOpen || scriptLoadedRef.current || !formContainerRef.current) return
 
@@ -56,7 +56,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
     scriptLoadedRef.current = true
 
     return () => {
-      // Очистка при размонтировании
+      // Очистка при закрытии
       if (formContainerRef.current) {
         formContainerRef.current.innerHTML = ''
       }

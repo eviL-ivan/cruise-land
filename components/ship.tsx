@@ -27,7 +27,7 @@ const amenityIcons = {
 export function Ship() {
   const { content } = useLanguage()
   return (
-    <section className="py-24 text-white" style={{backgroundColor: '#004657'}}>
+    <section className="py-24 text-white" style={{backgroundColor: '#004155'}}>
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
           <div>
