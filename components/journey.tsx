@@ -7,21 +7,6 @@ export function Journey() {
   const { content } = useLanguage()
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
 
-  const handleMouseEnter = (index: number) => {
-    const video = videoRefs.current[index]
-    if (video) {
-      video.play()
-    }
-  }
-
-  const handleMouseLeave = (index: number) => {
-    const video = videoRefs.current[index]
-    if (video) {
-      video.pause()
-      video.currentTime = 0
-    }
-  }
-
   const getVideoSrc = (imageSrc: string) => {
     return imageSrc.replace(/\.(jpg|jpeg|png|webp)$/i, '.mp4')
   }
@@ -43,8 +28,6 @@ export function Journey() {
             <div
               key={index}
               className="relative group"
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={() => handleMouseLeave(index)}
             >
               <div className="relative h-64 rounded-lg overflow-hidden mb-4">
                 <video
@@ -53,6 +36,7 @@ export function Journey() {
                   }}
                   src={getVideoSrc(destination.image)}
                   poster={destination.image}
+                  autoPlay
                   loop
                   muted
                   playsInline

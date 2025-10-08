@@ -7,21 +7,6 @@ export function Wildlife() {
   const { content } = useLanguage()
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
 
-  const handleMouseEnter = (index: number) => {
-    const video = videoRefs.current[index]
-    if (video) {
-      video.play()
-    }
-  }
-
-  const handleMouseLeave = (index: number) => {
-    const video = videoRefs.current[index]
-    if (video) {
-      video.pause()
-      video.currentTime = 0
-    }
-  }
-
   const getVideoSrc = (imageSrc: string) => {
     return imageSrc.replace(/\.(jpg|jpeg|png|webp)$/i, '.mp4')
   }
@@ -43,8 +28,6 @@ export function Wildlife() {
             <div
               key={index}
               className="relative group overflow-hidden rounded-lg shadow-lg"
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={() => handleMouseLeave(index)}
             >
               <div className="relative h-[400px]">
                 <video
@@ -53,6 +36,7 @@ export function Wildlife() {
                   }}
                   src={getVideoSrc(animal.image)}
                   poster={animal.image}
+                  autoPlay
                   loop
                   muted
                   playsInline
