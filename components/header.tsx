@@ -45,7 +45,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center transition-transform hover:scale-105">
             <Image
-              src="/logo_green.png"
+              src="/logo_green.svg"
               alt="Swan Hellenic"
               width={180}
               height={67}

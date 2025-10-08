@@ -65,7 +65,7 @@ export function Footer() {
                 <Image src="/footerLogos/Vir_Logo.webp" alt="Virtuoso" width={80} height={50} className="h-10 w-auto opacity-80 cursor-pointer" />
               </a>
               <a href="https://ustoa.com/" target="_blank" rel="noopener noreferrer" aria-label="Fundación Philippe Cousteau">
-                <Image src="/footerLogos/footer-logo5.webp" alt="Fundación Philippe Cousteau" width={80} height={50} className="h-10 w-auto opacity-80 cursor-pointer" />
+                <Image src="/footerLogos/footer-logo5.png" alt="Fundación Philippe Cousteau" width={80} height={50} className="h-10 w-auto opacity-80 cursor-pointer" unoptimized />
               </a>
               <a href="https://www.aeco.no/" target="_blank" rel="noopener noreferrer" aria-label="AECO">
                 <Image src="/footerLogos/aeco1.webp" alt="AECO" width={80} height={50} className="h-10 w-auto opacity-80 cursor-pointer" />

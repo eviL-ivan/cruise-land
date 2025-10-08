@@ -32,7 +32,6 @@ const sliderImages = [
   { src: "/shipSlider/ship_slide3.jpg", alt: "Ship view 3" },
   { src: "/shipSlider/ship_slide4.jpg", alt: "Ship view 4" },
   { src: "/shipSlider/ship_slide5.jpg", alt: "Ship view 5" },
-  { src: "/shipSlider/ship_slide6.jpg", alt: "Ship view 6" },
 ]
 
 const exteriorImages = [

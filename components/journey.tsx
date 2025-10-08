@@ -38,27 +38,27 @@ function StatItem({ number, title, description, delay }: StatItemProps) {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
     >
-      <div className="flex flex-col items-center text-center space-y-6 p-6 rounded-2xl transition-all duration-500 hover:bg-card/50">
+      <div className="flex flex-col items-center text-center space-y-6 p-6 rounded-2xl">
         <div className="relative w-32 h-32 md:w-36 md:h-36">
           {/* Ambient glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-primary/20 to-accent/20 rounded-full blur-3xl scale-125 transition-all duration-700 group-hover:scale-150 group-hover:blur-[60px] opacity-50" />
+          <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-primary/20 to-accent/20 rounded-full blur-3xl scale-125 opacity-50" />
 
           {/* Decorative orbital rings */}
-          <div className="absolute inset-0 rounded-full border border-accent/5 transition-all duration-700 group-hover:scale-110 group-hover:rotate-90 group-hover:border-accent/10" />
-          <div className="absolute inset-2 rounded-full border border-primary/5 transition-all duration-700 group-hover:scale-105 group-hover:-rotate-90 group-hover:border-primary/10" />
+          <div className="absolute inset-0 rounded-full border border-accent/5" />
+          <div className="absolute inset-2 rounded-full border border-primary/5" />
 
           {/* Main badge container */}
-          <div className="absolute inset-4 rounded-full bg-gradient-to-br from-card/95 via-background/90 to-card/95 backdrop-blur-xl shadow-2xl transition-all duration-500 group-hover:shadow-accent/20 group-hover:scale-105">
+          <div className="absolute inset-4 rounded-full bg-gradient-to-br from-card/95 via-background/90 to-card/95 backdrop-blur-xl shadow-2xl">
             {/* Inner elegant border with shimmer effect */}
-            <div className="absolute inset-0 rounded-full p-[2px] bg-gradient-to-br from-accent/40 via-primary/30 to-accent/40 transition-all duration-500 group-hover:from-accent/60 group-hover:via-primary/50 group-hover:to-accent/60">
+            <div className="absolute inset-0 rounded-full p-[2px] bg-gradient-to-br from-accent/40 via-primary/30 to-accent/40">
               <div className="w-full h-full rounded-full bg-gradient-to-br from-background/80 via-card/90 to-background/80 backdrop-blur-sm" />
             </div>
 
             {/* Decorative corner accents */}
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 w-1 h-2 bg-gradient-to-b from-accent/60 to-transparent rounded-full transition-all duration-500 group-hover:h-3 group-hover:from-accent" />
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-1 h-2 bg-gradient-to-t from-accent/60 to-transparent rounded-full transition-all duration-500 group-hover:h-3 group-hover:from-accent" />
-            <div className="absolute left-4 top-1/2 -translate-y-1/2 h-1 w-2 bg-gradient-to-r from-accent/60 to-transparent rounded-full transition-all duration-500 group-hover:w-3 group-hover:from-accent" />
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 h-1 w-2 bg-gradient-to-l from-accent/60 to-transparent rounded-full transition-all duration-500 group-hover:w-3 group-hover:from-accent" />
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 w-1 h-2 bg-gradient-to-b from-accent/60 to-transparent rounded-full" />
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-1 h-2 bg-gradient-to-t from-accent/60 to-transparent rounded-full" />
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 h-1 w-2 bg-gradient-to-r from-accent/60 to-transparent rounded-full" />
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 h-1 w-2 bg-gradient-to-l from-accent/60 to-transparent rounded-full" />
 
             <div className="absolute inset-0 grid place-items-center">
               <div className="relative -translate-y-1">
@@ -69,35 +69,32 @@ function StatItem({ number, title, description, delay }: StatItemProps) {
                   </span>
                 </div>
                 {/* Main number with perfect centering */}
-                <span className="relative font-serif text-4xl md:text-5xl font-light bg-gradient-to-br from-primary via-accent to-primary bg-clip-text text-transparent transition-all duration-500 group-hover:scale-110 group-hover:from-accent group-hover:via-primary group-hover:to-accent leading-none block">
+                <span className="relative font-serif text-4xl md:text-5xl font-light bg-gradient-to-br from-primary via-accent to-primary bg-clip-text text-transparent leading-none block">
                   {number}
                 </span>
               </div>
             </div>
-
-            {/* Subtle shimmer overlay */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-accent/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
           </div>
 
           {/* Elegant corner decorations */}
-          <div className="absolute -top-1 -left-1 w-3 h-3 border-t border-l border-accent/20 rounded-tl-lg transition-all duration-500 group-hover:w-4 group-hover:h-4 group-hover:border-accent/40" />
-          <div className="absolute -top-1 -right-1 w-3 h-3 border-t border-r border-accent/20 rounded-tr-lg transition-all duration-500 group-hover:w-4 group-hover:h-4 group-hover:border-accent/40" />
-          <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b border-l border-accent/20 rounded-bl-lg transition-all duration-500 group-hover:w-4 group-hover:h-4 group-hover:border-accent/40" />
-          <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b border-r border-accent/20 rounded-br-lg transition-all duration-500 group-hover:w-4 group-hover:h-4 group-hover:border-accent/40" />
+          <div className="absolute -top-1 -left-1 w-3 h-3 border-t border-l border-accent/20 rounded-tl-lg" />
+          <div className="absolute -top-1 -right-1 w-3 h-3 border-t border-r border-accent/20 rounded-tr-lg" />
+          <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b border-l border-accent/20 rounded-bl-lg" />
+          <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b border-r border-accent/20 rounded-br-lg" />
         </div>
 
         {/* Title */}
-        <h3 className="font-serif text-2xl md:text-3xl font-light tracking-tight transition-colors duration-300 group-hover:text-primary">
+        <h3 className="font-serif text-2xl md:text-3xl font-light tracking-tight">
           {title}
         </h3>
 
         {/* Description */}
-        <p className="text-base text-muted-foreground leading-relaxed max-w-xs transition-colors duration-300 group-hover:text-foreground/80">
+        <p className="text-base text-muted-foreground leading-relaxed max-w-xs">
           {description}
         </p>
 
         {/* Decorative line */}
-        <div className="w-12 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent transition-all duration-500 group-hover:w-20 group-hover:via-accent/60" />
+        <div className="w-12 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
       </div>
     </div>
   )
