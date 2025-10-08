@@ -8,6 +8,7 @@ export function ErudaInit() {
     if (typeof window !== "undefined") {
       import("eruda").then((eruda) => {
         eruda.default.init()
+        eruda.default.show()
       })
     }
   }, [])
