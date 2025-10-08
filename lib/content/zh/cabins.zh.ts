@@ -10,7 +10,7 @@ export const cabins = {
       name: "Oceanview",
       size: "20 m²",
       capacity: "2",
-      price: "从 $13,780 起",
+      price: "$13,780",
       features: [
         "两张单人床或一张双人床",
         "带起居区的卧室",
@@ -24,7 +24,7 @@ export const cabins = {
       name: "Balcony",
       size: "25 m²",
       capacity: "2-3",
-      price: "从 $13,780 起",
+      price: "$13,780",
       features: [
         "5 m² 私人阳台",
         "两张单人床或一张双人床",
@@ -39,7 +39,7 @@ export const cabins = {
       name: "Junior Suite",
       size: "32-36 m²",
       capacity: "2",
-      price: "从 $23,380 起",
+      price: "$23,380",
       features: [
         "6 m² 私人阳台",
         "特大号床",
@@ -53,7 +53,7 @@ export const cabins = {
       name: "Suite",
       size: "41 m²",
       capacity: "2-3",
-      price: "从 $27,280 起",
+      price: "$27,280",
       features: [
         "5 m² 私人阳台",
         "特大号床",
@@ -68,7 +68,7 @@ export const cabins = {
       name: "Premium Suite",
       size: "41 m²",
       capacity: "2",
-      price: "从 $31,180 起",
+      price: "$31,180",
       features: [
         "8 m² 私人阳台",
         "特大号床",
