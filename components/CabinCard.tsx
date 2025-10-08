@@ -32,6 +32,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
   const allMedia = [...cabinImages, ...cabinVideos] // Combine images and videos
   const isEven = index % 2 === 0
 
+    console.log('asdasd')
   const {
     emblaRef,
     selectedIndex,
