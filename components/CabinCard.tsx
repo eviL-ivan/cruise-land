@@ -260,15 +260,15 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
       </div>
 
       {/* Fullscreen Media Gallery */}
-      <MediaGalleryDialog
-        isOpen={isGalleryOpen}
-        onClose={() => setIsGalleryOpen(false)}
-        media={allMedia}
-        initialIndex={selectedMediaIndex}
-        cabinName={cabin.name}
-        imageCount={cabinImages.length}
-        onIndexChange={handleGalleryIndexChange}
-      />
+      {/*<MediaGalleryDialog*/}
+      {/*  isOpen={isGalleryOpen}*/}
+      {/*  onClose={() => setIsGalleryOpen(false)}*/}
+      {/*  media={allMedia}*/}
+      {/*  initialIndex={selectedMediaIndex}*/}
+      {/*  cabinName={cabin.name}*/}
+      {/*  imageCount={cabinImages.length}*/}
+      {/*  onIndexChange={handleGalleryIndexChange}*/}
+      {/*/>*/}
     </div>
   )
 }
