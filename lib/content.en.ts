@@ -23,7 +23,7 @@ export const content = {
       route: "Route",
       itinerary: "Itinerary",
       ship: "Ship",
-      cabins: "Cabins",
+      cabins: "Staterooms",
       contact: "Contact",
     },
     bookButton: "Book Now",

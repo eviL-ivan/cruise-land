@@ -1,7 +1,7 @@
 import { images } from "../images"
 
 export const cabins = {
-  title: "Категории кают",
+  title: "Каюты",
   subtitle: "Светлые и просторные каюты — «уютный дом вдали от дома»",
   selectButton: "Запросить цену",
   priceNote: "Цены указаны за человека за круиз",

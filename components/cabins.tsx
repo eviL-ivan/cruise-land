@@ -57,7 +57,7 @@ export function Cabins() {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <p className="text-[#6d6e71]/70 mb-6 text-sm tracking-wide">
-            Need help choosing the perfect cabin?
+            Need help choosing the perfect stateroom?
           </p>
           <button
             onClick={() => setShowBookingModal(true)}
