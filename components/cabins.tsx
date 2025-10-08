@@ -49,6 +49,7 @@ export function Cabins() {
               cabin={cabin}
               onBook={() => setShowBookingModal(true)}
               selectButtonText={content.cabins.selectButton}
+              index={index}
             />
           ))}
         </div>
