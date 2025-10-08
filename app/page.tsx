@@ -42,7 +42,7 @@ export default function Home() {
           <Journey />
         </div>
         <div id="itinerary">
-          <CruiseTimeline />
+          {/*<CruiseTimeline />*/}
         </div>
         <Wildlife />
         <div id="ship">
