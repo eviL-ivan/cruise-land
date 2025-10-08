@@ -149,15 +149,58 @@ export const content = {
 
   // Footer
   footer: {
-    shipName: "SH Diana",
-    brand: "Swan Hellenic",
-    description: "Роскошный антарктический круиз на экспедиционном судне высокого ледового класса PC6",
-    routeTitle: "Маршрут",
-    routeStops: ["Кейптаун, ЮАР", "Тристан-да-Кунья", "Южная Георгия", "Антарктида", "Ушуайя, Аргентина"],
-    contactTitle: "Контакты",
-    contactDescription: "По любым вопросам и для бронирования обращайтесь к вашему менеджеру",
-    contactButton: "Связаться с нами",
-    copyright: "© 2025 SH Diana Antarctic Cruise. Все права защищены.",
+    aboutUs: {
+      title: "О нас",
+      links: [
+        { text: "Наша история", href: "https://swanhellenic.com/our-story" },
+        { text: "Наша команда", href: "https://swanhellenic.com/our-team" },
+        { text: "Устойчивое развитие", href: "https://swanhellenic.com/sustainability" },
+        { text: "Фонд Swan Hellenic", href: "https://swanhellenic.com/swan-hellenic-foundation" },
+        { text: "Академия Swan Hellenic", href: "https://swanhellenic.com/swan-hellenic-academy" },
+        { text: "Карьера", href: "https://swanhellenic.com/careers" },
+      ]
+    },
+    legalInfo: {
+      title: "Юридическая информация",
+      links: [
+        { text: "Условия использования", href: "https://swanhellenic.com/terms" },
+        { text: "Политика конфиденциальности", href: "https://swanhellenic.com/privacy" },
+        { text: "Политика Cookie", href: "https://swanhellenic.com/cookie" },
+        { text: "Политика безопасности", href: "https://swanhellenic.com/security-policy" },
+        { text: "Условия продажи", href: "https://swanhellenic.com/terms-conditions-sale" },
+        { text: "Условия бронирования", href: "https://swanhellenic.com/booking-conditions" },
+        { text: "Закон о современном рабстве", href: "https://swanhellenic.com/modern-slavery-act" },
+      ]
+    },
+    swanExperience: {
+      title: "Опыт Swan",
+      links: [
+        { text: "Последние новости", href: "https://swanhellenic.com/latest-news/" },
+        { text: "Часто задаваемые вопросы", href: "https://swanhellenic.com/faq" },
+        { text: "Одиночные путешественники", href: "https://swanhellenic.com/solo-traveller" },
+        { text: "Журнал Swan Hellenic", href: "https://swanhellenic.com/magazine" },
+        { text: "Программа рекомендаций", href: "https://swanhellenic.com/refer-a-friend" },
+      ]
+    },
+    usefulLinks: {
+      title: "Полезные ссылки",
+      links: [
+        { text: "Найти турагента", href: "https://swanhellenic.com/travelagents" },
+        { text: "Брошюры", href: "https://swanhellenic.com/brochures" },
+        { text: "Акции", href: "https://swanhellenic.com/promotions" },
+      ]
+    },
+    social: {
+      title: "Связаться с нами",
+      links: [
+        { name: "facebook", href: "https://www.facebook.com/swanhellenic" },
+        { name: "instagram", href: "https://www.instagram.com/swanhelleniccruises/" },
+        { name: "youtube", href: "https://www.youtube.com/user/swanhellenic" },
+        { name: "linkedin", href: "https://www.linkedin.com/company/swan-hellenic/" },
+      ]
+    },
+    copyright: "© 2025 Swan Hellenic Ltd. Все права защищены.",
+    disclaimerWildlife: "* Хотя мы надеемся увидеть разнообразную дикую природу, мы не можем гарантировать наблюдения.",
   },
 
   // UI

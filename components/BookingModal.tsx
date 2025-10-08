@@ -1,9 +1,9 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 import { X } from "lucide-react"
 import Image from "next/image"
-// import { BookingForm } from "./BookingForm" // Сохранено для будущего использования
+import { ContactForm } from "./ContactForm"
 
 interface BookingModalProps {
   isOpen: boolean
@@ -11,8 +11,6 @@ interface BookingModalProps {
 }
 
 export function BookingModal({ isOpen, onClose }: BookingModalProps) {
-  const formContainerRef = useRef<HTMLDivElement>(null)
-  const scriptLoadedRef = useRef(false)
 
   useEffect(() => {
     if (isOpen) {
@@ -42,28 +40,6 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
     }
   }, [isOpen, onClose])
 
-  // Загружаем скрипт Bitrix24 формы
-  useEffect(() => {
-    if (!isOpen || scriptLoadedRef.current || !formContainerRef.current) return
-
-    const script = document.createElement('script')
-    script.setAttribute('data-b24-form', 'inline/19/3a5j4r')
-    script.setAttribute('data-skip-moving', 'true')
-    script.async = true
-    script.src = `https://crm.swanhellenic.com/upload/crm/form/loader_19_3a5j4r.js?${Math.floor(Date.now() / 180000)}`
-
-    formContainerRef.current.appendChild(script)
-    scriptLoadedRef.current = true
-
-    return () => {
-      // Очистка при размонтировании
-      if (formContainerRef.current) {
-        formContainerRef.current.innerHTML = ''
-      }
-      scriptLoadedRef.current = false
-    }
-  }, [isOpen])
-
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${
@@ -90,7 +66,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
         {/* Логотип */}
         <div className="flex justify-center py-4 border-b border-gray-200">
           <Image
-            src="/logo_green.png"
+            src="/logo_green.svg"
             alt="Swan Hellenic"
             width={150}
             height={56}
@@ -99,11 +75,10 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
           />
         </div>
 
-        {/* Контейнер для Bitrix24 формы */}
-        <div
-          ref={formContainerRef}
-          className="bitrix-form-container w-full h-full sm:h-auto sm:max-h-[70vh] overflow-y-auto pb-20 sm:pb-0"
-        />
+        {/* Контейнер для формы */}
+        <div className="w-full h-full sm:h-auto sm:max-h-[70vh] overflow-y-auto p-6 sm:p-8">
+          <ContactForm onSuccess={onClose} inCard={false} />
+        </div>
       </div>
     </div>
   )

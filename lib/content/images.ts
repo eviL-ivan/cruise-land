@@ -70,20 +70,54 @@ export const images = {
     ],
   },
 
+  // 360° Videos for cabins
+  cabinVideos: {
+    oceanview: [
+      "/cabins-videos/Oceanview/oceanview1.webm",
+      "/cabins-videos/Oceanview/oceanview2.webm",
+      "/cabins-videos/Oceanview/oceanview3.webm",
+      "/cabins-videos/Oceanview/oceanview4.webm",
+    ],
+    balcony: [
+      "/cabins-videos/Balcony/Balcony1.webm",
+      "/cabins-videos/Balcony/Balcony2.webm",
+      "/cabins-videos/Balcony/Balcony3.webm",
+      "/cabins-videos/Balcony/Balcony4.webm",
+    ],
+    juniorSuite: [
+      "/cabins-videos/Junior Suite/JuniorSuite1.webm",
+      "/cabins-videos/Junior Suite/JuniorSuite2.webm",
+      "/cabins-videos/Junior Suite/JuniorSuite3.webm",
+    ],
+    suite: [
+      "/cabins-videos/PremiumSuite & Suite/PremiumSuite_1.webm",
+      "/cabins-videos/PremiumSuite & Suite/PremiumSuite_2.webm",
+      "/cabins-videos/PremiumSuite & Suite/PremiumSuite_3.webm",
+      "/cabins-videos/PremiumSuite & Suite/PremiumSuite_4.webm",
+    ],
+    premiumSuite: [
+      "/cabins-videos/PremiumSuite & Suite/PremiumSuite_1.webm",
+      "/cabins-videos/PremiumSuite & Suite/PremiumSuite_2.webm",
+      "/cabins-videos/PremiumSuite & Suite/PremiumSuite_3.webm",
+      "/cabins-videos/PremiumSuite & Suite/PremiumSuite_4.webm",
+      "/cabins-videos/PremiumSuite & Suite/PremiumSuite_5.webm",
+    ],
+  },
+
   ship: ["/ship_diana.jpg", "/ship_pool.jpg", "/ship_rest.jpg"],
 
   highlights: [
     "/images/capetown-table-mountain.jpg",
-    "/images/ship-ocean-expedition.jpg",
-    "/images/ocean-horizon.jpg",
+    "/slider/slide2.jpg",
+    "/slider/slide3.jpg",
     "/images/penguins-variety.jpg",
     "/images/tristan-da-cunha.jpg",
-    "/images/explorers-history.jpg",
+    "/slider/slide6.jpg",
     "/images/south-georgia-wildlife.jpg",
-    "/images/onboard-workshop.jpg",
+    "/slider/slide8.jpg",
     "/images/water.png",
     "/images/antarctica-landing.jpg",
-    "/images/kayak.png",
+    "/slider/slide11.jpg",
     "/images/iceberg.png",
   ],
 

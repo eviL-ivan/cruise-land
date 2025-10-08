@@ -1,8 +1,8 @@
 import { images } from "../images"
 
 export const cabins = {
-  title: "Cabins",
-  subtitle: "Choose your cabin aboard the expedition vessel SH Diana",
+  title: "Staterooms",
+  subtitle: "Choose your stateroom aboard the expedition vessel SH Diana",
   selectButton: "Request a quote",
   priceNote: "Prices are quoted per person per cruise",
   categories: [
@@ -18,6 +18,7 @@ export const cabins = {
         "Luxurious bathroom",
       ],
       images: images.cabins.oceanview,
+      videos: images.cabinVideos.oceanview,
     },
     {
       name: "Balcony",
@@ -32,6 +33,7 @@ export const cabins = {
         "Luxurious bathroom",
       ],
       images: images.cabins.balcony,
+      videos: images.cabinVideos.balcony,
     },
     {
       name: "Junior Suite",
@@ -45,6 +47,7 @@ export const cabins = {
         "Luxurious en-suite bathroom",
       ],
       images: images.cabins.juniorSuite,
+      videos: images.cabinVideos.juniorSuite,
     },
     {
       name: "Suite",
@@ -59,6 +62,7 @@ export const cabins = {
         "Luxurious ensuite bathroom with separate bath tub and walk-in shower",
       ],
       images: images.cabins.suite,
+      videos: images.cabinVideos.suite,
     },
     {
       name: "Premium Suite",
@@ -74,6 +78,7 @@ export const cabins = {
         "Walk-in wardrobe",
       ],
       images: images.cabins.premiumSuite,
+      videos: images.cabinVideos.premiumSuite,
     },
   ],
 } as const

@@ -119,12 +119,12 @@ export function BookingForm() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-2xl font-semibold mb-2" style={{ color: '#004657' }}>Thank You!</h3>
+        <h3 className="text-2xl font-semibold mb-2" style={{ color: '#004155' }}>Thank You!</h3>
         <p className="text-gray-600">Your request has been successfully submitted.</p>
         <button
           onClick={() => setSuccess(false)}
           className="mt-6 px-6 py-2 rounded-md font-semibold text-sm transition-all duration-300 border-2"
-          style={{ color: '#004657', borderColor: '#004657' }}
+          style={{ color: '#004155', borderColor: '#004155' }}
         >
           Submit Another Request
         </button>
@@ -136,7 +136,7 @@ export function BookingForm() {
     <form onSubmit={handleSubmit} className="space-y-4 p-4 sm:p-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium mb-1" style={{ color: '#004657' }}>
+          <label className="block text-sm font-medium mb-1" style={{ color: '#004155' }}>
             First Name *
           </label>
           <input
@@ -146,13 +146,13 @@ export function BookingForm() {
             onChange={handleChange}
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition"
-            style={{ focusRing: '#004657' }}
+            style={{ focusRing: '#004155' }}
             placeholder="John"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1" style={{ color: '#004657' }}>
+          <label className="block text-sm font-medium mb-1" style={{ color: '#004155' }}>
             Last Name *
           </label>
           <input
@@ -168,7 +168,7 @@ export function BookingForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1" style={{ color: '#004657' }}>
+        <label className="block text-sm font-medium mb-1" style={{ color: '#004155' }}>
           Phone *
         </label>
         <input
@@ -183,7 +183,7 @@ export function BookingForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1" style={{ color: '#004657' }}>
+        <label className="block text-sm font-medium mb-1" style={{ color: '#004155' }}>
           Email *
         </label>
         <input
@@ -198,7 +198,7 @@ export function BookingForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1" style={{ color: '#004657' }}>
+        <label className="block text-sm font-medium mb-1" style={{ color: '#004155' }}>
           Comments
         </label>
         <textarea
@@ -222,9 +222,9 @@ export function BookingForm() {
         disabled={loading}
         className="w-full font-semibold py-3 px-6 rounded-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed uppercase border-2"
         style={{
-          backgroundColor: loading ? '#99bdc5' : '#004657',
+          backgroundColor: loading ? '#99bdc5' : '#004155',
           color: 'white',
-          borderColor: '#004657'
+          borderColor: '#004155'
         }}
       >
         {loading ? (

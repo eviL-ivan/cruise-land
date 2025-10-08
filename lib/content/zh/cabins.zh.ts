@@ -10,7 +10,7 @@ export const cabins = {
       name: "Oceanview",
       size: "20 m²",
       capacity: "2",
-      price: "从 $13,780 起",
+      price: "$13,780",
       features: [
         "两张单人床或一张双人床",
         "带起居区的卧室",
@@ -18,12 +18,13 @@ export const cabins = {
         "豪华浴室",
       ],
       images: images.cabins.oceanview,
+      videos: images.cabinVideos.oceanview,
     },
     {
       name: "Balcony",
       size: "25 m²",
       capacity: "2-3",
-      price: "从 $13,780 起",
+      price: "$13,780",
       features: [
         "5 m² 私人阳台",
         "两张单人床或一张双人床",
@@ -32,12 +33,13 @@ export const cabins = {
         "豪华浴室",
       ],
       images: images.cabins.balcony,
+      videos: images.cabinVideos.balcony,
     },
     {
       name: "Junior Suite",
       size: "32-36 m²",
       capacity: "2",
-      price: "从 $23,380 起",
+      price: "$23,380",
       features: [
         "6 m² 私人阳台",
         "特大号床",
@@ -45,12 +47,13 @@ export const cabins = {
         "豪华套内浴室",
       ],
       images: images.cabins.juniorSuite,
+      videos: images.cabinVideos.juniorSuite,
     },
     {
       name: "Suite",
       size: "41 m²",
       capacity: "2-3",
-      price: "从 $27,280 起",
+      price: "$27,280",
       features: [
         "5 m² 私人阳台",
         "特大号床",
@@ -59,12 +62,13 @@ export const cabins = {
         "带独立浴缸和步入式淋浴的豪华套内浴室",
       ],
       images: images.cabins.suite,
+      videos: images.cabinVideos.suite,
     },
     {
       name: "Premium Suite",
       size: "41 m²",
       capacity: "2",
-      price: "从 $31,180 起",
+      price: "$31,180",
       features: [
         "8 m² 私人阳台",
         "特大号床",
@@ -74,6 +78,7 @@ export const cabins = {
         "步入式衣柜",
       ],
       images: images.cabins.premiumSuite,
+      videos: images.cabinVideos.premiumSuite,
     },
   ],
 } as const

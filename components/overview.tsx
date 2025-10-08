@@ -1,46 +1,33 @@
-'use client'
+"use client";
 
-import { useState, useRef } from "react"
-import Image from "next/image"
-import { useLanguage } from "@/lib/language-context"
-import { Map, ChevronLeft, ChevronRight, X, Play } from "lucide-react"
-import { BookingModal } from "./BookingModal"
+import { useState } from "react";
+import Image from "next/image";
+import { useLanguage } from "@/lib/language-context";
+import { Map, ChevronLeft, ChevronRight, X, Play } from "lucide-react";
+import { BookingModal } from "./BookingModal";
+import { useEmblaSlider } from "@/hooks/useEmblaSlider";
 
 export function Overview() {
-  const { content } = useLanguage()
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [showMapModal, setShowMapModal] = useState(false)
-  const [showVideoModal, setShowVideoModal] = useState(false)
-  const [showBookingModal, setShowBookingModal] = useState(false)
-  const touchStartX = useRef(0)
-  const touchEndX = useRef(0)
+  const { content } = useLanguage();
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [showBookingModal, setShowBookingModal] = useState(false);
 
-  const slideImages = content.highlights
+  const slideImages = content.highlights;
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slideImages.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slideImages.length) % slideImages.length)
-  }
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX
-  }
-
-  const handleTouchEnd = () => {
-    if (touchStartX.current - touchEndX.current > 50) {
-      nextSlide()
-    }
-    if (touchStartX.current - touchEndX.current < -50) {
-      prevSlide()
-    }
-  }
+  const {
+    emblaRef,
+    selectedIndex,
+    scrollSnaps,
+    scrollPrev,
+    scrollNext,
+    scrollTo,
+    touchHandlers,
+  } = useEmblaSlider({
+    autoplay: true,
+    autoplayDelay: 4000,
+    stopOnInteraction: false,
+    loop: true,
+  });
 
   return (
     <>
@@ -49,51 +36,59 @@ export function Overview() {
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Image Slider */}
-              <div
-                className="relative h-[450px] lg:h-[550px] w-full rounded-lg overflow-hidden shadow-2xl group"
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-              >
-                <Image
-                  src={slideImages[currentSlide].image}
-                  alt={slideImages[currentSlide].title}
-                  fill
-                  sizes="(max-width: 1024px) calc(100vw - 2rem), 50vw"
-                  className="object-cover transition-all duration-500"
-                  loading="eager"
-                />
+              <div className="relative h-[450px] lg:h-[550px] w-full rounded-lg overflow-hidden shadow-2xl group">
+                <div className="embla h-full" ref={emblaRef}>
+                  <div className="embla__container h-full" {...touchHandlers}>
+                    {slideImages.map((slide, index) => (
+                      <div
+                        key={index}
+                        className="embla__slide relative min-w-0 flex-[0_0_100%]"
+                      >
+                        <Image
+                          src={slide.image}
+                          alt={slide.title}
+                          fill
+                          sizes="(max-width: 1024px) calc(100vw - 2rem), 50vw"
+                          className="object-cover"
+                          loading="eager"
+                        />
 
-                {/* Slide title overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <h3 className="text-white font-serif text-3xl font-bold mb-2">
-                    {slideImages[currentSlide].title}
-                  </h3>
-                  <p className="text-white/90 text-sm">{slideImages[currentSlide].description}</p>
+                        {/* Slide title overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                          <h3 className="text-white font-serif text-3xl font-bold mb-2">
+                            {slide.title}
+                          </h3>
+                          <p className="text-white/90 text-sm">
+                            {slide.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Navigation buttons */}
                 <button
-                  onClick={prevSlide}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={scrollPrev}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
                 <button
-                  onClick={nextSlide}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={scrollNext}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
 
                 {/* Slide indicators */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                   {slideImages.map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => setCurrentSlide(index)}
+                      onClick={() => scrollTo(index)}
                       className={`w-2 h-2 rounded-full transition-all ${
-                        index === currentSlide ? "bg-white w-8" : "bg-white/50"
+                        index === selectedIndex ? "bg-white w-8" : "bg-white/50"
                       }`}
                     />
                   ))}
@@ -106,13 +101,13 @@ export function Overview() {
                   <div className="inline-block bg-secondary/20 text-secondary px-4 py-2 rounded-full text-sm font-semibold tracking-wide">
                     {content.overview.cruiseCode}
                   </div>
-                  <button
-                    onClick={() => setShowMapModal(true)}
+                  <a
+                    href="#map"
                     className="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-colors"
                   >
                     <Map className="w-4 h-4" />
                     <span>{content.overview.mapButton}</span>
-                  </button>
+                  </a>
                 </div>
 
                 <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground">
@@ -121,22 +116,40 @@ export function Overview() {
 
                 <div className="grid grid-cols-2 gap-6 py-4">
                   <div className="space-y-2">
-                    <p className="text-sm text-muted-foreground uppercase tracking-wide">{content.overview.datesLabel}</p>
-                    <p className="text-xl font-normal text-foreground">{content.overview.dates}</p>
+                    <p className="text-sm text-muted-foreground uppercase tracking-wide">
+                      {content.overview.datesLabel}
+                    </p>
+                    <p className="text-xl font-normal text-foreground">
+                      {content.overview.dates}
+                    </p>
                   </div>
                   <div className="space-y-2">
-                    <p className="text-sm text-muted-foreground uppercase tracking-wide">{content.overview.durationLabel}</p>
-                    <p className="text-xl font-normal text-foreground">{content.overview.nights}</p>
+                    <p className="text-sm text-muted-foreground uppercase tracking-wide">
+                      {content.overview.durationLabel}
+                    </p>
+                    <p className="text-xl font-normal text-foreground">
+                      {content.overview.nights}
+                    </p>
                   </div>
                   <div className="space-y-2">
-                    <p className="text-sm text-muted-foreground uppercase tracking-wide">{content.overview.shipLabel}</p>
-                    <p className="text-xl font-normal text-foreground">{content.overview.ship}</p>
+                    <p className="text-sm text-muted-foreground uppercase tracking-wide">
+                      {content.overview.shipLabel}
+                    </p>
+                    <p className="text-xl font-normal text-foreground">
+                      {content.overview.ship}
+                    </p>
                   </div>
                   <div className="space-y-2">
-                    <p className="text-sm text-muted-foreground uppercase tracking-wide">{content.overview.priceLabel}</p>
+                    <p className="text-sm text-muted-foreground uppercase tracking-wide">
+                      {content.overview.priceLabel}
+                    </p>
                     <div>
-                      <p className="text-3xl font-normal text-[#be8f74]">{content.overview.price}</p>
-                      <p className="text-sm text-muted-foreground">{content.overview.priceNote}</p>
+                      <p className="text-3xl font-normal text-[#be8f74]">
+                        {content.overview.price}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {content.overview.priceNote}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -156,14 +169,14 @@ export function Overview() {
                   <button
                     onClick={() => setShowBookingModal(true)}
                     className="inline-block bg-white px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase border-2"
-                    style={{color: '#004657', borderColor: '#004657'}}
+                    style={{ color: "#004155", borderColor: "#004155" }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#004657'
-                      e.currentTarget.style.color = 'white'
+                      e.currentTarget.style.backgroundColor = "#004155";
+                      e.currentTarget.style.color = "white";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'white'
-                      e.currentTarget.style.color = '#004657'
+                      e.currentTarget.style.backgroundColor = "white";
+                      e.currentTarget.style.color = "#004155";
                     }}
                   >
                     {content.header.bookButton}
@@ -171,16 +184,20 @@ export function Overview() {
                   <button
                     onClick={() => setShowVideoModal(true)}
                     className="inline-flex items-center gap-2 px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase border-2"
-                    style={{backgroundColor: 'transparent', color: '#004657', borderColor: '#004657'}}
+                    style={{
+                      backgroundColor: "transparent",
+                      color: "#004155",
+                      borderColor: "#004155",
+                    }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#004657'
-                      e.currentTarget.style.color = 'white'
-                      e.currentTarget.style.borderColor = '#004657'
+                      e.currentTarget.style.backgroundColor = "#004155";
+                      e.currentTarget.style.color = "white";
+                      e.currentTarget.style.borderColor = "#004155";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'transparent'
-                      e.currentTarget.style.color = '#004657'
-                      e.currentTarget.style.borderColor = '#004657'
+                      e.currentTarget.style.backgroundColor = "transparent";
+                      e.currentTarget.style.color = "#004155";
+                      e.currentTarget.style.borderColor = "#004155";
                     }}
                   >
                     <Play className="w-5 h-5" />
@@ -192,31 +209,6 @@ export function Overview() {
           </div>
         </div>
       </section>
-
-      {/* Map Modal */}
-      {showMapModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
-          onClick={() => setShowMapModal(false)}
-        >
-          <div className="relative max-w-6xl w-full" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setShowMapModal(false)}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
-            >
-              <X className="w-8 h-8" />
-            </button>
-            <Image
-              src={content.overview.mapImage}
-              alt={content.overview.mapAlt}
-              width={1200}
-              height={800}
-              sizes="(max-width: 1536px) calc(100vw - 2rem), 1152px"
-              className="w-full h-auto rounded-lg shadow-2xl"
-            />
-          </div>
-        </div>
-      )}
 
       {/* Video Modal */}
       {showVideoModal && (
@@ -249,7 +241,10 @@ export function Overview() {
       )}
 
       {/* Booking Modal */}
-      <BookingModal isOpen={showBookingModal} onClose={() => setShowBookingModal(false)} />
+      <BookingModal
+        isOpen={showBookingModal}
+        onClose={() => setShowBookingModal(false)}
+      />
     </>
-  )
+  );
 }

@@ -186,7 +186,7 @@ export function Hero() {
           <button
             onClick={() => setShowBookingModal(true)}
             className="text-base px-8 py-3 rounded-md text-white border-2 border-white transition-all duration-300 font-semibold uppercase"
-            style={{backgroundColor: '#004657'}}
+            style={{backgroundColor: '#004155'}}
           >
             {content.hero.bookButton}
           </button>
@@ -194,7 +194,7 @@ export function Hero() {
             onClick={() => setShowVideoModal(true)}
             className="text-base px-8 py-3 rounded-md bg-transparent text-white border-2 border-white transition-all duration-300 font-semibold uppercase inline-flex items-center gap-2"
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#004657'
+              e.currentTarget.style.backgroundColor = '#004155'
               e.currentTarget.style.borderColor = 'white'
             }}
             onMouseLeave={(e) => {

@@ -200,7 +200,6 @@ export function CruiseTimeline() {
                         alt={event.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
                       <div className="absolute top-6 left-6">
                         <div className="font-serif italic text-white/90 text-lg tracking-wide">{event.days}</div>
@@ -238,7 +237,6 @@ export function CruiseTimeline() {
             <Card key={index} className="overflow-hidden border-2 shadow-lg">
               <div className="relative h-56 overflow-hidden">
                 <img src={event.image || "/placeholder.svg"} alt={event.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
                 <div className="absolute top-4 left-4">
                   <div className="font-serif italic text-white/90 text-base tracking-wide">{event.days}</div>

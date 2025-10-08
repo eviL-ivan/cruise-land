@@ -1,144 +1,75 @@
 'use client'
 
-import { useState, useRef } from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Check, ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from "react"
 import { useLanguage } from "@/lib/language-context"
+import { BookingModal } from "./BookingModal"
+import { CabinCard } from "./CabinCard"
+import { Sparkles } from "lucide-react"
 
 export function Cabins() {
   const { content } = useLanguage()
-  const [currentImageIndex, setCurrentImageIndex] = useState<Record<number, number>>({})
-  const touchStartX = useRef<Record<number, number>>({})
-  const touchEndX = useRef<Record<number, number>>({})
-
-  const handlePrevImage = (cabinIndex: number, imagesLength: number) => {
-    setCurrentImageIndex(prev => ({
-      ...prev,
-      [cabinIndex]: ((prev[cabinIndex] || 0) - 1 + imagesLength) % imagesLength
-    }))
-  }
-
-  const handleNextImage = (cabinIndex: number, imagesLength: number) => {
-    setCurrentImageIndex(prev => ({
-      ...prev,
-      [cabinIndex]: ((prev[cabinIndex] || 0) + 1) % imagesLength
-    }))
-  }
-
-  const handleTouchStart = (e: React.TouchEvent, cabinIndex: number) => {
-    touchStartX.current[cabinIndex] = e.touches[0].clientX
-  }
-
-  const handleTouchMove = (e: React.TouchEvent, cabinIndex: number) => {
-    touchEndX.current[cabinIndex] = e.touches[0].clientX
-  }
-
-  const handleTouchEnd = (cabinIndex: number, imagesLength: number) => {
-    const startX = touchStartX.current[cabinIndex] || 0
-    const endX = touchEndX.current[cabinIndex] || 0
-
-    if (startX - endX > 50) {
-      handleNextImage(cabinIndex, imagesLength)
-    }
-    if (startX - endX < -50) {
-      handlePrevImage(cabinIndex, imagesLength)
-    }
-  }
+  const [showBookingModal, setShowBookingModal] = useState(false)
 
   return (
-    <section className="py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance">
+    <section className="py-20 md:py-28 relative overflow-hidden">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-[#e8e6e5]/20 to-white" />
+      <div
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, #004155 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}
+      />
+
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#be8f74]/5 via-[#d4a98a]/5 to-[#be8f74]/5 border border-[#be8f74]/20 text-[#be8f74] px-5 py-2.5 rounded-full text-xs font-bold tracking-[0.15em] uppercase mb-8 shadow-sm">
+            <Sparkles className="w-3.5 h-3.5" strokeWidth={2.5} />
+            <span>Your Sanctuary at Sea</span>
+          </div>
+
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-[#004155] tracking-tight leading-[1.1]">
             {content.cabins.title}
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground text-pretty">{content.cabins.subtitle}</p>
+
+          <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#be8f74]/60 to-transparent mx-auto mb-8" />
+
+          <p className="text-base md:text-lg text-[#6d6e71]/80 text-pretty leading-relaxed max-w-2xl mx-auto">
+            {content.cabins.subtitle}
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {content.cabins.categories.map((cabin, index) => {
-            const currentIndex = currentImageIndex[index] || 0
-            const cabinImages = cabin.images || [cabin.image]
+        {/* Cabins Grid */}
+        {/*<div className="grid grid-cols-1 gap-8 lg:gap-10 max-w-6xl mx-auto">*/}
+        {/*  {content.cabins.categories.map((cabin, index) => (*/}
+        {/*    <CabinCard*/}
+        {/*      key={index}*/}
+        {/*      cabin={cabin}*/}
+        {/*      onBook={() => setShowBookingModal(true)}*/}
+        {/*      selectButtonText={content.cabins.selectButton}*/}
+        {/*      index={index}*/}
+        {/*    />*/}
+        {/*  ))}*/}
+        {/*</div>*/}
 
-            return (
-              <div
-                key={index}
-                className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col"
-              >
-                <div
-                  className="relative h-96 group"
-                  onTouchStart={(e) => handleTouchStart(e, index)}
-                  onTouchMove={(e) => handleTouchMove(e, index)}
-                  onTouchEnd={() => handleTouchEnd(index, cabinImages.length)}
-                >
-                  <Image
-                    src={cabinImages[currentIndex] || "/placeholder.svg"}
-                    alt={`${cabin.name} - Image ${currentIndex + 1}`}
-                    fill
-                    sizes="(max-width: 768px) calc(100vw - 2rem), 50vw"
-                    className="object-cover"
-                    loading="eager"
-                  />
-                  {cabinImages.length > 1 && (
-                    <>
-                      <button
-                        onClick={() => handlePrevImage(index, cabinImages.length)}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                        aria-label="Previous image"
-                      >
-                        <ChevronLeft className="w-5 h-5" />
-                      </button>
-                      <button
-                        onClick={() => handleNextImage(index, cabinImages.length)}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                        aria-label="Next image"
-                      >
-                        <ChevronRight className="w-5 h-5" />
-                      </button>
-                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-                        {cabinImages.map((_, imgIndex) => (
-                          <div
-                            key={imgIndex}
-                            className={`w-2 h-2 rounded-full transition-colors ${
-                              imgIndex === currentIndex ? 'bg-white' : 'bg-white/50'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                    </>
-                  )}
-                </div>
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-serif text-2xl font-bold">{cabin.name}</h3>
-                    <span className="text-lg font-bold text-secondary whitespace-nowrap">{cabin.size}</span>
-                  </div>
-                  {cabin.price && (
-                    <div className="text-lg font-semibold text-primary mb-4">
-                      {cabin.price}
-                    </div>
-                  )}
-                  <ul className="space-y-2 mb-6 flex-grow">
-                    {cabin.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-muted-foreground">
-                        <Check className="w-5 h-5 text-secondary flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <button
-                    className="w-full text-white border-2 border-white rounded-md px-6 py-3 font-semibold transition-all duration-300 mt-auto"
-                    style={{backgroundColor: '#004657'}}
-                  >
-                    {content.cabins.selectButton}
-                  </button>
-                </div>
-              </div>
-            )
-          })}
+        {/* Bottom CTA */}
+        <div className="mt-16 text-center">
+          <p className="text-[#6d6e71]/70 mb-6 text-sm tracking-wide">
+            Need help choosing the perfect stateroom?
+          </p>
+          <button
+            onClick={() => setShowBookingModal(true)}
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border-2 border-[#004155] text-[#004155] font-semibold text-sm tracking-wider uppercase transition-all duration-300 hover:bg-[#004155] hover:text-white shadow-[0_2px_8px_rgba(0,65,85,0.15)] hover:shadow-[0_4px_16px_rgba(0,65,85,0.25)] hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <span>Speak with Our Expert</span>
+          </button>
         </div>
       </div>
+
+      {/* Booking Modal */}
+      <BookingModal isOpen={showBookingModal} onClose={() => setShowBookingModal(false)} />
     </section>
   )
 }

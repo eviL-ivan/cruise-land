@@ -23,7 +23,7 @@ export const content = {
       route: "Route",
       itinerary: "Itinerary",
       ship: "Ship",
-      cabins: "Cabins",
+      cabins: "Staterooms",
       contact: "Contact",
     },
     bookButton: "Book Now",
@@ -206,7 +206,7 @@ export const content = {
       { title: "Fine Dining", description: "Swan Hellenic restaurants" },
       { title: "Spa Center", description: "Jacuzzi, sauna, beauty salon" },
       { title: "Gym", description: "Modern equipment" },
-      { title: "PC6 Ice Class", description: "Highest Arctic ice class vessel" },
+      { title: "PC6 Ice Class", description: "High Arctic ice class vessel" },
       { title: "Safety", description: "All ship systems have redundancy" },
     ],
     features: [
@@ -253,23 +253,62 @@ export const content = {
 
   // Footer
   footer: {
-    shipName: "SH Diana",
-    brand: "Swan Hellenic",
-    description:
-      "Luxury Antarctic cruise aboard a high ice-class PC6 expedition vessel",
-    routeTitle: "Route",
-    routeStops: [
-      "Cape Town, South Africa",
-      "Tristan da Cunha",
-      "South Georgia",
-      "Antarctica",
-      "Ushuaia, Argentina",
-    ],
-    contactTitle: "Contact",
-    contactDescription:
-      "For any inquiries and reservations, please contact your travel manager",
-    contactButton: "Contact Us",
-    copyright: "© 2025 SH Diana Antarctic Cruise. All rights reserved.",
+    aboutUs: {
+      title: "About Us",
+      links: [
+        { text: "Our Story", href: "https://swanhellenic.com/our-story" },
+        { text: "Our Team", href: "https://swanhellenic.com/our-team" },
+        { text: "Sustainability", href: "https://swanhellenic.com/sustainability" },
+        { text: "Careers", href: "https://swanhellenic.vcrew.com", target: "_blank" },
+        { text: "Press Centre", href: "https://swanhellenic.com/press-centre" },
+        { text: "Contact Us", href: "https://swanhellenic.com/contacts" },
+      ],
+    },
+    legalInfo: {
+      title: "Legal Information",
+      links: [
+        { text: "Terms Of Use", href: "https://swanhellenic.com/terms" },
+        { text: "Privacy Policy", href: "https://swanhellenic.com/privacy" },
+        { text: "Cookie Policy", href: "https://swanhellenic.com/cookie" },
+        { text: "Modern Slavery Act", href: "https://swanhellenic.com/modern-slavery-act" },
+        { text: "Ship Safety", href: "https://swanhellenic.com/experience/ship-safety" },
+        { text: "Promotional T&C", href: "https://swanhellenic.com/promotional_terms" },
+        { text: "Shore Excursions T&C", href: "https://swanhellenic.com/shore-excursions-terms" },
+        { text: "Destination Services T&C", href: "https://swanhellenic.com/destination-services-terms" },
+      ],
+    },
+    swanExperience: {
+      title: "The Swan Experience",
+      links: [
+        { text: "Latest News", href: "https://swanhellenic.com/latest-news/" },
+        { text: "FAQ", href: "https://swanhellenic.com/faq" },
+        { text: "Solo Traveller", href: "https://swanhellenic.com/solo-traveller" },
+        { text: "Charter Cruises", href: "https://swanhellenic.com/charter-cruises" },
+        { text: "Groups", href: "https://promo.swanhellenic.com/groups/" },
+        { text: "Weddings", href: "https://swanhellenic.com/cruise-wedding-package" },
+      ],
+    },
+    usefulLinks: {
+      title: "Useful Links",
+      links: [
+        { text: "Find A Travel Agent", href: "https://swanhellenic.com/travelagents" },
+        { text: "Brochures", href: "https://swanhellenic.com/brochures" },
+        { text: "Promotions", href: "https://swanhellenic.com/promotions" },
+        { text: "Travel Partners", href: "https://swanhellenic.com/partners" },
+      ],
+    },
+    social: {
+      title: "Connect with us",
+      links: [
+        { name: "facebook", href: "https://www.facebook.com/swanhellenic" },
+        { name: "instagram", href: "https://www.instagram.com/swanhelleniccruises/" },
+        { name: "youtube", href: "https://www.youtube.com/user/swanhellenic" },
+        { name: "linkedin", href: "https://www.linkedin.com/company/swan-hellenic-limited/" },
+      ],
+    },
+    copyright: "© 2025 Swan Hellenic. All Rights Reserved",
+    disclaimerWildlife: "All pictures and videos of wildlife were taken with a professional zoom lens from a distance required under environmental laws, ensuring the safety of both the wildlife and the environment",
+    disclaimerWebsite: "The website (www.swanhellenic.com) is owned and operated by Swan Hellenic Travel Limited (20, Themistokli Dervi, Flat/Office 301, 1066, Nicosia, Cyprus)",
   },
 
   // UI
