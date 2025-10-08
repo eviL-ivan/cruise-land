@@ -42,17 +42,17 @@ export function Cabins() {
         </div>
 
         {/* Cabins Grid */}
-        <div className="grid grid-cols-1 gap-8 lg:gap-10 max-w-6xl mx-auto">
-          {content.cabins.categories.map((cabin, index) => (
-            <CabinCard
-              key={index}
-              cabin={cabin}
-              onBook={() => setShowBookingModal(true)}
-              selectButtonText={content.cabins.selectButton}
-              index={index}
-            />
-          ))}
-        </div>
+        {/*<div className="grid grid-cols-1 gap-8 lg:gap-10 max-w-6xl mx-auto">*/}
+        {/*  {content.cabins.categories.map((cabin, index) => (*/}
+        {/*    <CabinCard*/}
+        {/*      key={index}*/}
+        {/*      cabin={cabin}*/}
+        {/*      onBook={() => setShowBookingModal(true)}*/}
+        {/*      selectButtonText={content.cabins.selectButton}*/}
+        {/*      index={index}*/}
+        {/*    />*/}
+        {/*  ))}*/}
+        {/*</div>*/}
 
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
