@@ -82,23 +82,6 @@ export function Ship() {
     return () => clearInterval(interval)
   }, [isHovered])
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isExteriorHovered) {
-        setExteriorSlide((prev) => (prev + 1) % exteriorImages.length)
-      }
-    }, 7000)
-    return () => clearInterval(interval)
-  }, [isExteriorHovered])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isInteriorHovered) {
-        setInteriorSlide((prev) => (prev + 1) % interiorImages.length)
-      }
-    }, 7000)
-    return () => clearInterval(interval)
-  }, [isInteriorHovered])
 
   const goToNextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % sliderImages.length)

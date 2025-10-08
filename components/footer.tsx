@@ -46,41 +46,8 @@ export function Footer() {
   return (
     <footer id="contact" className="text-white py-12" style={{backgroundColor: '#004155'}}>
       <div className="max-w-[800px] xl:max-w-[1272px] mx-auto px-4">
-          {/* Website Link and Social Media */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
-            {/* Website Link */}
-            <div>
-              <a
-                href="https://swanhellenic.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-white/80 transition-colors text-2xl md:text-3xl font-medium uppercase no-underline hover:no-underline whitespace-nowrap"
-                style={{letterSpacing: '-0.1px'}}
-              >
-                Swan Hellenic
-              </a>
-            </div>
-
-            {/* Social Media */}
-            <div className="flex gap-3">
-              {content.footer.social.links.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white flex items-center justify-center cursor-pointer hover:bg-white/90 transition-colors"
-                  aria-label={social.name}
-                  style={{color: '#004155'}}
-                >
-                  <SocialIcon name={social.name} />
-                </a>
-              ))}
-            </div>
-          </div>
-
           {/* Partner Logos */}
-          <div className="mb-12 border-t border-white/20 pt-12">
+          <div className="mb-12">
             <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 lg:gap-10 xl:gap-12">
               <a href="https://cruising.org/" target="_blank" rel="noopener noreferrer" aria-label="CLIA">
                 <Image src="/footerLogos/footer-logo1.svg" alt="CLIA" width={80} height={50} className="h-10 w-auto opacity-80 cursor-pointer" />
@@ -111,21 +78,41 @@ export function Footer() {
 
           {/* Bottom Bar */}
           <div className="border-t border-white/20 pt-12">
+            {/* Social Media without border */}
+            <div className="flex justify-center mb-8">
+              <div className="flex gap-3">
+                {content.footer.social.links.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-white flex items-center justify-center cursor-pointer hover:bg-white/90 transition-colors"
+                    aria-label={social.name}
+                    style={{color: '#004155'}}
+                  >
+                    <SocialIcon name={social.name} />
+                  </a>
+                ))}
+              </div>
+            </div>
+
             <div className="flex flex-wrap justify-center items-center gap-3 mb-8 text-center pb-0">
               <p className="text-sm text-white/80 whitespace-nowrap pb-0 mb-0">{content.footer.copyright}</p>
               <span className="text-white/80">|</span>
-              <a href="https://swanhellenic.com/cookie" className="text-sm text-white/80 hover:text-black transition-colors no-underline hover:no-underline whitespace-nowrap">
+              <a href="https://swanhellenic.com/cookie" className="text-sm text-white/80 hover:text-white transition-colors no-underline hover:no-underline whitespace-nowrap">
                 Cookie Policy
               </a>
               <span className="text-white/80">|</span>
-              <a href="https://swanhellenic.com/modern-slavery-act" className="text-sm text-white/80 hover:text-black transition-colors no-underline hover:no-underline whitespace-nowrap">
+              <a href="https://swanhellenic.com/modern-slavery-act" className="text-sm text-white/80 hover:text-white transition-colors no-underline hover:no-underline whitespace-nowrap">
                 Modern Slavery Act
               </a>
               <span className="text-white/80">|</span>
-              <button className="text-sm text-white/80 hover:text-black transition-colors cursor-pointer bg-transparent border-0 p-0 whitespace-nowrap">
+              <button className="text-sm text-white/80 hover:text-white transition-colors cursor-pointer bg-transparent border-0 p-0 whitespace-nowrap">
                 Cookie
               </button>
             </div>
+
             <div className="text-center">
               <p className="text-sm text-white/80 leading-relaxed mb-0">
                 {content.footer.disclaimerWildlife}
