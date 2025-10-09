@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useRef, useEffect, useMemo, useCallback } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from "lucide-react"
+import { useInView } from "framer-motion"
 import { useEmblaSlider } from "@/hooks/useEmblaSlider"
 import { MediaGalleryDialog } from "./MediaGalleryDialog"
 
@@ -27,9 +28,25 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
   const [isPanelHovered, setIsPanelHovered] = useState(false) // Hover on panel - expands panel
   const [isGalleryOpen, setIsGalleryOpen] = useState(false) // Fullscreen gallery dialog
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0) // Selected media for gallery
-  const cabinImages = cabin.images || [cabin.image || '/placeholder.svg']
-  const cabinVideos = cabin.videos || []
-  const allMedia = [...cabinImages, ...cabinVideos] // Combine images and videos
+
+  // Viewport visibility detection - prevents multiple videos from playing simultaneously
+  // Pause only when card is completely hidden (any pixel visible = in view)
+  const cardRef = useRef(null)
+  const isInView = useInView(cardRef, { amount: "some" })
+
+  // Memoize cabin images and videos arrays
+  const cabinImages = useMemo(
+    () => cabin.images || [cabin.image || '/placeholder.svg'],
+    [cabin.images, cabin.image]
+  )
+  const cabinVideos = useMemo(() => cabin.videos || [], [cabin.videos])
+
+  // Combine images and videos - memoized for performance
+  const allMedia = useMemo(
+    () => [...cabinImages, ...cabinVideos],
+    [cabinImages, cabinVideos]
+  )
+
   const isEven = index % 2 === 0
 
   const {
@@ -44,14 +61,55 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
     loop: true,
   })
 
-  // Sync main carousel with gallery when gallery index changes
-  const handleGalleryIndexChange = (index: number) => {
-    setSelectedMediaIndex(index) // Update state for lightbox
-    scrollTo(index) // Sync main carousel
-  }
+  // Refs for video elements
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
+
+  // Control video playback based on active slide AND viewport visibility AND gallery state
+  useEffect(() => {
+    const timeoutIds: NodeJS.Timeout[] = []
+
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        // Play video only if: it's the active slide AND card is visible AND gallery is closed
+        if (index === selectedIndex && isInView && !isGalleryOpen) {
+          // Play video on active slide immediately
+          video.play().catch(() => {
+            // Ignore autoplay errors
+          })
+        } else {
+          // Pause and reset video on inactive slides, when card is not visible, or when gallery is open
+          const timeoutId = setTimeout(() => {
+            video.pause()
+            video.currentTime = 0
+          }, 1000)
+          timeoutIds.push(timeoutId)
+        }
+      }
+    })
+
+    // Cleanup: clear all timeouts when dependencies change or component unmounts
+    return () => {
+      timeoutIds.forEach(id => clearTimeout(id))
+    }
+  }, [selectedIndex, isInView, isGalleryOpen])
+
+  // Sync main carousel with gallery when gallery index changes - memoized
+  const handleGalleryIndexChange = useCallback(
+    (index: number) => {
+      setSelectedMediaIndex(index) // Update state for lightbox
+      scrollTo(index) // Sync main carousel
+    },
+    [scrollTo]
+  )
+
+  // Memoize onClose handler
+  const handleCloseGallery = useCallback(() => {
+    setIsGalleryOpen(false)
+  }, [])
 
   return (
     <div
+      ref={cardRef}
       className="group overflow-hidden rounded-[32px] flex flex-col lg:block lg:relative lg:min-h-[520px]"
       onMouseEnter={() => setIsCardHovered(true)}
       onMouseLeave={() => setIsCardHovered(false)}
@@ -62,6 +120,9 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
           <div className="embla__container h-full" {...touchHandlers}>
             {allMedia.map((media, mediaIndex) => {
               const isVideo = mediaIndex >= cabinImages.length
+              const isCurrentSlide = mediaIndex === selectedIndex
+              const isNextSlide = mediaIndex === (selectedIndex + 1) % allMedia.length
+              const isFirstCardFirstSlide = index === 0 && mediaIndex === 0
 
               return (
                 <div
@@ -74,12 +135,16 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                 >
                   {isVideo ? (
                     <video
+                      ref={(el) => {
+                        videoRefs.current[mediaIndex] = el
+                      }}
                       src={media}
                       className="absolute inset-0 w-full h-full object-cover"
-                      autoPlay
                       loop
                       muted
                       playsInline
+                      webkit-playsinline="true"
+                      preload={isNextSlide ? "metadata" : "none"}
                     />
                   ) : (
                     /* Image slide */
@@ -89,8 +154,8 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                       fill
                       sizes="(max-width: 1024px) 100vw, 100vw"
                       className="object-cover"
-                      loading="eager"
-                      priority={mediaIndex === 0}
+                      loading={isFirstCardFirstSlide || isCurrentSlide || isNextSlide ? "eager" : "lazy"}
+                      priority={isFirstCardFirstSlide}
                     />
                   )}
                 </div>
@@ -107,7 +172,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
           <>
             <button
               onClick={scrollPrev}
-              className={`absolute top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full shadow-2xl hover:scale-110 z-30 left-4 lg:left-6
+              className={`absolute top-1/2 -translate-y-1/2 bg-white/20 lg:backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full shadow-2xl hover:scale-110 z-30 left-4 lg:left-6
                 opacity-100 lg:opacity-0 transition-all duration-700
                 ${isCardHovered && !isPanelHovered ? 'lg:!opacity-100' : ''}
                 ${!isEven && (isPanelHovered ? 'lg:!left-[675px]' : 'lg:!left-[475px]')}
@@ -118,7 +183,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
             </button>
             <button
               onClick={scrollNext}
-              className={`absolute top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full shadow-2xl hover:scale-110 z-30 right-4 lg:right-6
+              className={`absolute top-1/2 -translate-y-1/2 bg-white/20 lg:backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full shadow-2xl hover:scale-110 z-30 right-4 lg:right-6
                 opacity-100 lg:opacity-0 transition-all duration-700
                 ${isCardHovered && !isPanelHovered ? 'lg:!opacity-100' : ''}
                 ${isEven && (isPanelHovered ? 'lg:!right-[675px]' : 'lg:!right-[475px]')}
@@ -260,15 +325,15 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
       </div>
 
       {/* Fullscreen Media Gallery */}
-      {/*<MediaGalleryDialog*/}
-      {/*  isOpen={isGalleryOpen}*/}
-      {/*  onClose={() => setIsGalleryOpen(false)}*/}
-      {/*  media={allMedia}*/}
-      {/*  initialIndex={selectedMediaIndex}*/}
-      {/*  cabinName={cabin.name}*/}
-      {/*  imageCount={cabinImages.length}*/}
-      {/*  onIndexChange={handleGalleryIndexChange}*/}
-      {/*/>*/}
+      <MediaGalleryDialog
+        isOpen={isGalleryOpen}
+        onClose={handleCloseGallery}
+        media={allMedia}
+        initialIndex={selectedMediaIndex}
+        cabinName={cabin.name}
+        imageCount={cabinImages.length}
+        onIndexChange={handleGalleryIndexChange}
+      />
     </div>
   )
 }
