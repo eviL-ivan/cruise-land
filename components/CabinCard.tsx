@@ -5,6 +5,7 @@ import Image from "next/image"
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from "lucide-react"
 import { useInView } from "framer-motion"
 import { useEmblaSlider } from "@/hooks/useEmblaSlider"
+import { useScreens } from "@/hooks/useScreens"
 import { MediaGalleryDialog } from "./MediaGalleryDialog"
 
 interface CabinCardProps {
@@ -29,9 +30,25 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
   const [isGalleryOpen, setIsGalleryOpen] = useState(false) // Fullscreen gallery dialog
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0) // Selected media for gallery
 
+  // Detect screen size for responsive useInView settings
+  const { isBeforeLgScreen } = useScreens()
+
   // Viewport visibility detection - prevents multiple videos from playing simultaneously
+  // Desktop: higher threshold (0.5), Mobile: lower threshold (0.2) with margin
   const cardRef = useRef(null)
-  const isInView = useInView(cardRef, { amount: 0.5 })
+  const viewOptions = useMemo(
+    () =>
+      isBeforeLgScreen
+        ? {
+            amount: 0.2, // Lower threshold for mobile devices
+            margin: "0px 0px -100px 0px", // Trigger slightly before element fully enters viewport
+          }
+        : {
+            amount: 0.5, // Higher threshold for desktop
+          },
+    [isBeforeLgScreen]
+  )
+  const isInView = useInView(cardRef, viewOptions)
 
   // Memoize cabin images and videos arrays
   const cabinImages = useMemo(
@@ -139,6 +156,8 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                       loop
                       muted
                       playsInline
+                      webkit-playsinline="true"
+                      preload="metadata"
                     />
                   ) : (
                     /* Image slide */

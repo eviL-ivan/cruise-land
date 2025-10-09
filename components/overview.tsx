@@ -238,6 +238,7 @@ export function Overview() {
               src="/swan_4.webm"
               controls
               autoPlay
+              playsInline
               preload="metadata"
               className="w-full h-full rounded-lg shadow-2xl"
             >
