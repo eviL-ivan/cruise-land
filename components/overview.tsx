@@ -6,12 +6,14 @@ import { useLanguage } from "@/lib/language-context";
 import { Map, ChevronLeft, ChevronRight, X, Play } from "lucide-react";
 import { BookingModal } from "./BookingModal";
 import { MediaGalleryDialog } from "./MediaGalleryDialog";
+import { MapModal } from "./MapModal";
 import { useEmblaSlider } from "@/hooks/useEmblaSlider";
 
 export function Overview() {
   const { content } = useLanguage();
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [showBookingModal, setShowBookingModal] = useState(false);
+  const [showMapModal, setShowMapModal] = useState(false);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
@@ -44,6 +46,8 @@ export function Overview() {
   const handleCloseVideoModal = useCallback(() => setShowVideoModal(false), []);
   const handleOpenBookingModal = useCallback(() => setShowBookingModal(true), []);
   const handleCloseBookingModal = useCallback(() => setShowBookingModal(false), []);
+  const handleOpenMapModal = useCallback(() => setShowMapModal(true), []);
+  const handleCloseMapModal = useCallback(() => setShowMapModal(false), []);
 
   // Gallery handlers
   const handleOpenGallery = useCallback((index: number) => {
@@ -144,13 +148,13 @@ export function Overview() {
                   <div className="inline-block bg-secondary/20 text-secondary px-4 py-2 rounded-full text-sm font-semibold tracking-wide">
                     {content.overview.cruiseCode}
                   </div>
-                  <a
-                    href="#map"
+                  <button
+                    onClick={handleOpenMapModal}
                     className="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-colors"
                   >
                     <Map className="w-4 h-4" />
                     <span>{content.overview.mapButton}</span>
-                  </a>
+                  </button>
                 </div>
 
                 <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground">
@@ -288,6 +292,12 @@ export function Overview() {
       <BookingModal
         isOpen={showBookingModal}
         onClose={handleCloseBookingModal}
+      />
+
+      {/* Map Modal */}
+      <MapModal
+        isOpen={showMapModal}
+        onClose={handleCloseMapModal}
       />
 
       {/* Fullscreen Image Gallery */}

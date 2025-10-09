@@ -50,6 +50,7 @@ export const content = {
     mapImage: images.overview.map,
     mapAlt: "邮轮航线图",
     mapButton: "地图",
+    viewFullMap: "查看完整地图",
     description: "这不仅仅是一次邮轮——这是一次穿越非洲、大西洋和南极三个世界交汇处的智识与情感探险。",
     detailedDescription: "只有在这里，宾客才能目睹稀有的北跳岩企鹅，探索地球上最与世隔绝的岛屿，在雕塑般的冰山旁迎接黎明——这一切都在天鹅海伦尼克最新旗舰SH Diana号的优雅舒适中进行。",
     experienceButton: "观看体验",
@@ -186,14 +187,14 @@ export const content = {
     brand: "Swan Hellenic",
     inServiceSince: "2023年4月",
     iceClass: "PC6",
-    capacity: "196 名乘客",
+    capacity: "最多200位宾客",
     crew: "140 名船员",
     description:
       "一座真正的海上精品酒店。设有无边泳池（海景），由知名主厨掌勺的高端餐厅，以及以天然材质打造的时尚内饰。",
     amenities: [
       { title: "无边泳池", description: "享有全景海景" },
       { title: "精致餐饮", description: "Swan Hellenic 餐厅" },
-      { title: "水疗中心", description: "按摩浴缸、桑拿、美容院" },
+      { title: "Spa", description: "按摩浴缸、桑拿、美容院" },
       { title: "健身房", description: "现代化设备" },
       { title: "PC6冰级", description: "最高北极冰级船舶" },
       { title: "安全性", description: "所有船舶系统均有冗余备份" },
@@ -201,7 +202,7 @@ export const content = {
     features: [
       "开放甲板上的无边泳池",
       "精致餐厅",
-      "水疗中心、桑拿与健身房",
+      "Spa、桑拿与健身房",
       "图书馆与讲座空间",
       "俱乐部酒廊与池畔烧烤吧",
       "医疗中心与探险实验室",

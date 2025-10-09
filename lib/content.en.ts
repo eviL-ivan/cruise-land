@@ -50,6 +50,7 @@ export const content = {
     mapImage: images.overview.map,
     mapAlt: "Cruise route map",
     mapButton: "Map",
+    viewFullMap: "View Full Map",
     description: "This is not just a cruise — it's an intellectual and emotional expedition through three worlds where Africa, the Atlantic, and Antarctica meet.",
     detailedDescription: "Only here can guests witness the rare Northern Rockhopper penguins, explore the planet's most isolated island, and greet the dawn beside sculpted icebergs — all from the elegant comfort of Swan Hellenic's newest flagship, SH Diana.",
     experienceButton: "Watch Experience",
@@ -197,14 +198,14 @@ export const content = {
     brand: "Swan Hellenic",
     inServiceSince: "April 2023",
     iceClass: "PC6",
-    capacity: "196 passengers",
+    capacity: "up to 200 guests",
     crew: "140 crew members",
     description:
       "A true boutique hotel at sea. Enjoy an infinity pool with ocean views, fine dining restaurants with dishes by renowned chefs, and stylish interiors crafted from natural materials.",
     amenities: [
       { title: "Infinity Pool", description: "With panoramic ocean views" },
       { title: "Fine Dining", description: "Swan Hellenic restaurants" },
-      { title: "Spa Center", description: "Jacuzzi, sauna, beauty salon" },
+      { title: "Spa", description: "Jacuzzi, sauna, beauty salon" },
       { title: "Gym", description: "Modern equipment" },
       { title: "PC6 Ice Class", description: "High Arctic ice class vessel" },
       { title: "Safety", description: "All ship systems have redundancy" },
@@ -212,11 +213,11 @@ export const content = {
     features: [
       "Infinity pool on the open deck",
       "Fine dining restaurants",
-      "Spa center, sauna, and gym",
+      "Spa, sauna, and gym",
       "Library and lecture spaces",
       "Club lounge, poolside grill bar",
       "Medical center and expedition laboratory",
-      "Swan’s Nest observation platform",
+      "Swan's Nest observation platform",
     ],
     specs: {
       length: "125 m",

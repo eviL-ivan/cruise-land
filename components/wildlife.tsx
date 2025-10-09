@@ -1,15 +1,10 @@
 'use client'
 
 import { useLanguage } from "@/lib/language-context"
-import { useRef } from "react"
+import Image from "next/image"
 
 export function Wildlife() {
   const { content } = useLanguage()
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
-
-  const getVideoSrc = (imageSrc: string) => {
-    return imageSrc.replace(/\.(jpg|jpeg|png|webp)$/i, '.mp4')
-  }
 
   return (
     <section className="py-24 bg-muted/30">
@@ -30,18 +25,11 @@ export function Wildlife() {
               className="relative group overflow-hidden rounded-lg shadow-lg"
             >
               <div className="relative h-[400px]">
-                <video
-                  ref={(el) => {
-                    videoRefs.current[index] = el
-                  }}
-                  src={getVideoSrc(animal.image)}
-                  poster={animal.image}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  className="w-full h-full object-cover"
+                <Image
+                  src={animal.image}
+                  alt={animal.alt || animal.name}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">

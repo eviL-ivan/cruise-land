@@ -108,6 +108,21 @@ export function Journey() {
     return imageSrc.replace(/\.(jpg|jpeg|png|webp)$/i, '.mp4')
   }
 
+  const handleMouseEnter = (index: number) => {
+    const video = videoRefs.current[index]
+    if (video) {
+      video.play()
+    }
+  }
+
+  const handleMouseLeave = (index: number) => {
+    const video = videoRefs.current[index]
+    if (video) {
+      video.pause()
+      video.currentTime = 0
+    }
+  }
+
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
@@ -125,6 +140,8 @@ export function Journey() {
             <div
               key={index}
               className="relative group"
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={() => handleMouseLeave(index)}
             >
               <div className="relative h-64 rounded-lg overflow-hidden mb-4">
                 <video
@@ -133,11 +150,10 @@ export function Journey() {
                   }}
                   src={getVideoSrc(destination.image)}
                   poster={destination.image}
-                  autoPlay
                   loop
                   muted
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
