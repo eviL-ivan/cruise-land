@@ -120,6 +120,9 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
           <div className="embla__container h-full" {...touchHandlers}>
             {allMedia.map((media, mediaIndex) => {
               const isVideo = mediaIndex >= cabinImages.length
+              const isCurrentSlide = mediaIndex === selectedIndex
+              const isNextSlide = mediaIndex === (selectedIndex + 1) % allMedia.length
+              const isFirstCardFirstSlide = index === 0 && mediaIndex === 0
 
               return (
                 <div
@@ -141,7 +144,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                       muted
                       playsInline
                       webkit-playsinline="true"
-                      preload="none"
+                      preload={isNextSlide ? "metadata" : "none"}
                     />
                   ) : (
                     /* Image slide */
@@ -151,8 +154,8 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                       fill
                       sizes="(max-width: 1024px) 100vw, 100vw"
                       className="object-cover"
-                      loading={index === 0 && mediaIndex === 0 ? "eager" : "lazy"}
-                      priority={index === 0 && mediaIndex === 0}
+                      loading={isFirstCardFirstSlide || isCurrentSlide || isNextSlide ? "eager" : "lazy"}
+                      priority={isFirstCardFirstSlide}
                     />
                   )}
                 </div>
