@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
 import { Map, ChevronLeft, ChevronRight, X, Play } from "lucide-react";
@@ -12,7 +12,8 @@ export function Overview() {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [showBookingModal, setShowBookingModal] = useState(false);
 
-  const slideImages = content.highlights;
+  // Memoize slideImages to prevent unnecessary re-renders
+  const slideImages = useMemo(() => content.highlights, [content.highlights]);
 
   const {
     emblaRef,
@@ -28,6 +29,12 @@ export function Overview() {
     stopOnInteraction: false,
     loop: true,
   });
+
+  // Memoize modal handlers
+  const handleOpenVideoModal = useCallback(() => setShowVideoModal(true), []);
+  const handleCloseVideoModal = useCallback(() => setShowVideoModal(false), []);
+  const handleOpenBookingModal = useCallback(() => setShowBookingModal(true), []);
+  const handleCloseBookingModal = useCallback(() => setShowBookingModal(false), []);
 
   return (
     <>
@@ -167,7 +174,7 @@ export function Overview() {
                 {/* Action Buttons */}
                 <div className="pt-4 flex flex-wrap gap-4">
                   <button
-                    onClick={() => setShowBookingModal(true)}
+                    onClick={handleOpenBookingModal}
                     className="inline-block bg-white px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase border-2"
                     style={{ color: "#004155", borderColor: "#004155" }}
                     onMouseEnter={(e) => {
@@ -182,7 +189,7 @@ export function Overview() {
                     {content.header.bookButton}
                   </button>
                   <button
-                    onClick={() => setShowVideoModal(true)}
+                    onClick={handleOpenVideoModal}
                     className="inline-flex items-center gap-2 px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase border-2"
                     style={{
                       backgroundColor: "transparent",
@@ -214,10 +221,10 @@ export function Overview() {
       {showVideoModal && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm animate-in fade-in duration-300"
-          onClick={() => setShowVideoModal(false)}
+          onClick={handleCloseVideoModal}
         >
           <button
-            onClick={() => setShowVideoModal(false)}
+            onClick={handleCloseVideoModal}
             className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
             aria-label="Close video"
           >
@@ -243,7 +250,7 @@ export function Overview() {
       {/* Booking Modal */}
       <BookingModal
         isOpen={showBookingModal}
-        onClose={() => setShowBookingModal(false)}
+        onClose={handleCloseBookingModal}
       />
     </>
   );
