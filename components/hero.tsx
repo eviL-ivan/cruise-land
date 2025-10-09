@@ -175,6 +175,9 @@ export function Hero() {
           <br />
           {content.hero.titleAccent}
         </h1>
+        <p className="text-2xl md:text-3xl font-light text-white/90 mt-2">
+          {content.overview.route}
+        </p>
         <div className="mt-4 transition-all duration-300 ease-in-out">
           <p className="text-lg md:text-xl text-white max-w-3xl mx-auto text-pretty">
             {staticText[language as keyof typeof staticText]}

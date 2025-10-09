@@ -21,18 +21,7 @@ export function CTA() {
 
         <div className="max-w-4xl mx-auto">
           {/* Inline Contact Form */}
-          <div className="mb-12">
-            <ContactForm inCard={false} />
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 pt-12 border-t border-border">
-            {content.cta.stats.map((stat, index) => (
-              <div key={index}>
-                <div className="text-4xl font-serif font-bold mb-2 text-accent">{stat.number}</div>
-                <p className="text-muted-foreground">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+          <ContactForm inCard={false} />
         </div>
       </div>
 

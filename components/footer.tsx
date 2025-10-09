@@ -46,6 +46,26 @@ export function Footer() {
   return (
     <footer id="contact" className="text-white py-12" style={{backgroundColor: '#004155'}}>
       <div className="max-w-[800px] xl:max-w-[1272px] mx-auto px-4">
+          {/* Award Logos */}
+          <div className="mb-8 pb-8 border-b border-white/20">
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+              <Image
+                src="/awards/optimized_Sailawaze award_117x107.png"
+                alt="Sailawaze Award"
+                width={117}
+                height={107}
+                className="h-20 w-auto"
+              />
+              <Image
+                src="/awards/optimized_Best in Cruise Award Logo -1-_117x100.png"
+                alt="Best in Cruise Award"
+                width={117}
+                height={100}
+                className="h-20 w-auto"
+              />
+            </div>
+          </div>
+
           {/* Partner Logos */}
           <div className="mb-12">
             <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 lg:gap-10 xl:gap-12">

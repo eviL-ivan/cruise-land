@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useLanguage } from "@/lib/language-context";
-import { ChevronDown, MapPin, Anchor, Compass, Globe, Waves, Ship } from "lucide-react";
+import { ChevronDown, MapPin } from "lucide-react";
 
 export function PremiumCruiseTimeline() {
   const { content } = useLanguage();
@@ -43,7 +43,7 @@ export function PremiumCruiseTimeline() {
   return (
     <div className="relative bg-background">
       {/* Hero Section */}
-      <section className="relative min-h-[calc(100svh-80px)] md:min-h-[calc(100svh-88px)] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[60vh] md:min-h-[70vh] flex items-center justify-center overflow-hidden">
         {/* Animated Background Gradient */}
         <div className="absolute inset-0 z-0">
           <motion.div
@@ -71,54 +71,14 @@ export function PremiumCruiseTimeline() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="text-center z-10 max-w-7xl mx-auto px-4 md:px-8"
         >
-          {/* Animated Icons */}
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.3, type: "spring" }}
-            className="flex justify-center gap-8 mb-8"
-          >
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity, delay: 0 }}
-            >
-              <Anchor className="w-8 h-8 text-primary/50" />
-            </motion.div>
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-            >
-              <Compass className="w-8 h-8 text-secondary/50" />
-            </motion.div>
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-            >
-              <Globe className="w-8 h-8 text-accent/50" />
-            </motion.div>
-          </motion.div>
-
-          <motion.h1
+          <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-serif font-light mb-8"
+            className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance"
           >
-            <span className="block text-foreground/80 text-2xl md:text-3xl font-light tracking-[0.3em] uppercase mb-4">
-              Premium Expedition
-            </span>
-            <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-                {content.itinerary.title}
-              </span>
-              <motion.div
-                className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 1, duration: 1 }}
-              />
-            </span>
-          </motion.h1>
+            {content.itinerary.title}
+          </motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -128,44 +88,6 @@ export function PremiumCruiseTimeline() {
           >
             {content.itinerary.subtitle}
           </motion.p>
-
-          {/* Design Concept */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 1 }}
-            className="mt-20 max-w-4xl mx-auto relative"
-          >
-            <div className="absolute -left-8 top-1/2 -translate-y-1/2 text-6xl text-primary/10 font-serif">"</div>
-            <div className="absolute -right-8 top-1/2 -translate-y-1/2 text-6xl text-primary/10 font-serif">"</div>
-            <p className="text-base md:text-lg text-foreground/60 font-light tracking-wide italic">
-              We go beyond the ordinary journey, each experience delving beneath the surface
-              — past the visible tip of the iceberg —
-              to reveal the essence of every destination
-            </p>
-          </motion.div>
-
-          {/* Animated Waves */}
-          <motion.div
-            className="absolute bottom-0 left-0 right-0 overflow-hidden h-32"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.3 }}
-            transition={{ delay: 1.5 }}
-          >
-            <motion.div
-              className="absolute bottom-0 left-0 right-0"
-              animate={{
-                x: [0, -100, 0],
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
-              <Waves className="w-full h-32 text-primary/20" />
-            </motion.div>
-          </motion.div>
 
           {/* Scroll Indicator */}
           <motion.div
@@ -201,49 +123,6 @@ export function PremiumCruiseTimeline() {
           />
         </section>
       ))}
-
-      {/* Footer CTA */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-        className="relative min-h-[60vh] flex items-center justify-center overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-background to-background" />
-
-        <div className="relative z-10 text-center px-4">
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            transition={{ type: "spring", delay: 0.2 }}
-            className="mb-8"
-          >
-            <Ship className="w-16 h-16 mx-auto text-primary/50" />
-          </motion.div>
-
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-3xl md:text-5xl font-serif font-light mb-6"
-          >
-            Ready to embark on this
-            <span className="block text-4xl md:text-6xl font-normal bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mt-2">
-              extraordinary journey?
-            </span>
-          </motion.h3>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-muted-foreground text-lg md:text-xl font-light max-w-2xl mx-auto"
-          >
-            Join us for an unforgettable expedition beyond the ordinary
-          </motion.p>
-        </div>
-      </motion.section>
     </div>
   );
 }

@@ -18,17 +18,30 @@ export const images = {
   },
 
   itinerary: {
-    day1: "/days/day1.jpg",
-    day2: "/days/day2.jpg",
-    day3: "/days/day3.jpg",
-    day4: "/days/day4.jpg",
-    day5: "/days/day5.jpg",
-    day6: "/days/day6.jpg",
-    day7: "/days/day7.jpg",
-    day8: "/days/day8.jpg",
-    day9: "/days/day9.png",
-    day10: "/days/day10.png",
+    day1: "/newDays/cape.jpg",
+    day2: "/newDays/sea11.jpg",
+    day3: "/newDays/tristan.jpg",
+    day4: "/newDays/sea2.jpg",
+    day5: "/newDays/southGeorg.jpg",
+    day6: "/newDays/pen.jpg",
+    day7: "/newDays/islands.jpg",
+    day8: "/newDays/pen2.jpg",
+    day9: "/newDays/sea3.jpg",
+    day10: "/newDays/ush2.jpg",
   },
+
+  // itinerary: {
+  //   day1: "/days/day1.jpg",
+  //   day2: "/days/day2.jpg",
+  //   day3: "/days/day3.jpg",
+  //   day4: "/days/day4.jpg",
+  //   day5: "/days/day5.jpg",
+  //   day6: "/days/day6.jpg",
+  //   day7: "/days/day7.jpg",
+  //   day8: "/days/day8.jpg",
+  //   day9: "/days/day9.png",
+  //   day10: "/days/day10.png",
+  // },
 
   cabins: {
     oceanview: [
@@ -94,7 +107,7 @@ export const images = {
       "/cabins-videos/PremiumSuite & Suite/Premiumsuite 2.mp4",
       "/cabins-videos/PremiumSuite & Suite/Premiumsuite 3.mp4",
       "/cabins-videos/PremiumSuite & Suite/Premiumsuite 4.mp4",
-        "/cabins-videos/PremiumSuite & Suite/Premiumsuite 5.mp4",
+      "/cabins-videos/PremiumSuite & Suite/Premiumsuite 5.mp4",
     ],
     premiumSuite: [
       "/cabins-videos/PremiumSuite & Suite/Premiumsuite 1.mp4",

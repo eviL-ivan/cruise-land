@@ -26,7 +26,7 @@ export const content = {
       cabins: "Staterooms",
       contact: "Contact",
     },
-    bookButton: "Book Now",
+    bookButton: "Contact Us",
     languages: {
       ru: "RU",
       en: "EN",
@@ -203,11 +203,11 @@ export const content = {
     description:
       "A true boutique hotel at sea. Enjoy an infinity pool with ocean views, fine dining restaurants with dishes by renowned chefs, and stylish interiors crafted from natural materials.",
     amenities: [
+      { title: "Up to 200 guests", description: "Exclusive boutique experience" },
       { title: "Infinity Pool", description: "With panoramic ocean views" },
       { title: "Fine Dining", description: "Swan Hellenic restaurants" },
       { title: "Spa", description: "Jacuzzi, sauna, beauty salon" },
-      { title: "Gym", description: "Modern equipment" },
-      { title: "PC6 Ice Class", description: "High Arctic ice class vessel" },
+      { title: "PC6 Polar Class", description: "Designed specifically for polar regions" },
       { title: "Safety", description: "All ship systems have redundancy" },
     ],
     features: [

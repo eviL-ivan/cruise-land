@@ -27,7 +27,7 @@ export default function Home() {
         {/*  <CruiseTimeline />*/}
         {/*</div>*/}
         {/* Premium version of itinerary */}
-        <div id="premium-itinerary" className="mt-32">
+        <div id="premium-itinerary">
           <PremiumCruiseTimeline />
         </div>
 

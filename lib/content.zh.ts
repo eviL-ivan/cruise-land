@@ -26,7 +26,7 @@ export const content = {
       cabins: "舱房",
       contact: "联系我们",
     },
-    bookButton: "立即预订",
+    bookButton: "联系我们",
     languages: {
       ru: "RU",
       en: "EN",
@@ -192,11 +192,11 @@ export const content = {
     description:
       "一座真正的海上精品酒店。设有无边泳池（海景），由知名主厨掌勺的高端餐厅，以及以天然材质打造的时尚内饰。",
     amenities: [
+      { title: "最多200位宾客", description: "独家精品体验" },
       { title: "无边泳池", description: "享有全景海景" },
       { title: "精致餐饮", description: "Swan Hellenic 餐厅" },
       { title: "Spa", description: "按摩浴缸、桑拿、美容院" },
-      { title: "健身房", description: "现代化设备" },
-      { title: "PC6冰级", description: "最高北极冰级船舶" },
+      { title: "PC6 极地级别", description: "专为极地区域设计" },
       { title: "安全性", description: "所有船舶系统均有冗余备份" },
     ],
     features: [
