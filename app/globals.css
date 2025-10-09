@@ -377,6 +377,26 @@
     margin-bottom: 1rem;
   }
 
+    button,
+    a {
+        cursor: pointer;
+    }
+
+    /* Text wrap utilities for better typography */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        text-wrap: balance;
+    }
+
+    p,
+    .description {
+        text-wrap: pretty;
+    }
+
   h1 {
     font-size: var(--text-24);
     line-height: 1.3;
@@ -495,4 +515,44 @@ elevenlabs-convai {
   transform: translate3d(0, 0, 0);
   min-width: 0;
   padding-left: var(--slide-spacing, 0rem);
+}
+
+/* ========================================
+   CUSTOM SCROLLBAR STYLES
+   ======================================== */
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* For Firefox */
+@supports (scrollbar-color: auto) {
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+}
+
+/* Smooth scrolling behavior */
+.scrollbar-custom {
+  scroll-behavior: smooth;
 }
