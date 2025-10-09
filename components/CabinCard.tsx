@@ -34,7 +34,8 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
   const { isBeforeLgScreen } = useScreens()
 
   // Viewport visibility detection - prevents multiple videos from playing simultaneously
-  // Desktop: higher threshold (0.5), Mobile: lower threshold (0.2) with margin
+  // Desktop: minimal threshold - pause only when completely hidden
+  // Mobile: lower threshold (0.2) with margin for better performance
   const cardRef = useRef(null)
   const viewOptions = useMemo(
     () =>
@@ -44,7 +45,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
             margin: "0px 0px -100px 0px", // Trigger slightly before element fully enters viewport
           }
         : {
-            amount: 0.5, // Higher threshold for desktop
+            amount: "some" as const, // Pause only when completely hidden (any pixel visible = in view)
           },
     [isBeforeLgScreen]
   )
@@ -127,6 +128,10 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
     <div
       ref={cardRef}
       className="group overflow-hidden rounded-[32px] flex flex-col lg:block lg:relative lg:min-h-[520px]"
+      style={{
+        contentVisibility: isInView ? 'visible' : 'auto',
+        containIntrinsicSize: isInView ? 'none' : '520px'
+      }}
       onMouseEnter={() => setIsCardHovered(true)}
       onMouseLeave={() => setIsCardHovered(false)}
     >
@@ -136,6 +141,8 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
           <div className="embla__container h-full" {...touchHandlers}>
             {allMedia.map((media, mediaIndex) => {
               const isVideo = mediaIndex >= cabinImages.length
+              // Only render video elements when card is in viewport to reduce memory usage
+              const shouldRenderVideo = isVideo && isInView
 
               return (
                 <div
@@ -146,7 +153,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                     setIsGalleryOpen(true)
                   }}
                 >
-                  {isVideo ? (
+                  {shouldRenderVideo ? (
                     <video
                       ref={(el) => {
                         videoRefs.current[mediaIndex] = el
@@ -157,7 +164,18 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                       muted
                       playsInline
                       webkit-playsinline="true"
-                      preload="metadata"
+                      preload="none"
+                      poster={cabinImages[0]}
+                    />
+                  ) : isVideo ? (
+                    /* Placeholder image for video when card is not in viewport */
+                    <Image
+                      src={cabinImages[0]}
+                      alt={`${cabin.name} - Video thumbnail`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 100vw"
+                      className="object-cover"
+                      loading="lazy"
                     />
                   ) : (
                     /* Image slide */
@@ -167,8 +185,8 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                       fill
                       sizes="(max-width: 1024px) 100vw, 100vw"
                       className="object-cover"
-                      loading="eager"
-                      priority={mediaIndex === 0}
+                      loading={index === 0 && mediaIndex === 0 ? "eager" : "lazy"}
+                      priority={index === 0 && mediaIndex === 0}
                     />
                   )}
                 </div>
@@ -185,7 +203,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
           <>
             <button
               onClick={scrollPrev}
-              className={`absolute top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full shadow-2xl hover:scale-110 z-30 left-4 lg:left-6
+              className={`absolute top-1/2 -translate-y-1/2 bg-white/20 lg:backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full shadow-2xl hover:scale-110 z-30 left-4 lg:left-6
                 opacity-100 lg:opacity-0 transition-all duration-700
                 ${isCardHovered && !isPanelHovered ? 'lg:!opacity-100' : ''}
                 ${!isEven && (isPanelHovered ? 'lg:!left-[675px]' : 'lg:!left-[475px]')}
@@ -196,7 +214,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
             </button>
             <button
               onClick={scrollNext}
-              className={`absolute top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full shadow-2xl hover:scale-110 z-30 right-4 lg:right-6
+              className={`absolute top-1/2 -translate-y-1/2 bg-white/20 lg:backdrop-blur-md hover:bg-white/30 text-white p-2.5 lg:p-3 rounded-full shadow-2xl hover:scale-110 z-30 right-4 lg:right-6
                 opacity-100 lg:opacity-0 transition-all duration-700
                 ${isCardHovered && !isPanelHovered ? 'lg:!opacity-100' : ''}
                 ${isEven && (isPanelHovered ? 'lg:!right-[675px]' : 'lg:!right-[475px]')}
