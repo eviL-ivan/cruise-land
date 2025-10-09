@@ -354,7 +354,7 @@ function OverlayLeftLayout({ event, index, isInView }: any) {
 
   return (
     <div className="relative h-full">
-      <div className="absolute left-0 top-0 w-full md:w-2/3 lg:w-1/2 h-full bg-gradient-to-r from-slate-900/95 via-slate-800/75 to-transparent">
+      <div className="absolute left-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-r from-slate-900/95 via-slate-800/75 to-transparent">
         <div className="h-full flex items-center p-8 md:pr-6 md:p-16">
           <div className="relative max-w-2xl">
             <div
@@ -393,21 +393,23 @@ function OverlayLeftLayout({ event, index, isInView }: any) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: isInView ? 1 : 0 }}
                   transition={{ delay: 0.6 }}
-                  className="space-y-2 pb-4"
+                  className="pb-4"
                 >
                   <div className="text-white/60 text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4">Activities</div>
-                  {event.activities.map((activity: string, i: number) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -30 }}
-                      animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -30 }}
-                      transition={{ delay: 0.7 + i * 0.05 }}
-                      className="flex items-start gap-3 text-white/80 text-xs md:text-sm"
-                    >
-                      <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0 mt-1.5" />
-                      <span>{activity}</span>
-                    </motion.div>
-                  ))}
+                  <div className="space-y-2 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-2">
+                    {event.activities.map((activity: string, i: number) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -30 }}
+                        transition={{ delay: 0.7 + i * 0.05 }}
+                        className="flex items-start gap-3 text-white/80 text-xs md:text-sm"
+                      >
+                        <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0 mt-1.5" />
+                        <span>{activity}</span>
+                      </motion.div>
+                    ))}
+                  </div>
                 </motion.div>
               )}
             </div>
@@ -471,7 +473,7 @@ function OverlayRightLayout({ event, index, isInView }: any) {
 
   return (
     <div className="relative h-full">
-      <div className="absolute right-0 top-0 w-full md:w-2/3 lg:w-1/2 h-full bg-gradient-to-l from-slate-900/95 via-slate-800/75 to-transparent">
+      <div className="absolute right-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-l from-slate-900/95 via-slate-800/75 to-transparent">
         <div className="h-full flex items-center justify-end p-8 pr-4 md:pr-4 md:pl-6 md:p-16">
           {/* Scroll Indicator - Left Side */}
           {hasOverflow && !isScrolledToBottom && (
@@ -537,21 +539,23 @@ function OverlayRightLayout({ event, index, isInView }: any) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: isInView ? 1 : 0 }}
                   transition={{ delay: 0.6 }}
-                  className="space-y-2 pb-4"
+                  className="pb-4"
                 >
-                  <div className="text-white/60 text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4">Activities</div>
-                  {event.activities.map((activity: string, i: number) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: 30 }}
-                      animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 30 }}
-                      transition={{ delay: 0.7 + i * 0.05 }}
-                      className="flex items-start justify-end gap-3 text-white/80 text-xs md:text-sm"
-                    >
-                      <span>{activity}</span>
-                      <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0 mt-1.5" />
-                    </motion.div>
-                  ))}
+                  <div className="text-white/60 text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4 text-right">Activities</div>
+                  <div className="space-y-2 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-2">
+                    {event.activities.map((activity: string, i: number) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 30 }}
+                        transition={{ delay: 0.7 + i * 0.05 }}
+                        className="flex items-start justify-end gap-3 text-white/80 text-xs md:text-sm"
+                      >
+                        <span className="text-right">{activity}</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0 mt-1.5" />
+                      </motion.div>
+                    ))}
+                  </div>
                 </motion.div>
               )}
             </div>
