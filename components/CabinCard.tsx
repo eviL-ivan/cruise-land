@@ -64,20 +64,20 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
   // Refs for video elements
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
 
-  // Control video playback based on active slide AND viewport visibility
+  // Control video playback based on active slide AND viewport visibility AND gallery state
   useEffect(() => {
     const timeoutIds: NodeJS.Timeout[] = []
 
     videoRefs.current.forEach((video, index) => {
       if (video) {
-        // Play video only if it's the active slide AND the card is visible in viewport
-        if (index === selectedIndex && isInView) {
+        // Play video only if: it's the active slide AND card is visible AND gallery is closed
+        if (index === selectedIndex && isInView && !isGalleryOpen) {
           // Play video on active slide immediately
           video.play().catch(() => {
             // Ignore autoplay errors
           })
         } else {
-          // Pause and reset video on inactive slides or when card is not visible after 1 second
+          // Pause and reset video on inactive slides, when card is not visible, or when gallery is open
           const timeoutId = setTimeout(() => {
             video.pause()
             video.currentTime = 0
@@ -87,11 +87,11 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
       }
     })
 
-    // Cleanup: clear all timeouts when selectedIndex or visibility changes or component unmounts
+    // Cleanup: clear all timeouts when dependencies change or component unmounts
     return () => {
       timeoutIds.forEach(id => clearTimeout(id))
     }
-  }, [selectedIndex, isInView])
+  }, [selectedIndex, isInView, isGalleryOpen])
 
   // Sync main carousel with gallery when gallery index changes - memoized
   const handleGalleryIndexChange = useCallback(
