@@ -392,7 +392,7 @@ export function Ship() {
           </button>
 
           <div
-            className="relative w-full max-w-7xl h-[90vh] mx-4 animate-in zoom-in duration-300"
+            className="relative w-full max-w-7xl h-[90svh] mx-4 animate-in zoom-in duration-300"
             onClick={(e) => e.stopPropagation()}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}

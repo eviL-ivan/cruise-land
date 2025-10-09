@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useMemo, useCallback } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from "lucide-react"
+import { useInView } from "framer-motion"
 import { useEmblaSlider } from "@/hooks/useEmblaSlider"
 import { MediaGalleryDialog } from "./MediaGalleryDialog"
 
@@ -27,6 +28,10 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
   const [isPanelHovered, setIsPanelHovered] = useState(false) // Hover on panel - expands panel
   const [isGalleryOpen, setIsGalleryOpen] = useState(false) // Fullscreen gallery dialog
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0) // Selected media for gallery
+
+  // Viewport visibility detection - prevents multiple videos from playing simultaneously
+  const cardRef = useRef(null)
+  const isInView = useInView(cardRef, { amount: 0.5 })
 
   // Memoize cabin images and videos arrays
   const cabinImages = useMemo(
@@ -58,19 +63,20 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
   // Refs for video elements
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
 
-  // Control video playback based on active slide
+  // Control video playback based on active slide AND viewport visibility
   useEffect(() => {
     const timeoutIds: NodeJS.Timeout[] = []
 
     videoRefs.current.forEach((video, index) => {
       if (video) {
-        if (index === selectedIndex) {
+        // Play video only if it's the active slide AND the card is visible in viewport
+        if (index === selectedIndex && isInView) {
           // Play video on active slide immediately
           video.play().catch(() => {
             // Ignore autoplay errors
           })
         } else {
-          // Pause and reset video on inactive slides after 1 second
+          // Pause and reset video on inactive slides or when card is not visible after 1 second
           const timeoutId = setTimeout(() => {
             video.pause()
             video.currentTime = 0
@@ -80,11 +86,11 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
       }
     })
 
-    // Cleanup: clear all timeouts when selectedIndex changes or component unmounts
+    // Cleanup: clear all timeouts when selectedIndex or visibility changes or component unmounts
     return () => {
       timeoutIds.forEach(id => clearTimeout(id))
     }
-  }, [selectedIndex])
+  }, [selectedIndex, isInView])
 
   // Sync main carousel with gallery when gallery index changes - memoized
   const handleGalleryIndexChange = useCallback(
@@ -102,6 +108,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
 
   return (
     <div
+      ref={cardRef}
       className="group overflow-hidden rounded-[32px] flex flex-col lg:block lg:relative lg:min-h-[520px]"
       onMouseEnter={() => setIsCardHovered(true)}
       onMouseLeave={() => setIsCardHovered(false)}

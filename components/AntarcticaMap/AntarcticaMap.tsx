@@ -507,7 +507,7 @@ export default function AntarcticaMap() {
       }}
     >
       <div
-        className="relative w-full h-[50vh] md:h-[70vh]"
+        className="relative w-full h-[50svh] md:h-[70svh]"
         style={{
           boxShadow:
             "inset 0 10px 30px -5px rgba(0, 0, 0, 0.6), inset 0 -10px 30px -5px rgba(0, 0, 0, 0.5), inset 8px 0 15px -8px rgba(0, 0, 0, 0.4), inset -8px 0 15px -8px rgba(0, 0, 0, 0.4)",
