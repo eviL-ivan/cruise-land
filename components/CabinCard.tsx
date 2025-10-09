@@ -49,20 +49,30 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
 
   // Control video playback based on active slide
   useEffect(() => {
+    const timeoutIds: NodeJS.Timeout[] = []
+
     videoRefs.current.forEach((video, index) => {
       if (video) {
         if (index === selectedIndex) {
-          // Play video on active slide
+          // Play video on active slide immediately
           video.play().catch(() => {
             // Ignore autoplay errors
           })
         } else {
-          // Pause and reset video on inactive slides
-          video.pause()
-          video.currentTime = 0
+          // Pause and reset video on inactive slides after 1 second
+          const timeoutId = setTimeout(() => {
+            video.pause()
+            video.currentTime = 0
+          }, 1000)
+          timeoutIds.push(timeoutId)
         }
       }
     })
+
+    // Cleanup: clear all timeouts when selectedIndex changes or component unmounts
+    return () => {
+      timeoutIds.forEach(id => clearTimeout(id))
+    }
   }, [selectedIndex])
 
   // Sync main carousel with gallery when gallery index changes
