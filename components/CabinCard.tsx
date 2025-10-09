@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useMemo, useCallback } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from "lucide-react"
 import { useEmblaSlider } from "@/hooks/useEmblaSlider"
@@ -27,9 +27,20 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
   const [isPanelHovered, setIsPanelHovered] = useState(false) // Hover on panel - expands panel
   const [isGalleryOpen, setIsGalleryOpen] = useState(false) // Fullscreen gallery dialog
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0) // Selected media for gallery
-  const cabinImages = cabin.images || [cabin.image || '/placeholder.svg']
-  const cabinVideos = cabin.videos || []
-  const allMedia = [...cabinImages, ...cabinVideos ] // Combine images and videos
+
+  // Memoize cabin images and videos arrays
+  const cabinImages = useMemo(
+    () => cabin.images || [cabin.image || '/placeholder.svg'],
+    [cabin.images, cabin.image]
+  )
+  const cabinVideos = useMemo(() => cabin.videos || [], [cabin.videos])
+
+  // Combine images and videos - memoized for performance
+  const allMedia = useMemo(
+    () => [...cabinImages, ...cabinVideos],
+    [cabinImages, cabinVideos]
+  )
+
   const isEven = index % 2 === 0
 
   const {
@@ -75,11 +86,19 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
     }
   }, [selectedIndex])
 
-  // Sync main carousel with gallery when gallery index changes
-  const handleGalleryIndexChange = (index: number) => {
-    setSelectedMediaIndex(index) // Update state for lightbox
-    scrollTo(index) // Sync main carousel
-  }
+  // Sync main carousel with gallery when gallery index changes - memoized
+  const handleGalleryIndexChange = useCallback(
+    (index: number) => {
+      setSelectedMediaIndex(index) // Update state for lightbox
+      scrollTo(index) // Sync main carousel
+    },
+    [scrollTo]
+  )
+
+  // Memoize onClose handler
+  const handleCloseGallery = useCallback(() => {
+    setIsGalleryOpen(false)
+  }, [])
 
   return (
     <div
@@ -295,7 +314,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
       {/* Fullscreen Media Gallery */}
       <MediaGalleryDialog
         isOpen={isGalleryOpen}
-        onClose={() => setIsGalleryOpen(false)}
+        onClose={handleCloseGallery}
         media={allMedia}
         initialIndex={selectedMediaIndex}
         cabinName={cabin.name}
