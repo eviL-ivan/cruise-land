@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo, useCallback } from "react"
 import Lightbox from "yet-another-react-lightbox"
 import Captions from "yet-another-react-lightbox/plugins/captions"
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen"
@@ -39,35 +39,52 @@ export function MediaGalleryDialog({
     }
   }, [isOpen, initialIndex])
 
-  // Convert media array to lightbox slides format
-  const slides = media.map((item, index) => {
-    const isVideo = index >= imageCount
+  // Convert media array to lightbox slides format - memoized for performance
+  const slides = useMemo(
+    () =>
+      media.map((item, index) => {
+        const isVideo = index >= imageCount
 
-    if (isVideo) {
-      // Video slide
-      return {
-        type: "video" as const,
-        title: `${cabinName} - 360° Video`,
-        autoPlay: true,
-        loop: true,
-        muted: true,
-        playsInline: true,
-        controls: false,
-        sources: [
-          {
+        if (isVideo) {
+          // Video slide - Video plugin automatically plays only active slide
+          return {
+            type: "video" as const,
+            title: `${cabinName} - 360° Video`,
+            autoPlay: true, // Plugin ensures only active slide plays
+            loop: true,
+            muted: true,
+            playsInline: true,
+            controls: false,
+            sources: [
+              {
+                src: item,
+                type: "video/mp4",
+              },
+            ],
+          }
+        } else {
+          // Image slide
+          return {
             src: item,
-            type: "video/webm",
-          },
-        ],
+            title: `${cabinName}`,
+          }
+        }
+      }),
+    [media, imageCount, cabinName]
+  )
+
+  // Memoize view callback to prevent unnecessary re-renders
+  const handleView = useCallback(
+    ({ index }: { index: number }) => {
+      // Only update if index actually changed
+      if (index !== currentIndex) {
+        setCurrentIndex(index)
+        // Sync index with parent carousel
+        onIndexChange?.(index)
       }
-    } else {
-      // Image slide
-      return {
-        src: item,
-        title: `${cabinName}`,
-      }
-    }
-  })
+    },
+    [currentIndex, onIndexChange]
+  )
 
   return (
     <Lightbox
@@ -77,14 +94,7 @@ export function MediaGalleryDialog({
       index={currentIndex}
       plugins={[Captions, Fullscreen, Slideshow, Video, Zoom]}
       on={{
-        view: ({ index }) => {
-          // Only update if index actually changed
-          if (index !== currentIndex) {
-            setCurrentIndex(index)
-            // Sync index with parent carousel
-            onIndexChange?.(index)
-          }
-        },
+        view: handleView,
       }}
       carousel={{
         finite: false,

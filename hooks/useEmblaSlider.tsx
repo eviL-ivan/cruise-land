@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState, useRef } from 'react'
+import { useCallback, useEffect, useState, useRef, useMemo } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import type { EmblaOptionsType } from 'embla-carousel'
@@ -31,18 +31,19 @@ export function useEmblaSlider(options: UseEmblaSliderOptions = {}) {
   const touchStartX = useRef(0)
   const touchEndX = useRef(0)
 
-  // Setup embla carousel options
-  const emblaOptions: EmblaOptionsType = {
+  // Setup embla carousel options - memoized to prevent unnecessary reinits
+  const emblaOptions: EmblaOptionsType = useMemo(() => ({
     loop,
     align,
     slidesToScroll,
     startIndex,
-  }
+  }), [loop, align, slidesToScroll, startIndex])
 
-  // Setup plugins
-  const plugins = autoplay
-    ? [Autoplay({ delay: autoplayDelay, stopOnInteraction })]
-    : []
+  // Setup plugins - memoized to prevent memory leaks
+  const plugins = useMemo(
+    () => (autoplay ? [Autoplay({ delay: autoplayDelay, stopOnInteraction })] : []),
+    [autoplay, autoplayDelay, stopOnInteraction]
+  )
 
   const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptions, plugins)
 
@@ -138,6 +139,16 @@ export function useEmblaSlider(options: UseEmblaSliderOptions = {}) {
     }
   }, [emblaApi, onInit, onSelect])
 
+  // Memoize touchHandlers object to prevent unnecessary re-renders
+  const touchHandlers = useMemo(
+    () => ({
+      onTouchStart: handleTouchStart,
+      onTouchMove: handleTouchMove,
+      onTouchEnd: handleTouchEnd,
+    }),
+    [handleTouchStart, handleTouchMove, handleTouchEnd]
+  )
+
   return {
     emblaRef,
     emblaApi,
@@ -146,10 +157,6 @@ export function useEmblaSlider(options: UseEmblaSliderOptions = {}) {
     scrollPrev,
     scrollNext,
     scrollTo,
-    touchHandlers: {
-      onTouchStart: handleTouchStart,
-      onTouchMove: handleTouchMove,
-      onTouchEnd: handleTouchEnd,
-    },
+    touchHandlers,
   }
 }

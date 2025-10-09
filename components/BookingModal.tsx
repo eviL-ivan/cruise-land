@@ -76,7 +76,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
         </div>
 
         {/* Контейнер для формы */}
-        <div className="w-full h-full sm:h-auto sm:max-h-[70vh] overflow-y-auto p-6 sm:p-8">
+        <div className="w-full h-full sm:h-auto sm:max-h-[70svh] overflow-y-auto p-6 sm:p-8">
           <ContactForm onSuccess={onClose} inCard={false} />
         </div>
       </div>
