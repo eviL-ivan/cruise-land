@@ -354,26 +354,26 @@ function OverlayLeftLayout({ event, index, isInView }: any) {
 
   return (
     <div className="relative h-full">
-      <div className="absolute left-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-r from-slate-900/95 via-slate-800/75 to-transparent">
+      <div className="absolute left-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full">
         <div className="h-full flex items-center p-8 md:pr-6 md:p-16">
           <div className="relative max-w-2xl">
             <div
               ref={contentRef}
               onScroll={handleScroll}
-              className="max-h-[calc(100vh-160px)] md:max-h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden pr-6 scrollbar-custom"
+              className="max-h-[calc(100vh-160px)] md:max-h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden scrollbar-custom p-6"
             >
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
                 transition={{ delay: 0.2 }}
               >
-                <span className="text-white/60 text-xs md:text-sm font-light tracking-[0.3em] uppercase">
+                <span className="text-white/90 text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-shadow-sm text-shadow-black/40 backdrop-blur-md bg-gradient-to-r from-black/30 to-black/20 border border-white/20 px-4 py-1.5 rounded-full inline-block">
                   {event.day}
                 </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mt-3 mb-4 md:mb-6">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white text-shadow-lg text-shadow-black/60 block w-fit mt-3 mb-4 md:mb-6">
                   {event.title}
                 </h2>
-                <div className="flex items-center gap-2 text-white/80 mb-6 md:mb-8">
+                <div className="flex items-center gap-2 text-white/80 text-shadow-lg text-shadow-black/60 mb-6 md:mb-8">
                   <MapPin className="w-4 h-4 flex-shrink-0" />
                   <span className="text-sm md:text-base">{event.location}</span>
                 </div>
@@ -383,7 +383,7 @@ function OverlayLeftLayout({ event, index, isInView }: any) {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
                 transition={{ delay: 0.4 }}
-                className="text-white/90 text-sm md:text-base leading-relaxed mb-6 md:mb-8"
+                className="text-white/85 text-sm md:text-base leading-relaxed text-shadow-sm text-shadow-black/40 backdrop-blur-[2px] bg-black/10 px-4 py-3 inline-block mb-6 md:mb-8"
               >
                 {event.description}
               </motion.p>
@@ -395,7 +395,7 @@ function OverlayLeftLayout({ event, index, isInView }: any) {
                   transition={{ delay: 0.6 }}
                   className="pb-4"
                 >
-                  <div className="text-white/60 text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4">Activities</div>
+                  <div className="text-white/90 text-xs md:text-sm font-semibold uppercase tracking-wider text-shadow-md text-shadow-black/60 inline-block mb-3 md:mb-4">Activities</div>
                   <div className="space-y-2 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-2">
                     {event.activities.map((activity: string, i: number) => (
                       <motion.div
@@ -403,7 +403,7 @@ function OverlayLeftLayout({ event, index, isInView }: any) {
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -30 }}
                         transition={{ delay: 0.7 + i * 0.05 }}
-                        className="flex items-start gap-3 text-white/80 text-xs md:text-sm"
+                        className="flex items-start gap-3 text-white/75 text-xs md:text-sm text-shadow-xs text-shadow-black/40 backdrop-blur-[2px] bg-black/12 px-3 py-1.5 rounded-full w-fit"
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0 mt-1.5" />
                         <span>{activity}</span>
@@ -473,7 +473,7 @@ function OverlayRightLayout({ event, index, isInView }: any) {
 
   return (
     <div className="relative h-full">
-      <div className="absolute right-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-l from-slate-900/95 via-slate-800/75 to-transparent">
+      <div className="absolute right-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full">
         <div className="h-full flex items-center justify-end p-8 pr-4 md:pr-4 md:pl-6 md:p-16">
           {/* Scroll Indicator - Left Side */}
           {hasOverflow && !isScrolledToBottom && (
@@ -506,20 +506,20 @@ function OverlayRightLayout({ event, index, isInView }: any) {
             <div
               ref={contentRef}
               onScroll={handleScroll}
-              className="max-h-[calc(100vh-160px)] md:max-h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden px-3 scrollbar-custom text-right"
+              className="max-h-[calc(100vh-160px)] md:max-h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden scrollbar-custom text-right p-6"
             >
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
                 transition={{ delay: 0.2 }}
               >
-                <span className="text-white/60 text-xs md:text-sm font-light tracking-[0.3em] uppercase">
+                <span className="text-white/90 text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-shadow-sm text-shadow-black/40 backdrop-blur-md bg-gradient-to-r from-black/30 to-black/20 border border-white/20 px-4 py-1.5 rounded-full inline-block">
                   {event.day}
                 </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mt-3 mb-4 md:mb-6">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white text-shadow-lg text-shadow-black/60 block w-fit ml-auto mt-3 mb-4 md:mb-6">
                   {event.title}
                 </h2>
-                <div className="flex items-center justify-end gap-2 text-white/80 mb-6 md:mb-8">
+                <div className="flex items-center justify-end gap-2 text-white/80 text-shadow-md text-shadow-black/50 mb-6 md:mb-8">
                   <span className="text-sm md:text-base">{event.location}</span>
                   <MapPin className="w-4 h-4 flex-shrink-0" />
                 </div>
@@ -529,7 +529,7 @@ function OverlayRightLayout({ event, index, isInView }: any) {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
                 transition={{ delay: 0.4 }}
-                className="text-white/90 text-sm md:text-base leading-relaxed mb-6 md:mb-8"
+                className="text-white/85 text-sm md:text-base leading-relaxed text-shadow-sm text-shadow-black/40 backdrop-blur-[2px] bg-black/10 px-4 py-3 inline-block mb-6 md:mb-8"
               >
                 {event.description}
               </motion.p>
@@ -541,7 +541,7 @@ function OverlayRightLayout({ event, index, isInView }: any) {
                   transition={{ delay: 0.6 }}
                   className="pb-4"
                 >
-                  <div className="text-white/60 text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4 text-right">Activities</div>
+                  <div className="text-white/90 text-xs md:text-sm font-semibold uppercase tracking-wider text-shadow-md text-shadow-black/60 inline-block mb-3 md:mb-4 text-right">Activities</div>
                   <div className="space-y-2 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-2">
                     {event.activities.map((activity: string, i: number) => (
                       <motion.div
@@ -549,7 +549,7 @@ function OverlayRightLayout({ event, index, isInView }: any) {
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 30 }}
                         transition={{ delay: 0.7 + i * 0.05 }}
-                        className="flex items-start justify-end gap-3 text-white/80 text-xs md:text-sm"
+                        className="flex items-start justify-end gap-3 text-white/75 text-xs md:text-sm text-shadow-xs text-shadow-black/40 backdrop-blur-[2px] bg-black/12 px-3 py-1.5 rounded-full w-fit ml-auto"
                       >
                         <span className="text-right">{activity}</span>
                         <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0 mt-1.5" />

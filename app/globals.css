@@ -495,7 +495,7 @@
 
 /* Установка z-index для виджета Elevenlabs */
 elevenlabs-convai {
-  z-index: 10 !important;
+  z-index: 9999 !important;
 }
 
 /* ========================================
