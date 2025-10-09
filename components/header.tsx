@@ -65,8 +65,8 @@ export function Header() {
               {content.header.nav.route}
             </a>
             <a
-              href="#itinerary"
-              onClick={(e) => scrollToSection(e, '#itinerary')}
+              href="#premium-itinerary"
+              onClick={(e) => scrollToSection(e, '#premium-itinerary')}
               className="text-sm font-medium tracking-wide hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer"
               style={{color: '#004155'}}
             >

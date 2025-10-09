@@ -175,7 +175,7 @@ export function Hero() {
           <br />
           {content.hero.titleAccent}
         </h1>
-        <p className="text-2xl md:text-3xl font-light text-white/90 mt-2">
+        <p className="font-serif text-2xl md:text-3xl font-light text-white/90 mt-2">
           {content.overview.route}
         </p>
         <div className="mt-4 transition-all duration-300 ease-in-out">
