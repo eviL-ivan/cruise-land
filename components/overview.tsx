@@ -5,12 +5,15 @@ import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
 import { Map, ChevronLeft, ChevronRight, X, Play } from "lucide-react";
 import { BookingModal } from "./BookingModal";
+import { MediaGalleryDialog } from "./MediaGalleryDialog";
 import { useEmblaSlider } from "@/hooks/useEmblaSlider";
 
 export function Overview() {
   const { content } = useLanguage();
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [showBookingModal, setShowBookingModal] = useState(false);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   // Memoize slideImages to prevent unnecessary re-renders
   const slideImages = useMemo(() => content.highlights, [content.highlights]);
@@ -25,16 +28,40 @@ export function Overview() {
     touchHandlers,
   } = useEmblaSlider({
     autoplay: true,
-    autoplayDelay: 4000,
+    autoplayDelay: 12000, // 12 seconds (3x slower than original 4s)
     stopOnInteraction: false,
     loop: true,
   });
+
+  // Memoize all media URLs for gallery
+  const allMedia = useMemo(
+    () => slideImages.map((slide) => slide.image),
+    [slideImages]
+  );
 
   // Memoize modal handlers
   const handleOpenVideoModal = useCallback(() => setShowVideoModal(true), []);
   const handleCloseVideoModal = useCallback(() => setShowVideoModal(false), []);
   const handleOpenBookingModal = useCallback(() => setShowBookingModal(true), []);
   const handleCloseBookingModal = useCallback(() => setShowBookingModal(false), []);
+
+  // Gallery handlers
+  const handleOpenGallery = useCallback((index: number) => {
+    setSelectedImageIndex(index);
+    setIsGalleryOpen(true);
+  }, []);
+
+  const handleCloseGallery = useCallback(() => {
+    setIsGalleryOpen(false);
+  }, []);
+
+  const handleGalleryIndexChange = useCallback(
+    (index: number) => {
+      setSelectedImageIndex(index);
+      scrollTo(index);
+    },
+    [scrollTo]
+  );
 
   return (
     <>
@@ -46,31 +73,40 @@ export function Overview() {
               <div className="relative h-[450px] lg:h-[550px] w-full rounded-lg overflow-hidden shadow-2xl group">
                 <div className="embla h-full" ref={emblaRef}>
                   <div className="embla__container h-full" {...touchHandlers}>
-                    {slideImages.map((slide, index) => (
-                      <div
-                        key={index}
-                        className="embla__slide relative min-w-0 flex-[0_0_100%]"
-                      >
-                        <Image
-                          src={slide.image}
-                          alt={slide.title}
-                          fill
-                          sizes="(max-width: 1024px) calc(100vw - 2rem), 50vw"
-                          className="object-cover"
-                          loading="eager"
-                        />
+                    {slideImages.map((slide, index) => {
+                      const isCurrentSlide = index === selectedIndex;
+                      const isNextSlide = index === (selectedIndex + 1) % slideImages.length;
 
-                        {/* Slide title overlay */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                          <h3 className="text-white font-serif text-3xl font-bold mb-2">
-                            {slide.title}
-                          </h3>
-                          <p className="text-white/90 text-sm">
-                            {slide.description}
-                          </p>
+                      return (
+                        <div
+                          key={index}
+                          className="embla__slide relative min-w-0 flex-[0_0_100%] cursor-pointer"
+                          onClick={() => handleOpenGallery(index)}
+                        >
+                          <Image
+                            src={slide.image}
+                            alt={slide.title}
+                            fill
+                            sizes="(max-width: 1024px) calc(100vw - 2rem), 50vw"
+                            className="object-cover"
+                            {...(index === 0
+                              ? { priority: true }
+                              : { loading: isCurrentSlide || isNextSlide ? "eager" : "lazy" }
+                            )}
+                          />
+
+                          {/* Slide title overlay */}
+                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 pointer-events-none">
+                            <h3 className="text-white font-serif text-3xl font-bold mb-2">
+                              {slide.title}
+                            </h3>
+                            <p className="text-white/90 text-sm">
+                              {slide.description}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -252,6 +288,17 @@ export function Overview() {
       <BookingModal
         isOpen={showBookingModal}
         onClose={handleCloseBookingModal}
+      />
+
+      {/* Fullscreen Image Gallery */}
+      <MediaGalleryDialog
+        isOpen={isGalleryOpen}
+        onClose={handleCloseGallery}
+        media={allMedia}
+        initialIndex={selectedImageIndex}
+        cabinName={slideImages[selectedImageIndex]?.title || "Overview"}
+        imageCount={allMedia.length}
+        onIndexChange={handleGalleryIndexChange}
       />
     </>
   );
