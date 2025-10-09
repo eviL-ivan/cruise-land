@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useInView, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/lib/language-context";
 import { ChevronDown, MapPin, Anchor, Compass, Globe, Waves, Ship } from "lucide-react";
 
@@ -283,11 +283,11 @@ function FullScreenItineraryCard({
       className="relative w-full h-[calc(100svh-80px)] md:h-[calc(100svh-88px)] overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: isInView ? 1 : 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
     >
       {/* Background Image with Parallax */}
       <motion.div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 parallax-element"
         style={{ y: imageY }}
       >
         <Image
@@ -297,6 +297,7 @@ function FullScreenItineraryCard({
           className="object-cover scale-110"
           sizes="100vw"
           priority={index < 2}
+          loading={index < 2 ? "eager" : "lazy"}
         />
       </motion.div>
 
@@ -360,12 +361,12 @@ function OverlayLeftLayout({ event, index, isInView }: any) {
             <div
               ref={contentRef}
               onScroll={handleScroll}
-              className="max-h-[calc(100vh-160px)] md:max-h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden scrollbar-custom p-6"
+              className="max-h-[calc(100vh-160px)] md:max-h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden scrollbar-custom scroll-container p-6"
             >
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.2, type: "tween", ease: "easeOut" }}
               >
                 <span className="text-white/90 text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-shadow-sm text-shadow-black/40 backdrop-blur-md bg-gradient-to-r from-black/30 to-black/20 border border-white/20 px-4 py-1.5 rounded-full inline-block">
                   {event.day}
@@ -382,7 +383,7 @@ function OverlayLeftLayout({ event, index, isInView }: any) {
               <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.4, type: "tween", ease: "easeOut" }}
                 className="text-white/85 text-sm md:text-base leading-relaxed text-shadow-sm text-shadow-black/40 backdrop-blur-[2px] bg-black/10 px-4 py-3 inline-block mb-6 md:mb-8"
               >
                 {event.description}
@@ -402,7 +403,7 @@ function OverlayLeftLayout({ event, index, isInView }: any) {
                         key={i}
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -30 }}
-                        transition={{ delay: 0.7 + i * 0.05 }}
+                        transition={{ delay: 0.7 + i * 0.05, type: "tween", ease: "easeOut" }}
                         className="flex items-start gap-3 text-white/75 text-xs md:text-sm text-shadow-xs text-shadow-black/40 backdrop-blur-[2px] bg-black/12 px-3 py-1.5 rounded-full w-fit"
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0 mt-1.5" />
@@ -511,7 +512,7 @@ function OverlayRightLayout({ event, index, isInView }: any) {
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.2, type: "tween", ease: "easeOut" }}
               >
                 <span className="text-white/90 text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-shadow-sm text-shadow-black/40 backdrop-blur-md bg-gradient-to-r from-black/30 to-black/20 border border-white/20 px-4 py-1.5 rounded-full inline-block">
                   {event.day}
@@ -548,7 +549,7 @@ function OverlayRightLayout({ event, index, isInView }: any) {
                         key={i}
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 30 }}
-                        transition={{ delay: 0.7 + i * 0.05 }}
+                        transition={{ delay: 0.7 + i * 0.05, type: "tween", ease: "easeOut" }}
                         className="flex items-start justify-end gap-3 text-white/75 text-xs md:text-sm text-shadow-xs text-shadow-black/40 backdrop-blur-[2px] bg-black/12 px-3 py-1.5 rounded-full w-fit ml-auto"
                       >
                         <span className="text-right">{activity}</span>

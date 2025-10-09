@@ -556,3 +556,31 @@ elevenlabs-convai {
 .scrollbar-custom {
   scroll-behavior: smooth;
 }
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+/* Оптимизация анимаций - используем will-change для GPU acceleration */
+[class*="motion."] {
+  will-change: transform, opacity;
+}
+
+/* Для элементов с анимацией через framer-motion */
+[data-framer-component-type] {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Оптимизация для параллакс эффектов */
+.parallax-element {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Оптимизация для скролла */
+.scroll-container {
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+}
