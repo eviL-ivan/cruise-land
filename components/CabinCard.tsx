@@ -5,7 +5,6 @@ import Image from "next/image"
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from "lucide-react"
 import { useInView } from "framer-motion"
 import { useEmblaSlider } from "@/hooks/useEmblaSlider"
-import { useScreens } from "@/hooks/useScreens"
 import { MediaGalleryDialog } from "./MediaGalleryDialog"
 
 interface CabinCardProps {
@@ -30,26 +29,10 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
   const [isGalleryOpen, setIsGalleryOpen] = useState(false) // Fullscreen gallery dialog
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0) // Selected media for gallery
 
-  // Detect screen size for responsive useInView settings
-  const { isBeforeLgScreen } = useScreens()
-
   // Viewport visibility detection - prevents multiple videos from playing simultaneously
-  // Desktop: minimal threshold - pause only when completely hidden
-  // Mobile: lower threshold (0.2) with margin for better performance
+  // Pause only when card is completely hidden (any pixel visible = in view)
   const cardRef = useRef(null)
-  const viewOptions = useMemo(
-    () =>
-      isBeforeLgScreen
-        ? {
-            amount: 0.2, // Lower threshold for mobile devices
-            margin: "0px 0px -100px 0px", // Trigger slightly before element fully enters viewport
-          }
-        : {
-            amount: "some" as const, // Pause only when completely hidden (any pixel visible = in view)
-          },
-    [isBeforeLgScreen]
-  )
-  const isInView = useInView(cardRef, viewOptions)
+  const isInView = useInView(cardRef, { amount: "some" })
 
   // Memoize cabin images and videos arrays
   const cabinImages = useMemo(
@@ -128,10 +111,6 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
     <div
       ref={cardRef}
       className="group overflow-hidden rounded-[32px] flex flex-col lg:block lg:relative lg:min-h-[520px]"
-      style={{
-        contentVisibility: isInView ? 'visible' : 'auto',
-        containIntrinsicSize: isInView ? 'none' : '520px'
-      }}
       onMouseEnter={() => setIsCardHovered(true)}
       onMouseLeave={() => setIsCardHovered(false)}
     >
@@ -141,8 +120,6 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
           <div className="embla__container h-full" {...touchHandlers}>
             {allMedia.map((media, mediaIndex) => {
               const isVideo = mediaIndex >= cabinImages.length
-              // Only render video elements when card is in viewport to reduce memory usage
-              const shouldRenderVideo = isVideo && isInView
 
               return (
                 <div
@@ -153,7 +130,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                     setIsGalleryOpen(true)
                   }}
                 >
-                  {shouldRenderVideo ? (
+                  {isVideo ? (
                     <video
                       ref={(el) => {
                         videoRefs.current[mediaIndex] = el
@@ -165,17 +142,6 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
                       playsInline
                       webkit-playsinline="true"
                       preload="none"
-                      poster={cabinImages[0]}
-                    />
-                  ) : isVideo ? (
-                    /* Placeholder image for video when card is not in viewport */
-                    <Image
-                      src={cabinImages[0]}
-                      alt={`${cabin.name} - Video thumbnail`}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 100vw"
-                      className="object-cover"
-                      loading="lazy"
                     />
                   ) : (
                     /* Image slide */
