@@ -329,60 +329,116 @@ function FullScreenItineraryCard({
 
 // Layout Components
 function OverlayLeftLayout({ event, index, isInView }: any) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [hasOverflow, setHasOverflow] = useState(false);
+  const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (contentRef.current) {
+        const hasVerticalOverflow = contentRef.current.scrollHeight > contentRef.current.clientHeight;
+        setHasOverflow(hasVerticalOverflow);
+      }
+    };
+
+    checkOverflow();
+    window.addEventListener('resize', checkOverflow);
+    return () => window.removeEventListener('resize', checkOverflow);
+  }, [event]);
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const element = e.currentTarget;
+    const isAtBottom = Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) < 5;
+    setIsScrolledToBottom(isAtBottom);
+  };
+
   return (
     <div className="relative h-full">
       <div className="absolute left-0 top-0 w-full md:w-2/3 lg:w-1/2 h-full bg-gradient-to-r from-slate-900/95 via-slate-800/75 to-transparent">
-        <div className="h-full flex items-center p-8 md:p-16">
-          <div className="max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
-              transition={{ delay: 0.2 }}
+        <div className="h-full flex items-center p-8 md:pr-6 md:p-16">
+          <div className="relative max-w-2xl">
+            <div
+              ref={contentRef}
+              onScroll={handleScroll}
+              className="max-h-[calc(100vh-160px)] md:max-h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden pr-6 scrollbar-custom"
             >
-              <span className="text-white/60 text-sm font-light tracking-[0.3em] uppercase">
-                {event.day}
-              </span>
-              <h2 className="text-4xl md:text-6xl font-serif font-light text-white mt-4 mb-6">
-                {event.title}
-              </h2>
-              <div className="flex items-center gap-2 text-white/80 mb-8">
-                <MapPin className="w-4 h-4" />
-                <span className="text-base">{event.location}</span>
-              </div>
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
-              transition={{ delay: 0.4 }}
-              className="text-white/90 text-base leading-relaxed mb-8"
-            >
-              {event.description}
-            </motion.p>
-
-            {event.activities && event.activities.length > 0 && (
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isInView ? 1 : 0 }}
-                transition={{ delay: 0.6 }}
-                className="space-y-2"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
+                transition={{ delay: 0.2 }}
               >
-                <div className="text-white/60 text-sm uppercase tracking-wider mb-4">Activities</div>
-                {event.activities.slice(0, 4).map((activity: string, i: number) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -30 }}
-                    transition={{ delay: 0.7 + i * 0.05 }}
-                    className="flex items-center gap-3 text-white/80 text-sm"
-                  >
-                    <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0" />
-                    <span>{activity}</span>
-                  </motion.div>
-                ))}
+                <span className="text-white/60 text-xs md:text-sm font-light tracking-[0.3em] uppercase">
+                  {event.day}
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mt-3 mb-4 md:mb-6">
+                  {event.title}
+                </h2>
+                <div className="flex items-center gap-2 text-white/80 mb-6 md:mb-8">
+                  <MapPin className="w-4 h-4 flex-shrink-0" />
+                  <span className="text-sm md:text-base">{event.location}</span>
+                </div>
               </motion.div>
-            )}
+
+              <motion.p
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
+                transition={{ delay: 0.4 }}
+                className="text-white/90 text-sm md:text-base leading-relaxed mb-6 md:mb-8"
+              >
+                {event.description}
+              </motion.p>
+
+              {event.activities && event.activities.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: isInView ? 1 : 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="space-y-2 pb-4"
+                >
+                  <div className="text-white/60 text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4">Activities</div>
+                  {event.activities.map((activity: string, i: number) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -30 }}
+                      transition={{ delay: 0.7 + i * 0.05 }}
+                      className="flex items-start gap-3 text-white/80 text-xs md:text-sm"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0 mt-1.5" />
+                      <span>{activity}</span>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
+            </div>
           </div>
+
+          {/* Scroll Indicator - Right Side */}
+          {hasOverflow && !isScrolledToBottom && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isInView ? 0.6 : 0 }}
+              transition={{ delay: 1.5 }}
+              className="absolute right-1 md:right-0 top-1/2 -translate-y-1/2 flex flex-col items-center gap-3"
+            >
+              <motion.div
+                className="w-px h-12 bg-gradient-to-b from-transparent via-white/40 to-transparent"
+                animate={{ scaleY: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <ChevronDown className="w-5 h-5 text-white/60" />
+              </motion.div>
+              <motion.div
+                className="w-px h-12 bg-gradient-to-b from-transparent via-white/40 to-transparent"
+                animate={{ scaleY: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              />
+            </motion.div>
+          )}
         </div>
       </div>
     </div>
@@ -390,59 +446,115 @@ function OverlayLeftLayout({ event, index, isInView }: any) {
 }
 
 function OverlayRightLayout({ event, index, isInView }: any) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [hasOverflow, setHasOverflow] = useState(false);
+  const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (contentRef.current) {
+        const hasVerticalOverflow = contentRef.current.scrollHeight > contentRef.current.clientHeight;
+        setHasOverflow(hasVerticalOverflow);
+      }
+    };
+
+    checkOverflow();
+    window.addEventListener('resize', checkOverflow);
+    return () => window.removeEventListener('resize', checkOverflow);
+  }, [event]);
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const element = e.currentTarget;
+    const isAtBottom = Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) < 5;
+    setIsScrolledToBottom(isAtBottom);
+  };
+
   return (
     <div className="relative h-full">
       <div className="absolute right-0 top-0 w-full md:w-2/3 lg:w-1/2 h-full bg-gradient-to-l from-slate-900/95 via-slate-800/75 to-transparent">
-        <div className="h-full flex items-center justify-end p-8 md:p-16">
-          <div className="max-w-2xl text-right">
+        <div className="h-full flex items-center justify-end p-8 pr-4 md:pr-4 md:pl-6 md:p-16">
+          {/* Scroll Indicator - Left Side */}
+          {hasOverflow && !isScrolledToBottom && (
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
-              transition={{ delay: 0.2 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isInView ? 0.6 : 0 }}
+              transition={{ delay: 1.5 }}
+              className="absolute left-1 md:left-1 top-1/2 -translate-y-1/2 flex flex-col items-center gap-3"
             >
-              <span className="text-white/60 text-sm font-light tracking-[0.3em] uppercase">
-                {event.day}
-              </span>
-              <h2 className="text-4xl md:text-6xl font-serif font-light text-white mt-4 mb-6">
-                {event.title}
-              </h2>
-              <div className="flex items-center justify-end gap-2 text-white/80 mb-8">
-                <span className="text-base">{event.location}</span>
-                <MapPin className="w-4 h-4" />
-              </div>
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
-              transition={{ delay: 0.4 }}
-              className="text-white/90 text-base leading-relaxed mb-8"
-            >
-              {event.description}
-            </motion.p>
-
-            {event.activities && event.activities.length > 0 && (
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isInView ? 1 : 0 }}
-                transition={{ delay: 0.6 }}
-                className="space-y-2"
+                className="w-px h-12 bg-gradient-to-b from-transparent via-white/40 to-transparent"
+                animate={{ scaleY: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
-                <div className="text-white/60 text-sm uppercase tracking-wider mb-4">Activities</div>
-                {event.activities.slice(0, 4).map((activity: string, i: number) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 30 }}
-                    transition={{ delay: 0.7 + i * 0.05 }}
-                    className="flex items-center justify-end gap-3 text-white/80 text-sm"
-                  >
-                    <span>{activity}</span>
-                    <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0" />
-                  </motion.div>
-                ))}
+                <ChevronDown className="w-5 h-5 text-white/60" />
               </motion.div>
-            )}
+              <motion.div
+                className="w-px h-12 bg-gradient-to-b from-transparent via-white/40 to-transparent"
+                animate={{ scaleY: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              />
+            </motion.div>
+          )}
+
+          <div className="relative max-w-2xl">
+            <div
+              ref={contentRef}
+              onScroll={handleScroll}
+              className="max-h-[calc(100vh-160px)] md:max-h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden px-3 scrollbar-custom text-right"
+            >
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
+                transition={{ delay: 0.2 }}
+              >
+                <span className="text-white/60 text-xs md:text-sm font-light tracking-[0.3em] uppercase">
+                  {event.day}
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mt-3 mb-4 md:mb-6">
+                  {event.title}
+                </h2>
+                <div className="flex items-center justify-end gap-2 text-white/80 mb-6 md:mb-8">
+                  <span className="text-sm md:text-base">{event.location}</span>
+                  <MapPin className="w-4 h-4 flex-shrink-0" />
+                </div>
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
+                transition={{ delay: 0.4 }}
+                className="text-white/90 text-sm md:text-base leading-relaxed mb-6 md:mb-8"
+              >
+                {event.description}
+              </motion.p>
+
+              {event.activities && event.activities.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: isInView ? 1 : 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="space-y-2 pb-4"
+                >
+                  <div className="text-white/60 text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4">Activities</div>
+                  {event.activities.map((activity: string, i: number) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 30 }}
+                      transition={{ delay: 0.7 + i * 0.05 }}
+                      className="flex items-start justify-end gap-3 text-white/80 text-xs md:text-sm"
+                    >
+                      <span>{activity}</span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0 mt-1.5" />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
       </div>
