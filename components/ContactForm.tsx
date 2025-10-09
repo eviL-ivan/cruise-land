@@ -17,7 +17,7 @@ interface ContactFormProps {
 }
 
 export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
-  const { language } = useLanguage()
+  const { language, content } = useLanguage()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [formData, setFormData] = useState({
@@ -48,7 +48,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
 
   const handleEmailBlur = () => {
     if (formData.email && !validateEmail(formData.email)) {
-      setErrors({ ...errors, email: "Please enter a valid email address" })
+      setErrors({ ...errors, email: content.forms.contact.emailError })
     } else {
       setErrors({ ...errors, email: "" })
     }
@@ -56,7 +56,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
 
   const handlePhoneBlur = () => {
     if (formData.phone && !validatePhone(formData.phone)) {
-      setErrors({ ...errors, phone: "Please enter a valid phone number" })
+      setErrors({ ...errors, phone: content.forms.contact.phoneError })
     } else {
       setErrors({ ...errors, phone: "" })
     }
@@ -70,8 +70,8 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
 
     if (!emailValid || !phoneValid) {
       setErrors({
-        email: !emailValid ? "Please enter a valid email address" : "",
-        phone: !phoneValid ? "Please enter a valid phone number" : "",
+        email: !emailValid ? content.forms.contact.emailError : "",
+        phone: !phoneValid ? content.forms.contact.phoneError : "",
       })
       return
     }
@@ -148,7 +148,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
       }
     } catch (error) {
       console.error("Error submitting form:", error)
-      alert("Error submitting form. Please try again.")
+      alert(content.forms.contact.errorSubmitting)
     } finally {
       setIsSubmitting(false)
     }
@@ -173,10 +173,10 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
           </svg>
         </div>
         <h3 className="text-2xl md:text-3xl font-serif font-light mb-4">
-          Thank You!
+          {content.forms.contact.success}
         </h3>
         <p className="text-muted-foreground text-lg">
-          Your inquiry has been successfully submitted. We'll contact you soon.
+          {content.forms.contact.successMessage}
         </p>
       </div>
     )
@@ -190,7 +190,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-3">
           <Label htmlFor="firstName" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-            First Name <span className="text-destructive">*</span>
+            {content.forms.contact.firstName} <span className="text-destructive">*</span>
           </Label>
           <Input
             id="firstName"
@@ -203,7 +203,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
 
         <div className="space-y-3">
           <Label htmlFor="lastName" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-            Last Name <span className="text-destructive">*</span>
+            {content.forms.contact.lastName} <span className="text-destructive">*</span>
           </Label>
           <Input
             id="lastName"
@@ -218,7 +218,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
       <div className="grid md:grid-cols-2 gap-8 mt-8">
         <div className="space-y-3">
           <Label htmlFor="email" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-            E-mail <span className="text-destructive">*</span>
+            {content.forms.contact.email} <span className="text-destructive">*</span>
           </Label>
           <Input
             id="email"
@@ -237,7 +237,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
 
         <div className="space-y-3">
           <Label htmlFor="phone" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-            Phone <span className="text-destructive">*</span>
+            {content.forms.contact.phone} <span className="text-destructive">*</span>
           </Label>
           <Input
             id="phone"
@@ -257,19 +257,19 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
 
       <div className="space-y-3 mt-8">
         <Label htmlFor="country" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-          Country <span className="text-destructive">*</span>
+          {content.forms.contact.country} <span className="text-destructive">*</span>
         </Label>
         <CountryAutocomplete
           value={formData.country}
           onValueChange={(value) => setFormData({ ...formData, country: value })}
-          placeholder="Select country"
+          placeholder={content.forms.contact.countryPlaceholder}
           required
         />
       </div>
 
       <div className="space-y-3 mt-8">
         <Label htmlFor="comments" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-          Comment
+          {content.forms.contact.comments}
         </Label>
         <Textarea
           id="comments"
@@ -296,7 +296,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
               setFormData({ ...formData, isTravelAgent: !formData.isTravelAgent })
             }}
           >
-            I'm Travel Agent
+            {content.forms.contact.isTravelAgent}
           </Label>
         </div>
 
@@ -316,8 +316,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
               setFormData({ ...formData, consent: !formData.consent })
             }}
           >
-            I confirm that my personal data may be used for contractual processing and further information about the
-            products and services offered by Swan Hellenic <span className="text-destructive">*</span>
+            {content.forms.contact.consent} <span className="text-destructive">*</span>
           </Label>
         </div>
       </div>
@@ -329,7 +328,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
           className="px-10 py-3 rounded-md text-white border-2 border-foreground/20 transition-all duration-300 font-semibold uppercase text-sm tracking-wider disabled:opacity-50 disabled:cursor-not-allowed hover:border-foreground/40"
           style={{backgroundColor: '#004155'}}
         >
-          {isSubmitting ? "Sending..." : "Begin Your Journey"}
+          {isSubmitting ? content.forms.contact.submitting : content.forms.contact.submit}
         </button>
       </div>
     </form>

@@ -119,14 +119,14 @@ export function BookingForm() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-2xl font-semibold mb-2" style={{ color: '#004155' }}>Thank You!</h3>
-        <p className="text-gray-600">Your request has been successfully submitted.</p>
+        <h3 className="text-2xl font-semibold mb-2" style={{ color: '#004155' }}>{content.forms.booking.success}</h3>
+        <p className="text-gray-600">{content.forms.booking.successMessage}</p>
         <button
           onClick={() => setSuccess(false)}
           className="mt-6 px-6 py-2 rounded-md font-semibold text-sm transition-all duration-300 border-2"
           style={{ color: '#004155', borderColor: '#004155' }}
         >
-          Submit Another Request
+          {content.forms.booking.submitAnother}
         </button>
       </div>
     )
@@ -137,7 +137,7 @@ export function BookingForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium mb-1" style={{ color: '#004155' }}>
-            First Name *
+            {content.forms.booking.firstNameRequired}
           </label>
           <input
             type="text"
@@ -147,13 +147,13 @@ export function BookingForm() {
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition"
             style={{ focusRing: '#004155' }}
-            placeholder="John"
+            placeholder={content.forms.booking.placeholders.firstName}
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium mb-1" style={{ color: '#004155' }}>
-            Last Name *
+            {content.forms.booking.lastNameRequired}
           </label>
           <input
             type="text"
@@ -162,14 +162,14 @@ export function BookingForm() {
             onChange={handleChange}
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition"
-            placeholder="Doe"
+            placeholder={content.forms.booking.placeholders.lastName}
           />
         </div>
       </div>
 
       <div>
         <label className="block text-sm font-medium mb-1" style={{ color: '#004155' }}>
-          Phone *
+          {content.forms.booking.phoneRequired}
         </label>
         <input
           type="tel"
@@ -178,13 +178,13 @@ export function BookingForm() {
           onChange={handleChange}
           required
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition"
-          placeholder="+1 (234) 567-89-00"
+          placeholder={content.forms.booking.placeholders.phone}
         />
       </div>
 
       <div>
         <label className="block text-sm font-medium mb-1" style={{ color: '#004155' }}>
-          Email *
+          {content.forms.booking.emailRequired}
         </label>
         <input
           type="email"
@@ -193,13 +193,13 @@ export function BookingForm() {
           onChange={handleChange}
           required
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition"
-          placeholder="your@email.com"
+          placeholder={content.forms.booking.placeholders.email}
         />
       </div>
 
       <div>
         <label className="block text-sm font-medium mb-1" style={{ color: '#004155' }}>
-          Comments
+          {content.forms.booking.comments}
         </label>
         <textarea
           name="comments"
@@ -207,13 +207,13 @@ export function BookingForm() {
           onChange={handleChange}
           rows={4}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition resize-none"
-          placeholder="Your message..."
+          placeholder={content.forms.booking.placeholders.comments}
         />
       </div>
 
       {error && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-red-700 text-sm">
-          {error}
+          {content.forms.booking.error}
         </div>
       )}
 
@@ -233,10 +233,10 @@ export function BookingForm() {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
             </svg>
-            Submitting...
+            {content.forms.booking.submitting}
           </span>
         ) : (
-          'Submit Request'
+          content.forms.booking.submit
         )}
       </button>
     </form>
