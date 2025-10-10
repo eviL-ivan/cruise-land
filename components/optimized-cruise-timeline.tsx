@@ -153,7 +153,7 @@ const FullScreenItineraryCard = memo(function FullScreenItineraryCard({
   index,
 }: FullScreenItineraryCardProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, margin: "-200px" });
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
 
   // Alternate between left and right overlay
   const isLeftLayout = index % 2 === 0;
