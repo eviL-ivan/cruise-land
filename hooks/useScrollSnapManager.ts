@@ -15,6 +15,8 @@ interface ScrollSnapOptions {
   sectionSelector?: string;
   // Общее количество секций (для определения границ)
   totalSections?: number;
+  // Отступ для хедера (передается из компонента)
+  headerOffset?: string;
   // Включить ли отладочный режим
   debug?: boolean;
 }
@@ -27,6 +29,7 @@ export function useScrollSnapManager(options: ScrollSnapOptions = {}) {
     rootMargin = "0px",
     sectionSelector = "[data-snap-section]",
     totalSections = 0,
+    headerOffset = "88px", // Default значение для десктопа
     debug = false,
   } = options;
 
@@ -175,6 +178,9 @@ export function useScrollSnapManager(options: ScrollSnapOptions = {}) {
       htmlElement.style.setProperty("scroll-snap-type", `${snapDirection} ${snapTypeToUse}`, "important");
       htmlElement.style.scrollBehavior = "smooth";
 
+      // Добавляем scroll-padding-top для учета высоты хедера
+      htmlElement.style.setProperty("scroll-padding-top", headerOffset, "important");
+
       // Добавляем класс для CSS
       htmlElement.classList.add("scroll-snap-active");
       if (direction === "horizontal") {
@@ -198,6 +204,7 @@ export function useScrollSnapManager(options: ScrollSnapOptions = {}) {
 
       // Удаляем inline стили полностью для чистоты
       htmlElement.style.removeProperty("scroll-snap-type");
+      htmlElement.style.removeProperty("scroll-padding-top");
       htmlElement.style.scrollBehavior = previousScrollBehavior.current || "auto";
 
       // Удаляем классы
@@ -250,7 +257,7 @@ export function useScrollSnapManager(options: ScrollSnapOptions = {}) {
       sectionObserver.disconnect();
       disableScrollSnap();
     };
-  }, [direction, type, threshold, rootMargin, sectionSelector, totalSections, debug, updateScrollSnapType]);
+  }, [direction, type, threshold, rootMargin, sectionSelector, totalSections, headerOffset, debug, updateScrollSnapType]);
 
   return {
     containerRef,

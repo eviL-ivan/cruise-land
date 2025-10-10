@@ -6,12 +6,18 @@ import { motion, useInView } from "framer-motion";
 import { useLanguage } from "@/lib/language-context";
 import { useScrollSnapManager } from "@/hooks/useScrollSnapManager";
 import { ChevronDown, MapPin } from "lucide-react";
+import {useScreens} from "@/hooks/useScreens";
 
 export function OptimizedCruiseTimeline() {
   const { content } = useLanguage();
 
   const cruiseEvents = content.itinerary.days;
   const totalSections = cruiseEvents.length + 1; // +1 for hero section
+
+    const { isBeforeMdScreen } = useScreens();
+// Определяем высоту хедера: 80px на мобильных, 88px на десктопе
+    const headerHeight = isBeforeMdScreen ? 80 : 88;
+    const headerOffset = `${headerHeight}px`;
 
   // Используем хук для управления scroll-snap
   const { containerRef, isSnapActive, currentSectionIndex } = useScrollSnapManager({
@@ -21,6 +27,7 @@ export function OptimizedCruiseTimeline() {
     rootMargin: "0px", // Убираем отступы для упрощения
     sectionSelector: "[data-snap-section='cruise-day']",
     totalSections: totalSections,
+      headerOffset: headerOffset,
     debug: true, // Отключаем отладку в финальной версии
   });
 
@@ -211,7 +218,7 @@ const OverlayLeftLayout = memo(function OverlayLeftLayout({ event, index, isInVi
 
   return (
     <div className="relative h-full">
-      <div className="absolute left-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-r from-slate-900/70 via-slate-900/40 to-transparent">
+      <div className="absolute left-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-r from-slate-900/70 via-slate-900/60 to-transparent">
         <div className="h-full flex items-center p-8 md:pr-6 md:p-16">
           <div className="relative max-w-2xl">
             <div
