@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "../styles/scroll-snap.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -495,7 +496,7 @@
 
 /* Установка z-index для виджета Elevenlabs */
 elevenlabs-convai {
-  z-index: 10 !important;
+  z-index: 9999 !important;
 }
 
 /* ========================================
