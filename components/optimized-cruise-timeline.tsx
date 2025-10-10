@@ -218,7 +218,7 @@ const OverlayLeftLayout = memo(function OverlayLeftLayout({ event, index, isInVi
 
   return (
     <div className="relative h-full">
-      <div className="absolute left-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-r from-slate-900/70 via-slate-900/60 to-transparent">
+      <div className="absolute left-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-r from-slate-900/40 via-slate-900/30  md:from-slate-900/60 md:via-slate-900/40 to-transparent">
         <div className="h-full flex items-center p-8 md:pr-6 md:p-16">
           <div className="relative max-w-2xl">
             <div
@@ -337,7 +337,7 @@ const OverlayRightLayout = memo(function OverlayRightLayout({ event, index, isIn
 
   return (
     <div className="relative h-full">
-      <div className="absolute right-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-l from-slate-900/70 via-slate-900/40 to-transparent">
+      <div className="absolute right-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-l from-slate-900/40 via-slate-900/30 md:from-slate-900/60 md:via-slate-900/40 to-transparent">
         <div className="h-full flex items-center justify-end p-8 pr-4 md:pr-4 md:pl-6 md:p-16">
           {/* Scroll Indicator - Left Side */}
           {hasOverflow && !isScrolledToBottom && (
