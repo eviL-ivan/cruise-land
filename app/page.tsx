@@ -5,7 +5,7 @@ import { Hero } from "@/components/hero"
 import { Overview } from "@/components/overview"
 import { Journey } from "@/components/journey"
 import { CruiseTimeline } from "@/components/cruise-timeline"
-import { PremiumCruiseTimeline } from "@/components/premium-cruise-timeline"
+import { OptimizedCruiseTimeline } from "@/components/optimized-cruise-timeline"
 import { PremiumCruiseTimelineV3 } from "@/components/premium-cruise-timeline-v3"
 import { Wildlife } from "@/components/wildlife"
 import { Ship } from "@/components/ship"
@@ -28,7 +28,7 @@ export default function Home() {
         {/*</div>*/}
         {/* Premium version of itinerary */}
         <div id="premium-itinerary">
-          <PremiumCruiseTimeline />
+          <OptimizedCruiseTimeline />
         </div>
 
 

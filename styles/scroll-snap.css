@@ -1,0 +1,124 @@
+/* Scroll Snap Styles for Cruise Timeline */
+
+/* Плавный переход при активации/деактивации snap */
+html {
+  transition: scroll-behavior 0.3s ease;
+}
+
+/* Базовые стили для активного snap режима */
+html.scroll-snap-active {
+  /* scroll-snap-type применяется через JavaScript */
+  overflow-y: scroll;
+  height: 100vh;
+  overscroll-behavior-y: contain;
+}
+
+/* Дополнительные стили для горизонтального режима */
+html.scroll-snap-horizontal {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+/* Стили для секций с snap */
+[data-snap-section="cruise-day"] {
+  /* scroll-snap-align применяется через JavaScript */
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Убираем scroll-snap для внутренних скролл-контейнеров */
+html.scroll-snap-active .scrollbar-custom {
+  scroll-snap-type: none !important;
+}
+
+/* Визуальный индикатор прогресса (опционально) */
+.snap-progress-indicator {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.snap-progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.snap-progress-dot.active {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.5);
+}
+
+/* Кнопки навигации (опционально) */
+.snap-nav-button {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.snap-nav-button:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: translateX(-50%) scale(1.1);
+}
+
+.snap-nav-button.prev {
+  top: 2rem;
+}
+
+.snap-nav-button.next {
+  bottom: 2rem;
+}
+
+/* Отключаем snap на мобильных устройствах при необходимости */
+@media (max-width: 768px) {
+  html.scroll-snap-active {
+    /* Можно настроить другое поведение для мобильных */
+    scroll-snap-type: y proximity;
+  }
+}
+
+/* Поддержка reduced-motion для accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html.scroll-snap-active {
+    scroll-behavior: auto;
+  }
+
+  [data-snap-section] {
+    scroll-snap-align: none;
+  }
+}
+
+/* Скрываем индикатор snap-режима через несколько секунд */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.snap-mode-indicator {
+  animation: fadeOut 3s ease-in-out forwards;
+}
