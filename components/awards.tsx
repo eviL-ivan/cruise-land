@@ -135,12 +135,12 @@ export function Awards() {
                         </div>
                     </div>
                     {/* Bottom: Organization Logo */}
-                    <div className="w-[80px] h-[80px]">
+                    <div className="w-[96px] h-[96px]">
                         <Image
                             src="/awards/cruisecritic.svg"
                             alt="Cruise Critic"
-                            width={80}
-                            height={80}
+                            width={96}
+                            height={96}
                             className="w-full h-full"
                         />
                     </div>
@@ -180,12 +180,12 @@ export function Awards() {
                         </div>
                     </div>
                     {/* Bottom: Organization Logo */}
-                    <div className="w-[80px] h-[80px]">
+                    <div className="w-[96px] h-[96px]">
                         <Image
                             src="/awards/sailawaze.svg"
                             alt="Sailawaze"
-                            width={80}
-                            height={80}
+                            width={96}
+                            height={96}
                             className="w-full h-full"
                         />
                     </div>
