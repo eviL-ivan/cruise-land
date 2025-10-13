@@ -6,7 +6,7 @@ export function Awards() {
             {/* Desktop Layout - Two Awards */}
             <div className="hidden xl:flex items-stretch justify-center">
                 {/* Award 1 Container */}
-                <div className="flex flex-col gap-8 w-[480px] mr-12">
+                <div className="flex flex-col justify-between w-[480px] h-[248px] mr-12">
                     {/* Top: Title and Winner Icons */}
                     <div className="flex items-start justify-between gap-6">
                         <div className="flex flex-col gap-1">
@@ -54,10 +54,10 @@ export function Awards() {
                 <div className="w-px min-w-px bg-[#0000001A]"></div>
 
                 {/* Award 2 Container */}
-                <div className="flex flex-col gap-8 w-[480px] ml-12">
+                <div className="flex flex-col justify-between w-[480px] h-[248px] ml-12">
                     {/* Top: Title and Winner Icons */}
                     <div className="flex items-start justify-between gap-6">
-                        <div className="flex flex-col gap-1 max-w-[280px]">
+                        <div className="flex flex-col gap-1 max-w-[300px]">
                             <h3 className="text-[#005A73] font-[500] text-[28px] leading-[32px] tracking-[-0.01em]">
                                 Excursion Winner &amp; Collaboration Winner
                             </h3>
