@@ -34,7 +34,7 @@ export interface CruiseConfig {
 // Конфигурации для разных круизов
 export const CRUISE_CONFIGS: Record<string, CruiseConfig> = {
   "CPTUSH25": {
-    code: "CPTUSH25",
+    code: "D2925111520",
     name: "Cape Town to Ushuaia",
     year: "2025",
     route: {
@@ -51,7 +51,7 @@ export const CRUISE_CONFIGS: Record<string, CruiseConfig> = {
     },
   },
   "CPTUSH26": {
-    code: "CPTUSH26",
+    code: "D2826102320", // Cruise code for 2026
     name: "Cape Town to Ushuaia",
     year: "2026",
     route: {
@@ -59,12 +59,12 @@ export const CRUISE_CONFIGS: Record<string, CruiseConfig> = {
       to: "Ushuaia",
     },
     dates: {
-      start: "14 January 2026",
-      end: "12 February 2026",
+      start: "23 October 2026",
+      end: "12 November 2026",
     },
     duration: {
-      days: 30,
-      nights: 29,
+      days: 21,
+      nights: 20,
     },
   },
 }
@@ -95,4 +95,9 @@ export function getCruiseYear(): string {
 export function getCruiseRoute(): string {
   const config = getCurrentCruiseConfig()
   return `${config.route.from} - ${config.route.to}`
+}
+
+// Хелпер для получения copyright с годом круиза
+export function getCopyrightYear(): string {
+  return getCurrentCruiseConfig().year
 }
