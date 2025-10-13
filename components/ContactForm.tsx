@@ -65,13 +65,23 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const emailValid = validateEmail(formData.email)
-    const phoneValid = validatePhone(formData.phone)
+    // Проверяем что заполнено хотя бы одно поле
+    if (!formData.email && !formData.phone) {
+      setErrors({
+        email: content.forms.contact.emailError || "Please provide email or phone",
+        phone: content.forms.contact.phoneError || "Please provide email or phone",
+      })
+      return
+    }
+
+    // Валидируем только заполненные поля
+    const emailValid = !formData.email || validateEmail(formData.email)
+    const phoneValid = !formData.phone || validatePhone(formData.phone)
 
     if (!emailValid || !phoneValid) {
       setErrors({
-        email: !emailValid ? content.forms.contact.emailError : "",
-        phone: !phoneValid ? content.forms.contact.phoneError : "",
+        email: formData.email && !emailValid ? content.forms.contact.emailError : "",
+        phone: formData.phone && !phoneValid ? content.forms.contact.phoneError : "",
       })
       return
     }
@@ -215,15 +225,18 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 mt-8">
-        <div className="space-y-3">
-          <Label htmlFor="email" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-            {content.forms.contact.email} <span className="text-destructive">*</span>
-          </Label>
+      <div className="mt-8">
+        <p className="text-xs uppercase tracking-widest font-medium text-foreground/70 mb-6">
+          {language === 'ru' ? 'Способ связи' : language === 'zh' ? '联系方式' : 'Contact method'} <span className="text-destructive">*</span>
+        </p>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="space-y-3">
+            <Label htmlFor="email" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
+              {content.forms.contact.email}
+            </Label>
           <Input
             id="email"
             type="email"
-            required
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             onBlur={handleEmailBlur}
@@ -237,12 +250,11 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
 
         <div className="space-y-3">
           <Label htmlFor="phone" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-            {content.forms.contact.phone} <span className="text-destructive">*</span>
+            {content.forms.contact.phone}
           </Label>
           <Input
             id="phone"
             type="tel"
-            required
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             onBlur={handlePhoneBlur}
@@ -252,6 +264,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
             )}
           />
           {errors.phone && <p className="text-xs text-destructive font-medium mt-2">{errors.phone}</p>}
+          </div>
         </div>
       </div>
 
