@@ -406,14 +406,14 @@ const OverlayRightLayout = memo(function OverlayRightLayout({ event, index, isIn
                   className="pb-4"
                 >
                   <div className="text-white/60 text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4 text-right">Activities</div>
-                  <div className="space-y-2 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-2">
+                  <div className="space-y-2 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-2 md:[direction:rtl]">
                     {event.activities.map((activity: string, i: number) => (
                       <motion.div
                         key={i}
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 30 }}
                         transition={{ delay: 0.7 + i * 0.05 }}
-                        className="flex items-start justify-end gap-3 text-white/80 text-xs md:text-sm"
+                        className="flex items-start justify-end gap-3 text-white/80 text-xs md:text-sm [direction:ltr]"
                       >
                         <span className="text-right">{activity}</span>
                         <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0 mt-1.5" />

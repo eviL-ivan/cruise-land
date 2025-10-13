@@ -159,7 +159,7 @@ export function Header() {
               }}
             >
               <span className="lg:inline hidden">{content.header.bookButton}</span>
-              <span className="lg:hidden">Book</span>
+              <span className="lg:hidden">{content.header.bookButton}</span>
             </button>
           </div>
         </div>
