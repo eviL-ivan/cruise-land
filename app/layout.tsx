@@ -6,6 +6,8 @@ import "./globals.css"
 import { Suspense } from "react"
 import { content } from "@/lib/content"
 import { LanguageProvider } from "@/lib/language-context"
+import { MicrosoftClarity } from "@/components/analytics/clarity"
+import { GoogleAnalytics } from "@/components/analytics/google-analytics"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -58,6 +60,8 @@ export default function RootLayout({
           <Suspense fallback={null}>{children}</Suspense>
         </LanguageProvider>
         <Analytics />
+        <GoogleAnalytics />
+        <MicrosoftClarity />
         <elevenlabs-convai agent-id="agent_3301k6ww61zgea1bhdm2nfvg9ka4"></elevenlabs-convai>
       </body>
     </html>
