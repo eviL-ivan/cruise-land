@@ -188,14 +188,14 @@ export function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
           <button
             onClick={() => setShowBookingModal(true)}
-            className="text-base px-8 py-3 rounded-md text-white border-2 border-white transition-all duration-300 font-semibold uppercase"
+            className="text-base px-8 py-3 rounded-md text-white border-2 border-white transition-all duration-300 font-semibold uppercase w-full sm:w-64"
             style={{backgroundColor: '#004155'}}
           >
             {content.hero.bookButton}
           </button>
           <button
             onClick={() => setShowVideoModal(true)}
-            className="text-base px-8 py-3 rounded-md bg-transparent text-white border-2 border-white transition-all duration-300 font-semibold uppercase inline-flex items-center gap-2"
+            className="text-base px-8 py-3 rounded-md bg-transparent text-white border-2 border-white transition-all duration-300 font-semibold uppercase inline-flex items-center justify-center gap-2 w-full sm:w-64"
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = '#004155'
               e.currentTarget.style.borderColor = 'white'
