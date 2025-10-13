@@ -325,6 +325,11 @@ export const content = {
     "Premium beverages, spa, and beauty treatments",
   ],
 
+  // Promotions
+  promotions: {
+    title: "Current Offer",
+  },
+
   // Forms
   forms: {
     booking: {

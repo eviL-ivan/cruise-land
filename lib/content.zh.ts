@@ -310,6 +310,11 @@ export const content = {
     "高级饮品、水疗与美容护理",
   ],
 
+  // 促销活动
+  promotions: {
+    title: "当前优惠",
+  },
+
   // 表单
   forms: {
     booking: {
