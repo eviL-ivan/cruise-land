@@ -212,10 +212,10 @@ export function Overview() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="pt-4 flex flex-wrap gap-4">
+                <div className="pt-4 flex flex-col sm:flex-row gap-4">
                   <button
                     onClick={handleOpenBookingModal}
-                    className="inline-block bg-white px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase border-2"
+                    className="inline-block bg-white px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase border-2 w-full sm:w-64"
                     style={{ color: "#004155", borderColor: "#004155" }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = "#004155";
@@ -230,7 +230,7 @@ export function Overview() {
                   </button>
                   <button
                     onClick={handleOpenVideoModal}
-                    className="inline-flex items-center gap-2 px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase border-2"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-md font-semibold text-sm tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl uppercase border-2 w-full sm:w-64"
                     style={{
                       backgroundColor: "transparent",
                       color: "#004155",
