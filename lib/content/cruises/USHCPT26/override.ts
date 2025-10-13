@@ -114,23 +114,23 @@ export const override: CruiseContentOverride = {
     },
     {
       number: "10",
-      title: "Cape Town Arrival",
-      description:
-        "Arrive in Cape Town — one of the world's most beautiful cities with Table Mountain and vibrant culture.",
-      image: images.highlights[0], // Cape Town Table Mountain
-    },
-    {
-      number: "11",
       title: "Kayaking Among Icebergs",
       description: "Guided kayaking among icebergs in Antarctic waters.",
       image: images.highlights[10], // Kayaking
     },
     {
-      number: "12",
+      number: "11",
       title: "Polar Autumn",
       description:
         "Experience the changing seasons as you journey from Antarctic autumn to African summer.",
       image: images.highlights[11], // Icebergs/seasons
+    },
+    {
+      number: "12",
+      title: "Cape Town Arrival",
+      description:
+        "Arrive in Cape Town — one of the world's most beautiful cities with Table Mountain and vibrant culture.",
+      image: images.highlights[0], // Cape Town Table Mountain
     },
   ],
 }

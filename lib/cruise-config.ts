@@ -29,6 +29,12 @@ export interface CruiseConfig {
     // Можно добавить специфичные данные по маршруту
     ports?: string[]
   }
+  // Промо-блок
+  promoEnabled?: boolean
+  promoImages?: {
+    desktop: string
+    mobile: string
+  }
 }
 
 // Конфигурации для разных круизов
@@ -66,6 +72,11 @@ export const CRUISE_CONFIGS: Record<string, CruiseConfig> = {
       days: 21,
       nights: 20,
     },
+    promoEnabled: true,
+    promoImages: {
+      desktop: "/luxury/desk.png",
+      mobile: "/luxury/mob.png",
+    },
   },
   "USHCPT26": {
     code: "D0626030520",
@@ -82,6 +93,11 @@ export const CRUISE_CONFIGS: Record<string, CruiseConfig> = {
     duration: {
       days: 21,
       nights: 20,
+    },
+    promoEnabled: true,
+    promoImages: {
+      desktop: "/luxury/desk.png",
+      mobile: "/luxury/mob.png",
     },
   },
 }

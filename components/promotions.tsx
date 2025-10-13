@@ -2,9 +2,11 @@
 
 import Image from "next/image"
 import { useLanguage } from "@/lib/language-context"
+import { getCurrentCruiseConfig } from "@/lib/cruise-config"
 
 export function Promotions() {
   const { content } = useLanguage()
+  const cruiseConfig = getCurrentCruiseConfig()
 
   const scrollToForm = () => {
     const formElement = document.getElementById('contact')
@@ -12,6 +14,10 @@ export function Promotions() {
       formElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
+
+  // Получаем изображения из конфигурации или используем дефолтные
+  const desktopImage = cruiseConfig.promoImages?.desktop || "/luxury/desk.png"
+  const mobileImage = cruiseConfig.promoImages?.mobile || "/luxury/mob.png"
 
   return (
     <section className="py-16 md:py-24 bg-background">
@@ -30,7 +36,7 @@ export function Promotions() {
             onClick={scrollToForm}
           >
             <Image
-              src="/luxury/desk.png"
+              src={desktopImage}
               alt="Current Offer"
               width={1920}
               height={720}
@@ -46,7 +52,7 @@ export function Promotions() {
             onClick={scrollToForm}
           >
             <Image
-              src="/luxury/mob.png"
+              src={mobileImage}
               alt="Current Offer"
               width={1080}
               height={1920}

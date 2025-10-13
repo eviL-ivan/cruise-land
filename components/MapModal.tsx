@@ -11,7 +11,7 @@ interface MapModalProps {
   mapSrc?: string
 }
 
-export function MapModal({ isOpen, onClose, mapSrc = "/data/map.jpg" }: MapModalProps) {
+export function MapModal({ isOpen, onClose, mapSrc = "/map.jpg" }: MapModalProps) {
   const { content } = useLanguage()
 
   useEffect(() => {

@@ -13,9 +13,12 @@ import { Cabins } from "@/components/cabins"
 import { CTA } from "@/components/cta"
 import { Promotions } from "@/components/promotions"
 import { Footer } from "@/components/footer"
-import {Awards} from "@/components/awards";
+import {Awards} from "@/components/awards"
+import { getCurrentCruiseConfig } from "@/lib/cruise-config"
 
 export default function Home() {
+  const cruiseConfig = getCurrentCruiseConfig()
+
   return (
     <>
       <Header />
@@ -53,8 +56,8 @@ export default function Home() {
           <Cabins />
         </div>
 
-        {/* Current Offer - Temporarily disabled */}
-        {/* <Promotions /> */}
+        {/* Current Offer - Показываем только если promoEnabled = true */}
+        {cruiseConfig.promoEnabled && <Promotions />}
 
         <div id="contact">
           <CTA />

@@ -8,6 +8,8 @@ export interface CruiseContentOverride {
     priceNote?: string
     description?: string
     detailedDescription?: string
+    mapImage?: string
+    brochureUrl?: string
   }
 
   // Переопределение meta

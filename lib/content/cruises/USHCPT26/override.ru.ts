@@ -114,23 +114,23 @@ export const override: CruiseContentOverride = {
     },
     {
       number: "10",
-      title: "Прибытие в Кейптаун",
-      description:
-        "Прибудьте в Кейптаун — один из самых красивых городов мира со Столовой горой и яркой культурой.",
-      image: images.highlights[0],
-    },
-    {
-      number: "11",
       title: "Каякинг среди айсбергов",
       description: "Каякинг под руководством гида среди айсбергов в антарктических водах.",
       image: images.highlights[10],
     },
     {
-      number: "12",
+      number: "11",
       title: "Полярная осень",
       description:
         "Испытайте смену времён года, путешествуя от антарктической осени к африканскому лету.",
       image: images.highlights[11],
+    },
+    {
+      number: "12",
+      title: "Прибытие в Кейптаун",
+      description:
+        "Прибудьте в Кейптаун — один из самых красивых городов мира со Столовой горой и яркой культурой.",
+      image: images.highlights[0],
     },
   ],
 }

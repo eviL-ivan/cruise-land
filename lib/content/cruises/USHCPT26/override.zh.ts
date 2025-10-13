@@ -55,7 +55,7 @@ export const override: CruiseContentOverride = {
       title: "乌斯怀亚与火地岛",
       description:
         "从乌斯怀亚开始您的旅程——世界最南端的城市，南极洲的门户。",
-      image: images.highlights[9],
+      image: images.itinerary.day10, // 美丽的乌斯怀亚照片
     },
     {
       number: "2",
@@ -114,23 +114,23 @@ export const override: CruiseContentOverride = {
     },
     {
       number: "10",
-      title: "抵达开普敦",
-      description:
-        "抵达开普敦——世界上最美丽的城市之一，拥有桌山和充满活力的文化。",
-      image: images.highlights[0],
-    },
-    {
-      number: "11",
       title: "冰山间皮划艇",
       description: "在南极水域冰山间进行有向导的皮划艇活动。",
       image: images.highlights[10],
     },
     {
-      number: "12",
+      number: "11",
       title: "极地秋天",
       description:
         "体验季节变化，从南极秋天旅行到非洲夏天。",
       image: images.highlights[11],
+    },
+    {
+      number: "12",
+      title: "抵达开普敦",
+      description:
+        "抵达开普敦——世界上最美丽的城市之一，拥有桌山和充满活力的文化。",
+      image: images.highlights[0],
     },
   ],
 }

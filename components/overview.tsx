@@ -309,6 +309,7 @@ export function Overview() {
       <MapModal
         isOpen={showMapModal}
         onClose={handleCloseMapModal}
+        mapSrc={content.overview.mapImage || "/map.jpg"}
       />
 
       {/* Fullscreen Image Gallery */}
