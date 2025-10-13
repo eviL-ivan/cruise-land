@@ -12,6 +12,7 @@ import { Ship } from "@/components/ship"
 import { Cabins } from "@/components/cabins"
 import { CTA } from "@/components/cta"
 import { Footer } from "@/components/footer"
+import {Awards} from "@/components/awards";
 
 export default function Home() {
   return (
@@ -31,7 +32,9 @@ export default function Home() {
           <OptimizedCruiseTimeline />
         </div>
 
-
+          <div id="awards">
+              <Awards/>
+          </div>
         {/*/!* Premium version 3 - Liquid Morphing *!/*/}
         {/*<div id="premium-itinerary-v3" className="mt-32">*/}
         {/*  <div className="text-center mb-16">*/}
@@ -51,6 +54,8 @@ export default function Home() {
         <div id="contact">
           <CTA />
         </div>
+
+
         <Footer />
       </main>
     </>
