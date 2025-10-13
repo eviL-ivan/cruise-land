@@ -219,32 +219,35 @@ const OverlayLeftLayout = memo(function OverlayLeftLayout({ event, index, isInVi
   return (
     <div className="relative h-full">
       <div className="absolute left-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-r from-slate-900/70 via-slate-900/60 to-transparent">
-        <div className="h-full flex items-center p-8 md:pr-6 md:p-16">
+        <div className="h-full flex flex-col justify-center p-8 md:pr-6 md:p-16">
           <div className="relative max-w-2xl">
+            {/* Header - Fixed */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
+              transition={{ delay: 0.2 }}
+              className="mb-6"
+            >
+              <div className="inline-block mb-4">
+                <span className="inline-block text-white text-xs md:text-sm font-medium tracking-[0.2em] uppercase bg-white/15 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/20">
+                  {event.day}
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mb-4 md:mb-6 text-shadow-lg">
+                {event.title}
+              </h2>
+              <div className="flex items-center gap-2 text-white/80">
+                <MapPin className="w-4 h-4 flex-shrink-0" />
+                <span className="text-sm md:text-base">{event.location}</span>
+              </div>
+            </motion.div>
+
+            {/* Scrollable Content */}
             <div
               ref={contentRef}
               onScroll={handleScroll}
-              className="max-h-[calc(100svh-160px)] md:max-h-[calc(100svh-200px)] overflow-y-auto overflow-x-hidden pr-6 scrollbar-custom"
+              className="max-h-[calc(100svh-400px)] md:max-h-[calc(100svh-450px)] overflow-y-auto overflow-x-hidden pr-6 scrollbar-custom"
             >
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
-                transition={{ delay: 0.2 }}
-              >
-                <div className="inline-block mb-4">
-                  <span className="inline-block text-white text-xs md:text-sm font-medium tracking-[0.2em] uppercase bg-white/15 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/20">
-                    {event.day}
-                  </span>
-                </div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mb-4 md:mb-6 text-shadow-lg">
-                  {event.title}
-                </h2>
-                <div className="flex items-center gap-2 text-white/80 mb-6 md:mb-8">
-                  <MapPin className="w-4 h-4 flex-shrink-0" />
-                  <span className="text-sm md:text-base">{event.location}</span>
-                </div>
-              </motion.div>
-
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
@@ -342,7 +345,7 @@ const OverlayRightLayout = memo(function OverlayRightLayout({ event, index, isIn
   return (
     <div className="relative h-full">
       <div className="absolute right-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-l from-slate-900/70 via-slate-900/40 to-transparent">
-        <div className="h-full flex items-center justify-end p-8 pr-4 md:pr-4 md:pl-6 md:p-16">
+        <div className="h-full flex flex-col justify-center items-end p-8 pr-4 md:pr-4 md:pl-6 md:p-16">
           {/* Scroll Indicator - Left Side */}
           {hasOverflow && !isScrolledToBottom && (
             <motion.div
@@ -371,30 +374,33 @@ const OverlayRightLayout = memo(function OverlayRightLayout({ event, index, isIn
           )}
 
           <div className="relative max-w-2xl">
+            {/* Header - Fixed */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
+              transition={{ delay: 0.2 }}
+              className="mb-6 text-right"
+            >
+              <div className="inline-block mb-4">
+                <span className="inline-block text-white text-xs md:text-sm font-medium tracking-[0.2em] uppercase bg-white/15 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/20">
+                  {event.day}
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mb-4 md:mb-6 text-shadow-lg">
+                {event.title}
+              </h2>
+              <div className="flex items-center justify-end gap-2 text-white/80">
+                <span className="text-sm md:text-base">{event.location}</span>
+                <MapPin className="w-4 h-4 flex-shrink-0" />
+              </div>
+            </motion.div>
+
+            {/* Scrollable Content */}
             <div
               ref={contentRef}
               onScroll={handleScroll}
-              className="max-h-[calc(100svh-160px)] md:max-h-[calc(100svh-200px)] overflow-y-auto overflow-x-hidden px-3 scrollbar-custom text-right"
+              className="max-h-[calc(100svh-400px)] md:max-h-[calc(100svh-450px)] overflow-y-auto overflow-x-hidden px-3 scrollbar-custom text-right"
             >
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
-                transition={{ delay: 0.2 }}
-              >
-                <div className="inline-block mb-4">
-                  <span className="inline-block text-white text-xs md:text-sm font-medium tracking-[0.2em] uppercase bg-white/15 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/20">
-                    {event.day}
-                  </span>
-                </div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mb-4 md:mb-6 text-shadow-lg">
-                  {event.title}
-                </h2>
-                <div className="flex items-center justify-end gap-2 text-white/80 mb-6 md:mb-8">
-                  <span className="text-sm md:text-base">{event.location}</span>
-                  <MapPin className="w-4 h-4 flex-shrink-0" />
-                </div>
-              </motion.div>
-
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
