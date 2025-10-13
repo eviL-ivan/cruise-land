@@ -11,6 +11,7 @@ import { Wildlife } from "@/components/wildlife"
 import { Ship } from "@/components/ship"
 import { Cabins } from "@/components/cabins"
 import { CTA } from "@/components/cta"
+import { Promotions } from "@/components/promotions"
 import { Footer } from "@/components/footer"
 import {Awards} from "@/components/awards";
 
@@ -51,10 +52,12 @@ export default function Home() {
         <div id="cabins">
           <Cabins />
         </div>
+
+        <Promotions />
+
         <div id="contact">
           <CTA />
         </div>
-
 
         <Footer />
       </main>
