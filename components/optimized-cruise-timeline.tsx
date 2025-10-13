@@ -231,10 +231,12 @@ const OverlayLeftLayout = memo(function OverlayLeftLayout({ event, index, isInVi
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
                 transition={{ delay: 0.2 }}
               >
-                <span className="text-white/60 text-xs md:text-sm font-light tracking-[0.3em] uppercase">
-                  {event.day}
-                </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mt-3 mb-4 md:mb-6">
+                <div className="inline-block mb-4">
+                  <span className="inline-block text-white text-xs md:text-sm font-medium tracking-[0.2em] uppercase bg-white/15 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/20">
+                    {event.day}
+                  </span>
+                </div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mb-4 md:mb-6 text-shadow-lg">
                   {event.title}
                 </h2>
                 <div className="flex items-center gap-2 text-white/80 mb-6 md:mb-8">
@@ -243,14 +245,16 @@ const OverlayLeftLayout = memo(function OverlayLeftLayout({ event, index, isInVi
                 </div>
               </motion.div>
 
-              <motion.p
+              <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
                 transition={{ delay: 0.4 }}
-                className="text-white/90 text-sm md:text-base leading-relaxed mb-6 md:mb-8"
+                className="w-fit bg-slate-900/60 rounded-lg p-4 md:p-5 mb-6 md:mb-8"
               >
-                {event.description}
-              </motion.p>
+                <p className="text-white/95 text-sm md:text-base leading-relaxed text-shadow-sm">
+                  {event.description}
+                </p>
+              </motion.div>
 
               {event.activities && event.activities.length > 0 && (
                 <motion.div
@@ -259,18 +263,18 @@ const OverlayLeftLayout = memo(function OverlayLeftLayout({ event, index, isInVi
                   transition={{ delay: 0.6 }}
                   className="pb-4"
                 >
-                  <div className="text-white/60 text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4">Activities</div>
-                  <div className="space-y-2 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-2">
+                  <div className="text-white/80 text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4 font-medium text-shadow-md">Activities</div>
+                  <div className="md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-2">
                     {event.activities.map((activity: string, i: number) => (
                       <motion.div
                         key={i}
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -30 }}
                         transition={{ delay: 0.7 + i * 0.05 }}
-                        className="flex items-start gap-3 text-white/80 text-xs md:text-sm"
+                        className="flex items-start gap-3 text-white/90 text-xs md:text-sm bg-slate-900/60 rounded-lg p-2.5 md:p-3 w-fit mb-2"
                       >
-                        <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0 mt-1.5" />
-                        <span>{activity}</span>
+                        <div className="w-2 h-2 rounded-full bg-white/90 flex-shrink-0 mt-1.5 shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+                        <span className="text-shadow-xs">{activity}</span>
                       </motion.div>
                     ))}
                   </div>
@@ -377,10 +381,12 @@ const OverlayRightLayout = memo(function OverlayRightLayout({ event, index, isIn
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
                 transition={{ delay: 0.2 }}
               >
-                <span className="text-white/60 text-xs md:text-sm font-light tracking-[0.3em] uppercase">
-                  {event.day}
-                </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mt-3 mb-4 md:mb-6">
+                <div className="inline-block mb-4">
+                  <span className="inline-block text-white text-xs md:text-sm font-medium tracking-[0.2em] uppercase bg-white/15 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/20">
+                    {event.day}
+                  </span>
+                </div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mb-4 md:mb-6 text-shadow-lg">
                   {event.title}
                 </h2>
                 <div className="flex items-center justify-end gap-2 text-white/80 mb-6 md:mb-8">
@@ -389,14 +395,16 @@ const OverlayRightLayout = memo(function OverlayRightLayout({ event, index, isIn
                 </div>
               </motion.div>
 
-              <motion.p
+              <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
                 transition={{ delay: 0.4 }}
-                className="text-white/90 text-sm md:text-base leading-relaxed mb-6 md:mb-8"
+                className="w-fit bg-slate-900/60 rounded-lg p-4 md:p-5 mb-6 md:mb-8"
               >
-                {event.description}
-              </motion.p>
+                <p className="text-white/95 text-sm md:text-base leading-relaxed text-shadow-sm">
+                  {event.description}
+                </p>
+              </motion.div>
 
               {event.activities && event.activities.length > 0 && (
                 <motion.div
@@ -405,18 +413,18 @@ const OverlayRightLayout = memo(function OverlayRightLayout({ event, index, isIn
                   transition={{ delay: 0.6 }}
                   className="pb-4"
                 >
-                  <div className="text-white/60 text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4 text-right">Activities</div>
-                  <div className="space-y-2 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-2">
+                  <div className="text-white/80 text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4 text-right font-medium text-shadow-md">Activities</div>
+                  <div className="md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-2">
                     {event.activities.map((activity: string, i: number) => (
                       <motion.div
                         key={i}
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 30 }}
                         transition={{ delay: 0.7 + i * 0.05 }}
-                        className="flex items-start justify-end gap-3 text-white/80 text-xs md:text-sm"
+                        className="flex items-start justify-end gap-3 text-white/90 text-xs md:text-sm bg-slate-900/60 rounded-lg p-2.5 md:p-3 w-fit ml-auto mb-2"
                       >
-                        <span className="text-right">{activity}</span>
-                        <div className="w-1.5 h-1.5 rounded-full bg-white/80 flex-shrink-0 mt-1.5" />
+                        <span className="text-right text-shadow-xs">{activity}</span>
+                        <div className="w-2 h-2 rounded-full bg-white/90 flex-shrink-0 mt-1.5 shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
                       </motion.div>
                     ))}
                   </div>
