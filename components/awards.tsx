@@ -100,7 +100,7 @@ export function Awards() {
             </div>
 
             {/* Mobile Layout - Two Awards Stacked */}
-            <div className="flex xl:hidden flex-col items-center gap-[72px] px-4">
+            <div className="flex xl:hidden flex-col items-center gap-[72px] px-8 md:px-4">
                 {/* Award 1 Container */}
                 <div className="flex flex-col gap-6 w-full max-w-[480px]">
                     {/* Top: Title and Winner Icons */}
@@ -135,12 +135,12 @@ export function Awards() {
                         </div>
                     </div>
                     {/* Bottom: Organization Logo */}
-                    <div className="w-[80px] h-[80px]">
+                    <div className="w-[96px] h-[96px]">
                         <Image
                             src="/awards/cruisecritic.svg"
                             alt="Cruise Critic"
-                            width={80}
-                            height={80}
+                            width={96}
+                            height={96}
                             className="w-full h-full"
                         />
                     </div>
@@ -180,12 +180,12 @@ export function Awards() {
                         </div>
                     </div>
                     {/* Bottom: Organization Logo */}
-                    <div className="w-[80px] h-[80px]">
+                    <div className="w-[96px] h-[96px]">
                         <Image
                             src="/awards/sailawaze.svg"
                             alt="Sailawaze"
-                            width={80}
-                            height={80}
+                            width={96}
+                            height={96}
                             className="w-full h-full"
                         />
                     </div>
