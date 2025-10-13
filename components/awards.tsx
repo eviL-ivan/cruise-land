@@ -100,7 +100,7 @@ export function Awards() {
             </div>
 
             {/* Mobile Layout - Two Awards Stacked */}
-            <div className="flex xl:hidden flex-col items-center gap-[72px] px-4">
+            <div className="flex xl:hidden flex-col items-center gap-[72px] px-8 md:px-4">
                 {/* Award 1 Container */}
                 <div className="flex flex-col gap-6 w-full max-w-[480px]">
                     {/* Top: Title and Winner Icons */}
