@@ -217,6 +217,11 @@ export const content = {
     "Премиальные напитки, спа и косметические процедуры",
   ],
 
+  // Promotions
+  promotions: {
+    title: "Специальное предложение",
+  },
+
   // Forms
   forms: {
     booking: {
