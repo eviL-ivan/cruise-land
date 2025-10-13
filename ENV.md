@@ -47,6 +47,25 @@ const config = getCurrentCruiseConfig()
 console.log(config.year) // "2025" или "2026"
 ```
 
+**Переопределение контента для конкретного круиза:**
+
+Вы можете переопределить любой контент (цену, описание, заголовки) для конкретного круиза, создав файл в папке круиза:
+
+```typescript
+// lib/content/cruises/CPTUSH26/override.ts
+export const override = {
+  overview: {
+    price: "$14,500",
+    description: "Специальное предложение для зимнего круиза",
+  },
+  hero: {
+    title: "Winter Antarctic Expedition",
+  },
+}
+```
+
+Подробнее: [`lib/content/cruises/README.md`](./lib/content/cruises/README.md)
+
 ---
 
 ## Файлы окружения

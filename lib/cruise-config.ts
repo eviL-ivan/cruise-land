@@ -53,14 +53,14 @@ export const CRUISE_CONFIGS: Record<string, CruiseConfig> = {
   "CPTUSH26": {
     code: "D2826102320", // Cruise code for 2026
     name: "Cape Town to Ushuaia",
-    year: "2026",
+    year: "2025",
     route: {
       from: "Cape Town",
       to: "Ushuaia",
     },
     dates: {
-      start: "23 October 2026",
-      end: "12 November 2026",
+      start: "15 November 2025",
+      end: "5 December 2025",
     },
     duration: {
       days: 21,
@@ -100,4 +100,46 @@ export function getCruiseRoute(): string {
 // Хелпер для получения copyright с годом круиза
 export function getCopyrightYear(): string {
   return getCurrentCruiseConfig().year
+}
+
+// Хелпер для получения кода круиза
+export function getCruiseCode(): string {
+  return getCurrentCruiseConfig().code
+}
+
+// Хелпер для получения дат в формате MM.DD.YY-MM.DD.YY
+export function getCruiseDatesShort(): string {
+  const config = getCurrentCruiseConfig()
+  const start = new Date(config.dates.start)
+  const end = new Date(config.dates.end)
+
+  const formatDate = (date: Date) => {
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    const year = String(date.getFullYear()).slice(-2)
+    return `${month}.${day}.${year}`
+  }
+
+  return `${formatDate(start)}-${formatDate(end)}`
+}
+
+// Хелпер для получения дат в формате YYYY.MM.DD - YYYY.MM.DD (для китайского)
+export function getCruiseDatesLong(): string {
+  const config = getCurrentCruiseConfig()
+  const start = new Date(config.dates.start)
+  const end = new Date(config.dates.end)
+
+  const formatDate = (date: Date) => {
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    return `${year}.${month}.${day}`
+  }
+
+  return `${formatDate(start)} - ${formatDate(end)}`
+}
+
+// Хелпер для получения только количества ночей
+export function getCruiseNights(): number {
+  return getCurrentCruiseConfig().duration.nights
 }

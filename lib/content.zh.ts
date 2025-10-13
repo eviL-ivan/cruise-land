@@ -7,8 +7,11 @@ import { journey } from "./content/zh/journey.zh";
 import { itinerary } from "./content/zh/itinerary.zh";
 import { cabins } from "./content/zh/cabins.zh";
 import { map } from "./content/zh/map.zh";
+import { getCruiseCode, getCruiseRoute, getCruiseDatesLong, getCruiseNights } from "./cruise-config";
+import { applyCruiseOverridesSync } from "./content/cruises/merge-content";
 
-export const content = {
+// 基础内容（无覆盖）
+const baseContent = {
   // 元数据
   meta: {
     title: "跨大西洋探险：从开普敦到乌斯怀亚 | SH Diana",
@@ -36,11 +39,11 @@ export const content = {
 
   // 邮轮概览
   overview: {
-    cruiseCode: "D2925111520",
-    route: "开普敦 - 乌斯怀亚",
-    dates: "2025.11.15 - 2025.12.05",
+    cruiseCode: getCruiseCode(),
+    route: getCruiseRoute(),
+    dates: getCruiseDatesLong(),
     datesLabel: "日期",
-    nights: "20 晚",
+    nights: `${getCruiseNights()} 晚`,
     durationLabel: "行程时长",
     ship: "SH Diana",
     shipLabel: "邮轮",
@@ -368,4 +371,7 @@ export const content = {
   },
 } as const;
 
-export type Content = typeof content;
+// 应用当前游轮的覆盖配置
+export const content = applyCruiseOverridesSync(baseContent);
+
+export type Content = typeof baseContent;

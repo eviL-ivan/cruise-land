@@ -7,8 +7,11 @@ import { journey } from "./content/en/journey.en";
 import { itinerary } from "./content/en/itinerary.en";
 import { cabins } from "./content/en/cabins.en";
 import { map } from "./content/en/map.en";
+import { getCruiseCode, getCruiseRoute, getCruiseDatesShort, getCruiseNights } from "./cruise-config";
+import { applyCruiseOverridesSync } from "./content/cruises/merge-content";
 
-export const content = {
+// Базовый контент (без переопределений)
+const baseContent = {
   // Metadata
   meta: {
     title: "Transatlantic Expedition from Cape Town to Ushuaia | SH Diana",
@@ -36,11 +39,11 @@ export const content = {
 
   // Cruise Overview
   overview: {
-    cruiseCode: "D2925111520",
-    route: "Cape Town - Ushuaia",
-    dates: "11.15.25-12.05.25",
+    cruiseCode: getCruiseCode(),
+    route: getCruiseRoute(),
+    dates: getCruiseDatesShort(),
     datesLabel: "Dates",
-    nights: "20 nights",
+    nights: `${getCruiseNights()} nights`,
     durationLabel: "Duration",
     ship: "SH Diana",
     shipLabel: "Ship",
@@ -383,4 +386,7 @@ export const content = {
   },
 } as const;
 
-export type Content = typeof content;
+// Применяем переопределения для текущего круиза
+export const content = applyCruiseOverridesSync(baseContent);
+
+export type Content = typeof baseContent;
