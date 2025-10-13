@@ -4,7 +4,7 @@ import { Space_Grotesk, Noto_Sans_JP, Noto_Sans_SC } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Suspense } from "react"
-import { content } from "@/lib/content"
+import { content as contentEN } from "@/lib/content.en"
 import { LanguageProvider } from "@/lib/language-context"
 import { MicrosoftClarity } from "@/components/analytics/clarity"
 import { GoogleAnalytics } from "@/components/analytics/google-analytics"
@@ -31,8 +31,8 @@ const notoSansSC = Noto_Sans_SC({
 })
 
 export const metadata: Metadata = {
-  title: content.meta.title,
-  description: content.meta.description,
+  title: contentEN.meta.title,
+  description: contentEN.meta.description,
   generator: "v0.app",
   icons: {
     icon: '/favicon.ico',
@@ -45,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ru" className={`${spaceGrotesk.variable} ${notoSansJP.variable} ${notoSansSC.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${notoSansJP.variable} ${notoSansSC.variable}`}>
       <head>
         <link rel="preconnect" href="https://api.mapbox.com" />
         <link rel="dns-prefetch" href="https://api.mapbox.com" />

@@ -53,7 +53,8 @@ export default function Home() {
           <Cabins />
         </div>
 
-        <Promotions />
+        {/* Current Offer - Temporarily disabled */}
+        {/* <Promotions /> */}
 
         <div id="contact">
           <CTA />
