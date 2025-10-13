@@ -10,6 +10,8 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { CountryAutocomplete } from "@/data/form/country-autocomplete"
 import { cn } from "@/lib/utils"
+import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
 
 interface ContactFormProps {
   onSuccess?: () => void
@@ -42,8 +44,12 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
   }
 
   const validatePhone = (phone: string): boolean => {
-    const phoneRegex = /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/
-    return phoneRegex.test(phone.replace(/\s/g, ""))
+    if (!phone) return false
+    try {
+      return isValidPhoneNumber(phone)
+    } catch {
+      return false
+    }
   }
 
   const handleEmailBlur = () => {
@@ -252,15 +258,15 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
           <Label htmlFor="phone" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
             {content.forms.contact.phone}
           </Label>
-          <Input
+          <PhoneInput
             id="phone"
-            type="tel"
+            international
             value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            onChange={(value) => setFormData({ ...formData, phone: value || "" })}
             onBlur={handlePhoneBlur}
             className={cn(
-              "h-14 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 text-base font-light px-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30",
-              errors.phone && "border-destructive focus:border-destructive"
+              "phone-input-custom h-14 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus-within:border-foreground/60 transition-all duration-300",
+              errors.phone && "border-destructive focus-within:border-destructive"
             )}
           />
           {errors.phone && <p className="text-xs text-destructive font-medium mt-2">{errors.phone}</p>}
