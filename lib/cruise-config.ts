@@ -42,25 +42,42 @@ export const CRUISE_CONFIGS: Record<string, CruiseConfig> = {
       to: "Ushuaia",
     },
     dates: {
-      start: "14 January 2025",
-      end: "12 February 2025",
+      start: "15 November 2025",
+      end: "5 December 2025",
     },
     duration: {
-      days: 30,
-      nights: 29,
+      days: 21,
+      nights: 20,
     },
   },
   "CPTUSH26": {
     code: "D2826102320", // Cruise code for 2026
     name: "Cape Town to Ushuaia",
-    year: "2025",
+    year: "2026",
     route: {
       from: "Cape Town",
       to: "Ushuaia",
     },
     dates: {
-      start: "15 November 2025",
-      end: "5 December 2025",
+      start: "23 October 2026",
+      end: "12 November 2026",
+    },
+    duration: {
+      days: 21,
+      nights: 20,
+    },
+  },
+  "USHCPT26": {
+    code: "D0626030520",
+    name: "Ushuaia to Cape Town",
+    year: "2026",
+    route: {
+      from: "Ushuaia",
+      to: "Cape Town",
+    },
+    dates: {
+      start: "5 March 2026",
+      end: "25 March 2026",
     },
     duration: {
       days: 21,

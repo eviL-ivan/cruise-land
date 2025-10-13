@@ -1,20 +1,16 @@
-import { images } from "../images"
+import { images } from "../../images"
 
 export const cabins = {
   title: "客舱",
   subtitle: "选择您在探险船SH Diana上的客舱",
   selectButton: "询价",
   priceNote: "价格为每人每航次",
-  priceFromLabel: "起价",
-  helpText: "需要帮助选择完美的客舱吗？",
-  expertButtonText: "咨询我们的专家",
-  sanctuaryBadge: "海上的避风港",
   categories: [
     {
       name: "Oceanview",
       size: "20 m²",
       capacity: "2",
-      price: "$13,780",
+      price: "$14,100",
       features: [
         "两张单人床或一张双人床",
         "带起居区的卧室",
@@ -28,7 +24,7 @@ export const cabins = {
       name: "Balcony",
       size: "25 m²",
       capacity: "2-3",
-      price: "$13,780",
+      price: "$16,100",
       features: [
         "5 m² 私人阳台",
         "两张单人床或一张双人床",
@@ -43,7 +39,7 @@ export const cabins = {
       name: "Junior Suite",
       size: "32-36 m²",
       capacity: "2",
-      price: "$23,380",
+      price: "$20,125",
       features: [
         "6 m² 私人阳台",
         "特大号床",
@@ -57,7 +53,7 @@ export const cabins = {
       name: "Suite",
       size: "41 m²",
       capacity: "2-3",
-      price: "$27,280",
+      price: "$23,475",
       features: [
         "5 m² 私人阳台",
         "特大号床",
@@ -72,7 +68,7 @@ export const cabins = {
       name: "Premium Suite",
       size: "41 m²",
       capacity: "2",
-      price: "$31,180",
+      price: "$26,825",
       features: [
         "8 m² 私人阳台",
         "特大号床",

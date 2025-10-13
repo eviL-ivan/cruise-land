@@ -1,20 +1,16 @@
-import { images } from "../images"
+import { images } from "../../images"
 
 export const cabins = {
   title: "Staterooms",
   subtitle: "Choose your stateroom aboard the expedition vessel SH Diana",
   selectButton: "Request a quote",
   priceNote: "Prices are quoted per person per cruise",
-  priceFromLabel: "From",
-  helpText: "Need help choosing the perfect stateroom?",
-  expertButtonText: "Speak with Our Expert",
-  sanctuaryBadge: "Your Sanctuary at Sea",
   categories: [
     {
       name: "Oceanview",
       size: "20 m²",
       capacity: "2",
-      price: "From $13,780",
+      price: "From $14,100",
       features: [
         "Two single beds or a double bed",
         "Bedroom with living room area",
@@ -28,7 +24,7 @@ export const cabins = {
       name: "Balcony",
       size: "25 m²",
       capacity: "2-3",
-      price: "From $13,780",
+      price: "From $16,100",
       features: [
         "5 m² private balcony",
         "Two single beds or a double bed",
@@ -43,7 +39,7 @@ export const cabins = {
       name: "Junior Suite",
       size: "32-36 m²",
       capacity: "2",
-      price: "From $23,380",
+      price: "From $20,125",
       features: [
         "6 m² private balcony",
         "King size bed",
@@ -57,7 +53,7 @@ export const cabins = {
       name: "Suite",
       size: "41 m²",
       capacity: "2-3",
-      price: "From $27,280",
+      price: "From $23,475",
       features: [
         "5 m² private balcony",
         "King size bed",
@@ -72,7 +68,7 @@ export const cabins = {
       name: "Premium Suite",
       size: "41 m²",
       capacity: "2",
-      price: "From $31,180",
+      price: "From $26,825",
       features: [
         "8 m² private balcony",
         "King size bed",

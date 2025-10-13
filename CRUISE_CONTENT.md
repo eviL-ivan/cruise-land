@@ -18,7 +18,7 @@
 NEXT_PUBLIC_CRUISE_CODE=CPTUSH26
 ```
 
-Доступные коды: `CPTUSH25`, `CPTUSH26`
+Доступные коды: `CPTUSH25`, `CPTUSH26`, `USHCPT26`
 
 ### 2. Переопределение контента
 
@@ -138,9 +138,18 @@ lib/
         ├── types.ts                    # TypeScript типы
         ├── merge-content.ts            # Логика слияния
         ├── CPTUSH25/
-        │   └── override.ts             # Переопределения для 2025
-        └── CPTUSH26/
-            └── override.ts             # Переопределения для 2026
+        │   └── override.ts             # Cape Town → Ushuaia 2025 (15 Nov - 5 Dec)
+        ├── CPTUSH26/
+        │   ├── override.ts             # Cape Town → Ushuaia 2026 (23 Oct - 12 Nov)
+        │   ├── override.ru.ts          # + Русская версия
+        │   ├── override.zh.ts          # + Китайская версия
+        │   └── cabins.*.ts             # Обновленные цены для 2026
+        └── USHCPT26/
+            ├── override.ts             # Ushuaia → Cape Town 2026 (5 Mar - 25 Mar)
+            ├── override.ru.ts          # + Русская версия
+            ├── override.zh.ts          # + Китайская версия
+            ├── itinerary.*.ts          # Обратный маршрут (перевернутые картинки)
+            └── cabins.*.ts             # Уникальные цены
 ```
 
 ## Преимущества

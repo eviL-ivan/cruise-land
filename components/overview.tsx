@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
-import { Map, ChevronLeft, ChevronRight, X, Play } from "lucide-react";
+import { Map, ChevronLeft, ChevronRight, X, Play, FileText } from "lucide-react";
 import { BookingModal } from "./BookingModal";
 import { MediaGalleryDialog } from "./MediaGalleryDialog";
 import { MapModal } from "./MapModal";
@@ -144,7 +144,7 @@ export function Overview() {
 
               {/* Cruise Details */}
               <div className="space-y-6">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 flex-wrap">
                   <div className="inline-block bg-secondary/20 text-secondary px-4 py-2 rounded-full text-sm font-semibold tracking-wide">
                     {content.overview.cruiseCode}
                   </div>
@@ -155,6 +155,17 @@ export function Overview() {
                     <Map className="w-4 h-4" />
                     <span>{content.overview.mapButton}</span>
                   </button>
+                  {content.overview.brochureUrl && (
+                    <a
+                      href={content.overview.brochureUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-colors no-underline"
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>{content.overview.brochureButton}</span>
+                    </a>
+                  )}
                 </div>
 
                 <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground">

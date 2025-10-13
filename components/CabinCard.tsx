@@ -20,10 +20,11 @@ interface CabinCardProps {
   }
   onBook: () => void
   selectButtonText: string
+  priceFromLabel?: string
   index: number
 }
 
-export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardProps) {
+export function CabinCard({ cabin, onBook, selectButtonText, priceFromLabel = "From", index }: CabinCardProps) {
   const [isCardHovered, setIsCardHovered] = useState(false) // Hover on entire card - removes overlay
   const [isPanelHovered, setIsPanelHovered] = useState(false) // Hover on panel - expands panel
   const [isGalleryOpen, setIsGalleryOpen] = useState(false) // Fullscreen gallery dialog
@@ -248,11 +249,11 @@ export function CabinCard({ cabin, onBook, selectButtonText, index }: CabinCardP
             {cabin.price && (
               <div className="mb-3 lg:mb-6">
                 <div className="text-[10px] text-white/60 tracking-[0.2em] uppercase mb-1 lg:mb-2 font-semibold">
-                  From
+                  {priceFromLabel}
                 </div>
                 <div className="flex items-baseline gap-2 lg:gap-3">
                   <span className="font-serif text-4xl lg:text-7xl font-light text-white leading-none tracking-tight drop-shadow-2xl">
-                    {cabin.price.replace(/from\s*/i, '')}
+                    {cabin.price.replace(/^(от|from|起价)\s*/i, '')}
                   </span>
                   <span className="text-[10px] lg:text-xs text-white/70 tracking-wider uppercase font-medium pb-1 lg:pb-2">
                     / person

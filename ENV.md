@@ -32,12 +32,18 @@ NEXT_PUBLIC_CRUISE_CODE=CPTUSH25
 ```
 
 **Доступные коды:**
-- `CPTUSH25` - Cape Town to Ushuaia 2025 (14 Jan - 12 Feb 2025, 30 days/29 nights)
+- `CPTUSH25` - Cape Town to Ushuaia 2025 (15 Nov - 5 Dec 2025, 21 days/20 nights)
   - Cruise code: D2925111520
-  - Route: Cape Town - Ushuaia
+  - Route: Cape Town → Ushuaia
+  - Price from: $13,780
 - `CPTUSH26` - Cape Town to Ushuaia 2026 (23 Oct - 12 Nov 2026, 21 days/20 nights)
   - Cruise code: D2826102320
-  - Route: Cape Town - Ushuaia
+  - Route: Cape Town → Ushuaia
+  - Price from: $16,650
+- `USHCPT26` - Ushuaia to Cape Town 2026 (5 Mar - 25 Mar 2026, 21 days/20 nights)
+  - Cruise code: D0626030520
+  - Route: Ushuaia → Cape Town (reverse route)
+  - Price from: $14,100
 
 **Использование:**
 ```typescript

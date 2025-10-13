@@ -4,29 +4,17 @@
 import type { CruiseContentOverride } from "../types"
 
 export const override: CruiseContentOverride = {
-  // Переопределяем статистику для 30-дневного круиза
+  // Переопределяем статистику для 21-дневного круиза
   cta: {
     stats: [
-      { number: "30", label: "Days of Travel" },
+      { number: "21", label: "Days of Travel" },
       { number: "5", label: "Penguin Species" },
       { number: "∞", label: "Unforgettable Moments" },
     ],
   },
 
-  // Примеры других возможных переопределений:
-
-  // Цена
-  // overview: {
-  //   price: "$15,280",
-  // },
-
-  // Описание
-  // overview: {
-  //   description: "Специальное описание для круиза 2025 года",
-  // },
-
-  // Заголовок Hero
-  // hero: {
-  //   title: "Summer Antarctic Expedition",
-  // },
+  // Переопределяем карту для маршрута Cape Town → Ushuaia
+  overview: {
+    mapImage: "/map-cape-usu.png",
+  },
 }

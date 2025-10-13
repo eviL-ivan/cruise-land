@@ -54,6 +54,8 @@ const baseContent = {
     mapAlt: "Карта маршрута круиза",
     mapButton: "Карта",
     viewFullMap: "Посмотреть полную карту",
+    brochureUrl: "/brochures/SH_TG_D33_Из_Кейптауна_в_Ушуайю.pdf",
+    brochureButton: "Брошюра",
     description: "Это не просто круиз — это интеллектуальная и эмоциональная экспедиция через три мира, где встречаются Африка, Атлантика и Антарктика.",
     detailedDescription: "Только здесь гости могут увидеть редких северных хохлатых пингвинов, исследовать самый изолированный остров планеты и встретить рассвет рядом со скульптурными айсбергами — всё это в элегантном комфорте новейшего флагмана Swan Hellenic, SH Diana.",
     experienceButton: "Смотреть опыт",
@@ -278,7 +280,7 @@ const baseContent = {
   },
 } as const
 
-// Применяем переопределения для текущего круиза
-export const content = applyCruiseOverridesSync(baseContent)
+// Применяем переопределения для текущего круиза (русская локаль)
+export const content = applyCruiseOverridesSync(baseContent, 'ru')
 
 export type Content = typeof baseContent

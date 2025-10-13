@@ -64,13 +64,19 @@ export async function applyCruiseOverrides<T extends Record<string, any>>(
 /**
  * Синхронная версия для использования в серверных компонентах
  * Использует require вместо динамического import
+ * @param baseContent - Базовый контент для переопределения
+ * @param locale - Локаль (en, ru, zh). По умолчанию 'en'
  */
 export function applyCruiseOverridesSync<T extends Record<string, any>>(
-  baseContent: T
+  baseContent: T,
+  locale: 'en' | 'ru' | 'zh' = 'en'
 ): T {
   try {
+    // Определяем суффикс файла в зависимости от локали
+    const fileSuffix = locale === 'en' ? '' : `.${locale}`
+
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const overrideModule = require(`./${CRUISE_CODE}/override`)
+    const overrideModule = require(`./${CRUISE_CODE}/override${fileSuffix}.ts`)
     const override: CruiseContentOverride = overrideModule.override
 
     if (!override || Object.keys(override).length === 0) {

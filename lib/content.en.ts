@@ -54,6 +54,8 @@ const baseContent = {
     mapAlt: "Cruise route map",
     mapButton: "Map",
     viewFullMap: "View Full Map",
+    brochureUrl: "/brochures/SH_TG_D33_South Atlantic cruise from South Africa to Antarctica_13Nov-v1.pdf",
+    brochureButton: "Brochure",
     description: "This is not just a cruise — it's an intellectual and emotional expedition through three worlds where Africa, the Atlantic, and Antarctica meet.",
     detailedDescription: "Only here can guests witness the rare Northern Rockhopper penguins, explore the planet's most isolated island, and greet the dawn beside sculpted icebergs — all from the elegant comfort of Swan Hellenic's newest flagship, SH Diana.",
     experienceButton: "Watch Experience",
@@ -386,7 +388,7 @@ const baseContent = {
   },
 } as const;
 
-// Применяем переопределения для текущего круиза
-export const content = applyCruiseOverridesSync(baseContent);
+// Apply overrides for the current cruise (English)
+export const content = applyCruiseOverridesSync(baseContent, 'en');
 
 export type Content = typeof baseContent;

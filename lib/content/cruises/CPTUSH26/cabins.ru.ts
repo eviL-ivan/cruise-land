@@ -1,20 +1,12 @@
-import { images } from "../images"
+import { images } from "../../images"
 
 export const cabins = {
-  title: "Каюты",
-  subtitle: "Светлые и просторные каюты — «уютный дом вдали от дома»",
-  selectButton: "Запросить цену",
-  priceNote: "Цены указаны за человека за круиз",
-  priceFromLabel: "От",
-  helpText: "Нужна помощь в выборе идеальной каюты?",
-  expertButtonText: "Связаться со специалистом",
-  sanctuaryBadge: "Ваше убежище в море",
   categories: [
     {
       name: "Oceanview",
+      price: "$16,650",
       size: "20 м²",
       capacity: "2",
-      price: "$13,780",
       features: [
         "Две односпальные или одна двуспальная кровать",
         "Спальня с гостиной зоной",
@@ -26,9 +18,9 @@ export const cabins = {
     },
     {
       name: "Balcony",
+      price: "$19,000",
       size: "25 м²",
       capacity: "2-3",
-      price: "$13,780",
       features: [
         "Приватный балкон 5 м²",
         "Две односпальные или одна двуспальная кровать",
@@ -41,9 +33,9 @@ export const cabins = {
     },
     {
       name: "Junior Suite",
+      price: "$24,150",
       size: "32-36 м²",
       capacity: "2",
-      price: "$23,380",
       features: [
         "Приватный балкон 6 м²",
         "Кровать King size",
@@ -55,9 +47,9 @@ export const cabins = {
     },
     {
       name: "Suite",
+      price: "$28,100",
       size: "41 м²",
       capacity: "2-3",
-      price: "$27,280",
       features: [
         "Приватный балкон 5 м²",
         "Кровать King size",
@@ -70,9 +62,9 @@ export const cabins = {
     },
     {
       name: "Premium Suite",
+      price: "$32,100",
       size: "41 м²",
       capacity: "2",
-      price: "$31,180",
       features: [
         "Приватный балкон 8 м²",
         "Кровать King size",

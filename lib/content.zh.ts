@@ -54,6 +54,8 @@ const baseContent = {
     mapAlt: "邮轮航线图",
     mapButton: "地图",
     viewFullMap: "查看完整地图",
+    brochureUrl: "/brochures/SH_TG_D33_South Atlantic cruise from South Africa to Antarctica_13Nov-v1.pdf",
+    brochureButton: "宣传册",
     description: "这不仅仅是一次邮轮——这是一次穿越非洲、大西洋和南极三个世界交汇处的智识与情感探险。",
     detailedDescription: "只有在这里，宾客才能目睹稀有的北跳岩企鹅，探索地球上最与世隔绝的岛屿，在雕塑般的冰山旁迎接黎明——这一切都在天鹅海伦尼克最新旗舰SH Diana号的优雅舒适中进行。",
     experienceButton: "观看体验",
@@ -371,7 +373,7 @@ const baseContent = {
   },
 } as const;
 
-// 应用当前游轮的覆盖配置
-export const content = applyCruiseOverridesSync(baseContent);
+// 应用当前游轮的覆盖配置（中文）
+export const content = applyCruiseOverridesSync(baseContent, 'zh');
 
 export type Content = typeof baseContent;

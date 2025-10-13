@@ -1,20 +1,16 @@
-// Переопределения контента для круиза CPTUSH26
-// Здесь можно переопределить любые поля из базового контента
+// Переопределения контента для круиза CPTUSH26 (Cape Town → Ushuaia 2026)
+// October 2026 departure with updated pricing
 
 import type { CruiseContentOverride } from "../types"
+import { cabins } from "./cabins.en"
 
 export const override: CruiseContentOverride = {
-  // Пример: переопределение цены для второго круиза
-  // overview: {
-  //   price: "$13,780",
-  // },
+  // Override cabin prices for 2026 season
+  cabins,
 
-  // Пример: изменение количества дней в статистике
-  // cta: {
-  //   stats: [
-  //     { number: "21", label: "Days of Travel" },
-  //     { number: "5", label: "Penguin Species" },
-  //     { number: "∞", label: "Unforgettable Moments" },
-  //   ],
-  // },
+  // Override base price and map for Cape Town → Ushuaia route
+  overview: {
+    price: "$16,650",
+    mapImage: "/map-cape-usu.png",
+  },
 }

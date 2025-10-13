@@ -27,7 +27,7 @@ export function Cabins() {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#be8f74]/5 via-[#d4a98a]/5 to-[#be8f74]/5 border border-[#be8f74]/20 text-[#be8f74] px-5 py-2.5 rounded-full text-xs font-bold tracking-[0.15em] uppercase mb-8 shadow-sm">
             <Sparkles className="w-3.5 h-3.5" strokeWidth={2.5} />
-            <span>Your Sanctuary at Sea</span>
+            <span>{content.cabins.sanctuaryBadge}</span>
           </div>
 
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-[#004155] tracking-tight leading-[1.1]">
@@ -49,6 +49,7 @@ export function Cabins() {
               cabin={cabin}
               onBook={() => setShowBookingModal(true)}
               selectButtonText={content.cabins.selectButton}
+              priceFromLabel={content.cabins.priceFromLabel}
               index={index}
             />
           ))}
@@ -57,13 +58,13 @@ export function Cabins() {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <p className="text-[#6d6e71]/70 mb-6 text-sm tracking-wide">
-            Need help choosing the perfect stateroom?
+            {content.cabins.helpText}
           </p>
           <button
             onClick={() => setShowBookingModal(true)}
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border-2 border-[#004155] text-[#004155] font-semibold text-sm tracking-wider uppercase transition-all duration-300 hover:bg-[#004155] hover:text-white shadow-[0_2px_8px_rgba(0,65,85,0.15)] hover:shadow-[0_4px_16px_rgba(0,65,85,0.25)] hover:scale-[1.02] active:scale-[0.98]"
           >
-            <span>Speak with Our Expert</span>
+            <span>{content.cabins.expertButtonText}</span>
           </button>
         </div>
       </div>
