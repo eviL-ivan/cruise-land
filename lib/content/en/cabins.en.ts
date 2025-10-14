@@ -3,7 +3,7 @@ import { images } from "../images"
 export const cabins = {
   title: "Staterooms",
   subtitle: "Choose your stateroom aboard the expedition vessel SH Diana",
-  selectButton: "Request a quote",
+  selectButton: "Check availability",
   priceNote: "Prices are quoted per person per cruise",
   priceFromLabel: "From",
   helpText: "Need help choosing the perfect stateroom?",

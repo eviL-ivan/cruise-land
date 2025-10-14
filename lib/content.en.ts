@@ -30,6 +30,7 @@ const baseContent = {
       contact: "Contact",
     },
     bookButton: "Contact Us",
+    bookButtonSecondSection: "Inquire Now",
     languages: {
       ru: "RU",
       en: "EN",
