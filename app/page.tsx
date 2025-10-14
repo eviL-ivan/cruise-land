@@ -13,7 +13,8 @@ import { Cabins } from "@/components/cabins"
 import { CTA } from "@/components/cta"
 import { Promotions } from "@/components/promotions"
 import { Footer } from "@/components/footer"
-import {Awards} from "@/components/awards"
+import { Awards } from "@/components/awards"
+import { Company } from "@/components/company"
 import { getCurrentCruiseConfig } from "@/lib/cruise-config"
 
 export default function Home() {
@@ -36,9 +37,7 @@ export default function Home() {
           <OptimizedCruiseTimeline />
         </div>
 
-          <div id="awards">
-              <Awards/>
-          </div>
+        <Wildlife />
         {/*/!* Premium version 3 - Liquid Morphing *!/*/}
         {/*<div id="premium-itinerary-v3" className="mt-32">*/}
         {/*  <div className="text-center mb-16">*/}
@@ -48,7 +47,11 @@ export default function Home() {
         {/*  <PremiumCruiseTimelineV3 />*/}
         {/*</div>*/}
 
-        <Wildlife />
+        <Company />
+
+        {/*<div id="awards">*/}
+        {/*    <Awards/>*/}
+        {/*</div>*/}
         <div id="ship">
           <Ship />
         </div>

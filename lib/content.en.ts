@@ -197,6 +197,14 @@ const baseContent = {
     ],
   },
 
+  // Company
+  company: {
+    title: "See What Others Don't",
+    subtitle: "Boutique luxury expedition cruises designed for those who seek meaning beyond the horizon.",
+    description: "Our ice-class vessels — SH Minerva, SH Vega, and SH Diana — unlock the Arctic, Antarctica, and the world's most remote corners in an atmosphere of Nordic elegance, serenity, and comfort.",
+    quote: "Here, luxury is not excess, but the art of seeing deeper.",
+  },
+
   // Ship
   ship: {
     name: "SH Diana",
