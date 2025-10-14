@@ -13,14 +13,25 @@ interface BookingModalProps {
 export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
   useEffect(() => {
+    const widget = document.querySelector('elevenlabs-convai') as HTMLElement
+
     if (isOpen) {
       document.body.style.overflow = "hidden"
+      if (widget) {
+        widget.style.display = "none"
+      }
     } else {
       document.body.style.overflow = "unset"
+      if (widget) {
+        widget.style.display = "block"
+      }
     }
 
     return () => {
       document.body.style.overflow = "unset"
+      if (widget) {
+        widget.style.display = "block"
+      }
     }
   }, [isOpen])
 
@@ -76,7 +87,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
         </div>
 
         {/* Контейнер для формы */}
-        <div className="w-full h-full sm:h-auto sm:max-h-[70svh] overflow-y-auto p-6 pb-50 sm:p-8">
+        <div className="w-full h-full sm:h-auto sm:max-h-[70svh] overflow-y-auto p-6 pb-30 sm:p-8">
           <ContactForm onSuccess={onClose} inCard={false} />
         </div>
       </div>

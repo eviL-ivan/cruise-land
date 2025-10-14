@@ -63,6 +63,33 @@ export default function RootLayout({
         <GoogleAnalytics />
         <MicrosoftClarity />
         <elevenlabs-convai agent-id="agent_3301k6ww61zgea1bhdm2nfvg9ka4"></elevenlabs-convai>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                function updateWidgetVariant() {
+                  const widget = document.querySelector('elevenlabs-convai');
+                  if (!widget) return;
+
+                  const isMobile = window.innerWidth <= 640;
+                  if (isMobile) {
+                    widget.setAttribute('variant', 'expandable');
+                  } else {
+                    widget.setAttribute('variant', 'full');
+                  }
+                }
+
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', updateWidgetVariant);
+                } else {
+                  updateWidgetVariant();
+                }
+
+                window.addEventListener('resize', updateWidgetVariant);
+              })();
+            `,
+          }}
+        />
       </body>
     </html>
   )
