@@ -3,7 +3,7 @@ import { images } from "../../images"
 export const cabins = {
   title: "客舱",
   subtitle: "选择您在探险船SH Diana上的客舱",
-  selectButton: "询价",
+  selectButton: "查看空房情况",
   priceNote: "价格为每人每航次",
   categories: [
     {

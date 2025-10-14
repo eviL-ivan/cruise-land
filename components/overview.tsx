@@ -237,7 +237,7 @@ export function Overview() {
                       e.currentTarget.style.color = "#004155";
                     }}
                   >
-                    {content.header.bookButton}
+                    {content.header.bookButtonSecondSection}
                   </button>
                   <button
                     onClick={handleOpenVideoModal}

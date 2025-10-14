@@ -29,7 +29,8 @@ const baseContent = {
       cabins: "舱房",
       contact: "联系我们",
     },
-    bookButton: "联系我们",
+      bookButton: "联系我们",
+    bookButtonSecondSection: "立即咨询",
     languages: {
       ru: "RU",
       en: "EN",
