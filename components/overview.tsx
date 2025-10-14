@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
+import { ImageWithBlur } from "@/components/ui/image-with-blur";
 import { Map, ChevronLeft, ChevronRight, X, Play, FileText } from "lucide-react";
 import { BookingModal } from "./BookingModal";
 import { MediaGalleryDialog } from "./MediaGalleryDialog";
@@ -87,7 +87,7 @@ export function Overview() {
                           className="embla__slide relative min-w-0 flex-[0_0_100%] cursor-pointer"
                           onClick={() => handleOpenGallery(index)}
                         >
-                          <Image
+                          <ImageWithBlur
                             src={slide.image}
                             alt={slide.title}
                             fill
@@ -100,7 +100,7 @@ export function Overview() {
                           />
 
                           {/* Slide title overlay */}
-                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 pointer-events-none">
+                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 pointer-events-none z-20">
                             <h3 className="text-white font-serif text-3xl font-bold mb-2">
                               {slide.title}
                             </h3>

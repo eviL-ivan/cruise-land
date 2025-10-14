@@ -1,11 +1,12 @@
 'use client'
 
 import { useState, useRef, useEffect, useMemo, useCallback } from "react"
-import Image from "next/image"
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from "lucide-react"
 import { useInView } from "framer-motion"
 import { useEmblaSlider } from "@/hooks/useEmblaSlider"
 import { MediaGalleryDialog } from "./MediaGalleryDialog"
+import { ImageWithBlur } from "@/components/ui/image-with-blur"
+import { useLanguage } from "@/lib/language-context"
 
 interface CabinCardProps {
   cabin: {
@@ -25,6 +26,7 @@ interface CabinCardProps {
 }
 
 export function CabinCard({ cabin, onBook, selectButtonText, priceFromLabel = "From", index }: CabinCardProps) {
+  const { content } = useLanguage()
   const [isCardHovered, setIsCardHovered] = useState(false) // Hover on entire card - removes overlay
   const [isPanelHovered, setIsPanelHovered] = useState(false) // Hover on panel - expands panel
   const [isGalleryOpen, setIsGalleryOpen] = useState(false) // Fullscreen gallery dialog
@@ -149,7 +151,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, priceFromLabel = "F
                     />
                   ) : (
                     /* Image slide */
-                    <Image
+                    <ImageWithBlur
                       src={media}
                       alt={`${cabin.name} - Image ${mediaIndex + 1}`}
                       fill
@@ -256,7 +258,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, priceFromLabel = "F
                     {cabin.price.replace(/^(от|from|起价)\s*/i, '')}
                   </span>
                   <span className="text-[10px] lg:text-xs text-white/70 tracking-wider uppercase font-medium pb-1 lg:pb-2">
-                    / person
+                    / {content.ui.perPerson}
                   </span>
                 </div>
               </div>
@@ -284,7 +286,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, priceFromLabel = "F
                 ))}
                 {cabin.features.length > 2 && (
                   <div className={`text-white/70 text-xs font-semibold tracking-wide pt-1 transition-opacity duration-300 ${isPanelHovered ? 'opacity-0 invisible' : 'opacity-100'}`}>
-                    +{cabin.features.length - 2} more amenities
+                    {content.ui.moreAmenities(cabin.features.length - 2)}
                   </div>
                 )}
               </div>
@@ -310,7 +312,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, priceFromLabel = "F
           {cabin.features.length > 2 && (
             <div className={`hidden lg:block transition-all duration-700 ${isEven ? 'border-r border-white/20 pr-8' : 'border-l border-white/20 pl-8'} ${isPanelHovered ? 'opacity-100' : 'opacity-0'}`}>
               <h4 className="text-white/90 text-xs font-bold tracking-[0.15em] uppercase mb-4">
-                Additional Amenities
+                {content.ui.additionalAmenities}
               </h4>
               <div className="space-y-2">
                 {cabin.features.slice(2).map((feature, idx) => (

@@ -7,7 +7,7 @@ import { journey } from "./content/ru/journey.ru"
 import { itinerary } from "./content/ru/itinerary.ru"
 import { cabins } from "./content/ru/cabins.ru"
 import { map } from "./content/ru/map.ru"
-import { getCruiseCode, getCruiseRoute, getCruiseDatesShort, getCruiseNights } from "./cruise-config"
+import { getCruiseCode, getCruiseRoute, getCruiseDatesShortRU, getCruiseNights } from "./cruise-config"
 import { applyCruiseOverridesSync } from "./content/cruises/merge-content"
 
 // Базовый контент (без переопределений)
@@ -42,7 +42,7 @@ const baseContent = {
   overview: {
     cruiseCode: getCruiseCode(),
     route: getCruiseRoute(),
-    dates: getCruiseDatesShort(),
+    dates: getCruiseDatesShortRU(),
     datesLabel: "Даты",
     nights: `${getCruiseNights()} Nights`,
     durationLabel: "Длительность",
@@ -118,6 +118,16 @@ const baseContent = {
     subtitle: "Бутиковые экспедиционные круизы класса люкс, созданные для тех, кто ищет смысл за горизонтом.",
     description: "Наши суда ледового класса — SH Minerva, SH Vega и SH Diana — открывают Арктику, Антарктику и самые отдалённые уголки мира в атмосфере северной элегантности, тишины и комфорта.",
     quote: "Здесь роскошь — это не излишество, а искусство видеть глубже.",
+    awards: {
+      bestInCruise: {
+        title: "Лучший круиз",
+        subtitle: "Cruise Critic 2024",
+      },
+      sailawaze: {
+        title: "Победитель «Экскурсии и сотрудничество»",
+        subtitle: "Sailawaze 2025",
+      },
+    },
   },
 
   // Ship
@@ -219,7 +229,12 @@ const baseContent = {
   },
 
   // UI
-  ui: { slideLabel: "Перейти к слайду" },
+  ui: {
+    slideLabel: "Перейти к слайду",
+    additionalAmenities: "Дополнительные удобства",
+    perPerson: "с человека",
+    moreAmenities: (count: number) => `+${count} удобств`,
+  },
 
   // Optional services
   optionalServices: [

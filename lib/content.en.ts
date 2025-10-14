@@ -204,6 +204,16 @@ const baseContent = {
     subtitle: "Boutique luxury expedition cruises designed for those who seek meaning beyond the horizon.",
     description: "Our ice-class vessels — SH Minerva, SH Vega, and SH Diana — unlock the Arctic, Antarctica, and the world's most remote corners in an atmosphere of Nordic elegance, serenity, and comfort.",
     quote: "Here, luxury is not excess, but the art of seeing deeper.",
+    awards: {
+      bestInCruise: {
+        title: "Best in Cruise",
+        subtitle: "Cruise Critic 2024",
+      },
+      sailawaze: {
+        title: "Excursion & Collaboration Winner",
+        subtitle: "Sailawaze 2025",
+      },
+    },
   },
 
   // Ship
@@ -327,7 +337,12 @@ const baseContent = {
   },
 
   // UI
-  ui: { slideLabel: "Go to slide" },
+  ui: {
+    slideLabel: "Go to slide",
+    additionalAmenities: "Additional Amenities",
+    perPerson: "per person",
+    moreAmenities: (count: number) => `+${count} more amenities`,
+  },
 
   // Optional Services
   optionalServices: [

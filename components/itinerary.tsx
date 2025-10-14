@@ -3,8 +3,8 @@
 
 import { useState } from "react"
 import { ChevronDown, MapPin, Calendar } from "lucide-react"
-import Image from "next/image"
 import { useLanguage } from "@/lib/language-context"
+import { ImageWithBlur } from "@/components/ui/image-with-blur"
 
 export function Itinerary() {
   const { content } = useLanguage()
@@ -64,7 +64,7 @@ export function Itinerary() {
                 <div className="px-6 pb-6">
                   <div className="grid md:grid-cols-2 gap-6 pt-4 border-t border-border">
                     <div className="relative h-64 rounded-lg overflow-hidden">
-                      <Image src={item.image || "/placeholder.svg"} alt={item.title} fill className="object-cover" />
+                      <ImageWithBlur src={item.image || "/placeholder.svg"} alt={item.title} fill className="object-cover" />
                     </div>
                     <div>
                       <p className="text-muted-foreground leading-relaxed mb-6">{item.description}</p>

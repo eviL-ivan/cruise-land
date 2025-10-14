@@ -1,7 +1,7 @@
 'use client'
 
 import { useLanguage } from "@/lib/language-context"
-import Image from "next/image"
+import { ImageWithBlur } from "@/components/ui/image-with-blur"
 
 export function Wildlife() {
   const { content } = useLanguage()
@@ -25,14 +25,14 @@ export function Wildlife() {
               className="relative group overflow-hidden rounded-lg shadow-lg"
             >
               <div className="relative h-[400px]">
-                <Image
+                <ImageWithBlur
                   src={animal.image}
                   alt={animal.alt || animal.name}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-20" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-30">
                   <h3 className="text-white font-serif text-2xl font-bold mb-2">{animal.name}</h3>
                   <p className="text-white/90 text-sm">{animal.description}</p>
                 </div>

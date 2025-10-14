@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
+import { ImageWithBlur } from "@/components/ui/image-with-blur";
 
 export function Highlights() {
   const { content } = useLanguage();
@@ -76,16 +76,16 @@ export function Highlights() {
               {content.highlights.map((highlight, index) => (
                 <div key={index} className="min-w-full relative">
                   <div className="relative h-[500px] md:h-[600px]">
-                    <Image
+                    <ImageWithBlur
                       src={highlight.image || "/placeholder.svg"}
                       alt={highlight.title}
                       fill
                       className="object-cover"
                       loading="eager"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-20" />
 
-                    <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
+                    <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white z-30">
                       <div className="max-w-3xl">
                         {/* <div className="inline-block px-4 py-2 bg-accent/90 rounded-full text-accent-foreground font-bold mb-4">
                           {highlight.number}

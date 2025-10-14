@@ -1,7 +1,8 @@
 'use client'
 
-import Image from "next/image"
 import { useLanguage } from "@/lib/language-context"
+import { ImageWithBlur } from "@/components/ui/image-with-blur"
+import Image from "next/image"
 
 export function Company() {
   const { content } = useLanguage()
@@ -67,10 +68,10 @@ export function Company() {
                 </div>
                 <div className="flex flex-col gap-1 flex-1">
                   <h3 className="text-white font-medium text-sm lg:text-base leading-tight">
-                    Best in Cruise
+                    {content.company.awards.bestInCruise.title}
                   </h3>
                   <p className="text-white/60 text-xs">
-                    Cruise Critic 2024
+                    {content.company.awards.bestInCruise.subtitle}
                   </p>
                 </div>
                 <div className="flex items-start gap-1.5">
@@ -111,10 +112,10 @@ export function Company() {
                 </div>
                 <div className="flex flex-col gap-1 flex-1">
                   <h3 className="text-white font-medium text-sm lg:text-base leading-tight">
-                    Excursion & Collaboration Winner
+                    {content.company.awards.sailawaze.title}
                   </h3>
                   <p className="text-white/60 text-xs">
-                    Sailawaze 2025
+                    {content.company.awards.sailawaze.subtitle}
                   </p>
                 </div>
                 <div className="flex items-start gap-1.5">
@@ -172,10 +173,10 @@ export function Company() {
                   </div>
                   <div className="flex flex-col gap-1 flex-1">
                     <h3 className="text-white font-medium text-base leading-tight">
-                      Best in Cruise
+                      {content.company.awards.bestInCruise.title}
                     </h3>
                     <p className="text-white/60 text-sm">
-                      Cruise Critic 2024
+                      {content.company.awards.bestInCruise.subtitle}
                     </p>
                   </div>
                 </div>
@@ -194,10 +195,10 @@ export function Company() {
                   </div>
                   <div className="flex flex-col gap-1 flex-1">
                     <h3 className="text-white font-medium text-base leading-tight">
-                      Excursion & Collaboration Winner
+                      {content.company.awards.sailawaze.title}
                     </h3>
                     <p className="text-white/60 text-sm">
-                      Sailawaze 2025
+                      {content.company.awards.sailawaze.subtitle}
                     </p>
                   </div>
                 </div>
@@ -207,7 +208,7 @@ export function Company() {
 
           {/* Image */}
           <div className="relative h-full">
-            <Image
+            <ImageWithBlur
               src="/ship_diana.jpg"
               alt="Swan Hellenic expedition vessel"
               fill
@@ -215,7 +216,7 @@ export function Company() {
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1a2332]/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1a2332]/40 to-transparent z-20 pointer-events-none" />
           </div>
         </div>
       </div>

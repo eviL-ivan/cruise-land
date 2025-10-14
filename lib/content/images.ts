@@ -134,7 +134,7 @@ export const images = {
     "/images/south-georgia-wildlife.jpg",
     "/slider/slide8.jpg",
     "/images/water.png",
-    "/images/antarctica-landing.jpg",
+    "/images/052A0093.jpg",
     "/slider/slide11.jpg",
     "/images/iceberg.png",
   ],

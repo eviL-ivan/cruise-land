@@ -140,7 +140,7 @@ export function getCruiseCode(): string {
   return getCurrentCruiseConfig().code
 }
 
-// Хелпер для получения дат в формате MM.DD.YY-MM.DD.YY
+// Хелпер для получения дат в формате MM.DD.YY-MM.DD.YY (американский формат)
 export function getCruiseDatesShort(): string {
   const config = getCurrentCruiseConfig()
   const start = new Date(config.dates.start)
@@ -151,6 +151,22 @@ export function getCruiseDatesShort(): string {
     const day = String(date.getDate()).padStart(2, '0')
     const year = String(date.getFullYear()).slice(-2)
     return `${month}.${day}.${year}`
+  }
+
+  return `${formatDate(start)}-${formatDate(end)}`
+}
+
+// Хелпер для получения дат в формате DD.MM.YY-DD.MM.YY (русский/европейский формат)
+export function getCruiseDatesShortRU(): string {
+  const config = getCurrentCruiseConfig()
+  const start = new Date(config.dates.start)
+  const end = new Date(config.dates.end)
+
+  const formatDate = (date: Date) => {
+    const day = String(date.getDate()).padStart(2, '0')
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const year = String(date.getFullYear()).slice(-2)
+    return `${day}.${month}.${year}`
   }
 
   return `${formatDate(start)}-${formatDate(end)}`

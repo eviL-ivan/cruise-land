@@ -1,16 +1,16 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { ChevronDown, Play, X } from "lucide-react"
-import { useLanguage } from "@/lib/language-context"
-import { BookingModal } from "./BookingModal"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, Play, X } from "lucide-react";
+import { useLanguage } from "@/lib/language-context";
+import { BookingModal } from "./BookingModal";
 
 const staticText = {
   ru: "Путешествие через острова Южной Атлантики, Южную Георгию и Антарктический полуостров на борту SH Diana — ",
   en: "South Atlantic Islands, South Georgia, and the Antarctic Peninsula aboard SH Diana — ",
   zh: "南大西洋群岛、南乔治亚岛和南极半岛，乘坐 SH Diana —— ",
-}
+};
 
 const typingTexts = {
   ru: [
@@ -103,52 +103,52 @@ const typingTexts = {
     "进入被精致欧洲设计包裹的原始荒野的旅程。",
     "非凡的航程，奢华不以奢侈衡量，而以敬畏衡量。",
   ],
-}
+};
 
 export function Hero() {
-  const { content, language } = useLanguage()
-  const [showVideoModal, setShowVideoModal] = useState(false)
-  const [showBookingModal, setShowBookingModal] = useState(false)
-  const [currentTextIndex, setCurrentTextIndex] = useState(0)
-  const [displayedText, setDisplayedText] = useState("")
-  const [isDeleting, setIsDeleting] = useState(false)
-  const [typingSpeed, setTypingSpeed] = useState(50)
+  const { content, language } = useLanguage();
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [showBookingModal, setShowBookingModal] = useState(false);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(50);
 
   useEffect(() => {
-    const texts = typingTexts[language as keyof typeof typingTexts]
-    const currentFullText = texts[currentTextIndex]
+    const texts = typingTexts[language as keyof typeof typingTexts];
+    const currentFullText = texts[currentTextIndex];
 
     const handleTyping = () => {
       if (!isDeleting) {
         // Typing forward
         if (displayedText.length < currentFullText.length) {
-          setDisplayedText(currentFullText.slice(0, displayedText.length + 1))
-          setTypingSpeed(50)
+          setDisplayedText(currentFullText.slice(0, displayedText.length + 1));
+          setTypingSpeed(50);
         } else {
           // Pause at end before deleting (13 seconds)
-          setTimeout(() => setIsDeleting(true), 13000)
+          setTimeout(() => setIsDeleting(true), 13000);
         }
       } else {
         // Deleting
         if (displayedText.length > 0) {
-          setDisplayedText(currentFullText.slice(0, displayedText.length - 1))
-          setTypingSpeed(30)
+          setDisplayedText(currentFullText.slice(0, displayedText.length - 1));
+          setTypingSpeed(30);
         } else {
           // Move to random next text (not the same as current)
-          setIsDeleting(false)
-          let nextIndex
+          setIsDeleting(false);
+          let nextIndex;
           do {
-            nextIndex = Math.floor(Math.random() * texts.length)
-          } while (nextIndex === currentTextIndex && texts.length > 1)
-          setCurrentTextIndex(nextIndex)
-          setTypingSpeed(50)
+            nextIndex = Math.floor(Math.random() * texts.length);
+          } while (nextIndex === currentTextIndex && texts.length > 1);
+          setCurrentTextIndex(nextIndex);
+          setTypingSpeed(50);
         }
       }
-    }
+    };
 
-    const timer = setTimeout(handleTyping, typingSpeed)
-    return () => clearTimeout(timer)
-  }, [displayedText, isDeleting, currentTextIndex, typingSpeed, language])
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, currentTextIndex, typingSpeed, language]);
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -165,7 +165,7 @@ export function Hero() {
         >
           <source src={content.hero.video} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/40 to-primary/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/25 via-primary/35 to-primary/25 z-10" />
       </div>
 
       {/* Content */}
@@ -182,14 +182,16 @@ export function Hero() {
           <p className="text-lg md:text-xl text-white max-w-3xl mx-auto text-pretty">
             {staticText[language as keyof typeof staticText]}
             {displayedText}
-            <span className="ml-1 inline-block animate-[pulse_2s_ease-in-out_infinite]">|</span>
+            <span className="ml-1 inline-block animate-[pulse_2s_ease-in-out_infinite]">
+              |
+            </span>
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
           <button
             onClick={() => setShowBookingModal(true)}
             className="text-base px-8 py-3 rounded-md text-white border-2 border-white transition-all duration-300 font-semibold uppercase w-full sm:w-64"
-            style={{backgroundColor: '#004155'}}
+            style={{ backgroundColor: "#004155" }}
           >
             {content.hero.bookButton}
           </button>
@@ -197,12 +199,12 @@ export function Hero() {
             onClick={() => setShowVideoModal(true)}
             className="text-base px-8 py-3 rounded-md bg-transparent text-white border-2 border-white transition-all duration-300 font-semibold uppercase inline-flex items-center justify-center gap-2 w-full sm:w-64"
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#004155'
-              e.currentTarget.style.borderColor = 'white'
+              e.currentTarget.style.backgroundColor = "#004155";
+              e.currentTarget.style.borderColor = "white";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent'
-              e.currentTarget.style.borderColor = 'white'
+              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.borderColor = "white";
             }}
           >
             <Play className="w-5 h-5" />
@@ -247,7 +249,10 @@ export function Hero() {
       )}
 
       {/* Booking Modal */}
-      <BookingModal isOpen={showBookingModal} onClose={() => setShowBookingModal(false)} />
+      <BookingModal
+        isOpen={showBookingModal}
+        onClose={() => setShowBookingModal(false)}
+      />
     </section>
-  )
+  );
 }

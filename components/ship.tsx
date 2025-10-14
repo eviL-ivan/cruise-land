@@ -1,11 +1,11 @@
 'use client'
 
-import Image from "next/image"
 import { Waves, Utensils, Dumbbell, Sparkles, Ship as ShipIcon, Shield, ChevronLeft, ChevronRight } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
 import { useState, useMemo, useCallback } from "react"
 import { useEmblaSlider } from "@/hooks/useEmblaSlider"
 import { MediaGalleryDialog } from "./MediaGalleryDialog"
+import { ImageWithBlur } from "@/components/ui/image-with-blur"
 
 const amenityIcons = {
   "Бассейн-инфинити": Waves,
@@ -166,7 +166,7 @@ export function Ship() {
                           className="embla__slide relative min-w-0 flex-[0_0_100%] cursor-pointer"
                           onClick={() => handleOpenGallery(0, index)}
                         >
-                          <Image
+                          <ImageWithBlur
                             src={image.src}
                             alt={image.alt}
                             fill
@@ -231,7 +231,7 @@ export function Ship() {
                             className="embla__slide relative min-w-0 flex-[0_0_100%] cursor-pointer"
                             onClick={() => handleOpenGallery(sliderImages.length, index)}
                           >
-                            <Image
+                            <ImageWithBlur
                               src={image.src}
                               alt={image.alt}
                               fill
@@ -292,7 +292,7 @@ export function Ship() {
                             className="embla__slide relative min-w-0 flex-[0_0_100%] cursor-pointer"
                             onClick={() => handleOpenGallery(sliderImages.length + exteriorImages.length, index)}
                           >
-                            <Image
+                            <ImageWithBlur
                               src={image.src}
                               alt={image.alt}
                               fill

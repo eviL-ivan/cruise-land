@@ -193,6 +193,16 @@ const baseContent = {
     subtitle: "为那些在地平线之外寻找意义的人设计的精品奢华探险邮轮。",
     description: "我们的冰级船只——SH Minerva、SH Vega 和 SH Diana——以北欧优雅、宁静与舒适的氛围，开启北极、南极和世界最偏远角落的探险之旅。",
     quote: "在这里，奢华不是过度，而是更深层次的观察艺术。",
+    awards: {
+      bestInCruise: {
+        title: "最佳邮轮",
+        subtitle: "Cruise Critic 2024",
+      },
+      sailawaze: {
+        title: "游览与协作优胜者",
+        subtitle: "Sailawaze 2025",
+      },
+    },
   },
 
   // 邮轮
@@ -312,7 +322,12 @@ const baseContent = {
   },
 
   // 界面 UI
-  ui: { slideLabel: "跳转到幻灯片" },
+  ui: {
+    slideLabel: "跳转到幻灯片",
+    additionalAmenities: "其他设施",
+    perPerson: "每人",
+    moreAmenities: (count: number) => `+${count} 项设施`,
+  },
 
   // 可选服务
   optionalServices: [
