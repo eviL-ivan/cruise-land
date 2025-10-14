@@ -344,7 +344,7 @@ const OverlayRightLayout = memo(function OverlayRightLayout({ event, index, isIn
     return (
         <div className="relative h-full">
             <div className="absolute right-0 top-0 w-full md:w-3/4 lg:w-3/5 h-full bg-gradient-to-l from-slate-900/70 via-slate-900/40 to-transparent">
-                <div className="h-full flex flex-col justify-center items-end p-8 pr-4 md:pr-4 md:pl-6 md:p-16">
+                <div className="h-full flex flex-col justify-center items-end p-8 md:pr-16 md:pl-6 md:p-16">
                     {/* Scroll Indicator - Left Side */}
                     {hasOverflow && !isScrolledToBottom && (
                         <motion.div
