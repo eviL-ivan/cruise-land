@@ -24,7 +24,7 @@ export function Header() {
     setIsMobileMenuOpen(false)
     const element = document.querySelector(id)
     if (element) {
-      const headerOffset = 80
+      const headerOffset = 72
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 

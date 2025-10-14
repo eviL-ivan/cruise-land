@@ -14,9 +14,8 @@ export function OptimizedCruiseTimeline() {
     const cruiseEvents = content.itinerary.days;
     const totalSections = cruiseEvents.length + 1; // +1 for hero section
 
-    const { isBeforeMdScreen } = useScreens();
-// Определяем высоту хедера: 80px на мобильных, 88px на десктопе
-    const headerHeight = isBeforeMdScreen ? 80 : 88;
+    // Высота хедера: 72px везде
+    const headerHeight = 72;
     const headerOffset = `${headerHeight}px`;
 
     // Используем хук для управления scroll-snap

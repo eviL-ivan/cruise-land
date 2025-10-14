@@ -29,11 +29,11 @@ const amenityIcons = {
 }
 
 const sliderImages = [
-  { src: "/ship_diana.jpg", alt: "SH Diana" },
+  { src: "/shipSlider/ship_slide5.jpg", alt: "Ship view 5" },
   { src: "/shipSlider/ship_slide2.jpg", alt: "Ship view 2" },
   { src: "/shipSlider/ship_slide3.jpg", alt: "Ship view 3" },
   { src: "/shipSlider/ship_slide4.jpg", alt: "Ship view 4" },
-  { src: "/shipSlider/ship_slide5.jpg", alt: "Ship view 5" },
+  { src: "/ship_diana.jpg", alt: "SH Diana" },
 ]
 
 const exteriorImages = [
@@ -138,10 +138,20 @@ export function Ship() {
 
   return (
     <>
-      <section className="py-24 text-white" style={{backgroundColor: '#004155'}}>
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-            <div className="space-y-4">
+      <section
+        className="min-h-[100svh] lg:h-[100svh] bg-gradient-to-br from-slate-50 via-white to-slate-50"
+        data-snap-section-desktop="company-ship"
+        data-section-index="1"
+      >
+        {/* Mobile: 2 screens | Desktop: 1 screen (grid) */}
+        <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:max-w-7xl lg:mx-auto lg:px-4 lg:h-full">
+          {/* Mobile: Screen 1 - Sliders | Desktop: Left Column */}
+          <div
+            className="min-h-[100svh] lg:h-full flex flex-col justify-center px-4 py-12 lg:py-0"
+            data-snap-section-mobile="company-ship"
+            data-section-index="2"
+          >
+            <div className="space-y-4 lg:mx-0">
               {/* Main Slider */}
               <div className="relative h-[300px] rounded-lg overflow-hidden shadow-2xl group">
                 <div className="embla h-full" ref={mainEmblaRef}>
@@ -330,12 +340,19 @@ export function Ship() {
                 </div>
               </div>
             </div>
+          </div>
 
-            <div>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-white">
+          {/* Mobile: Screen 2 - Text | Desktop: Right Column */}
+          <div
+            className="min-h-[100svh] lg:h-full flex flex-col justify-center px-4 py-12 lg:py-0"
+            data-snap-section-mobile="company-ship"
+            data-section-index="3"
+          >
+            <div className="lg:mx-0">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-[#004155]">
                 {content.ship.name}
               </h2>
-              <p className="text-xl mb-8 text-white/90 leading-relaxed">{content.ship.description}</p>
+              <p className="text-xl mb-8 text-slate-700 leading-relaxed">{content.ship.description}</p>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
                 {content.ship.amenities.map((amenity, index) => {
@@ -345,8 +362,8 @@ export function Ship() {
                         <span className="text-[#be8f74] text-2xl">•</span>
                       </div>
                       <div>
-                        <h3 className="font-bold mb-1 text-white">{amenity.title}</h3>
-                        <p className="text-sm text-white/80">{amenity.description}</p>
+                        <h3 className="font-bold mb-1 text-[#004155]">{amenity.title}</h3>
+                        <p className="text-sm text-slate-600">{amenity.description}</p>
                       </div>
                     </div>
                   )

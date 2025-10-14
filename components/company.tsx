@@ -2,39 +2,23 @@
 
 import Image from "next/image"
 import { useLanguage } from "@/lib/language-context"
-import { useScrollSnapManager } from "@/hooks/useScrollSnapManager"
-import { useScreens } from "@/hooks/useScreens"
 
 export function Company() {
   const { content } = useLanguage()
-  const { isBeforeLgScreen } = useScreens()
-
-  // Snap только для мобильных
-  const headerHeight = 80
-  const headerOffset = `${headerHeight}px`
-
-  const { containerRef, isSnapActive, currentSectionIndex } = useScrollSnapManager({
-    direction: "vertical",
-    type: "mandatory",
-    threshold: 0.01,
-    rootMargin: "0px",
-    sectionSelector: "[data-snap-section='company-mobile']",
-    totalSections: 2, // 2 секции на мобильных
-    headerOffset: headerOffset,
-    debug: true,
-  })
 
   return (
-    <section className="min-h-[100svh] lg:h-[100svh] text-white" style={{backgroundColor: '#004155'}}>
-      {/* Mobile: Snap container | Desktop: Grid container */}
-      <div
-        ref={isBeforeLgScreen ? containerRef : null}
-        className="lg:grid lg:grid-cols-2 lg:h-full"
-      >
+    <section
+      className="min-h-[100svh] lg:h-[100svh] text-white"
+      style={{backgroundColor: '#004155'}}
+      data-snap-section-desktop="company-ship"
+      data-section-index="0"
+    >
+      {/* Mobile: 2 screens | Desktop: 1 screen (grid) */}
+      <div className="lg:grid lg:grid-cols-2 lg:h-full">
         {/* Mobile: Screen 1 - Description | Desktop: Left Column */}
         <div
           className="min-h-[100svh] lg:h-full flex flex-col justify-center px-16 py-12 lg:py-16"
-          data-snap-section="company-mobile"
+          data-snap-section-mobile="company-ship"
           data-section-index="0"
         >
           <div className="relative">
@@ -166,7 +150,7 @@ export function Company() {
         {/* Mobile: Screen 2 - Awards + Image | Desktop: Right Image */}
         <div
           className="min-h-[100svh] lg:h-full grid grid-rows-2 lg:grid-rows-1"
-          data-snap-section="company-mobile"
+          data-snap-section-mobile="company-ship"
           data-section-index="1"
         >
           {/* Awards Section - Mobile only */}

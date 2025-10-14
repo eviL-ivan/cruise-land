@@ -8,13 +8,12 @@ import { CruiseTimeline } from "@/components/cruise-timeline"
 import { OptimizedCruiseTimeline } from "@/components/optimized-cruise-timeline"
 import { PremiumCruiseTimelineV3 } from "@/components/premium-cruise-timeline-v3"
 import { Wildlife } from "@/components/wildlife"
-import { Ship } from "@/components/ship"
 import { Cabins } from "@/components/cabins"
 import { CTA } from "@/components/cta"
 import { Promotions } from "@/components/promotions"
 import { Footer } from "@/components/footer"
 import { Awards } from "@/components/awards"
-import { Company } from "@/components/company"
+import { CompanyShipSection } from "@/components/company-ship-section"
 import { getCurrentCruiseConfig } from "@/lib/cruise-config"
 
 export default function Home() {
@@ -47,14 +46,11 @@ export default function Home() {
         {/*  <PremiumCruiseTimelineV3 />*/}
         {/*</div>*/}
 
-        <Company />
+        <CompanyShipSection />
 
         {/*<div id="awards">*/}
         {/*    <Awards/>*/}
         {/*</div>*/}
-        <div id="ship">
-          <Ship />
-        </div>
         <div id="cabins">
           <Cabins />
         </div>
