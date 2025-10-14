@@ -2,46 +2,75 @@
 
 import Image from "next/image"
 import { useLanguage } from "@/lib/language-context"
+import { useScrollSnapManager } from "@/hooks/useScrollSnapManager"
+import { useScreens } from "@/hooks/useScreens"
 
 export function Company() {
   const { content } = useLanguage()
+  const { isBeforeLgScreen } = useScreens()
+
+  // Snap только для мобильных
+  const headerHeight = 80
+  const headerOffset = `${headerHeight}px`
+
+  const { containerRef, isSnapActive, currentSectionIndex } = useScrollSnapManager({
+    direction: "vertical",
+    type: "mandatory",
+    threshold: 0.01,
+    rootMargin: "0px",
+    sectionSelector: "[data-snap-section='company-mobile']",
+    totalSections: 2, // 2 секции на мобильных
+    headerOffset: headerOffset,
+    debug: true,
+  })
 
   return (
-    <section className="min-h-screen bg-[#1a2332] text-white">
-      <div className="grid lg:grid-cols-2 h-full">
-        {/* Left Content */}
-        <div className="flex flex-col justify-between px-8 md:px-16 lg:px-20 py-12 lg:py-16">
-          <div>
-            {/* Main Content */}
-            <div className="space-y-6 lg:space-y-8 max-w-xl">
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] text-balance text-white">
+    <section className="min-h-[100svh] lg:h-[100svh] text-white" style={{backgroundColor: '#004155'}}>
+      {/* Mobile: Snap container | Desktop: Grid container */}
+      <div
+        ref={isBeforeLgScreen ? containerRef : null}
+        className="lg:grid lg:grid-cols-2 lg:h-full"
+      >
+        {/* Mobile: Screen 1 - Description | Desktop: Left Column */}
+        <div
+          className="min-h-[100svh] lg:h-full flex flex-col justify-center px-16 py-12 lg:py-16"
+          data-snap-section="company-mobile"
+          data-section-index="0"
+        >
+          <div className="relative">
+            {/* Header - Fixed */}
+            <div className="mb-6">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] text-balance text-white mb-4">
                 {content.company.title}
               </h2>
-
-              <div className="space-y-4 lg:space-y-5 text-white/80">
-                <p className="text-base lg:text-lg leading-relaxed text-pretty">
-                  {content.company.subtitle}
-                </p>
-                <p className="text-sm lg:text-base leading-relaxed text-pretty">
-                  {content.company.description}
-                </p>
-              </div>
-
-              {/* Philosophy Quote */}
-              <div className="border-l-2 border-white/30 pl-6 py-2">
-                <p className="font-serif text-lg lg:text-xl text-white italic text-balance">
-                  {content.company.quote}
-                </p>
-              </div>
+              <div className="w-24 h-[2px] bg-gradient-to-r from-amber-400 via-amber-300 to-transparent opacity-80"></div>
             </div>
-          </div>
 
-          {/* Awards Section - Compact */}
-          <div className="pt-6 lg:pt-8 space-y-4">
-            <div className="h-px w-full bg-white/10" />
-            <div className="flex flex-col xl:flex-row gap-6 xl:gap-8">
-              {/* Cruise Critic Award */}
-              <div className="flex items-center gap-4 xl:gap-6 flex-1">
+            {/* Scrollable Content */}
+            <div className="max-h-[calc(100svh-200px)] md:max-h-[calc(100svh-200px)] overflow-y-auto overflow-x-hidden pr-6 scrollbar-custom">
+              <div className="space-y-6 lg:space-y-8">
+                <div className="space-y-4 lg:space-y-5 text-white/80">
+                  <p className="text-base lg:text-lg leading-relaxed text-pretty">
+                    {content.company.subtitle}
+                  </p>
+                  <p className="text-sm lg:text-base leading-relaxed text-pretty">
+                    {content.company.description}
+                  </p>
+                </div>
+
+                {/* Philosophy Quote */}
+                <div className="border-l-2 border-white/30 pl-6">
+                  <p className="font-serif text-lg lg:text-xl text-white italic text-balance  -mb-[16px]">
+                    {content.company.quote}
+                  </p>
+                </div>
+
+                {/* Awards Section - Desktop only */}
+                <div className="hidden lg:block pt-6 lg:pt-8 space-y-8">
+                  <div className="h-px w-full bg-white/10" />
+                  <div className="flex flex-col xl:flex-row gap-6 xl:gap-8">
+                    {/* Cruise Critic Award */}
+                    <div className="flex items-center gap-4 xl:gap-6 flex-1">
                 <div className="w-[60px] lg:w-[80px] h-[60px] lg:h-[80px] relative flex-shrink-0 bg-white/10 rounded-full flex items-center justify-center p-2 lg:p-3">
                   <Image
                     src="/awards/optimized_Best in Cruise Award Logo -1-_117x100.png"
@@ -127,21 +156,83 @@ export function Company() {
                   </div>
                 </div>
               </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Right Image */}
-        <div className="relative h-full min-h-[400px] lg:min-h-screen">
-          <Image
-            src="/ship_diana.jpg"
-            alt="Swan Hellenic expedition vessel"
-            fill
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1a2332]/40 to-transparent" />
+        {/* Mobile: Screen 2 - Awards + Image | Desktop: Right Image */}
+        <div
+          className="min-h-[100svh] lg:h-full grid grid-rows-2 lg:grid-rows-1"
+          data-snap-section="company-mobile"
+          data-section-index="1"
+        >
+          {/* Awards Section - Mobile only */}
+          <div className="lg:hidden flex flex-col justify-center px-16 py-12 bg-[#1a2332]">
+            <div className="space-y-4">
+              <div className="h-px hidden md:block w-full bg-transparent" />
+              <div className="flex flex-col gap-10 md:gap-8">
+                {/* Cruise Critic Award */}
+                <div className="flex items-center gap-4 flex-1">
+                  <div className="w-[80px] h-[80px] relative flex-shrink-0 bg-white/10 rounded-full flex items-center justify-center p-3">
+                    <Image
+                      src="/awards/optimized_Best in Cruise Award Logo -1-_117x100.png"
+                      alt="Best in Cruise"
+                      width={80}
+                      height={68}
+                      className="w-full h-auto object-contain brightness-0 invert opacity-90"
+                      unoptimized
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1 flex-1">
+                    <h3 className="text-white font-medium text-base leading-tight">
+                      Best in Cruise
+                    </h3>
+                    <p className="text-white/60 text-sm">
+                      Cruise Critic 2024
+                    </p>
+                  </div>
+                </div>
+
+                {/* Sailawaze Award */}
+                <div className="flex items-center gap-4 flex-1">
+                  <div className="w-[80px] h-[80px] relative flex-shrink-0 bg-white/10 rounded-full flex items-center justify-center p-3">
+                    <Image
+                      src="/awards/optimized_Sailawaze award_117x107.png"
+                      alt="Sailawaze Award"
+                      width={80}
+                      height={73}
+                      className="w-full h-auto object-contain brightness-0 invert opacity-90"
+                      unoptimized
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1 flex-1">
+                    <h3 className="text-white font-medium text-base leading-tight">
+                      Excursion & Collaboration Winner
+                    </h3>
+                    <p className="text-white/60 text-sm">
+                      Sailawaze 2025
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Image */}
+          <div className="relative h-full">
+            <Image
+              src="/ship_diana.jpg"
+              alt="Swan Hellenic expedition vessel"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1a2332]/40 to-transparent" />
+          </div>
         </div>
       </div>
     </section>
