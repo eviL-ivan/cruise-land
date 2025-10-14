@@ -7,7 +7,6 @@ import { Suspense } from "react"
 import { content as contentEN } from "@/lib/content.en"
 import { LanguageProvider } from "@/lib/language-context"
 import { MicrosoftClarity } from "@/components/analytics/clarity"
-import { GoogleAnalytics } from "@/components/analytics/google-analytics"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -81,7 +80,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <Suspense fallback={null}>{children}</Suspense>
         </LanguageProvider>
         <Analytics />
-        <GoogleAnalytics />
         <MicrosoftClarity />
         <elevenlabs-convai agent-id="agent_3301k6ww61zgea1bhdm2nfvg9ka4"></elevenlabs-convai>
         <script
