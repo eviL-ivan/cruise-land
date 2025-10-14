@@ -59,6 +59,8 @@ export const images = {
       "/cabins/balcony/bal1.jpg",
       "/cabins/balcony/bal2.jpg",
       "/cabins/balcony/bal3.jpg",
+      "/cabins/balcony/bal4.jpg",
+      "/cabins/balcony/bal5.jpg",
     ],
     panoramicBalcony: ["/cabins/Balcony M51.webp", "/cabins/Balcony M51.webp"],
     juniorSuite: [
@@ -71,12 +73,14 @@ export const images = {
       "/cabins/suite/suite2.jpg",
       "/cabins/suite/suite3.webp",
       "/cabins/suite/suite4.jpg",
-      "/cabins/suite/suite5.webp",
+      "/cabins/suite/suite5.jpg",
       "/cabins/suite/suite6.jpg",
+      "/cabins/suite/suite7.jpg",
     ],
     premiumSuite: [
       "/cabins/premiumsuite/suite1.jpg",
       "/cabins/premiumsuite/suite2.jpg",
+      "/cabins/suite/suite7.jpg",
       "/cabins/premiumsuite/suite3.jpg",
       "/cabins/premiumsuite/suite4.jpg",
       "/cabins/premiumsuite/suite5.jpg",
@@ -121,10 +125,10 @@ export const images = {
   ship: ["/ship_diana.jpg", "/ship_pool.jpg", "/ship_rest.jpg"],
 
   highlights: [
-    "/images/capetown-table-mountain.jpg",
+    "/images/Cape Town 2.jpg",
     "/slider/slide2.jpg",
     "/slider/slide3.jpg",
-    "/images/penguins-variety.jpg",
+    "/images/St Andrews_WKR59148_WernerKruse.jpg",
     "/images/tristan-da-cunha.jpg",
     "/slider/slide6.jpg",
     "/images/south-georgia-wildlife.jpg",
@@ -136,8 +140,8 @@ export const images = {
   ],
 
   wildlife: [
-    "/images/penguins-colony.jpg",
-    "/images/whale-ocean.jpg",
+    "/images/Tristan da Cunha_GSKO5114.jpg",
+    "/images/Orca_DJI_0402.jpg",
     "/images/albatross.jpg",
   ],
 } as const;
