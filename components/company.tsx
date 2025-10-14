@@ -12,16 +12,6 @@ export function Company() {
         {/* Left Content */}
         <div className="flex flex-col justify-between px-8 md:px-16 lg:px-20 py-12 lg:py-16">
           <div>
-            {/* Brand Mark */}
-            <div className="mb-8 lg:mb-12">
-              <div className="inline-block">
-                <h1 className="font-serif text-sm uppercase text-white mb-4">
-                  Swan Hellenic
-                </h1>
-                <div className="h-px w-full bg-white/20" />
-              </div>
-            </div>
-
             {/* Main Content */}
             <div className="space-y-6 lg:space-y-8 max-w-xl">
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] text-balance text-white">
