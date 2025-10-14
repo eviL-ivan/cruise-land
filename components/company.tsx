@@ -15,16 +15,9 @@ export function Company() {
             {/* Brand Mark */}
             <div className="mb-8 lg:mb-12">
               <div className="inline-block">
-                <div className="w-[180px] lg:w-[220px] mb-4">
-                  <Image
-                    src="/logo_green.svg"
-                    alt="Swan Hellenic"
-                    width={220}
-                    height={60}
-                    className="w-full h-auto brightness-0 invert"
-                    unoptimized
-                  />
-                </div>
+                <h1 className="font-serif text-sm uppercase text-white mb-4">
+                  Swan Hellenic
+                </h1>
                 <div className="h-px w-full bg-white/20" />
               </div>
             </div>

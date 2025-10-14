@@ -141,29 +141,6 @@ export function Ship() {
       <section className="py-24 text-white" style={{backgroundColor: '#004155'}}>
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-            <div>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-white">
-                {content.ship.name}
-              </h2>
-              <p className="text-xl mb-8 text-white/90 leading-relaxed">{content.ship.description}</p>
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
-                {content.ship.amenities.map((amenity, index) => {
-                  return (
-                    <div key={index} className="flex gap-4">
-                      <div className="flex-shrink-0 mt-1">
-                        <span className="text-[#be8f74] text-2xl">•</span>
-                      </div>
-                      <div>
-                        <h3 className="font-bold mb-1 text-white">{amenity.title}</h3>
-                        <p className="text-sm text-white/80">{amenity.description}</p>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-
             <div className="space-y-4">
               {/* Main Slider */}
               <div className="relative h-[300px] rounded-lg overflow-hidden shadow-2xl group">
@@ -351,6 +328,29 @@ export function Ship() {
                     ))}
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-white">
+                {content.ship.name}
+              </h2>
+              <p className="text-xl mb-8 text-white/90 leading-relaxed">{content.ship.description}</p>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                {content.ship.amenities.map((amenity, index) => {
+                  return (
+                    <div key={index} className="flex gap-4">
+                      <div className="flex-shrink-0 mt-1">
+                        <span className="text-[#be8f74] text-2xl">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-bold mb-1 text-white">{amenity.title}</h3>
+                        <p className="text-sm text-white/80">{amenity.description}</p>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>
