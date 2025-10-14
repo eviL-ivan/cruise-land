@@ -44,7 +44,8 @@ export function Header() {
     <>
       <header className="bg-white py-4 sticky top-0 z-50 shadow-md" style={{color: '#004155'}}>
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-between">
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -162,12 +163,12 @@ export function Header() {
               <span className="lg:hidden">{content.header.bookButton}</span>
             </button>
           </div>
-        </div>
+            </div>
 
-        {/* Mobile Navigation Menu */}
-        {isMobileMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-4 border-t pt-4" style={{borderColor: '#0041551A'}}>
-            <div className="flex flex-col gap-4">
+            {/* Mobile Navigation Menu */}
+            {isMobileMenuOpen && (
+              <nav className="lg:hidden mt-4 pb-4 border-t pt-4" style={{borderColor: '#0041551A'}}>
+                <div className="flex flex-col gap-4">
               <a
                 href="#journey"
                 onClick={(e) => scrollToSection(e, '#journey')}
@@ -246,13 +247,14 @@ export function Header() {
                 </div>
               </div>
             </div>
-          </nav>
-        )}
-      </div>
+              </nav>
+            )}
+          </div>
+        </div>
+      </header>
 
       {/* Booking Modal */}
       <BookingModal isOpen={showBookingModal} onClose={() => setShowBookingModal(false)} />
-    </header>
     </>
   )
 }
