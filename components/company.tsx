@@ -9,23 +9,20 @@ export function Company() {
 
   return (
     <section
-      className="min-h-[100svh] lg:min-h-0 py-8 lg:py-12 bg-gradient-to-br from-slate-50 via-white to-slate-50"
+      className="min-h-[100svh] lg:min-h-0 py-8 lg:py-16 bg-gradient-to-br from-slate-50 via-white to-slate-50"
     >
       <div className="container mx-auto px-4">
-        {/* Mobile Layout: All in One Screen */}
-        <div className="lg:hidden flex flex-col py-8 space-y-6">
-          {/* Header */}
-          <div className="space-y-4">
-            <h2 className="font-serif text-4xl md:text-5xl font-light leading-tight text-balance text-[#004155]">
-              Swan Hellenic
-            </h2>
-            <p className="font-serif text-3xl md:text-4xl leading-relaxed text-[#004155]">
-              {content.company.title}
-            </p>
-            <p className="text-sm leading-relaxed text-[#004155]">
-              {content.company.subtitle}
-            </p>
-          </div>
+        {/* Centered Header - All Screens */}
+        <div className="max-w-4xl mx-auto text-center mb-12 lg:mb-16">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-[#004155] tracking-tight leading-[1.1]">
+            Swan Hellenic
+          </h2>
+
+          <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#be8f74]/60 to-transparent mx-auto" />
+        </div>
+
+        {/* Mobile Layout: Image and Content */}
+        <div className="lg:hidden flex flex-col space-y-6">
 
           {/* Image */}
           <div className="relative h-[50vh] rounded-lg overflow-hidden shadow-2xl">
@@ -41,6 +38,14 @@ export function Company() {
 
           {/* Content */}
           <div className="space-y-4">
+            <p className="font-serif text-2xl md:text-3xl leading-relaxed text-[#004155] mb-4">
+              {content.company.title}
+            </p>
+
+            <p className="text-sm leading-relaxed text-[#004155]">
+              {content.company.subtitle}
+            </p>
+
             <p className="text-sm leading-relaxed text-[#004155]">
               {content.company.description}
             </p>
@@ -57,7 +62,7 @@ export function Company() {
               <div className="h-px w-full bg-[#004155]/20" />
               <div className="space-y-4">
                 {/* Cruise Critic Award */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-3">
                   <div className="w-[60px] h-[60px] relative flex-shrink-0 rounded-full flex items-center justify-center p-2" style={{backgroundColor: '#004155'}}>
                     <Image
                       src="/awards/optimized_Best in Cruise Award Logo -1-_117x100.png"
@@ -76,7 +81,7 @@ export function Company() {
                       {content.company.awards.bestInCruise.subtitle}
                     </p>
                   </div>
-                  <div className="flex items-start gap-1.5">
+                  <div className="flex items-center gap-1.5 self-center">
                     <div className="w-[14px] h-[21px]">
                       <Image
                         src="/icons/winner.svg"
@@ -99,7 +104,7 @@ export function Company() {
                 </div>
 
                 {/* Sailawaze Award */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-3">
                   <div className="w-[60px] h-[60px] flex-shrink-0 rounded-full flex items-center justify-center p-2" style={{backgroundColor: '#004155'}}>
                     <Image
                       src="/awards/optimized_Sailawaze award_117x107.png"
@@ -118,7 +123,7 @@ export function Company() {
                       {content.company.awards.sailawaze.subtitle}
                     </p>
                   </div>
-                  <div className="flex items-start gap-1.5">
+                  <div className="flex items-center gap-1.5 self-center">
                     <div className="w-[14px] h-[21px]">
                       <Image
                         src="/icons/winner.svg"
@@ -163,11 +168,7 @@ export function Company() {
           {/* Desktop: Right Column - Content */}
           <div className="flex flex-col justify-center">
             <div className="space-y-6">
-              <h2 className="font-serif text-5xl font-light leading-tight text-balance text-[#004155]">
-                Swan Hellenic
-              </h2>
-
-              <p className="font-serif text-4xl leading-relaxed text-[#004155]">
+              <p className="font-serif text-3xl lg:text-4xl leading-relaxed text-[#004155]">
                 {content.company.title}
               </p>
 
@@ -189,7 +190,7 @@ export function Company() {
               {/* Awards Section */}
               <div className="pt-4 space-y-4">
                 <div className="h-px w-full bg-[#004155]/20" />
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 items-center">
                   {/* Cruise Critic Award */}
                   <div className="flex items-center gap-3">
                     <div className="w-[60px] h-[60px] relative flex-shrink-0 rounded-full flex items-center justify-center p-2" style={{backgroundColor: '#004155'}}>
@@ -202,7 +203,7 @@ export function Company() {
                         unoptimized
                       />
                     </div>
-                    <div className="flex flex-col gap-0.5 flex-1">
+                    <div className="flex flex-col justify-between flex-1 min-h-[32px]">
                       <h3 className="text-[#004155] font-medium text-xs leading-tight">
                         {content.company.awards.bestInCruise.title}
                       </h3>
@@ -244,7 +245,7 @@ export function Company() {
                         unoptimized
                       />
                     </div>
-                    <div className="flex flex-col gap-0.5 flex-1">
+                    <div className="flex flex-col justify-between flex-1 min-h-[32px]">
                       <h3 className="text-[#004155] font-medium text-xs leading-tight">
                         {content.company.awards.sailawaze.title}
                       </h3>
