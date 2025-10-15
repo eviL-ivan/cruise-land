@@ -9,23 +9,20 @@ export function Company() {
 
   return (
     <section
-      className="min-h-[100svh] lg:min-h-0 py-8 lg:py-12 bg-gradient-to-br from-slate-50 via-white to-slate-50"
+      className="min-h-[100svh] lg:min-h-0 py-8 lg:py-16 bg-gradient-to-br from-slate-50 via-white to-slate-50"
     >
       <div className="container mx-auto px-4">
-        {/* Mobile Layout: All in One Screen */}
-        <div className="lg:hidden flex flex-col py-8 space-y-6">
-          {/* Header */}
-          <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-light leading-tight text-balance text-[#004155]">
-              Swan Hellenic
-            </h2>
-            <p className="text-3xl md:text-4xl leading-relaxed text-[#004155]">
-              {content.company.title}
-            </p>
-            <p className="text-sm leading-relaxed text-[#004155]">
-              {content.company.subtitle}
-            </p>
-          </div>
+        {/* Centered Header - All Screens */}
+        <div className="max-w-4xl mx-auto text-center mb-12 lg:mb-16">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-[#004155] tracking-tight leading-[1.1]">
+            Swan Hellenic
+          </h2>
+
+          <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#be8f74]/60 to-transparent mx-auto" />
+        </div>
+
+        {/* Mobile Layout: Image and Content */}
+        <div className="lg:hidden flex flex-col space-y-6">
 
           {/* Image */}
           <div className="relative h-[50vh] rounded-lg overflow-hidden shadow-2xl">
@@ -41,6 +38,12 @@ export function Company() {
 
           {/* Content */}
           <div className="space-y-4">
+            <p className="font-serif text-3xl md:text-4xl leading-relaxed text-[#004155]">
+              {content.company.title}
+            </p>
+            <p className="text-sm leading-relaxed text-[#004155]">
+              {content.company.subtitle}
+            </p>
             <p className="text-sm leading-relaxed text-[#004155]">
               {content.company.description}
             </p>
@@ -163,11 +166,7 @@ export function Company() {
           {/* Desktop: Right Column - Content */}
           <div className="flex flex-col justify-center">
             <div className="space-y-6">
-              <h2 className="text-5xl font-light leading-tight text-balance text-[#004155]">
-                Swan Hellenic
-              </h2>
-
-              <p className="text-4xl leading-relaxed text-[#004155]">
+              <p className="font-serif text-3xl lg:text-4xl leading-relaxed text-[#004155]">
                 {content.company.title}
               </p>
 
