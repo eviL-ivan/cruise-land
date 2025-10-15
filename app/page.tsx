@@ -37,8 +37,6 @@ export default function Home() {
           <OptimizedCruiseTimeline />
         </div>
 
-        {/* What's Included - Показываем только если includedEnabled = true */}
-        <WhatsIncluded />
 
         <Wildlife />
         {/*/!* Premium version 3 - Liquid Morphing *!/*/}
@@ -58,6 +56,9 @@ export default function Home() {
         <div id="cabins">
           <Cabins />
         </div>
+
+          <WhatsIncluded />
+
 
         {/* Current Offer - Показываем только если promoEnabled = true */}
         {cruiseConfig.promoEnabled && <Promotions />}

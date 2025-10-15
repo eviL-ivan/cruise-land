@@ -174,24 +174,54 @@ const baseContent = {
   included: {
     title: "What's Included",
     subtitle: "Everything you need for an unforgettable Antarctic expedition",
-    items: [
-      "Charter flight from Ushuaia to Buenos Aires",
-      "Group return transfers from airport to cruise port and to the hotel",
-      "One night pre-cruise accommodation with breakfast in a 4/5-star hotel",
-      "Your selected stateroom",
-      "All meals onboard",
-      "Complimentary hot & cold beverages, beer, wine & spirits any time throughout your cruise",
-      "24-hour room service",
-      "Lecture programs by expedition team and guest speakers",
-      "One selected shore excursion per port of call",
-      "All expedition landings",
-      "Entry level WI-FI (upgraded packages available)",
-      "Gym, sauna, pool",
-      "24/7 self service laundry",
-      "Waterproof backpack and refillable water bottle, yours to keep",
-      "In polar regions: branded parka, yours to keep and use of rubber boots",
-      "Memory package of your voyage",
-      "Onboard gratuities & port taxes",
+    categories: [
+      {
+        title: "Transport & Accommodation",
+        items: [
+          "Charter flight from Ushuaia to Buenos Aires",
+          "Group return transfers from airport to cruise port and to the hotel",
+          "One night pre-cruise accommodation with breakfast in a 4/5-star hotel",
+          "Your selected stateroom",
+        ],
+      },
+      {
+        title: "Dining & Beverages",
+        items: [
+          "All meals onboard",
+          "Complimentary hot & cold beverages, beer, wine & spirits any time throughout your cruise",
+          "24-hour room service",
+        ],
+      },
+      {
+        title: "Expedition Activities",
+        items: [
+          "Lecture programs by expedition team and guest speakers",
+          "One selected shore excursion per port of call",
+          "All expedition landings",
+        ],
+      },
+      {
+        title: "Onboard Amenities",
+        items: [
+          "Entry level WI-FI (upgraded packages available)",
+          "Gym, sauna, pool",
+          "24/7 self service laundry",
+        ],
+      },
+      {
+        title: "Expedition Equipment",
+        items: [
+          "Waterproof backpack and refillable water bottle, yours to keep",
+          "In polar regions: branded parka, yours to keep and use of rubber boots",
+        ],
+      },
+      {
+        title: "Additional Services",
+        items: [
+          "Memory package of your voyage",
+          "Onboard gratuities & port taxes",
+        ],
+      },
     ],
   },
 
