@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import axios from "axios"
-import { useLanguage } from "@/lib/language-context"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import { CountryAutocomplete } from "@/data/form/country-autocomplete"
-import { cn } from "@/lib/utils"
-import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
-import 'react-phone-number-input/style.css'
+import { useState } from "react";
+import axios from "axios";
+import { useLanguage } from "@/lib/language-context";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { CountryAutocomplete } from "@/data/form/country-autocomplete";
+import { cn } from "@/lib/utils";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 interface ContactFormProps {
-  onSuccess?: () => void
-  inCard?: boolean
+  onSuccess?: () => void;
+  inCard?: boolean;
 }
 
 export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
-  const { language, content } = useLanguage()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
+  const { language, content } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -31,72 +31,76 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
     comments: "",
     isTravelAgent: false,
     consent: false,
-  })
+  });
 
   const [errors, setErrors] = useState({
     email: "",
     phone: "",
-  })
+  });
 
   const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email)
-  }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const validatePhone = (phone: string): boolean => {
-    if (!phone) return false
+    if (!phone) return false;
     try {
-      return isValidPhoneNumber(phone)
+      return isValidPhoneNumber(phone);
     } catch {
-      return false
+      return false;
     }
-  }
+  };
 
   const handleEmailBlur = () => {
     if (formData.email && !validateEmail(formData.email)) {
-      setErrors({ ...errors, email: content.forms.contact.emailError })
+      setErrors({ ...errors, email: content.forms.contact.emailError });
     } else {
-      setErrors({ ...errors, email: "" })
+      setErrors({ ...errors, email: "" });
     }
-  }
+  };
 
   const handlePhoneBlur = () => {
     if (formData.phone && !validatePhone(formData.phone)) {
-      setErrors({ ...errors, phone: content.forms.contact.phoneError })
+      setErrors({ ...errors, phone: content.forms.contact.phoneError });
     } else {
-      setErrors({ ...errors, phone: "" })
+      setErrors({ ...errors, phone: "" });
     }
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Проверяем что заполнено хотя бы одно поле
     if (!formData.email && !formData.phone) {
       setErrors({
-        email: content.forms.contact.emailError || "Please provide email or phone",
-        phone: content.forms.contact.phoneError || "Please provide email or phone",
-      })
-      return
+        email:
+          content.forms.contact.emailError || "Please provide email or phone",
+        phone:
+          content.forms.contact.phoneError || "Please provide email or phone",
+      });
+      return;
     }
 
     // Валидируем только заполненные поля
-    const emailValid = !formData.email || validateEmail(formData.email)
-    const phoneValid = !formData.phone || validatePhone(formData.phone)
+    const emailValid = !formData.email || validateEmail(formData.email);
+    const phoneValid = !formData.phone || validatePhone(formData.phone);
 
     if (!emailValid || !phoneValid) {
       setErrors({
-        email: formData.email && !emailValid ? content.forms.contact.emailError : "",
-        phone: formData.phone && !phoneValid ? content.forms.contact.phoneError : "",
-      })
-      return
+        email:
+          formData.email && !emailValid ? content.forms.contact.emailError : "",
+        phone:
+          formData.phone && !phoneValid ? content.forms.contact.phoneError : "",
+      });
+      return;
     }
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     try {
       // Подготовка данных в формате Bitrix
-      const formDataToSend = new FormData()
+      const formDataToSend = new FormData();
 
       const values = {
         LEAD_NAME: [formData.firstName],
@@ -107,11 +111,11 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
         LEAD_COMMENTS: [formData.comments],
         LEAD_UF_CRM_1759841340: formData.consent ? ["Y"] : [],
         hr_9263764: formData.isTravelAgent ? ["Y"] : [],
-      }
+      };
 
       const consents = {
         AGREEMENT_8: formData.consent ? "Y" : "N",
-      }
+      };
 
       const trace = {
         url: window.location.href,
@@ -128,25 +132,34 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
           yaId: "",
         },
         pages: {
-          list: [[window.location.href, Math.floor(Date.now() / 1000), document.title]],
+          list: [
+            [
+              window.location.href,
+              Math.floor(Date.now() / 1000),
+              document.title,
+            ],
+          ],
         },
         gid: null,
         previous: {
           list: [],
         },
-      }
+      };
 
-      formDataToSend.append("properties", JSON.stringify({}))
-      formDataToSend.append("consents", JSON.stringify(consents))
-      formDataToSend.append("recaptcha", "undefined")
-      formDataToSend.append("timeZoneOffset", String(new Date().getTimezoneOffset()))
-      formDataToSend.append("values", JSON.stringify(values))
-      formDataToSend.append("id", "19")
-      formDataToSend.append("sec", "3a5j4r")
-      formDataToSend.append("lang", language)
-      formDataToSend.append("trace", JSON.stringify(trace))
-      formDataToSend.append("entities", JSON.stringify([]))
-      formDataToSend.append("security_sign", "undefined")
+      formDataToSend.append("properties", JSON.stringify({}));
+      formDataToSend.append("consents", JSON.stringify(consents));
+      formDataToSend.append("recaptcha", "undefined");
+      formDataToSend.append(
+        "timeZoneOffset",
+        String(new Date().getTimezoneOffset())
+      );
+      formDataToSend.append("values", JSON.stringify(values));
+      formDataToSend.append("id", "19");
+      formDataToSend.append("sec", "3a5j4r");
+      formDataToSend.append("lang", language);
+      formDataToSend.append("trace", JSON.stringify(trace));
+      formDataToSend.append("entities", JSON.stringify([]));
+      formDataToSend.append("security_sign", "undefined");
 
       const response = await axios.post(
         "https://crm.swanhellenic.com/bitrix/services/main/ajax.php?action=crm.site.form.fill",
@@ -156,19 +169,19 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
             "Content-Type": "multipart/form-data",
           },
         }
-      )
+      );
 
       if (response.data) {
-        setIsSuccess(true)
-        if (onSuccess) onSuccess()
+        setIsSuccess(true);
+        if (onSuccess) onSuccess();
       }
     } catch (error) {
-      console.error("Error submitting form:", error)
-      alert(content.forms.contact.errorSubmitting)
+      console.error("Error submitting form:", error);
+      alert(content.forms.contact.errorSubmitting);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   if (isSuccess) {
     return (
@@ -195,124 +208,174 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
           {content.forms.contact.successMessage}
         </p>
       </div>
-    )
+    );
   }
 
   return (
-    <form onSubmit={handleSubmit} className={cn(
-      "w-full max-w-5xl mx-auto",
-      inCard && "p-12 md:p-16 lg:p-20 bg-card rounded-sm border border-border/40 shadow-[0_2px_24px_rgba(0,0,0,0.04)]"
-    )}>
-      <div className="grid md:grid-cols-2 gap-8">
-        <div className="space-y-3">
-          <Label htmlFor="firstName" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-            {content.forms.contact.firstName} <span className="text-destructive">*</span>
+    <form
+      onSubmit={handleSubmit}
+      className={cn(
+        "w-full max-w-5xl mx-auto",
+        inCard &&
+          "p-12 md:p-16 lg:p-20 bg-card rounded-sm border border-border/40 shadow-[0_2px_24px_rgba(0,0,0,0.04)]"
+      )}
+    >
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <Label
+            htmlFor="firstName"
+            className="text-xs uppercase tracking-widest font-medium text-foreground/70"
+          >
+            {content.forms.contact.firstName}{" "}
+            <span className="text-destructive">*</span>
           </Label>
           <Input
             id="firstName"
             required
             value={formData.firstName}
-            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-            className="h-14 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 text-base font-light px-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30"
+            onChange={(e) =>
+              setFormData({ ...formData, firstName: e.target.value })
+            }
+            className="h-10 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 text-base font-light px-0 py-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30"
           />
         </div>
 
-        <div className="space-y-3">
-          <Label htmlFor="lastName" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-            {content.forms.contact.lastName} <span className="text-destructive">*</span>
+        <div className="space-y-2">
+          <Label
+            htmlFor="lastName"
+            className="text-xs uppercase tracking-widest font-medium text-foreground/70"
+          >
+            {content.forms.contact.lastName}{" "}
+            <span className="text-destructive">*</span>
           </Label>
           <Input
             id="lastName"
             required
             value={formData.lastName}
-            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-            className="h-14 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 text-base font-light px-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30"
+            onChange={(e) =>
+              setFormData({ ...formData, lastName: e.target.value })
+            }
+            className="h-10 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 text-base font-light px-0 py-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30"
           />
         </div>
       </div>
 
-      <div className="mt-8">
-        <p className="text-xs uppercase tracking-widest font-medium text-foreground/70 mb-6">
-          {language === 'ru' ? 'Способ связи' : language === 'zh' ? '联系方式' : 'Contact method'} <span className="text-destructive">*</span>
-        </p>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="space-y-3">
-            <Label htmlFor="email" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-              {content.forms.contact.email}
+      <div className="mt-2">
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <Label
+              htmlFor="email"
+              className="text-xs uppercase tracking-widest font-medium text-foreground/70"
+            >
+              {content.forms.contact.email}{" "}
+              <span className="text-destructive">*</span>
             </Label>
-          <Input
-            id="email"
-            type="email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            onBlur={handleEmailBlur}
-            className={cn(
-              "h-14 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 text-base font-light px-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30",
-              errors.email && "border-destructive focus:border-destructive"
+            <Input
+              id="email"
+              type="email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              onBlur={handleEmailBlur}
+              className={cn(
+                "h-10 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 text-base font-light px-0 py-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30",
+                errors.email && "border-destructive focus:border-destructive"
+              )}
+            />
+            {errors.email && (
+              <p className="text-xs text-destructive font-medium mt-2">
+                {errors.email}
+              </p>
             )}
-          />
-          {errors.email && <p className="text-xs text-destructive font-medium mt-2">{errors.email}</p>}
-        </div>
+          </div>
 
-        <div className="space-y-3">
-          <Label htmlFor="phone" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-            {content.forms.contact.phone}
-          </Label>
-          <PhoneInput
-            id="phone"
-            international
-            value={formData.phone}
-            onChange={(value) => setFormData({ ...formData, phone: value || "" })}
-            onBlur={handlePhoneBlur}
-            className={cn(
-              "phone-input-custom h-14 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus-within:border-foreground/60 transition-all duration-300",
-              errors.phone && "border-destructive focus-within:border-destructive"
+          <div className="space-y-2">
+            <Label
+              htmlFor="phone"
+              className="text-xs uppercase tracking-widest font-medium text-foreground/70"
+            >
+              {content.forms.contact.phone}{" "}
+              <span className="text-destructive">*</span>
+            </Label>
+            <PhoneInput
+              id="phone"
+              international
+              value={formData.phone}
+              onChange={(value) =>
+                setFormData({ ...formData, phone: value || "" })
+              }
+              onBlur={handlePhoneBlur}
+              className={cn(
+                "phone-input-custom h-10 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus-within:border-foreground/60 transition-all duration-300",
+                errors.phone &&
+                  "border-destructive focus-within:border-destructive"
+              )}
+            />
+            {errors.phone && (
+              <p className="text-xs text-destructive font-medium mt-2">
+                {errors.phone}
+              </p>
             )}
-          />
-          {errors.phone && <p className="text-xs text-destructive font-medium mt-2">{errors.phone}</p>}
           </div>
         </div>
       </div>
 
-      <div className="space-y-3 mt-8">
-        <Label htmlFor="country" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
-          {content.forms.contact.country} <span className="text-destructive">*</span>
+      <div className="space-y-2 mt-2">
+        <Label
+          htmlFor="country"
+          className="text-xs uppercase tracking-widest font-medium text-foreground/70"
+        >
+          {content.forms.contact.country}{" "}
+          <span className="text-destructive">*</span>
         </Label>
         <CountryAutocomplete
           value={formData.country}
-          onValueChange={(value) => setFormData({ ...formData, country: value })}
+          onValueChange={(value) =>
+            setFormData({ ...formData, country: value })
+          }
           placeholder={content.forms.contact.countryPlaceholder}
           required
         />
       </div>
 
-      <div className="space-y-3 mt-8">
-        <Label htmlFor="comments" className="text-xs uppercase tracking-widest font-medium text-foreground/70">
+      <div className="space-y-2 mt-2">
+        <Label
+          htmlFor="comments"
+          className="text-xs uppercase tracking-widest font-medium text-foreground/70"
+        >
           {content.forms.contact.comments}
         </Label>
         <Textarea
           id="comments"
           value={formData.comments}
-          onChange={(e) => setFormData({ ...formData, comments: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, comments: e.target.value })
+          }
           rows={1}
           className="bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 text-base font-light resize-y px-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30 min-h-[3rem]"
         />
       </div>
 
-      <div className="space-y-6 mt-10">
+      <div className="space-y-4 mt-4">
         <div className="flex items-start space-x-4">
           <Checkbox
             id="travelAgent"
             checked={formData.isTravelAgent}
-            onCheckedChange={(checked) => setFormData({ ...formData, isTravelAgent: checked as boolean })}
+            onCheckedChange={(checked) =>
+              setFormData({ ...formData, isTravelAgent: checked as boolean })
+            }
             className="mt-1 rounded-sm border-foreground/30 data-[state=checked]:bg-foreground data-[state=checked]:border-foreground"
           />
           <Label
             htmlFor="travelAgent"
             className="text-sm font-normal text-foreground/90 cursor-pointer leading-relaxed"
             onClick={(e) => {
-              e.preventDefault()
-              setFormData({ ...formData, isTravelAgent: !formData.isTravelAgent })
+              e.preventDefault();
+              setFormData({
+                ...formData,
+                isTravelAgent: !formData.isTravelAgent,
+              });
             }}
           >
             {content.forms.contact.isTravelAgent}
@@ -324,32 +387,37 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
             id="consent"
             required
             checked={formData.consent}
-            onCheckedChange={(checked) => setFormData({ ...formData, consent: checked as boolean })}
+            onCheckedChange={(checked) =>
+              setFormData({ ...formData, consent: checked as boolean })
+            }
             className="mt-1 rounded-sm border-foreground/30 data-[state=checked]:bg-foreground data-[state=checked]:border-foreground"
           />
           <Label
             htmlFor="consent"
             className="text-sm font-normal text-foreground/80 cursor-pointer leading-relaxed"
             onClick={(e) => {
-              e.preventDefault()
-              setFormData({ ...formData, consent: !formData.consent })
+              e.preventDefault();
+              setFormData({ ...formData, consent: !formData.consent });
             }}
           >
-            {content.forms.contact.consent} <span className="text-destructive">*</span>
+            {content.forms.contact.consent}{" "}
+            <span className="text-destructive">*</span>
           </Label>
         </div>
       </div>
 
-      <div className="mt-12 pt-8 border-t border-foreground/20 flex justify-center">
+      <div className="mt-2 pt-6 border-t border-foreground/20 flex justify-center">
         <button
           type="submit"
           disabled={isSubmitting}
           className="px-10 py-3 rounded-md text-white border-2 border-foreground/20 transition-all duration-300 font-semibold uppercase text-sm tracking-wider disabled:opacity-50 disabled:cursor-not-allowed hover:border-foreground/40"
-          style={{backgroundColor: '#004155'}}
+          style={{ backgroundColor: "#004155" }}
         >
-          {isSubmitting ? content.forms.contact.submitting : content.forms.contact.submit}
+          {isSubmitting
+            ? content.forms.contact.submitting
+            : content.forms.contact.submit}
         </button>
       </div>
     </form>
-  )
+  );
 }

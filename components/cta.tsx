@@ -10,13 +10,13 @@ export function CTA() {
   const [showBookingModal, setShowBookingModal] = useState(false)
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-16 md:py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-4 text-balance">
             {content.cta.title}
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground text-pretty">{content.cta.subtitle}</p>
+          <p className="text-base md:text-lg text-muted-foreground text-pretty">{content.cta.subtitle}</p>
         </div>
 
         <div className="max-w-4xl mx-auto">
