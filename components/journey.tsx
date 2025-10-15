@@ -67,12 +67,12 @@ function StatItem({ number, title, description, delay }: StatItemProps) {
               <div className="relative -translate-y-1">
                 {/* Number glow effect */}
                 <div className="absolute inset-0 grid place-items-center">
-                  <span className="font-serif text-4xl md:text-5xl font-light text-primary/20 blur-sm scale-110 leading-none">
+                  <span className="text-4xl md:text-5xl font-light text-primary/20 blur-sm scale-110 leading-none">
                     {number}
                   </span>
                 </div>
                 {/* Main number with perfect centering */}
-                <span className="relative font-serif text-4xl md:text-5xl font-light bg-gradient-to-br from-primary via-accent to-primary bg-clip-text text-transparent leading-none block">
+                <span className="relative text-4xl md:text-5xl font-light bg-gradient-to-br from-primary via-accent to-primary bg-clip-text text-transparent leading-none block">
                   {number}
                 </span>
               </div>
@@ -87,7 +87,7 @@ function StatItem({ number, title, description, delay }: StatItemProps) {
         </div>
 
         {/* Title */}
-        <h3 className="font-serif text-2xl md:text-3xl font-light tracking-tight">
+        <h3 className="text-2xl md:text-3xl font-light tracking-tight">
           {title}
         </h3>
 
@@ -130,7 +130,7 @@ export function Journey() {
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance">
             {content.journey.title}
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
@@ -172,7 +172,7 @@ export function Journey() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-20" />
                 <div className="absolute bottom-4 left-4 right-4 z-30">
-                  <div className="text-white font-serif text-2xl font-bold">{destination.name}</div>
+                  <h3 className="text-white text-2xl -mb-2">{destination.name}</h3>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground text-center">{destination.description}</p>

@@ -116,7 +116,7 @@ export function CruiseTimeline() {
     <div className="relative py-20 px-4 md:px-8 lg:px-16 overflow-hidden">
       {/* Header */}
       <div className="max-w-4xl mx-auto text-center mb-20">
-        <h1 className="text-5xl md:text-7xl font-serif font-light mb-6 text-balance">Антарктическая экспедиция</h1>
+        <h1 className="text-5xl md:text-7xl font-light mb-6 text-balance">Антарктическая экспедиция</h1>
         <p className="text-xl md:text-2xl text-muted-foreground font-light">
           Путешествие через 3 континента и 2 океана на борту SH Diana
         </p>
@@ -202,11 +202,11 @@ export function CruiseTimeline() {
                       />
 
                       <div className="absolute top-6 left-6">
-                        <div className="font-serif italic text-white/90 text-lg tracking-wide">{event.days}</div>
+                        <div className="font-medium text-white/90 text-lg tracking-wide">{event.days}</div>
                       </div>
 
                       <div className="absolute bottom-6 left-6 right-6">
-                        <h3 className="text-4xl font-serif font-light text-white mb-2 text-balance">{event.title}</h3>
+                        <h3 className="text-4xl font-light text-white mb-2 text-balance">{event.title}</h3>
                         <p className="text-base text-white/95 font-medium">{event.location}</p>
                       </div>
                     </div>
@@ -239,11 +239,11 @@ export function CruiseTimeline() {
                 <img src={event.image || "/placeholder.svg"} alt={event.title} className="w-full h-full object-cover" />
 
                 <div className="absolute top-4 left-4">
-                  <div className="font-serif italic text-white/90 text-base tracking-wide">{event.days}</div>
+                  <div className="font-medium text-white/90 text-base tracking-wide">{event.days}</div>
                 </div>
 
                 <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-3xl font-serif font-light text-white mb-1 text-balance">{event.title}</h3>
+                  <h3 className="text-3xl font-light text-white mb-1 text-balance">{event.title}</h3>
                   <p className="text-sm text-white/95 font-medium">{event.location}</p>
                 </div>
               </div>
@@ -269,7 +269,7 @@ export function CruiseTimeline() {
       {/* Footer */}
       <div className="max-w-4xl mx-auto text-center mt-32 md:mt-64">
         <div className="inline-block p-8 bg-card rounded-2xl border-2 shadow-xl">
-          <h2 className="text-3xl font-serif font-light mb-3">SH Diana</h2>
+          <h2 className="text-3xl font-light mb-3">SH Diana</h2>
           <p className="text-muted-foreground mb-6 max-w-2xl">
             Бутик-отель на воде с открытым бассейном-инфинити, ресторанами высокой кухни и просторными каютами с
             панорамными балконами

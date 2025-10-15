@@ -75,7 +75,7 @@ export function PremiumCruiseTimeline() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance"
+            className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance"
           >
             {content.itinerary.title}
           </motion.h2>
@@ -249,7 +249,7 @@ function OverlayLeftLayout({ event, index, isInView }: any) {
                 <span className="text-white/60 text-xs md:text-sm font-light tracking-[0.3em] uppercase">
                   {event.day}
                 </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mt-3 mb-4 md:mb-6">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mt-3 mb-4 md:mb-6">
                   {event.title}
                 </h2>
                 <div className="flex items-center gap-2 text-white/80 mb-6 md:mb-8">
@@ -395,7 +395,7 @@ function OverlayRightLayout({ event, index, isInView }: any) {
                 <span className="text-white/60 text-xs md:text-sm font-light tracking-[0.3em] uppercase">
                   {event.day}
                 </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mt-3 mb-4 md:mb-6">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mt-3 mb-4 md:mb-6">
                   {event.title}
                 </h2>
                 <div className="flex items-center justify-end gap-2 text-white/80 mb-6 md:mb-8">

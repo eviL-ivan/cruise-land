@@ -22,7 +22,7 @@ export function WhatsIncluded() {
 
         {/* Section Header */}
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-[#004155]">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-[#004155]">
             {content.included.title}
           </h2>
           <p className="text-base md:text-lg text-[#6d6e71]/80 text-pretty leading-relaxed">

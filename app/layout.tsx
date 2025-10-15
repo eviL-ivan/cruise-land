@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Space_Grotesk, Noto_Sans_JP, Noto_Sans_SC } from "next/font/google"
+import { Noto_Sans_JP, Noto_Sans_SC } from "next/font/google"
+import localFont from "next/font/local"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Suspense } from "react"
@@ -8,10 +9,38 @@ import { content as contentEN } from "@/lib/content.en"
 import { LanguageProvider } from "@/lib/language-context"
 import { MicrosoftClarity } from "@/components/analytics/clarity"
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-space-grotesk",
+// Non Natural Grotesque - для заголовков (300 DemiLight, 700 Bold)
+const nonNaturalGrotesk = localFont({
+  src: "../fonts/non-natural-grotesque/NonNaturalGrotesk-Variable.woff2",
+  variable: "--font-non-natural-grotesque",
+  display: "swap",
+})
+
+// PP Neue Montreal - для основного текста (без italic)
+const ppNeueMontreal = localFont({
+  src: [
+    {
+      path: "../fonts/pp-neue-montreal/PPNeueMontreal-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../fonts/pp-neue-montreal/PPNeueMontreal-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/pp-neue-montreal/PPNeueMontreal-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../fonts/pp-neue-montreal/PPNeueMontreal-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-pp-neue-montreal",
   display: "swap",
 })
 
@@ -44,7 +73,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${notoSansJP.variable} ${notoSansSC.variable}`}>
+    <html lang="en" className={`${nonNaturalGrotesk.variable} ${ppNeueMontreal.variable} ${notoSansJP.variable} ${notoSansSC.variable}`}>
       <head>
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-MT7S1EMTCD"></script>

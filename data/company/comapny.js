@@ -8,7 +8,7 @@ export function VariationTwo() {
             {/* Brand Mark */}
             <div className="mb-8 lg:mb-12">
               <div className="inline-block">
-                <h1 className="font-serif text-sm tracking-[0.4em] uppercase text-ice/60 mb-4">
+                <h1 className="text-sm tracking-[0.4em] uppercase text-ice/60 mb-4">
                   Swan Hellenic
                 </h1>
                 <div className="h-px w-full bg-ice/20" />
@@ -17,7 +17,7 @@ export function VariationTwo() {
 
             {/* Main Content */}
             <div className="space-y-6 lg:space-y-8 max-w-xl">
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-balance">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-balance">
                 See What Others Don't
               </h2>
 
@@ -38,7 +38,7 @@ export function VariationTwo() {
 
               {/* Philosophy Quote */}
               <div className="border-l-2 border-ice/30 pl-6 py-2">
-                <p className="font-serif text-lg lg:text-xl text-ice italic text-balance">
+                <p className="text-lg lg:text-xl text-ice font-medium text-balance">
                   Здесь роскошь — это не излишество, а искусство видеть глубже.
                 </p>
               </div>

@@ -188,7 +188,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
             />
           </svg>
         </div>
-        <h3 className="text-2xl md:text-3xl font-serif font-light mb-4">
+        <h3 className="text-2xl md:text-3xl font-light mb-4">
           {content.forms.contact.success}
         </h3>
         <p className="text-muted-foreground text-lg">
