@@ -266,6 +266,7 @@ interface CountryAutocompleteProps {
   placeholder?: string
   required?: boolean
   autoDetect?: boolean
+  isCompact?: boolean
 }
 
 export function CountryAutocomplete({
@@ -274,6 +275,7 @@ export function CountryAutocomplete({
   placeholder = "Country",
   required = false,
   autoDetect = true,
+  isCompact = false,
 }: CountryAutocompleteProps) {
   const [open, setOpen] = React.useState(false)
   const [searchQuery, setSearchQuery] = React.useState("")
@@ -364,7 +366,10 @@ export function CountryAutocomplete({
         ref={buttonRef}
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full h-14 flex items-center justify-between bg-transparent border-0 border-b-2 border-foreground/20 rounded-none hover:border-foreground/60 transition-all duration-300 text-base font-light px-0 text-left focus:outline-none focus:border-foreground/60"
+        className={cn(
+          "w-full flex items-center justify-between bg-transparent border-0 border-b-2 border-foreground/20 rounded-none hover:border-foreground/60 transition-all duration-300 font-light px-0 text-left focus:outline-none focus:border-foreground/60",
+          isCompact ? "h-8 text-sm" : "h-14 text-base"
+        )}
       >
         <span className={cn("text-foreground/50", value && "text-foreground")}>
           {value ? countries.find((country) => country.value === value)?.label : placeholder}

@@ -68,7 +68,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
       >
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 p-1.5 sm:p-2 rounded-full bg-white/90 hover:bg-white transition-colors shadow-lg"
+          className="absolute top-2.5 right-2 sm:top-3 sm:right-4 z-10 p-1.5 sm:p-2 rounded-full bg-white/90 hover:bg-white transition-colors shadow-lg"
           aria-label="Close"
         >
           <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
@@ -88,7 +88,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
         {/* Контейнер для формы */}
         <div className="w-full h-full sm:h-auto sm:max-h-[70svh] overflow-y-auto p-4 pb-20 sm:p-6">
-          <ContactForm onSuccess={onClose} inCard={false} />
+          <ContactForm onSuccess={onClose} inCard={false} isCompact={true} />
         </div>
       </div>
     </div>

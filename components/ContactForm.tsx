@@ -16,12 +16,14 @@ import "react-phone-number-input/style.css";
 interface ContactFormProps {
   onSuccess?: () => void;
   inCard?: boolean;
+  isCompact?: boolean;
 }
 
-export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
+export function ContactForm({ onSuccess, inCard = true, isCompact = false }: ContactFormProps) {
   const { language, content } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showComments, setShowComments] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -220,7 +222,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
           "p-12 md:p-16 lg:p-20 bg-card rounded-sm border border-border/40 shadow-[0_2px_24px_rgba(0,0,0,0.04)]"
       )}
     >
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className={cn("grid md:grid-cols-2", isCompact ? "gap-3" : "gap-6")}>
         <div className="space-y-2">
           <Label
             htmlFor="firstName"
@@ -236,7 +238,10 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
             onChange={(e) =>
               setFormData({ ...formData, firstName: e.target.value })
             }
-            className="h-10 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 text-base font-light px-0 py-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30"
+            className={cn(
+              "bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 font-light px-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30",
+              isCompact ? "h-8 py-0.5 text-sm" : "h-10 py-1 text-base"
+            )}
           />
         </div>
 
@@ -255,13 +260,16 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
             onChange={(e) =>
               setFormData({ ...formData, lastName: e.target.value })
             }
-            className="h-10 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 text-base font-light px-0 py-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30"
+            className={cn(
+              "bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 font-light px-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30",
+              isCompact ? "h-8 py-0.5 text-sm" : "h-10 py-1 text-base"
+            )}
           />
         </div>
       </div>
 
-      <div className="mt-2">
-        <div className="grid md:grid-cols-2 gap-6">
+      <div className={isCompact ? "mt-3" : "mt-2"}>
+        <div className={cn("grid md:grid-cols-2", isCompact ? "gap-y-3 gap-x-3 md:gap-3" : "gap-6")}>
           <div className="space-y-2">
             <Label
               htmlFor="email"
@@ -279,7 +287,8 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
               }
               onBlur={handleEmailBlur}
               className={cn(
-                "h-10 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 text-base font-light px-0 py-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30",
+                "bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 font-light px-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30",
+                isCompact ? "h-8 py-0.5 text-sm" : "h-10 py-1 text-base",
                 errors.email && "border-destructive focus:border-destructive"
               )}
             />
@@ -307,7 +316,8 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
               }
               onBlur={handlePhoneBlur}
               className={cn(
-                "phone-input-custom h-10 bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus-within:border-foreground/60 transition-all duration-300",
+                "phone-input-custom bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus-within:border-foreground/60 transition-all duration-300",
+                isCompact ? "phone-input-compact h-8 text-sm" : "h-10 text-base",
                 errors.phone &&
                   "border-destructive focus-within:border-destructive"
               )}
@@ -321,7 +331,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
         </div>
       </div>
 
-      <div className="space-y-2 mt-2">
+      <div className={cn("space-y-2", isCompact ? "mt-3" : "mt-2")}>
         <Label
           htmlFor="country"
           className="text-xs uppercase tracking-widest font-medium text-foreground/70"
@@ -336,29 +346,45 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
           }
           placeholder={content.forms.contact.countryPlaceholder}
           required
+          isCompact={isCompact}
         />
       </div>
 
-      <div className="space-y-2 mt-2">
-        <Label
-          htmlFor="comments"
-          className="text-xs uppercase tracking-widest font-medium text-foreground/70"
-        >
-          {content.forms.contact.comments}
-        </Label>
-        <Textarea
-          id="comments"
-          value={formData.comments}
-          onChange={(e) =>
-            setFormData({ ...formData, comments: e.target.value })
-          }
-          rows={1}
-          className="bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 text-base font-light resize-y px-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30 min-h-[3rem]"
-        />
-      </div>
+      {isCompact && !showComments ? (
+        <div className={cn("mt-2")}>
+          <button
+            type="button"
+            onClick={() => setShowComments(true)}
+            className="text-sm text-foreground/60 hover:text-foreground transition-colors underline underline-offset-2"
+          >
+            + {content.forms.contact.comments}
+          </button>
+        </div>
+      ) : (
+        <div className={cn("space-y-2", isCompact ? "mt-3" : "mt-2")}>
+          <Label
+            htmlFor="comments"
+            className="text-xs uppercase tracking-widest font-medium text-foreground/70"
+          >
+            {content.forms.contact.comments}
+          </Label>
+          <Textarea
+            id="comments"
+            value={formData.comments}
+            onChange={(e) =>
+              setFormData({ ...formData, comments: e.target.value })
+            }
+            rows={1}
+            className={cn(
+              "bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 font-light resize-y px-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30",
+              isCompact ? "min-h-[2rem] text-sm py-0.5" : "min-h-[3rem] text-base py-1"
+            )}
+          />
+        </div>
+      )}
 
-      <div className="space-y-4 mt-4">
-        <div className="flex items-start space-x-4">
+      <div className={cn(isCompact ? "space-y-2 mt-3" : "space-y-4 mt-4")}>
+        <div className={cn("flex items-start", isCompact ? "space-x-3" : "space-x-4")}>
           <Checkbox
             id="travelAgent"
             checked={formData.isTravelAgent}
@@ -369,7 +395,10 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
           />
           <Label
             htmlFor="travelAgent"
-            className="text-sm font-normal text-foreground/90 cursor-pointer leading-relaxed"
+            className={cn(
+              "font-normal text-foreground/90 cursor-pointer leading-relaxed",
+              isCompact ? "text-xs" : "text-sm"
+            )}
             onClick={(e) => {
               e.preventDefault();
               setFormData({
@@ -382,7 +411,7 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
           </Label>
         </div>
 
-        <div className="flex items-start space-x-4">
+        <div className={cn("flex items-start", isCompact ? "space-x-3" : "space-x-4")}>
           <Checkbox
             id="consent"
             required
@@ -394,7 +423,10 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
           />
           <Label
             htmlFor="consent"
-            className="text-sm font-normal text-foreground/80 cursor-pointer leading-relaxed"
+            className={cn(
+              "font-normal text-foreground/80 cursor-pointer leading-relaxed",
+              isCompact ? "text-xs" : "text-sm"
+            )}
             onClick={(e) => {
               e.preventDefault();
               setFormData({ ...formData, consent: !formData.consent });
@@ -406,7 +438,10 @@ export function ContactForm({ onSuccess, inCard = true }: ContactFormProps) {
         </div>
       </div>
 
-      <div className="mt-2 pt-6 border-t border-foreground/20 flex justify-center">
+      <div className={cn(
+        "border-foreground/20 flex justify-center",
+        isCompact ? "mt-5 pt-0" : "mt-2 pt-6"
+      )}>
         <button
           type="submit"
           disabled={isSubmitting}

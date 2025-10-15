@@ -536,3 +536,21 @@ elevenlabs-convai {
   padding: 0.25rem;
   box-sizing: border-box;
 }
+
+/* ========================================
+   PHONE INPUT COMPACT STYLES
+   ======================================== */
+.phone-input-compact .PhoneInputInput {
+  height: 2rem !important;
+  font-size: 0.875rem !important;
+  padding: 0.125rem 0 !important;
+}
+
+.phone-input-compact .PhoneInputCountryIcon {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+.phone-input-compact .PhoneInputCountry {
+  margin-right: 0.5rem !important;
+}
