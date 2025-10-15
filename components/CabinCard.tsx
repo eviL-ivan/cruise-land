@@ -238,7 +238,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, priceFromLabel = "F
           {/* Main Column - Main Info */}
           <div className="lg:min-w-[340px] flex-shrink-0">
             {/* Cabin Name */}
-            <h3 className="font-serif text-2xl lg:text-5xl font-light text-white mb-1 lg:mb-2 leading-[1.1] tracking-tight drop-shadow-2xl">
+            <h3 className="text-2xl lg:text-5xl font-light text-white mb-1 lg:mb-2 leading-[1.1] tracking-tight drop-shadow-2xl">
               {cabin.name}
             </h3>
 
@@ -254,7 +254,7 @@ export function CabinCard({ cabin, onBook, selectButtonText, priceFromLabel = "F
                   {priceFromLabel}
                 </div>
                 <div className="flex items-baseline gap-2 lg:gap-3">
-                  <span className="font-serif text-4xl lg:text-7xl font-light text-white leading-none tracking-tight drop-shadow-2xl">
+                  <span className="text-4xl lg:text-7xl font-light text-white leading-none tracking-tight drop-shadow-2xl">
                     {cabin.price.replace(/^(от|from|起价)\s*/i, '')}
                   </span>
                   <span className="text-[10px] lg:text-xs text-white/70 tracking-wider uppercase font-medium pb-1 lg:pb-2">

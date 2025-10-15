@@ -18,7 +18,7 @@ export function Itinerary() {
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance">
             {content.itinerary.title}
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty">
@@ -50,7 +50,7 @@ export function Itinerary() {
                         {item.location}
                       </span>
                     </div>
-                    <h3 className="font-serif text-2xl font-bold">{item.title}</h3>
+                    <h3 className="text-2xl font-bold">{item.title}</h3>
                   </div>
                 </div>
                 <ChevronDown

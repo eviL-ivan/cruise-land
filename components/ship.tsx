@@ -150,7 +150,7 @@ export function Ship() {
             className="min-h-[100svh] lg:min-h-0 flex flex-col justify-center py-8 lg:py-0"
           >
             <div className="lg:mx-0 flex-1 flex flex-col justify-center">
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-white">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-white">
                 {content.ship.name}
               </h2>
               <p className="text-xl mb-8 text-white/90 leading-relaxed">{content.ship.description}</p>
@@ -163,7 +163,7 @@ export function Ship() {
                         <span className="text-[#be8f74] text-2xl">•</span>
                       </div>
                       <div>
-                        <h3 className="font-bold mb-1 text-white">{amenity.title}</h3>
+                        <h3 className=" mb-1 text-white">{amenity.title}</h3>
                         <p className="text-sm text-white/80">{amenity.description}</p>
                       </div>
                     </div>

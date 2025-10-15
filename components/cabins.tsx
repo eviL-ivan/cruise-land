@@ -30,7 +30,7 @@ export function Cabins() {
             <span>{content.cabins.sanctuaryBadge}</span>
           </div>
 
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-[#004155] tracking-tight leading-[1.1]">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-[#004155] tracking-tight leading-[1.1]">
             {content.cabins.title}
           </h2>
 

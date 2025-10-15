@@ -101,7 +101,7 @@ export function Overview() {
 
                           {/* Slide title overlay */}
                           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 pointer-events-none z-20">
-                            <h3 className="text-white font-serif text-3xl font-bold mb-2">
+                            <h3 className="text-white text-3xl  mb-2">
                               {slide.title}
                             </h3>
                             <p className="text-white/90 text-sm">
@@ -168,7 +168,7 @@ export function Overview() {
                   )}
                 </div>
 
-                <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground">
+                <h2 className="text-4xl md:text-5xl font-light text-foreground">
                   {content.overview.route}
                 </h2>
 

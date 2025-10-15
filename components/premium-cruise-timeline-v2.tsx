@@ -160,7 +160,7 @@ function FloatingHero({ content }: { content: any }) {
 
       <div ref={titleRef}>
         <motion.h1
-          className="text-6xl md:text-8xl lg:text-9xl font-serif font-light mb-6"
+          className="text-6xl md:text-8xl lg:text-9xl font-light mb-6"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -346,7 +346,7 @@ function TimelineCard({
 
           {/* Number Overlay */}
           <motion.div
-            className="absolute bottom-4 right-4 text-6xl font-serif font-light text-white/20"
+            className="absolute bottom-4 right-4 text-6xl font-light text-white/20"
             animate={{
               scale: isHovered ? 1.2 : 1,
               opacity: isHovered ? 0.4 : 0.2,
@@ -358,7 +358,7 @@ function TimelineCard({
 
         {/* Content Section */}
         <div className="p-6">
-          <h3 className="text-2xl font-serif font-light text-[#004155] mb-2">
+          <h3 className="text-2xl font-light text-[#004155] mb-2">
             {event.title}
           </h3>
 
@@ -442,7 +442,7 @@ function FloatingDetail({ event, index, mouseX, mouseY }: any) {
             </span>
           </div>
 
-          <h4 className="text-2xl font-serif font-light text-[#004155] mb-2">
+          <h4 className="text-2xl font-light text-[#004155] mb-2">
             {event.title}
           </h4>
 

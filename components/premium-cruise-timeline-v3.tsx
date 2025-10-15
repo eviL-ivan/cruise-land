@@ -60,11 +60,11 @@ export function PremiumCruiseTimelineV3() {
               </span>
             </div>
 
-            <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-serif leading-[0.8] mb-8">
+            <h1 className="text-6xl md:text-8xl lg:text-[10rem] leading-[0.8] mb-8">
               <span className="font-thin">I design & build</span>
               <br />
               <span className="font-normal">journeys that</span>
-              <span className="block mt-4 bg-gradient-to-r from-[#72d7a0] via-[#6ec9d4] to-[#8b9dc3] bg-clip-text text-transparent font-thin italic">
+              <span className="block mt-4 bg-gradient-to-r from-[#72d7a0] via-[#6ec9d4] to-[#8b9dc3] bg-clip-text text-transparent font-thin font-medium">
                 inspire
               </span>
             </h1>
@@ -255,7 +255,7 @@ function LiquidCard({ event, index, isActive, isHovered, onHover, onLeave, onCli
 
           {/* Floating day number */}
           <motion.div
-            className="absolute top-8 left-8 text-[120px] font-serif font-thin leading-none text-[#1a1a1a]/10"
+            className="absolute top-8 left-8 text-[120px] font-thin leading-none text-[#1a1a1a]/10"
             animate={{
               x: isHovered ? 10 : 0,
               y: isHovered ? -10 : 0,
@@ -278,7 +278,7 @@ function LiquidCard({ event, index, isActive, isHovered, onHover, onLeave, onCli
               </span>
             </div>
 
-            <h3 className="text-3xl font-serif mb-2">
+            <h3 className="text-3xl mb-2">
               {event.title}
             </h3>
 
@@ -359,7 +359,7 @@ function FloatingPanel({ event, index, onClose }: any) {
               </span>
             </div>
 
-            <h2 className="text-5xl font-serif mb-4">
+            <h2 className="text-5xl mb-4">
               {event.title}
             </h2>
 

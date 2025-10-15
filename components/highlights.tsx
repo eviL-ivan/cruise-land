@@ -90,7 +90,7 @@ export function Highlights() {
                         {/* <div className="inline-block px-4 py-2 bg-accent/90 rounded-full text-accent-foreground font-bold mb-4">
                           {highlight.number}
                         </div> */}
-                        <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-balance">
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-balance">
                           {highlight.title}
                         </h3>
                         <p className="text-lg md:text-xl text-white/90 leading-relaxed text-pretty">

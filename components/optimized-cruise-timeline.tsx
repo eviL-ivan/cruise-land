@@ -91,7 +91,7 @@ export function OptimizedCruiseTimeline() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5, duration: 0.8 }}
-                        className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance"
+                        className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance"
                     >
                         {content.itinerary.title}
                     </motion.h2>
@@ -232,7 +232,7 @@ const OverlayLeftLayout = memo(function OverlayLeftLayout({ event, index, isInVi
                   {event.day}
                 </span>
                             </div>
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mb-4 md:mb-6 text-shadow-lg">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4 md:mb-6 text-shadow-lg">
                                 {event.title}
                             </h2>
                             <div className="flex items-center gap-2 text-white/80">
@@ -385,7 +385,7 @@ const OverlayRightLayout = memo(function OverlayRightLayout({ event, index, isIn
                   {event.day}
                 </span>
                             </div>
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mb-4 md:mb-6 text-shadow-lg">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4 md:mb-6 text-shadow-lg">
                                 {event.title}
                             </h2>
                             <div className="flex items-center justify-end gap-2 text-white/80">

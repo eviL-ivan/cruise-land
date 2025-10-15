@@ -16,10 +16,10 @@ export function Company() {
         <div className="lg:hidden flex flex-col py-8 space-y-6">
           {/* Header */}
           <div className="space-y-4">
-            <h2 className="font-serif text-4xl md:text-5xl font-light leading-tight text-balance text-[#004155]">
+            <h2 className="text-4xl md:text-5xl font-light leading-tight text-balance text-[#004155]">
               Swan Hellenic
             </h2>
-            <p className="font-serif text-3xl md:text-4xl leading-relaxed text-[#004155]">
+            <p className="text-3xl md:text-4xl leading-relaxed text-[#004155]">
               {content.company.title}
             </p>
             <p className="text-sm leading-relaxed text-[#004155]">
@@ -47,7 +47,7 @@ export function Company() {
 
             {/* Philosophy Quote */}
             <div className="border-l-2 border-[#004155]/30 pl-4">
-              <p className="font-serif text-lg text-[#004155] italic">
+              <p className="text-lg text-[#004155] font-medium">
                 {content.company.quote}
               </p>
             </div>
@@ -163,11 +163,11 @@ export function Company() {
           {/* Desktop: Right Column - Content */}
           <div className="flex flex-col justify-center">
             <div className="space-y-6">
-              <h2 className="font-serif text-5xl font-light leading-tight text-balance text-[#004155]">
+              <h2 className="text-5xl font-light leading-tight text-balance text-[#004155]">
                 Swan Hellenic
               </h2>
 
-              <p className="font-serif text-4xl leading-relaxed text-[#004155]">
+              <p className="text-4xl leading-relaxed text-[#004155]">
                 {content.company.title}
               </p>
 
@@ -181,7 +181,7 @@ export function Company() {
 
               {/* Philosophy Quote */}
               <div className="border-l-2 border-[#004155]/30 pl-4">
-                <p className="font-serif text-xl text-[#004155] italic">
+                <p className="text-xl text-[#004155] font-medium">
                   {content.company.quote}
                 </p>
               </div>

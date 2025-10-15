@@ -4,130 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ========================================
-   NEUE MONTREAL - Main Font
-   ======================================== */
-
-/* Light (300) - Namibia */
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("/fonts/NeueMontreal-Light.woff2") format("woff2"),
-       url("/fonts/NeueMontreal-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Light Italic (300) - Argentina */
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("/fonts/NeueMontreal-LightItalic.woff2") format("woff2"),
-       url("/fonts/NeueMontreal-LightItalic.woff") format("woff");
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Regular (400) - Antarctica */
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("/fonts/NeueMontreal-Regular.woff2") format("woff2"),
-       url("/fonts/NeueMontreal-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Italic (400) - Ecuador */
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("/fonts/NeueMontreal-Italic.woff2") format("woff2"),
-       url("/fonts/NeueMontreal-Italic.woff") format("woff");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Medium (500) - Iceland */
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("/fonts/NeueMontreal-Medium.woff2") format("woff2"),
-       url("/fonts/NeueMontreal-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Medium Italic (500) - Greenland */
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("/fonts/NeueMontreal-MediumItalic.woff2") format("woff2"),
-       url("/fonts/NeueMontreal-MediumItalic.woff") format("woff");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Bold (700) - Madagascar */
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("/fonts/NeueMontreal-Bold.woff2") format("woff2"),
-       url("/fonts/NeueMontreal-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Bold Italic (700) - Norway */
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("/fonts/NeueMontreal-BoldItalic.woff2") format("woff2"),
-       url("/fonts/NeueMontreal-BoldItalic.woff") format("woff");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* ========================================
-   NON NATURAL GROTESK - Display Font
-   ======================================== */
-
-/* Light (300) */
-@font-face {
-  font-family: "NON Natural Grotesk";
-  src: url("/fonts/non-natural-grotesk-plain-light.otf") format("opentype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Regular (400) */
-@font-face {
-  font-family: "NON Natural Grotesk";
-  src: url("/fonts/non-natural-grotesk-plain-light.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Medium (500) */
-@font-face {
-  font-family: "NON Natural Grotesk";
-  src: url("/fonts/nonnatural-groteskplainbold.otf") format("opentype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Bold (700) */
-@font-face {
-  font-family: "NON Natural Grotesk";
-  src: url("/fonts/nonnatural-groteskplainbold.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   /* ========================================
      COLORS (Brand Guidelines)
@@ -161,8 +37,9 @@
      ======================================== */
 
   /* Font Families */
-  --font-display: var(--font-space-grotesk), "Space Grotesk", system-ui, -apple-system, sans-serif;
-  --font-main: "Neue Montreal", system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-non-natural-grotesque), "NON Natural Grotesk", system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-non-natural-grotesque), "NON Natural Grotesk", system-ui, -apple-system, sans-serif;
+  --font-main: var(--font-pp-neue-montreal), "PP Neue Montreal", system-ui, -apple-system, sans-serif;
   --font-logographic: var(--font-noto-jp), var(--font-noto-sc), "Noto Sans JP", "Noto Sans SC", sans-serif;
 
   /* Font Weights */
@@ -264,8 +141,9 @@
   /* ========================================
      FONT FAMILIES (Brand Guidelines)
      ======================================== */
-  --font-sans: "Neue Montreal", system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-space-grotesk), "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-pp-neue-montreal), "PP Neue Montreal", system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-non-natural-grotesque), "NON Natural Grotesk", system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-non-natural-grotesque), "NON Natural Grotesk", system-ui, -apple-system, sans-serif;
   --font-logographic: var(--font-noto-jp), var(--font-noto-sc), "Noto Sans JP", "Noto Sans SC", sans-serif;
   --font-mono: ui-monospace, "SF Mono", Consolas, monospace;
 
@@ -363,7 +241,7 @@
   }
 
   /* ========================================
-     HEADINGS
+     HEADINGS - Non Natural Grotesque (300 DemiLight / 700 Bold)
      ======================================== */
 
   h1,
@@ -372,9 +250,9 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-display);
+    font-family: var(--font-non-natural-grotesque), var(--font-display), "NON Natural Grotesk", system-ui, sans-serif;
     color: var(--color-fathom-100);
-    font-weight: 700;
+    font-weight: 700; /* Non Natural Grotesque Bold */
     margin-bottom: 1rem;
   }
 
@@ -401,58 +279,63 @@
   h1 {
     font-size: var(--text-24);
     line-height: 1.3;
-    font-weight: 700; /* Bold - Madagascar */
+    font-weight: 700; /* Non Natural Grotesque Bold */
   }
 
   h2 {
     font-size: var(--text-22);
     line-height: 1.3;
-    font-weight: 500; /* Medium - Iceland */
+    font-weight: 300; /* Non Natural Grotesque DemiLight */
   }
 
   h3 {
     font-size: var(--text-20);
     line-height: 1.4;
-    font-weight: 400; /* Regular - Antarctica */
+    font-weight: 300; /* Non Natural Grotesque DemiLight */
   }
 
   h4 {
     font-size: var(--text-18);
     line-height: 1.4;
-    font-weight: 500; /* Medium */
+    font-weight: 700; /* Non Natural Grotesque Bold */
   }
 
   h5 {
     font-size: var(--text-16);
     line-height: 1.5;
-    font-weight: 600; /* Semibold */
+    font-weight: 700; /* Non Natural Grotesque Bold */
   }
 
   h6 {
     font-size: var(--text-14);
     line-height: 1.5;
-    font-weight: 700; /* Bold */
+    font-weight: 700; /* Non Natural Grotesque Bold */
   }
 
   /* ========================================
-     TEXT ELEMENTS
+     TEXT ELEMENTS - PP Neue Montreal
      ======================================== */
 
   p {
+    font-family: var(--font-main); /* PP Neue Montreal */
+    font-weight: 400; /* Regular */
     margin-bottom: 1rem;
   }
 
   strong,
   b {
-    font-weight: 700; /* Bold - Madagascar */
+    font-family: var(--font-main); /* PP Neue Montreal */
+    font-weight: 700; /* Bold */
   }
 
   em,
   i {
-    font-style: italic;
+    font-family: var(--font-main); /* PP Neue Montreal */
+    font-weight: 500; /* Medium - no italic */
   }
 
   small {
+    font-family: var(--font-main); /* PP Neue Montreal */
     font-size: var(--text-12);
   }
 

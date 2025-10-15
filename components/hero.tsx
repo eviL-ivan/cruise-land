@@ -170,12 +170,12 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white space-y-4">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-balance leading-tight text-white">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-balance leading-tight text-white">
           {content.hero.title}{" "}
           <br />
           {content.hero.titleAccent}
         </h1>
-        <p className="font-serif text-2xl md:text-3xl font-light text-white/90 mt-2">
+        <p className="text-2xl md:text-3xl font-light text-white/90 mt-2">
           {content.overview.route}
         </p>
         <div className="mt-4 transition-all duration-300 ease-in-out">
@@ -190,14 +190,14 @@ export function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
           <button
             onClick={() => setShowBookingModal(true)}
-            className="text-base px-8 py-3 rounded-md text-white border-2 border-white transition-all duration-300 font-semibold uppercase w-full sm:w-64"
+            className="text-base px-8 py-3 rounded-md text-white border-2 border-white transition-all duration-300 font-semibold uppercase w-full sm:w-68"
             style={{ backgroundColor: "#004155" }}
           >
             {content.hero.bookButton}
           </button>
           <button
             onClick={() => setShowVideoModal(true)}
-            className="text-base px-8 py-3 rounded-md bg-transparent text-white border-2 border-white transition-all duration-300 font-semibold uppercase inline-flex items-center justify-center gap-2 w-full sm:w-64"
+            className="text-base px-8 py-3 rounded-md bg-transparent text-white border-2 border-white transition-all duration-300 font-semibold uppercase inline-flex items-center justify-center gap-2 w-full sm:w-68"
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = "#004155";
               e.currentTarget.style.borderColor = "white";

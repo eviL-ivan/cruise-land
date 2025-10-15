@@ -42,7 +42,7 @@ export default function Home() {
         {/*/!* Premium version 3 - Liquid Morphing *!/*/}
         {/*<div id="premium-itinerary-v3" className="mt-32">*/}
         {/*  <div className="text-center mb-16">*/}
-        {/*    <h2 className="text-4xl md:text-6xl font-serif font-light text-[#004155] mb-4">Version 3: Liquid Morphing</h2>*/}
+        {/*    <h2 className="text-4xl md:text-6xl font-light text-[#004155] mb-4">Version 3: Liquid Morphing</h2>*/}
         {/*    <p className="text-lg text-muted-foreground">Organic shapes with fluid animations</p>*/}
         {/*  </div>*/}
         {/*  <PremiumCruiseTimelineV3 />*/}
