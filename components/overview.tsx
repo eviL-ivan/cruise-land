@@ -69,13 +69,13 @@ export function Overview() {
 
   return (
     <>
-      <section className="py-16 bg-background">
+      <section className="py-12 lg:py-16 bg-background">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 lg:items-stretch">
               {/* Image Slider */}
-              <div className="relative h-[450px] lg:h-[550px] w-full rounded-lg overflow-hidden shadow-2xl group">
-                <div className="embla h-full" ref={emblaRef}>
+              <div className="relative h-[450px] lg:h-auto lg:min-h-[520px] w-full rounded-lg overflow-hidden shadow-2xl group flex flex-col">
+                <div className="embla h-full lg:flex-1" ref={emblaRef}>
                   <div className="embla__container h-full" {...touchHandlers}>
                     {slideImages.map((slide, index) => {
                       const isCurrentSlide = index === selectedIndex;
@@ -112,33 +112,33 @@ export function Overview() {
                       );
                     })}
                   </div>
-                </div>
 
-                {/* Navigation buttons */}
-                <button
-                  onClick={scrollPrev}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={scrollNext}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
+                  {/* Navigation buttons */}
+                  <button
+                    onClick={scrollPrev}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={scrollNext}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
 
-                {/* Slide indicators */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                  {slideImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => scrollTo(index)}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        index === selectedIndex ? "bg-white w-8" : "bg-white/50"
-                      }`}
-                    />
-                  ))}
+                  {/* Slide indicators */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-30">
+                    {slideImages.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => scrollTo(index)}
+                        className={`w-2 h-2 rounded-full transition-all ${
+                          index === selectedIndex ? "bg-white w-8" : "bg-white/50"
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -213,7 +213,7 @@ export function Overview() {
                 </div>
 
                 {/* Description */}
-                <div className="py-4 space-y-4 border-t border-border">
+                <div className="pt-4 pb-2 space-y-4 border-t border-border">
                   <p className="text-lg leading-relaxed text-foreground/90">
                     {content.overview.description}
                   </p>

@@ -19,7 +19,7 @@ export function Company() {
             <h2 className="font-serif text-4xl md:text-5xl font-light leading-tight text-balance text-[#004155]">
               Swan Hellenic
             </h2>
-            <p className="font-serif text-3xl md:text-4xl leading-relaxed text-[#004155] italic">
+            <p className="font-serif text-3xl md:text-4xl leading-relaxed text-[#004155]">
               {content.company.title}
             </p>
             <p className="text-sm leading-relaxed text-[#004155]">
@@ -167,7 +167,7 @@ export function Company() {
                 Swan Hellenic
               </h2>
 
-              <p className="font-serif text-4xl leading-relaxed text-[#004155] italic">
+              <p className="font-serif text-4xl leading-relaxed text-[#004155]">
                 {content.company.title}
               </p>
 
