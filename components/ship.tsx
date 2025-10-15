@@ -149,7 +149,7 @@ export function Ship() {
           <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center max-w-7xl mx-auto lg:h-full">
           {/* Mobile: Screen 1 - Text | Desktop: Left Column */}
           <div
-            className="min-h-[100svh] lg:h-full flex flex-col justify-center py-12 lg:py-0"
+            className="min-h-[100svh] lg:h-full flex flex-col justify-center py-8 lg:py-0"
             data-snap-section-mobile="company-ship"
             data-section-index="2"
           >
@@ -179,7 +179,7 @@ export function Ship() {
 
           {/* Mobile: Screen 2 - Sliders | Desktop: Right Column */}
           <div
-            className="min-h-[100svh] lg:h-full flex flex-col justify-center py-12 lg:py-0"
+            className="min-h-[100svh] lg:h-full flex flex-col justify-center py-8 lg:py-0"
             data-snap-section-mobile="company-ship"
             data-section-index="3"
           >
