@@ -15,19 +15,19 @@ export function Company() {
     >
       {/* Mobile: 2 screens | Desktop: 1 screen (grid) */}
       <div className="container mx-auto px-4">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center max-w-7xl mx-auto lg:h-full">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-stretch max-w-7xl mx-auto lg:h-full">
         {/* Mobile: Screen 1 - Image | Desktop: Left Column */}
         <div
-          className="min-h-[100svh] lg:h-full flex flex-col justify-center py-8 lg:py-0"
+          className="min-h-[100svh] lg:min-h-0 flex flex-col justify-center py-8 lg:py-12"
           data-snap-section-mobile="company-ship"
           data-section-index="0"
         >
-          <div className="relative h-[70vh] lg:h-[80vh] rounded-lg overflow-hidden shadow-2xl">
+          <div className="relative h-[70vh] lg:h-full rounded-lg overflow-hidden shadow-2xl">
             <ImageWithBlur
               src="/shipSlider/ship_slide6.jpg"
               alt="Swan Hellenic expedition vessel"
               fill
-              className="object-cover"
+              className="object-cover object-center"
               sizes="(max-width: 1024px) calc(100vw - 2rem), 50vw"
               priority
             />
@@ -36,7 +36,7 @@ export function Company() {
 
         {/* Mobile: Screen 2 - Content | Desktop: Right Column */}
         <div
-          className="min-h-[100svh] lg:h-full flex flex-col justify-center py-8 lg:py-0"
+          className="min-h-[100svh] lg:min-h-0 flex flex-col justify-center py-8 lg:py-12"
           data-snap-section-mobile="company-ship"
           data-section-index="1"
         >
@@ -72,12 +72,12 @@ export function Company() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   {/* Cruise Critic Award */}
                   <div className="flex items-center gap-3">
-                    <div className="w-[50px] h-[50px] relative flex-shrink-0">
+                    <div className="w-[60px] h-[60px] relative flex-shrink-0">
                       <Image
                         src="/awards/cruisecritic.svg"
                         alt="Best in Cruise"
-                        width={50}
-                        height={50}
+                        width={60}
+                        height={60}
                         className="w-full h-full object-contain"
                       />
                     </div>
@@ -113,14 +113,11 @@ export function Company() {
 
                   {/* Sailawaze Award */}
                   <div className="flex items-center gap-3">
-                    <div className="w-[50px] h-[50px] relative flex-shrink-0">
-                      <Image
+                    <div className="w-[60px] h-[60px] flex-shrink-0">
+                      <img
                         src="/awards/sailawaze.svg"
                         alt="Sailawaze Award"
-                        width={50}
-                        height={50}
                         className="w-full h-full object-contain"
-                        unoptimized
                       />
                     </div>
                     <div className="flex flex-col gap-0.5 flex-1">
