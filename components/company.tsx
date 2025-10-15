@@ -22,7 +22,7 @@ export function Company() {
           data-snap-section-mobile="company-ship"
           data-section-index="0"
         >
-          <div className="relative h-[70vh] lg:aspect-[4/3] lg:h-auto rounded-lg overflow-hidden shadow-2xl">
+          <div className="relative h-[70vh] lg:flex-1 rounded-lg overflow-hidden shadow-2xl">
             <ImageWithBlur
               src="/shipSlider/ship_slide6.jpg"
               alt="Swan Hellenic expedition vessel"
