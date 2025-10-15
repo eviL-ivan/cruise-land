@@ -10,8 +10,6 @@ export function Company() {
   return (
     <section
       className="min-h-[100svh] lg:min-h-0 py-8 lg:py-12 bg-gradient-to-br from-slate-50 via-white to-slate-50"
-      data-snap-section-desktop="company-ship"
-      data-section-index="0"
     >
       <div className="container mx-auto px-4">
         {/* Mobile Layout: All in One Screen */}

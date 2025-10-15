@@ -139,21 +139,17 @@ export function Ship() {
   return (
     <>
       <section
-        className="min-h-[100svh] lg:h-[100svh]"
+        className="min-h-[100svh] lg:min-h-0 py-8 lg:py-12"
         style={{backgroundColor: '#004155'}}
-        data-snap-section-desktop="company-ship"
-        data-section-index="1"
       >
         {/* Mobile: 2 screens | Desktop: 1 screen (grid) */}
         <div className="container mx-auto px-4">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center max-w-7xl mx-auto lg:h-full">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-stretch max-w-7xl mx-auto">
           {/* Mobile: Screen 1 - Text | Desktop: Left Column */}
           <div
-            className="min-h-[100svh] lg:h-full flex flex-col justify-center py-8 lg:py-0"
-            data-snap-section-mobile="company-ship"
-            data-section-index="2"
+            className="min-h-[100svh] lg:min-h-0 flex flex-col justify-center py-8 lg:py-0"
           >
-            <div className="lg:mx-0">
+            <div className="lg:mx-0 flex-1 flex flex-col justify-center">
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-white">
                 {content.ship.name}
               </h2>
@@ -179,11 +175,9 @@ export function Ship() {
 
           {/* Mobile: Screen 2 - Sliders | Desktop: Right Column */}
           <div
-            className="min-h-[100svh] lg:h-full flex flex-col justify-center py-8 lg:py-0"
-            data-snap-section-mobile="company-ship"
-            data-section-index="3"
+            className="min-h-[100svh] lg:min-h-0 flex flex-col justify-center py-8 lg:py-0"
           >
-            <div className="space-y-4 lg:mx-0">
+            <div className="space-y-4 lg:mx-0 flex-1 flex flex-col justify-center">
               {/* Main Slider */}
               <div className="relative h-[280px] rounded-lg overflow-hidden shadow-2xl group">
                 <div className="embla h-full" ref={mainEmblaRef}>
