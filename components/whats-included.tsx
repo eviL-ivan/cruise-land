@@ -28,7 +28,7 @@ export function WhatsIncluded() {
                 className="flex items-start gap-4 group"
               >
                 {/* Check Icon */}
-                <div className="flex-shrink-0 mt-1">
+                <div className="flex-shrink-0 mt-0.5">
                   <div className="w-6 h-6 rounded-full bg-[#be8f74]/10 flex items-center justify-center group-hover:bg-[#be8f74]/20 transition-colors">
                     <Check className="w-4 h-4 text-[#be8f74]" strokeWidth={3} />
                   </div>
