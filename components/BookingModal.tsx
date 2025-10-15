@@ -75,19 +75,19 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
         </button>
 
         {/* Логотип */}
-        <div className="flex justify-center py-4 border-b border-gray-200">
+        <div className="flex justify-center py-3 border-b border-gray-200">
           <Image
             src="/logo_green.svg"
             alt="Swan Hellenic"
             width={150}
             height={56}
-            className="h-10 w-auto sm:h-12"
+            className="h-8 w-auto sm:h-10"
             priority
           />
         </div>
 
         {/* Контейнер для формы */}
-        <div className="w-full h-full sm:h-auto sm:max-h-[70svh] overflow-y-auto p-6 pb-30 sm:p-8">
+        <div className="w-full h-full sm:h-auto sm:max-h-[70svh] overflow-y-auto p-4 pb-20 sm:p-6">
           <ContactForm onSuccess={onClose} inCard={false} />
         </div>
       </div>

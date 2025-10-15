@@ -21,7 +21,8 @@
       "Read(//c/Users/Someo/Downloads/Refactoring ui/**)",
       "Bash(npx shadcn@latest add:*)",
       "Bash(identify:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []
