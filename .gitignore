@@ -31,3 +31,6 @@ data/brandbook.pdf
 data/*.pdf
 data/video/*.mp4
 data/video/*.m4v
+
+# Idea
+.idea

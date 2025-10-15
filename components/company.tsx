@@ -68,15 +68,15 @@ export function Company() {
                       unoptimized
                     />
                   </div>
-                  <div className="flex flex-col gap-0.5 flex-1">
-                    <h3 className="text-[#004155] font-medium text-xs leading-tight">
+                  <div className="flex flex-col justify-between gap-y-1 flex-1 self-stretch py-3 lg:py-2">
+                    <h3 className="text-[#004155] font-medium text-xs leading-tight -mb-1.5">
                       {content.company.awards.bestInCruise.title}
                     </h3>
-                    <p className="text-[#004155]/60 text-[10px]">
+                    <p className="text-[#004155]/60 text-[10px] -mb-1.5">
                       {content.company.awards.bestInCruise.subtitle}
                     </p>
                   </div>
-                  <div className="flex items-start gap-1.5">
+                  <div className="flex items-start gap-1.5 self-start py-3 lg:py-2">
                     <div className="w-[14px] h-[21px]">
                       <Image
                         src="/icons/winner.svg"
@@ -110,15 +110,15 @@ export function Company() {
                       unoptimized
                     />
                   </div>
-                  <div className="flex flex-col gap-0.5 flex-1">
-                    <h3 className="text-[#004155] font-medium text-xs leading-tight">
+                  <div className="flex flex-col justify-between gap-y-1 flex-1 self-stretch py-3 lg:py-2">
+                    <h3 className="text-[#004155] font-medium text-xs leading-tight -mb-1.5">
                       {content.company.awards.sailawaze.title}
                     </h3>
-                    <p className="text-[#004155]/60 text-[10px]">
+                    <p className="text-[#004155]/60 text-[10px] -mb-1.5">
                       {content.company.awards.sailawaze.subtitle}
                     </p>
                   </div>
-                  <div className="flex items-start gap-1.5">
+                  <div className="flex items-start gap-1.5 self-start py-3 lg:py-2">
                     <div className="w-[14px] h-[21px]">
                       <Image
                         src="/icons/winner.svg"
@@ -189,7 +189,7 @@ export function Company() {
               {/* Awards Section */}
               <div className="pt-4 space-y-4">
                 <div className="h-px w-full bg-[#004155]/20" />
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 lg:gap-x-10">
                   {/* Cruise Critic Award */}
                   <div className="flex items-center gap-3">
                     <div className="w-[60px] h-[60px] relative flex-shrink-0 rounded-full flex items-center justify-center p-2" style={{backgroundColor: '#004155'}}>
@@ -202,15 +202,15 @@ export function Company() {
                         unoptimized
                       />
                     </div>
-                    <div className="flex flex-col gap-0.5 flex-1">
-                      <h3 className="text-[#004155] font-medium text-xs leading-tight">
+                    <div className="flex flex-col justify-between flex-1 self-stretch py-2">
+                      <h3 className="text-[#004155] font-medium text-xs leading-tight -mb-1.5">
                         {content.company.awards.bestInCruise.title}
                       </h3>
-                      <p className="text-[#004155]/60 text-[10px]">
+                      <p className="text-[#004155]/60 text-[10px] -mb-1.5">
                         {content.company.awards.bestInCruise.subtitle}
                       </p>
                     </div>
-                    <div className="flex items-start gap-1.5">
+                    <div className="flex items-start gap-1.5 self-start py-2">
                       <div className="w-[14px] h-[21px]">
                         <Image
                           src="/icons/winner.svg"
@@ -244,15 +244,15 @@ export function Company() {
                         unoptimized
                       />
                     </div>
-                    <div className="flex flex-col gap-0.5 flex-1">
-                      <h3 className="text-[#004155] font-medium text-xs leading-tight">
+                    <div className="flex flex-col justify-between flex-1 self-stretch py-2">
+                      <h3 className="text-[#004155] font-medium text-xs leading-tight -mb-1.5">
                         {content.company.awards.sailawaze.title}
                       </h3>
-                      <p className="text-[#004155]/60 text-[10px]">
+                      <p className="text-[#004155]/60 text-[10px] -mb-1.5">
                         {content.company.awards.sailawaze.subtitle}
                       </p>
                     </div>
-                    <div className="flex items-start gap-1.5">
+                    <div className="flex items-start gap-1.5 self-start py-2">
                       <div className="w-[14px] h-[21px]">
                         <Image
                           src="/icons/winner.svg"
