@@ -7,6 +7,7 @@ import { Journey } from "@/components/journey"
 import { CruiseTimeline } from "@/components/cruise-timeline"
 import { OptimizedCruiseTimeline } from "@/components/optimized-cruise-timeline"
 import { PremiumCruiseTimelineV3 } from "@/components/premium-cruise-timeline-v3"
+import { WhatsIncluded } from "@/components/whats-included"
 import { Wildlife } from "@/components/wildlife"
 import { Cabins } from "@/components/cabins"
 import { CTA } from "@/components/cta"
@@ -35,6 +36,9 @@ export default function Home() {
         <div id="premium-itinerary">
           <OptimizedCruiseTimeline />
         </div>
+
+        {/* What's Included - Показываем только если includedEnabled = true */}
+        <WhatsIncluded />
 
         <Wildlife />
         {/*/!* Premium version 3 - Liquid Morphing *!/*/}
