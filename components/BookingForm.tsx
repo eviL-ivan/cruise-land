@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { useLanguage } from '@/lib/language-context'
 
@@ -14,6 +14,7 @@ interface FormData {
 
 export function BookingForm() {
   const { content } = useLanguage()
+  const successRef = useRef<HTMLDivElement>(null)
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -25,6 +26,12 @@ export function BookingForm() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (success && successRef.current) {
+      successRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }, [success])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -113,7 +120,7 @@ export function BookingForm() {
 
   if (success) {
     return (
-      <div className="flex flex-col items-center justify-center p-8 text-center">
+      <div ref={successRef} className="flex flex-col items-center justify-center p-8 text-center">
         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
           <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

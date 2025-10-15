@@ -171,7 +171,7 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white space-y-4">
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-balance leading-tight text-white">
-          {content.hero.title}
+          {content.hero.title}{" "}
           <br />
           {content.hero.titleAccent}
         </h1>

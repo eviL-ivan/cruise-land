@@ -9,20 +9,20 @@ export function Company() {
 
   return (
     <section
-      className="min-h-[100svh] lg:h-[100svh] bg-gradient-to-br from-slate-50 via-white to-slate-50"
+      className="min-h-[100svh] bg-gradient-to-br from-slate-50 via-white to-slate-50"
       data-snap-section-desktop="company-ship"
       data-section-index="0"
     >
       {/* Mobile: 2 screens | Desktop: 1 screen (grid) */}
       <div className="container mx-auto px-4">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-stretch max-w-7xl mx-auto lg:h-full">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-stretch max-w-7xl mx-auto">
         {/* Mobile: Screen 1 - Image | Desktop: Left Column */}
         <div
-          className="min-h-[100svh] lg:min-h-0 flex flex-col justify-center py-8 lg:py-12"
+          className="min-h-[100svh] lg:min-h-0 flex flex-col justify-center py-8 lg:py-8"
           data-snap-section-mobile="company-ship"
           data-section-index="0"
         >
-          <div className="relative h-[70vh] lg:h-full rounded-lg overflow-hidden shadow-2xl">
+          <div className="relative h-[70vh] lg:aspect-[4/3] lg:h-auto rounded-lg overflow-hidden shadow-2xl">
             <ImageWithBlur
               src="/shipSlider/ship_slide6.jpg"
               alt="Swan Hellenic expedition vessel"
@@ -36,7 +36,7 @@ export function Company() {
 
         {/* Mobile: Screen 2 - Content | Desktop: Right Column */}
         <div
-          className="min-h-[100svh] lg:min-h-0 flex flex-col justify-center py-8 lg:py-12"
+          className="min-h-[100svh] lg:min-h-0 flex flex-col justify-center py-8 lg:py-8"
           data-snap-section-mobile="company-ship"
           data-section-index="1"
         >
@@ -72,13 +72,14 @@ export function Company() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   {/* Cruise Critic Award */}
                   <div className="flex items-center gap-3">
-                    <div className="w-[60px] h-[60px] relative flex-shrink-0">
+                    <div className="w-[60px] h-[60px] relative flex-shrink-0 rounded-full flex items-center justify-center p-2" style={{backgroundColor: '#004155'}}>
                       <Image
-                        src="/awards/cruisecritic.svg"
+                        src="/awards/optimized_Best in Cruise Award Logo -1-_117x100.png"
                         alt="Best in Cruise"
                         width={60}
-                        height={60}
-                        className="w-full h-full object-contain"
+                        height={51}
+                        className="w-full h-auto object-contain brightness-0 invert opacity-90"
+                        unoptimized
                       />
                     </div>
                     <div className="flex flex-col gap-0.5 flex-1">
@@ -113,11 +114,14 @@ export function Company() {
 
                   {/* Sailawaze Award */}
                   <div className="flex items-center gap-3">
-                    <div className="w-[60px] h-[60px] flex-shrink-0">
-                      <img
-                        src="/awards/sailawaze.svg"
+                    <div className="w-[60px] h-[60px] flex-shrink-0 rounded-full flex items-center justify-center p-2" style={{backgroundColor: '#004155'}}>
+                      <Image
+                        src="/awards/optimized_Sailawaze award_117x107.png"
                         alt="Sailawaze Award"
-                        className="w-full h-full object-contain"
+                        width={60}
+                        height={55}
+                        className="w-full h-auto object-contain brightness-0 invert opacity-90"
+                        unoptimized
                       />
                     </div>
                     <div className="flex flex-col gap-0.5 flex-1">

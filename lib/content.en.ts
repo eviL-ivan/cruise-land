@@ -64,7 +64,7 @@ const baseContent = {
 
   // Hero Section
   hero: {
-    title: "Transatlantic Expedition",
+    title: "Southern Expedition",
     titleAccent: "to Antarctica",
     subtitle:
       "South Atlantic Islands, South Georgia, and the Antarctic Peninsula aboard the expedition vessel SH Diana",
