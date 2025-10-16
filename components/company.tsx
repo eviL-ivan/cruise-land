@@ -29,7 +29,7 @@ export function Company() {
         <div className="lg:hidden flex flex-col space-y-6">
 
           {/* Image */}
-          <div className="relative h-[50vh] rounded-lg overflow-hidden shadow-2xl">
+          <div className="relative h-[40vh] rounded-lg overflow-hidden shadow-2xl">
             <ImageWithBlur
               src="/swan_company.jpeg"
               alt="Swan Hellenic expedition vessel"
@@ -153,7 +153,7 @@ export function Company() {
         <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-stretch max-w-7xl mx-auto lg:py-8">
           {/* Desktop: Left Column - Image */}
           <div className="flex flex-col">
-            <div className="relative flex-1 min-h-[500px] rounded-lg overflow-hidden shadow-2xl">
+            <div className="relative flex-1 min-h-[400px] rounded-lg overflow-hidden shadow-2xl">
               <ImageWithBlur
                 src="/swan_company.jpeg"
                 alt="Swan Hellenic expedition vessel"
