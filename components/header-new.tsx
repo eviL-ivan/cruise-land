@@ -60,16 +60,16 @@ export function HeaderNew() {
 
   // Определяем цвета в зависимости от состояния
   const isDark = isScrolled || isMobileMenuOpen
-  const textColor = isDark ? "text-[#004155]" : "text-white"
-  const hoverColor = isDark ? "hover:text-[#be8f74]" : "hover:text-white/80"
-  const iconColor = isDark ? "#004155" : "white"
-  const logoSrc = isDark ? "/logo_green.svg" : "/logo-white.svg"
+  const textColor = "text-white"
+  const hoverColor = "hover:text-white/80"
+  const iconColor = "white"
+  const logoSrc = "/logo-white.svg"
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 w-full transition-colors duration-300 ${
-          isScrolled || isMobileMenuOpen ? "bg-white" : "bg-transparent"
+          isScrolled || isMobileMenuOpen ? "bg-[#2F2F2F]" : "bg-transparent"
         }`}
       >
         {/* Desktop Navigation */}
@@ -127,22 +127,22 @@ export function HeaderNew() {
               </button>
 
               {isLangOpen && (
-                <div className={`absolute top-full right-0 mt-2 ${isDark ? 'bg-white border-[#004155]' : 'bg-[#2F2F2F] border-white/20'} border rounded-md shadow-lg overflow-hidden min-w-[80px] z-50`}>
+                <div className="absolute top-full right-0 mt-2 bg-[#2F2F2F] border border-white/20 rounded-md shadow-lg overflow-hidden min-w-[80px] z-50">
                   <button
                     onClick={() => handleLangChange('ru')}
-                    className={`font-display header-nav-text block w-full text-left px-4 py-2 text-sm ${isDark ? 'text-[#004155] hover:bg-gray-100' : 'text-white hover:bg-white/10'} transition-colors`}
+                    className="font-display header-nav-text block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
                   >
                     {LANGUAGES.ru}
                   </button>
                   <button
                     onClick={() => handleLangChange('en')}
-                    className={`font-display header-nav-text block w-full text-left px-4 py-2 text-sm ${isDark ? 'text-[#004155] hover:bg-gray-100' : 'text-white hover:bg-white/10'} transition-colors`}
+                    className="font-display header-nav-text block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
                   >
                     {LANGUAGES.en}
                   </button>
                   <button
                     onClick={() => handleLangChange('zh')}
-                    className={`font-display header-nav-text block w-full text-left px-4 py-2 text-sm ${isDark ? 'text-[#004155] hover:bg-gray-100' : 'text-white hover:bg-white/10'} transition-colors`}
+                    className="font-display header-nav-text block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
                   >
                     {LANGUAGES.zh}
                   </button>
@@ -186,7 +186,7 @@ export function HeaderNew() {
             {/* Booking Button Mobile */}
             <button
               onClick={() => setShowBookingModal(true)}
-              className={`font-display header-nav-text pt-2 pb-1.5 px-3 border ${isDark ? 'border-[#004155] text-[#004155] hover:bg-[#004155] hover:text-white' : 'border-white text-white hover:bg-white hover:text-[#2F2F2F]'} rounded-md font-normal text-xs tracking-wide transition-all duration-300 uppercase`}
+              className="font-display header-nav-text pt-2 pb-1.5 px-3 border border-white text-white rounded-md font-normal text-xs tracking-wide transition-all duration-300 uppercase hover:bg-white hover:text-[#2F2F2F]"
             >
               {content.header.bookButton}
             </button>
@@ -194,7 +194,7 @@ export function HeaderNew() {
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="mt-6 pb-4 border-t border-[#0041551A] pt-6">
+            <div className="mt-6 pb-4 border-t border-white/20 pt-6">
               <nav className="flex flex-col gap-4">
                 {navItems.map((item) => (
                   <button
@@ -208,8 +208,8 @@ export function HeaderNew() {
                 ))}
 
                 {/* Language Switcher - Mobile */}
-                <div className="border-t border-[#0041551A] pt-4 mt-2">
-                  <p className="font-display header-nav-text text-xs font-normal tracking-wide uppercase mb-3 text-[#00415599]">
+                <div className="border-t border-white/20 pt-4 mt-2">
+                  <p className="font-display header-nav-text text-xs font-normal tracking-wide uppercase mb-3 text-white/60">
                     Language
                   </p>
                   <div className="flex gap-3">
@@ -219,7 +219,7 @@ export function HeaderNew() {
                         setIsMobileMenuOpen(false)
                       }}
                       className={`font-display px-4 pt-2 pb-1.5 text-sm font-normal rounded-md transition-all ${
-                        language === 'ru' ? 'bg-[#004155] text-white' : 'bg-gray-100 text-[#004155] hover:bg-gray-200'
+                        language === 'ru' ? 'bg-white text-[#2F2F2F]' : 'bg-white/10 text-white hover:bg-white/20'
                       }`}
                     >
                       {LANGUAGES.ru}
@@ -230,7 +230,7 @@ export function HeaderNew() {
                         setIsMobileMenuOpen(false)
                       }}
                       className={`font-display px-4 pt-2 pb-1.5 text-sm font-normal rounded-md transition-all ${
-                        language === 'en' ? 'bg-[#004155] text-white' : 'bg-gray-100 text-[#004155] hover:bg-gray-200'
+                        language === 'en' ? 'bg-white text-[#2F2F2F]' : 'bg-white/10 text-white hover:bg-white/20'
                       }`}
                     >
                       {LANGUAGES.en}
@@ -241,7 +241,7 @@ export function HeaderNew() {
                         setIsMobileMenuOpen(false)
                       }}
                       className={`font-display px-4 pt-2 pb-1.5 text-sm font-normal rounded-md transition-all ${
-                        language === 'zh' ? 'bg-[#004155] text-white' : 'bg-gray-100 text-[#004155] hover:bg-gray-200'
+                        language === 'zh' ? 'bg-white text-[#2F2F2F]' : 'bg-white/10 text-white hover:bg-white/20'
                       }`}
                     >
                       {LANGUAGES.zh}
