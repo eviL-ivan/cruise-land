@@ -350,8 +350,9 @@ export function ContactForm({ onSuccess, inCard = true, isCompact = false }: Con
         />
       </div>
 
+      {/* Mobile: collapsed by default, Desktop: always expanded */}
       {isCompact && !showComments ? (
-        <div className={cn("mt-2")}>
+        <div className={cn("mt-2 md:hidden")}>
           <button
             type="button"
             onClick={() => setShowComments(true)}
@@ -360,28 +361,32 @@ export function ContactForm({ onSuccess, inCard = true, isCompact = false }: Con
             + {content.forms.contact.comments}
           </button>
         </div>
-      ) : (
-        <div className={cn("space-y-2", isCompact ? "mt-3" : "mt-2")}>
-          <Label
-            htmlFor="comments"
-            className="text-xs uppercase tracking-widest font-medium text-foreground/70"
-          >
-            {content.forms.contact.comments}
-          </Label>
-          <Textarea
-            id="comments"
-            value={formData.comments}
-            onChange={(e) =>
-              setFormData({ ...formData, comments: e.target.value })
-            }
-            rows={1}
-            className={cn(
-              "bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 font-light resize-y px-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30",
-              isCompact ? "min-h-[2rem] text-sm py-0.5" : "min-h-[3rem] text-base py-1"
-            )}
-          />
-        </div>
-      )}
+      ) : null}
+
+      <div className={cn(
+        "space-y-2",
+        isCompact ? "mt-3" : "mt-2",
+        isCompact && !showComments ? "hidden md:block" : ""
+      )}>
+        <Label
+          htmlFor="comments"
+          className="text-xs uppercase tracking-widest font-medium text-foreground/70"
+        >
+          {content.forms.contact.comments}
+        </Label>
+        <Textarea
+          id="comments"
+          value={formData.comments}
+          onChange={(e) =>
+            setFormData({ ...formData, comments: e.target.value })
+          }
+          rows={1}
+          className={cn(
+            "bg-transparent border-0 border-b-2 border-foreground/20 rounded-none focus:border-foreground/60 focus:bg-transparent transition-all duration-300 font-light resize-y px-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder:text-foreground/30",
+            isCompact ? "min-h-[2rem] text-sm py-0.5" : "min-h-[3rem] text-base py-1"
+          )}
+        />
+      </div>
 
       <div className={cn(isCompact ? "space-y-2 mt-3" : "space-y-4 mt-4")}>
         <div className={cn("flex items-start", isCompact ? "space-x-3" : "space-x-4")}>
