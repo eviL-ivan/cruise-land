@@ -27,7 +27,7 @@ export const images = {
     day7: "/newDays/islands.jpg",
     day8: "/newDays/pen2.jpg",
     day9: "/newDays/sea3.jpg",
-    day10: "/newDays/ush2.jpg",
+    day10: "/newDays/ush.jpg",
   },
 
   // itinerary: {
