@@ -201,7 +201,7 @@ export function Overview() {
                     <p className="text-sm text-muted-foreground uppercase tracking-wide">
                       {content.overview.priceLabel}
                     </p>
-                    <div>
+                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
                       <p className="text-3xl font-normal text-[#be8f74]">
                         {content.overview.price}
                       </p>

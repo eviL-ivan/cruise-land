@@ -57,8 +57,8 @@ const baseContent = {
     viewFullMap: "查看完整地图",
     brochureUrl: "/brochures/SH_TG_D33_South Atlantic cruise from South Africa to Antarctica_13Nov-v1.pdf",
     brochureButton: "宣传册",
-    description: "这不仅仅是一次邮轮——这是一次穿越非洲、大西洋和南极三个世界交汇处的智识与情感探险。",
-    detailedDescription: "只有在这里，宾客才能目睹稀有的北跳岩企鹅，探索地球上最与世隔绝的岛屿，在雕塑般的冰山旁迎接黎明——这一切都在天鹅海伦尼克最新旗舰SH Diana号的优雅舒适中进行。",
+    description: "从南非启航，这段史诗般的南大西洋航程将带您前往世界上最偏远的岛屿，包括特里斯坦-达库尼亚和戈夫岛。",
+    detailedDescription: "探索南极洲和南乔治亚岛，造访挤满企鹅的难忘海滩。勇闯著名的德雷克海峡，驶向荒野的南极半岛。搭乘 SH Diana 号穿越超凡脱俗的冰雪仙境，我们将寻找海鸟、海豹、海豚和鲸鱼的踪迹，最终抵达乌斯怀亚。",
     experienceButton: "观看体验",
   },
 

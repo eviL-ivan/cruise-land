@@ -57,8 +57,8 @@ const baseContent = {
     viewFullMap: "View Full Map",
     brochureUrl: "/brochures/SH_TG_D33_South Atlantic cruise from South Africa to Antarctica_13Nov-v1.pdf",
     brochureButton: "Brochure",
-    description: "This is not just a cruise — it's an intellectual and emotional expedition through three worlds where Africa, the Atlantic, and Antarctica meet.",
-    detailedDescription: "Only here can guests witness the rare Northern Rockhopper penguins, explore the planet's most isolated island, and greet the dawn beside sculpted icebergs — all from the elegant comfort of Swan Hellenic's newest flagship, SH Diana.",
+    description: "Starting in South Africa, this epic voyage across the southern Atlantic takes you to some of the world's most remote islands, including Tristan da Cunha and Gough Island.",
+    detailedDescription: "Explore Antarctica and South Georgia, visiting unforgettable beaches crammed with penguins. Brave the notorious Drake Passage as we sail towards the wild Antarctic Peninsula. Cruising through this otherworldly icescape aboard SH Diana, we'll search for seabirds, seals, dolphins, and whales, ending in Ushuaia.",
     experienceButton: "Watch Experience",
   },
 
