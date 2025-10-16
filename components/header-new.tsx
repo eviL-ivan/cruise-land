@@ -58,11 +58,18 @@ export function HeaderNew() {
     { title: content.header.nav.cabins, id: "#cabins" },
   ]
 
+  // Определяем цвета в зависимости от состояния
+  const isDark = isScrolled || isMobileMenuOpen
+  const textColor = isDark ? "text-[#004155]" : "text-white"
+  const hoverColor = isDark ? "hover:text-[#be8f74]" : "hover:text-white/80"
+  const iconColor = isDark ? "#004155" : "white"
+  const logoSrc = isDark ? "/logo_green.svg" : "/logo-white.svg"
+
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 w-full transition-colors duration-300 ${
-          isScrolled || isMobileMenuOpen ? "bg-[#2F2F2F]" : "bg-transparent"
+          isScrolled || isMobileMenuOpen ? "bg-white" : "bg-transparent"
         }`}
       >
         {/* Desktop Navigation */}
@@ -74,7 +81,7 @@ export function HeaderNew() {
                 key={item.title}
                 type="button"
                 onClick={(e) => scrollToSection(e, item.id)}
-                className="font-display header-nav-text header-nav-text text-white hover:text-white/80 uppercase text-[14px] leading-[16px] tracking-[0.05em] transition-colors cursor-pointer"
+                className={`font-display header-nav-text ${textColor} ${hoverColor} uppercase text-[14px] leading-[16px] tracking-[0.05em] transition-colors cursor-pointer`}
               >
                 {item.title}
               </button>
@@ -84,7 +91,7 @@ export function HeaderNew() {
           {/* Logo */}
           <Link href="/" className="flex items-center transition-transform hover:scale-105">
             <Image
-              src="/logo-white.svg"
+              src={logoSrc}
               alt="Swan Hellenic"
               width={168}
               height={40}
@@ -100,7 +107,7 @@ export function HeaderNew() {
                 key={item.title}
                 type="button"
                 onClick={(e) => scrollToSection(e, item.id)}
-                className="font-display header-nav-text header-nav-text text-white hover:text-white/80 uppercase text-[14px] leading-[16px] tracking-[0.05em] transition-colors cursor-pointer"
+                className={`font-display header-nav-text ${textColor} ${hoverColor} uppercase text-[14px] leading-[16px] tracking-[0.05em] transition-colors cursor-pointer`}
               >
                 {item.title}
               </button>
@@ -113,29 +120,29 @@ export function HeaderNew() {
             <div className="relative">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="font-display header-nav-text flex items-center gap-1 text-white hover:text-white/80 uppercase font-normal text-[14px] leading-[16px] tracking-[0.05em] transition-colors"
+                className={`font-display header-nav-text flex items-center gap-1 ${textColor} ${hoverColor} uppercase font-normal text-[14px] leading-[16px] tracking-[0.05em] transition-colors`}
               >
                 {LANGUAGES[language]}
-                <ChevronDown className={`w-4 h-4 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} style={{ color: iconColor }} />
               </button>
 
               {isLangOpen && (
-                <div className="absolute top-full right-0 mt-2 bg-[#2F2F2F] border border-white/20 rounded-md shadow-lg overflow-hidden min-w-[80px] z-50">
+                <div className={`absolute top-full right-0 mt-2 ${isDark ? 'bg-white border-[#004155]' : 'bg-[#2F2F2F] border-white/20'} border rounded-md shadow-lg overflow-hidden min-w-[80px] z-50`}>
                   <button
                     onClick={() => handleLangChange('ru')}
-                    className="font-display header-nav-text block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
+                    className={`font-display header-nav-text block w-full text-left px-4 py-2 text-sm ${isDark ? 'text-[#004155] hover:bg-gray-100' : 'text-white hover:bg-white/10'} transition-colors`}
                   >
                     {LANGUAGES.ru}
                   </button>
                   <button
                     onClick={() => handleLangChange('en')}
-                    className="font-display header-nav-text block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
+                    className={`font-display header-nav-text block w-full text-left px-4 py-2 text-sm ${isDark ? 'text-[#004155] hover:bg-gray-100' : 'text-white hover:bg-white/10'} transition-colors`}
                   >
                     {LANGUAGES.en}
                   </button>
                   <button
                     onClick={() => handleLangChange('zh')}
-                    className="font-display header-nav-text block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
+                    className={`font-display header-nav-text block w-full text-left px-4 py-2 text-sm ${isDark ? 'text-[#004155] hover:bg-gray-100' : 'text-white hover:bg-white/10'} transition-colors`}
                   >
                     {LANGUAGES.zh}
                   </button>
@@ -146,7 +153,7 @@ export function HeaderNew() {
             {/* CTA Button */}
             <button
               onClick={() => setShowBookingModal(true)}
-              className="font-display header-nav-text px-6 py-2 border-2 border-white text-white rounded-md font-normal text-sm tracking-wide transition-all duration-300 uppercase hover:bg-white hover:text-[#2F2F2F] whitespace-nowrap"
+              className={`font-display header-nav-text px-6 py-2 border-2 ${isDark ? 'border-[#004155] text-[#004155] hover:bg-[#004155] hover:text-white' : 'border-white text-white hover:bg-white hover:text-[#2F2F2F]'} rounded-md font-normal text-sm tracking-wide transition-all duration-300 uppercase whitespace-nowrap`}
             >
               {content.header.bookButton}
             </button>
@@ -159,15 +166,15 @@ export function HeaderNew() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-white hover:text-white/80 transition-colors"
+              className={`p-2 ${textColor} ${hoverColor} transition-colors`}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-6 h-6" style={{ color: iconColor }} /> : <Menu className="w-6 h-6" style={{ color: iconColor }} />}
             </button>
 
             {/* Logo */}
             <Link href="/" className="flex items-center transition-transform hover:scale-105">
               <Image
-                src="/logo-white.svg"
+                src={logoSrc}
                 alt="Swan Hellenic"
                 width={126}
                 height={30}
@@ -179,7 +186,7 @@ export function HeaderNew() {
             {/* Booking Button Mobile */}
             <button
               onClick={() => setShowBookingModal(true)}
-              className="font-display header-nav-text p-2 px-3 border border-white text-white rounded-md font-normal text-xs tracking-wide transition-all duration-300 uppercase hover:bg-white hover:text-[#2F2F2F]"
+              className={`font-display header-nav-text p-2 px-3 border ${isDark ? 'border-[#004155] text-[#004155] hover:bg-[#004155] hover:text-white' : 'border-white text-white hover:bg-white hover:text-[#2F2F2F]'} rounded-md font-normal text-xs tracking-wide transition-all duration-300 uppercase`}
             >
               {content.header.bookButton}
             </button>
@@ -187,22 +194,22 @@ export function HeaderNew() {
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="mt-6 pb-4 border-t border-white/20 pt-6">
+            <div className="mt-6 pb-4 border-t border-[#0041551A] pt-6">
               <nav className="flex flex-col gap-4">
                 {navItems.map((item) => (
                   <button
                     key={item.title}
                     type="button"
                     onClick={(e) => scrollToSection(e, item.id)}
-                    className="font-display header-nav-text header-nav-text text-white hover:text-white/80 uppercase text-[13px] leading-[16px] tracking-[0.05em] transition-colors text-left cursor-pointer"
+                    className={`font-display header-nav-text ${textColor} ${hoverColor} uppercase text-[13px] leading-[16px] tracking-[0.05em] transition-colors text-left cursor-pointer`}
                   >
                     {item.title}
                   </button>
                 ))}
 
                 {/* Language Switcher - Mobile */}
-                <div className="border-t border-white/20 pt-4 mt-2">
-                  <p className="font-display header-nav-text text-xs font-normal tracking-wide uppercase mb-3 text-white/60">
+                <div className="border-t border-[#0041551A] pt-4 mt-2">
+                  <p className="font-display header-nav-text text-xs font-normal tracking-wide uppercase mb-3 text-[#00415599]">
                     Language
                   </p>
                   <div className="flex gap-3">
@@ -212,7 +219,7 @@ export function HeaderNew() {
                         setIsMobileMenuOpen(false)
                       }}
                       className={`font-display px-4 py-2 text-sm font-normal rounded-md transition-all ${
-                        language === 'ru' ? 'bg-white text-[#2F2F2F]' : 'bg-white/10 text-white hover:bg-white/20'
+                        language === 'ru' ? 'bg-[#004155] text-white' : 'bg-gray-100 text-[#004155] hover:bg-gray-200'
                       }`}
                     >
                       {LANGUAGES.ru}
@@ -223,7 +230,7 @@ export function HeaderNew() {
                         setIsMobileMenuOpen(false)
                       }}
                       className={`font-display px-4 py-2 text-sm font-normal rounded-md transition-all ${
-                        language === 'en' ? 'bg-white text-[#2F2F2F]' : 'bg-white/10 text-white hover:bg-white/20'
+                        language === 'en' ? 'bg-[#004155] text-white' : 'bg-gray-100 text-[#004155] hover:bg-gray-200'
                       }`}
                     >
                       {LANGUAGES.en}
@@ -234,7 +241,7 @@ export function HeaderNew() {
                         setIsMobileMenuOpen(false)
                       }}
                       className={`font-display px-4 py-2 text-sm font-normal rounded-md transition-all ${
-                        language === 'zh' ? 'bg-white text-[#2F2F2F]' : 'bg-white/10 text-white hover:bg-white/20'
+                        language === 'zh' ? 'bg-[#004155] text-white' : 'bg-gray-100 text-[#004155] hover:bg-gray-200'
                       }`}
                     >
                       {LANGUAGES.zh}
