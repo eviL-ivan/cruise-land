@@ -14,11 +14,15 @@ export function Company() {
       <div className="container mx-auto px-4">
         {/* Centered Header - All Screens */}
         <div className="max-w-4xl mx-auto text-center mb-12 lg:mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-balance text-[#004155] tracking-tight leading-[1.1]">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-balance text-[#004155] tracking-tight leading-[1.1]">
             Swan Hellenic
           </h2>
 
-          <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#be8f74]/60 to-transparent mx-auto" />
+          <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#be8f74]/60 to-transparent mx-auto mt-6 mb-6" />
+
+          <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed text-[#004155]">
+            {content.company.title}
+          </p>
         </div>
 
         {/* Mobile Layout: Image and Content */}
@@ -38,9 +42,6 @@ export function Company() {
 
           {/* Content */}
           <div className="space-y-4">
-            <p className="font-serif text-3xl md:text-4xl leading-relaxed text-[#004155]">
-              {content.company.title}
-            </p>
             <p className="text-sm leading-relaxed text-[#004155]">
               {content.company.subtitle}
             </p>
@@ -143,6 +144,20 @@ export function Company() {
                   </div>
                 </div>
               </div>
+
+              {/* Trustpilot Widget */}
+              <div className="pt-6">
+                <div
+                  className="trustpilot-widget"
+                  data-locale="en-GB"
+                  data-template-id="56278e9abfbbba0bdcd568bc"
+                  data-businessunit-id="64eef88a4e6226f5afa125f7"
+                  data-style-height="52px"
+                  data-style-width="100%"
+                >
+                  <a href="https://www.trustpilot.com/review/swanhellenic.com" target="_blank" rel="noopener">Trustpilot</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -166,10 +181,6 @@ export function Company() {
           {/* Desktop: Right Column - Content */}
           <div className="flex flex-col justify-center">
             <div className="space-y-6">
-              <p className="font-serif text-3xl lg:text-4xl leading-relaxed text-[#004155]">
-                {content.company.title}
-              </p>
-
               <p className="text-base leading-relaxed text-[#004155]">
                 {content.company.subtitle}
               </p>
@@ -272,6 +283,20 @@ export function Company() {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Trustpilot Widget */}
+              <div className="pt-6">
+                <div
+                  className="trustpilot-widget"
+                  data-locale="en-GB"
+                  data-template-id="56278e9abfbbba0bdcd568bc"
+                  data-businessunit-id="64eef88a4e6226f5afa125f7"
+                  data-style-height="52px"
+                  data-style-width="100%"
+                >
+                  <a href="https://www.trustpilot.com/review/swanhellenic.com" target="_blank" rel="noopener">Trustpilot</a>
                 </div>
               </div>
             </div>

@@ -27,8 +27,7 @@ export function WhatsIncluded() {
               className="w-full px-6 py-6 md:px-12 md:py-10 flex items-center justify-between bg-gradient-to-r from-white to-[#f8f7f6]/20 transition-all duration-500 group relative overflow-hidden"
             >
               <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-[#be8f74] to-transparent opacity-60"></div>
-              <div className="flex items-center gap-4">
-                <Sparkles className="h-7 w-7 text-[#be8f74] animate-pulse" />
+              <div className="flex items-center">
                 <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl -mb-2 text-[#004155] text-balance tracking-tight">
                   {content.included.title}
                 </h2>

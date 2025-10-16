@@ -139,7 +139,7 @@ export function Ship() {
   return (
     <>
       <section
-        className="min-h-[100svh] lg:min-h-0 py-8 lg:py-12"
+        className="min-h-[100svh] lg:min-h-[100vh] py-8 lg:py-16"
         style={{backgroundColor: '#004155'}}
       >
         {/* Mobile: 2 screens | Desktop: 1 screen (grid) */}
@@ -179,7 +179,7 @@ export function Ship() {
           >
             <div className="space-y-4 lg:mx-0 flex-1 flex flex-col justify-center">
               {/* Main Slider */}
-              <div className="relative h-[280px] rounded-lg overflow-hidden shadow-2xl group">
+              <div className="relative h-[380px] rounded-lg overflow-hidden shadow-2xl group">
                 <div className="embla h-full" ref={mainEmblaRef}>
                   <div className="embla__container h-full" {...mainTouchHandlers}>
                     {sliderImages.map((image, index) => {
@@ -244,7 +244,7 @@ export function Ship() {
 
               <div className="grid grid-cols-2 gap-4">
                 {/* Exterior Mini Slider */}
-                <div className="relative h-[170px] rounded-lg overflow-hidden shadow-lg group">
+                <div className="relative h-[220px] rounded-lg overflow-hidden shadow-lg group">
                   <div className="embla h-full" ref={exteriorEmblaRef}>
                     <div className="embla__container h-full" {...exteriorTouchHandlers}>
                       {exteriorImages.map((image, index) => {
@@ -305,7 +305,7 @@ export function Ship() {
                 </div>
 
                 {/* Interior Mini Slider */}
-                <div className="relative h-[170px] rounded-lg overflow-hidden shadow-lg group">
+                <div className="relative h-[220px] rounded-lg overflow-hidden shadow-lg group">
                   <div className="embla h-full" ref={interiorEmblaRef}>
                     <div className="embla__container h-full" {...interiorTouchHandlers}>
                       {interiorImages.map((image, index) => {
