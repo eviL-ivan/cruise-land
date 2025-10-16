@@ -218,7 +218,7 @@ export function HeaderNew() {
                         handleLangChange('ru')
                         setIsMobileMenuOpen(false)
                       }}
-                      className={`font-display px-4 py-2 text-sm font-normal rounded-md transition-all ${
+                      className={`font-display px-4 pt-2 pb-1.5 text-sm font-normal rounded-md transition-all ${
                         language === 'ru' ? 'bg-[#004155] text-white' : 'bg-gray-100 text-[#004155] hover:bg-gray-200'
                       }`}
                     >
@@ -229,7 +229,7 @@ export function HeaderNew() {
                         handleLangChange('en')
                         setIsMobileMenuOpen(false)
                       }}
-                      className={`font-display px-4 py-2 text-sm font-normal rounded-md transition-all ${
+                      className={`font-display px-4 pt-2 pb-1.5 text-sm font-normal rounded-md transition-all ${
                         language === 'en' ? 'bg-[#004155] text-white' : 'bg-gray-100 text-[#004155] hover:bg-gray-200'
                       }`}
                     >
@@ -240,7 +240,7 @@ export function HeaderNew() {
                         handleLangChange('zh')
                         setIsMobileMenuOpen(false)
                       }}
-                      className={`font-display px-4 py-2 text-sm font-normal rounded-md transition-all ${
+                      className={`font-display px-4 pt-2 pb-1.5 text-sm font-normal rounded-md transition-all ${
                         language === 'zh' ? 'bg-[#004155] text-white' : 'bg-gray-100 text-[#004155] hover:bg-gray-200'
                       }`}
                     >
