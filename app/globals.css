@@ -554,3 +554,12 @@ elevenlabs-convai {
 .phone-input-compact .PhoneInputCountry {
   margin-right: 0.5rem !important;
 }
+
+/* ========================================
+   HEADER FONT WEIGHT FIX
+   ======================================== */
+.header-nav-text {
+  font-family: var(--font-non-natural-grotesque), "NON Natural Grotesk", system-ui, sans-serif;
+  font-weight: 400 !important;
+  font-variation-settings: 'wght' 400;
+}

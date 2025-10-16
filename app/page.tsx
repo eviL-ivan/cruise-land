@@ -1,6 +1,6 @@
 "use client"
 
-import { Header } from "@/components/header"
+import { HeaderNew } from "@/components/header-new"
 import { Hero } from "@/components/hero"
 import { Overview } from "@/components/overview"
 import { Journey } from "@/components/journey"
@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <>
-      <Header />
+      <HeaderNew />
       <main className="min-h-screen">
         <Hero />
         <Overview />
