@@ -20,13 +20,12 @@ export function WhatsIncluded() {
 
         {/* Main Card */}
         <div className="w-full max-w-4xl mx-auto">
-          <Card className="flex flex-col rounded-xl py-6 overflow-hidden border-2 border-[#be8f74]/20 shadow-2xl bg-gradient-to-br from-white via-white to-[#f8f7f6]/30">
+          <Card className="flex flex-col rounded-xl py-2 overflow-hidden border-2 border-[#be8f74]/20 shadow-2xl bg-gradient-to-br from-white via-white to-[#f8f7f6]/30">
             {/* Header - Always Visible */}
             <button
               onClick={() => setIsExpanded(!isExpanded)}
               className="w-full px-6 py-6 md:px-12 md:py-10 flex items-center justify-between bg-gradient-to-r from-white to-[#f8f7f6]/20 transition-all duration-500 group relative overflow-hidden"
             >
-              <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-[#be8f74] to-transparent opacity-60"></div>
               <div className="flex items-center">
                 <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl -mb-2 text-[#004155] text-balance tracking-tight">
                   {content.included.title}
