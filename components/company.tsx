@@ -145,19 +145,6 @@ export function Company() {
                 </div>
               </div>
 
-              {/* Trustpilot Widget */}
-              <div className="pt-6">
-                <div
-                  className="trustpilot-widget"
-                  data-locale="en-GB"
-                  data-template-id="56278e9abfbbba0bdcd568bc"
-                  data-businessunit-id="64eef88a4e6226f5afa125f7"
-                  data-style-height="52px"
-                  data-style-width="100%"
-                >
-                  <a href="https://www.trustpilot.com/review/swanhellenic.com" target="_blank" rel="noopener">Trustpilot</a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -286,19 +273,6 @@ export function Company() {
                 </div>
               </div>
 
-              {/* Trustpilot Widget */}
-              <div className="pt-6">
-                <div
-                  className="trustpilot-widget"
-                  data-locale="en-GB"
-                  data-template-id="56278e9abfbbba0bdcd568bc"
-                  data-businessunit-id="64eef88a4e6226f5afa125f7"
-                  data-style-height="52px"
-                  data-style-width="100%"
-                >
-                  <a href="https://www.trustpilot.com/review/swanhellenic.com" target="_blank" rel="noopener">Trustpilot</a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
