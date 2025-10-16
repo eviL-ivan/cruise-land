@@ -245,7 +245,7 @@ const OverlayLeftLayout = memo(function OverlayLeftLayout({ event, index, isInVi
                         <div
                             ref={contentRef}
                             onScroll={handleScroll}
-                            className="max-h-[calc(100svh-400px)] md:max-h-[calc(100svh-450px)] overflow-y-auto overflow-x-hidden pr-6 scrollbar-custom"
+                            className="max-h-[calc(100svh-400px)] md:max-h-[calc(100svh-380px)] overflow-y-auto overflow-x-hidden pr-6 scrollbar-custom"
                         >
                             <motion.div
                                 initial={{ opacity: 0, x: -50 }}
@@ -398,7 +398,7 @@ const OverlayRightLayout = memo(function OverlayRightLayout({ event, index, isIn
                         <div
                             ref={contentRef}
                             onScroll={handleScroll}
-                            className="max-h-[calc(100svh-400px)] md:max-h-[calc(100svh-450px)] overflow-y-auto overflow-x-hidden px-3 scrollbar-custom text-right"
+                            className="max-h-[calc(100svh-400px)] md:max-h-[calc(100svh-380px)] overflow-y-auto overflow-x-hidden px-3 scrollbar-custom text-right"
                         >
                             <motion.div
                                 initial={{ opacity: 0, x: 50 }}
