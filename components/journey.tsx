@@ -2,9 +2,7 @@
 
 import { useLanguage } from "@/lib/language-context"
 import { useEffect, useRef, useState } from "react"
-import blurDataJSON from "@/lib/blur-data.json"
-
-const blurData = blurDataJSON as Record<string, string>
+import { ImageWithBlur } from "@/components/ui/image-with-blur"
 
 interface StatItemProps {
   number: string
@@ -105,26 +103,6 @@ function StatItem({ number, title, description, delay }: StatItemProps) {
 
 export function Journey() {
   const { content } = useLanguage()
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
-
-  const getVideoSrc = (imageSrc: string) => {
-    return imageSrc.replace(/\.(jpg|jpeg|png|webp)$/i, '.mp4')
-  }
-
-  const handleMouseEnter = (index: number) => {
-    const video = videoRefs.current[index]
-    if (video) {
-      video.play()
-    }
-  }
-
-  const handleMouseLeave = (index: number) => {
-    const video = videoRefs.current[index]
-    if (video) {
-      video.pause()
-      video.currentTime = 0
-    }
-  }
 
   return (
     <section className="py-24 bg-background">
@@ -143,32 +121,14 @@ export function Journey() {
             <div
               key={index}
               className="relative group"
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={() => handleMouseLeave(index)}
             >
               <div className="relative h-64 rounded-lg overflow-hidden mb-4">
-                {blurData[destination.image] && (
-                  <div
-                    className="absolute inset-0 z-0"
-                    style={{
-                      backgroundImage: `url(${blurData[destination.image]})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      filter: 'blur(20px)',
-                    }}
-                  />
-                )}
-                <video
-                  ref={(el) => {
-                    videoRefs.current[index] = el
-                  }}
-                  src={getVideoSrc(destination.image)}
-                  poster={destination.image}
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="relative z-10 w-full h-full object-cover"
+                <ImageWithBlur
+                  src={destination.image}
+                  alt={destination.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-20" />
                 <div className="absolute bottom-4 left-4 right-4 z-30">

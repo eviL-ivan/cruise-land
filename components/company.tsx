@@ -15,7 +15,7 @@ export function Company() {
         {/* Centered Header - All Screens */}
         <div className="max-w-4xl mx-auto text-center mb-12 lg:mb-16">
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-balance text-[#004155] tracking-tight leading-[1.1]">
-            Swan Hellenic
+            Discover Swan Hellenic
           </h2>
 
           <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#be8f74]/60 to-transparent mx-auto mt-6 mb-6" />
@@ -31,7 +31,7 @@ export function Company() {
           {/* Image */}
           <div className="relative h-[50vh] rounded-lg overflow-hidden shadow-2xl">
             <ImageWithBlur
-              src="/shipSlider/ship_slide6.jpg"
+              src="/swan_company.jpeg"
               alt="Swan Hellenic expedition vessel"
               fill
               className="object-cover object-center"
@@ -155,7 +155,7 @@ export function Company() {
           <div className="flex flex-col">
             <div className="relative flex-1 min-h-[500px] rounded-lg overflow-hidden shadow-2xl">
               <ImageWithBlur
-                src="/shipSlider/ship_slide6.jpg"
+                src="/swan_company.jpeg"
                 alt="Swan Hellenic expedition vessel"
                 fill
                 className="object-cover object-center"

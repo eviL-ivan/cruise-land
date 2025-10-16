@@ -59,7 +59,7 @@ export const cabins = {
       capacity: "2-3",
       price: "$27,280",
       features: [
-        "5 m² 私人阳台",
+        "5-10 m² 私人阳台",
         "特大号床",
         "独立起居室",
         "仿真壁炉",
@@ -74,7 +74,7 @@ export const cabins = {
       capacity: "2",
       price: "$31,180",
       features: [
-        "8 m² 私人阳台",
+        "8-12 m² 私人阳台",
         "特大号床",
         "独立起居室",
         "仿真壁炉",

@@ -86,9 +86,9 @@ const baseContent = {
   highlights: [
     {
       number: "1",
-      title: "Cape Town & Cape of Good Hope",
+      title: "Cape Town",
       description:
-        "Discover Cape Town — one of the world’s most beautiful cities: the Cape of Good Hope and Table Mountain.",
+        "Discover Cape Town — one of the world's most beautiful cities: the Cape of Good Hope and Table Mountain.",
       image: images.highlights[0],
     },
     {
@@ -135,13 +135,13 @@ const baseContent = {
     },
     {
       number: "8",
-      title: "Creativity & Inspiration",
+      title: "Citizen Science Laboratory",
       description: "Creative workshops onboard: photography, painting, arts.",
       image: images.highlights[7],
     },
     {
       number: "9",
-      title: "Swimming in the Southern Ocean",
+      title: "The Infamous Polar Plunge",
       description:
         "Take a polar plunge in the Southern Ocean (water temperature ~ −2…+10 °C).",
       image: images.highlights[8],
@@ -256,9 +256,9 @@ const baseContent = {
   // Company
   company: {
     title: "See What Others Don't",
-    subtitle: "Boutique luxury expedition cruises designed for those who seek meaning beyond the horizon.",
-    description: "Our ice-class vessels — SH Minerva, SH Vega, and SH Diana — unlock the Arctic, Antarctica, and the world's most remote corners in an atmosphere of Nordic elegance, serenity, and comfort.",
-    quote: "Here, luxury is not excess, but the art of seeing deeper.",
+    subtitle: "Swan Hellenic specialises in cultural expedition cruises, offering immersive journeys to remote and historic destinations.",
+    description: "Their fleet of elegant, ice-class ships, featuring Scandinavian design, provides luxurious accommodations and expert-led experiences.",
+    quote: "With a focus on unique itineraries and high staff-to-guest ratios, Swan Hellenic delivers enriching adventures for discerning travelers.",
     awards: {
       bestInCruise: {
         title: "Best in Cruise",
@@ -280,14 +280,15 @@ const baseContent = {
     capacity: "up to 200 guests",
     crew: "140 crew members",
     description:
-      "A true boutique hotel at sea. Enjoy an infinity pool with ocean views, fine dining restaurants with dishes by renowned chefs, and stylish interiors crafted from natural materials.",
+      "SH Diana blends cutting-edge technology with stylish sophistication. Every detail is designed for immersive exploration in ultimate comfort with unobstructed views throughout the ship. Whether you're soaking in breathtaking scenery from the panoramic sauna, dining in a world-class restaurant, or relaxing in your luxurious stateroom, SH Diana offers an exceptional experience — perfectly crafted for modern adventurers who seek both discovery and indulgence.",
+    brochureUrl: "https://www.flipsnack.com/swanhelleniccruises/sh-diana-welcome-aboard-1ni4388cjl/full-view.html",
+    brochureButton: "Ship Brochure",
     amenities: [
-      { title: "Up to 200 guests", description: "Exclusive boutique experience" },
-      { title: "Infinity Pool", description: "With panoramic ocean views" },
-      { title: "Fine Dining", description: "Swan Hellenic restaurants" },
-      { title: "Spa", description: "Jacuzzi, sauna, beauty salon" },
-      { title: "PC6 Polar Class", description: "Designed specifically for polar regions" },
-      { title: "Safety", description: "All ship systems have redundancy" },
+      { title: "192 guests", description: "127 staff • Exclusive boutique experience" },
+      { title: "PC6 Polar class", description: "Designed specifically for polar regions" },
+      { title: "Fine Dining", description: "Across 3 venues" },
+      { title: "Launched in 2023", description: "Brand new expedition vessel" },
+      { title: "Wellbeing", description: "Infinity pool, jacuzzi, spa, gym sauna & steam room" },
     ],
     features: [
       "Infinity pool on the open deck",

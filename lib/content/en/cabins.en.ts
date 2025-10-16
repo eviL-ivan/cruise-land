@@ -59,7 +59,7 @@ export const cabins = {
       capacity: "2-3",
       price: "From $27,280",
       features: [
-        "5 m² private balcony",
+        "5-10 m² private balcony",
         "King size bed",
         "Separate living room",
         "Flame-effect fireplace",
@@ -74,7 +74,7 @@ export const cabins = {
       capacity: "2",
       price: "From $31,180",
       features: [
-        "8 m² private balcony",
+        "8-12 m² private balcony",
         "King size bed",
         "Separate living room",
         "Flame-effect fireplace",
