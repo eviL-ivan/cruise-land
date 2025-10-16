@@ -115,7 +115,7 @@ export function HeaderNew() {
           </nav>
 
           {/* Language & CTA - Absolute positioned */}
-          <div className="absolute right-6 bottom-6 flex items-center gap-4">
+          <div className="absolute right-6 bottom-6 flex items-end gap-8">
             {/* Language Dropdown */}
             <div className="relative">
               <button
@@ -153,7 +153,7 @@ export function HeaderNew() {
             {/* CTA Button */}
             <button
               onClick={() => setShowBookingModal(true)}
-              className={`font-display header-nav-text px-6 pt-2 pb-1.5 border-2 ${isDark ? 'border-[#004155] text-[#004155] hover:bg-[#004155] hover:text-white' : 'border-white text-white hover:bg-white hover:text-[#2F2F2F]'} rounded-md font-normal text-sm tracking-wide transition-all duration-300 uppercase whitespace-nowrap`}
+              className={`font-display header-nav-text ${textColor} ${hoverColor} uppercase text-[14px] leading-[16px] tracking-[0.05em] transition-colors cursor-pointer`}
             >
               {content.header.bookButton}
             </button>
