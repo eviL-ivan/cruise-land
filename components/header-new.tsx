@@ -153,7 +153,7 @@ export function HeaderNew() {
             {/* CTA Button */}
             <button
               onClick={() => setShowBookingModal(true)}
-              className={`font-display header-nav-text px-6 py-2 border-2 ${isDark ? 'border-[#004155] text-[#004155] hover:bg-[#004155] hover:text-white' : 'border-white text-white hover:bg-white hover:text-[#2F2F2F]'} rounded-md font-normal text-sm tracking-wide transition-all duration-300 uppercase whitespace-nowrap`}
+              className={`font-display header-nav-text px-6 pt-2 pb-1.5 border-2 ${isDark ? 'border-[#004155] text-[#004155] hover:bg-[#004155] hover:text-white' : 'border-white text-white hover:bg-white hover:text-[#2F2F2F]'} rounded-md font-normal text-sm tracking-wide transition-all duration-300 uppercase whitespace-nowrap`}
             >
               {content.header.bookButton}
             </button>
@@ -186,7 +186,7 @@ export function HeaderNew() {
             {/* Booking Button Mobile */}
             <button
               onClick={() => setShowBookingModal(true)}
-              className={`font-display header-nav-text p-2 px-3 border ${isDark ? 'border-[#004155] text-[#004155] hover:bg-[#004155] hover:text-white' : 'border-white text-white hover:bg-white hover:text-[#2F2F2F]'} rounded-md font-normal text-xs tracking-wide transition-all duration-300 uppercase`}
+              className={`font-display header-nav-text pt-2 pb-1.5 px-3 border ${isDark ? 'border-[#004155] text-[#004155] hover:bg-[#004155] hover:text-white' : 'border-white text-white hover:bg-white hover:text-[#2F2F2F]'} rounded-md font-normal text-xs tracking-wide transition-all duration-300 uppercase`}
             >
               {content.header.bookButton}
             </button>
