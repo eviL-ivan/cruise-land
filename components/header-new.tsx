@@ -1,69 +1,73 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { useLanguage } from "@/lib/language-context"
-import { ChevronDown, Menu, X } from "lucide-react"
-import { BookingModal } from "./BookingModal"
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useLanguage } from "@/lib/language-context";
+import { ChevronDown, Menu, X } from "lucide-react";
+import { BookingModal } from "./BookingModal";
 
 const LANGUAGES = {
   ru: "RU",
   en: "EN",
   zh: "中文",
-} as const
+} as const;
 
 export function HeaderNew() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isLangOpen, setIsLangOpen] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [showBookingModal, setShowBookingModal] = useState(false)
-  const { language, setLanguage, content } = useLanguage()
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showBookingModal, setShowBookingModal] = useState(false);
+  const { language, setLanguage, content } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0)
-    }
+      setIsScrolled(window.scrollY > 0);
+    };
 
-    handleScroll()
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
-    e.preventDefault()
-    setIsMobileMenuOpen(false)
-    const element = document.querySelector(id)
+  const scrollToSection = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    id: string
+  ) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    const element = document.querySelector(id);
     if (element) {
-      const headerOffset = 80
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
-      })
+        behavior: "smooth",
+      });
     }
-  }
+  };
 
   const handleLangChange = (lang: keyof typeof LANGUAGES) => {
-    setLanguage(lang)
-    setIsLangOpen(false)
-  }
+    setLanguage(lang);
+    setIsLangOpen(false);
+  };
 
   const navItems = [
-    { title: content.header.nav.route, id: "#journey" },
+    { title: content.header.nav.route, id: "#route" },
     { title: content.header.nav.itinerary, id: "#premium-itinerary" },
     { title: content.header.nav.ship, id: "#ship" },
     { title: content.header.nav.cabins, id: "#cabins" },
-  ]
+  ];
 
   // Определяем цвета в зависимости от состояния
-  const isDark = isScrolled || isMobileMenuOpen
-  const textColor = "text-white"
-  const hoverColor = "hover:text-white/80"
-  const iconColor = "white"
-  const logoSrc = "/logo-white.svg"
+  const isDark = isScrolled || isMobileMenuOpen;
+  const textColor = "text-white";
+  const hoverColor = "hover:text-white/80";
+  const iconColor = "white";
+  const logoSrc = "/logo-white.svg";
 
   return (
     <>
@@ -89,7 +93,10 @@ export function HeaderNew() {
           </nav>
 
           {/* Logo */}
-          <Link href="/" className="flex items-center transition-transform hover:scale-105">
+          <Link
+            href="/"
+            className="flex items-center transition-transform hover:scale-105"
+          >
             <Image
               src={logoSrc}
               alt="Swan Hellenic"
@@ -123,25 +130,30 @@ export function HeaderNew() {
                 className={`font-display header-nav-text flex items-center gap-1 ${textColor} ${hoverColor} uppercase font-normal text-[14px] leading-[16px] tracking-[0.05em] transition-colors`}
               >
                 {LANGUAGES[language]}
-                <ChevronDown className={`w-4 h-4 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} style={{ color: iconColor }} />
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${
+                    isLangOpen ? "rotate-180" : ""
+                  }`}
+                  style={{ color: iconColor }}
+                />
               </button>
 
               {isLangOpen && (
                 <div className="absolute top-full right-0 mt-2 bg-[#2F2F2F] border border-white/20 rounded-md shadow-lg overflow-hidden min-w-[80px] z-50">
                   <button
-                    onClick={() => handleLangChange('ru')}
+                    onClick={() => handleLangChange("ru")}
                     className="font-display header-nav-text block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
                   >
                     {LANGUAGES.ru}
                   </button>
                   <button
-                    onClick={() => handleLangChange('en')}
+                    onClick={() => handleLangChange("en")}
                     className="font-display header-nav-text block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
                   >
                     {LANGUAGES.en}
                   </button>
                   <button
-                    onClick={() => handleLangChange('zh')}
+                    onClick={() => handleLangChange("zh")}
                     className="font-display header-nav-text block w-full text-left px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
                   >
                     {LANGUAGES.zh}
@@ -168,11 +180,18 @@ export function HeaderNew() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`p-2 ${textColor} ${hoverColor} transition-colors`}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" style={{ color: iconColor }} /> : <Menu className="w-6 h-6" style={{ color: iconColor }} />}
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" style={{ color: iconColor }} />
+              ) : (
+                <Menu className="w-6 h-6" style={{ color: iconColor }} />
+              )}
             </button>
 
             {/* Logo */}
-            <Link href="/" className="flex items-center transition-transform hover:scale-105">
+            <Link
+              href="/"
+              className="flex items-center transition-transform hover:scale-105"
+            >
               <Image
                 src={logoSrc}
                 alt="Swan Hellenic"
@@ -215,33 +234,39 @@ export function HeaderNew() {
                   <div className="flex gap-3">
                     <button
                       onClick={() => {
-                        handleLangChange('ru')
-                        setIsMobileMenuOpen(false)
+                        handleLangChange("ru");
+                        setIsMobileMenuOpen(false);
                       }}
                       className={`font-display px-4 pt-2 pb-1.5 text-sm font-normal rounded-md transition-all ${
-                        language === 'ru' ? 'bg-white text-[#2F2F2F]' : 'bg-white/10 text-white hover:bg-white/20'
+                        language === "ru"
+                          ? "bg-white text-[#2F2F2F]"
+                          : "bg-white/10 text-white hover:bg-white/20"
                       }`}
                     >
                       {LANGUAGES.ru}
                     </button>
                     <button
                       onClick={() => {
-                        handleLangChange('en')
-                        setIsMobileMenuOpen(false)
+                        handleLangChange("en");
+                        setIsMobileMenuOpen(false);
                       }}
                       className={`font-display px-4 pt-2 pb-1.5 text-sm font-normal rounded-md transition-all ${
-                        language === 'en' ? 'bg-white text-[#2F2F2F]' : 'bg-white/10 text-white hover:bg-white/20'
+                        language === "en"
+                          ? "bg-white text-[#2F2F2F]"
+                          : "bg-white/10 text-white hover:bg-white/20"
                       }`}
                     >
                       {LANGUAGES.en}
                     </button>
                     <button
                       onClick={() => {
-                        handleLangChange('zh')
-                        setIsMobileMenuOpen(false)
+                        handleLangChange("zh");
+                        setIsMobileMenuOpen(false);
                       }}
                       className={`font-display px-4 pt-2 pb-1.5 text-sm font-normal rounded-md transition-all ${
-                        language === 'zh' ? 'bg-white text-[#2F2F2F]' : 'bg-white/10 text-white hover:bg-white/20'
+                        language === "zh"
+                          ? "bg-white text-[#2F2F2F]"
+                          : "bg-white/10 text-white hover:bg-white/20"
                       }`}
                     >
                       {LANGUAGES.zh}
@@ -255,7 +280,10 @@ export function HeaderNew() {
       </header>
 
       {/* Booking Modal */}
-      <BookingModal isOpen={showBookingModal} onClose={() => setShowBookingModal(false)} />
+      <BookingModal
+        isOpen={showBookingModal}
+        onClose={() => setShowBookingModal(false)}
+      />
     </>
-  )
+  );
 }

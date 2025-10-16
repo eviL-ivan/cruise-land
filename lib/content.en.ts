@@ -55,7 +55,7 @@ const baseContent = {
     mapAlt: "Cruise route map",
     mapButton: "Map",
     viewFullMap: "View Full Map",
-    brochureUrl: "/brochures/SH_TG_D33_South Atlantic cruise from South Africa to Antarctica_13Nov-v1.pdf",
+    brochureUrl: "https://www.flipsnack.com/swanhelleniccruises/sh-tg-v32-long-arc-to-antarctica-14-nov-25/full-view.html",
     brochureButton: "Brochure",
     description: "Starting in South Africa, this epic voyage across the southern Atlantic takes you to some of the world's most remote islands, including Tristan da Cunha and Gough Island.",
     detailedDescription: "Explore Antarctica and South Georgia, visiting unforgettable beaches crammed with penguins. Brave the notorious Drake Passage as we sail towards the wild Antarctic Peninsula. Cruising through this otherworldly icescape aboard SH Diana, we'll search for seabirds, seals, dolphins, and whales, ending in Ushuaia.",
@@ -64,7 +64,7 @@ const baseContent = {
 
   // Hero Section
   hero: {
-    title: "Southern Expedition",
+    title: "South Atlantic Expedition",
     titleAccent: "to Antarctica",
     subtitle:
       "South Atlantic Islands, South Georgia, and the Antarctic Peninsula aboard the expedition vessel SH Diana",

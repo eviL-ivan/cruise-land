@@ -140,20 +140,22 @@ export function getCruiseCode(): string {
   return getCurrentCruiseConfig().code
 }
 
-// Хелпер для получения дат в формате MM.DD.YY-MM.DD.YY (американский формат)
+// Хелпер для получения дат в формате "15 Nov 25 - 5 Dec 25" (английский формат)
 export function getCruiseDatesShort(): string {
   const config = getCurrentCruiseConfig()
   const start = new Date(config.dates.start)
   const end = new Date(config.dates.end)
 
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
   const formatDate = (date: Date) => {
-    const month = String(date.getMonth() + 1).padStart(2, '0')
-    const day = String(date.getDate()).padStart(2, '0')
+    const day = date.getDate()
+    const month = monthNames[date.getMonth()]
     const year = String(date.getFullYear()).slice(-2)
-    return `${month}.${day}.${year}`
+    return `${day} ${month} ${year}`
   }
 
-  return `${formatDate(start)}-${formatDate(end)}`
+  return `${formatDate(start)} - ${formatDate(end)}`
 }
 
 // Хелпер для получения дат в формате DD.MM.YY-DD.MM.YY (русский/европейский формат)

@@ -14,7 +14,7 @@ export const images = {
   },
 
   overview: {
-    map: "/map.jpg",
+    map: "/map-cape-usu.png",
   },
 
   itinerary: {

@@ -59,9 +59,9 @@ const notoSansSC = Noto_Sans_SC({
 })
 
 export const metadata: Metadata = {
-  title: "Southern Expedition to Antarctica",
+  title: "South Atlantic Expedition to Antarctica",
   description: contentEN.meta.description,
-  keywords: "Southern Expedition to Antarctica, Antarctic Cruise Expedition, Expedition to Antarctica, Southern Ocean Cruise",
+  keywords: "South Atlantic Expedition to Antarctica, Antarctic Cruise Expedition, Expedition to Antarctica, South Atlantic Cruise, South Georgia Cruise",
   icons: {
     icon: '/favicon.ico',
   },

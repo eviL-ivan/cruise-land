@@ -55,7 +55,7 @@ const baseContent = {
     mapAlt: "邮轮航线图",
     mapButton: "地图",
     viewFullMap: "查看完整地图",
-    brochureUrl: "/brochures/SH_TG_D33_South Atlantic cruise from South Africa to Antarctica_13Nov-v1.pdf",
+    brochureUrl: "https://www.flipsnack.com/swanhelleniccruises/sh-tg-v32-long-arc-to-antarctica-14-nov-25/full-view.html",
     brochureButton: "宣传册",
     description: "从南非启航，这段史诗般的南大西洋航程将带您前往世界上最偏远的岛屿，包括特里斯坦-达库尼亚和戈夫岛。",
     detailedDescription: "探索南极洲和南乔治亚岛，造访挤满企鹅的难忘海滩。勇闯著名的德雷克海峡，驶向荒野的南极半岛。搭乘 SH Diana 号穿越超凡脱俗的冰雪仙境，我们将寻找海鸟、海豹、海豚和鲸鱼的踪迹，最终抵达乌斯怀亚。",
@@ -64,7 +64,7 @@ const baseContent = {
 
   // 主页横幅 (Hero)
   hero: {
-    title: "跨大西洋探险",
+    title: "南大西洋探险",
     titleAccent: "前往南极",
     subtitle: "搭乘 SH Diana 探险船，探索南大西洋群岛、南乔治亚岛和南极半岛",
     highlight: "3 大洲 & 2 大洋",
