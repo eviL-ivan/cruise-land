@@ -310,6 +310,9 @@ export function ContactForm({ onSuccess, inCard = true, isCompact = false }: Con
             <PhoneInput
               id="phone"
               international
+              countryCallingCodeEditable={false}
+              defaultCountry="US"
+              placeholder="Enter phone number"
               value={formData.phone}
               onChange={(value) =>
                 setFormData({ ...formData, phone: value || "" })
