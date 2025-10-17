@@ -56,7 +56,7 @@ const baseContent = {
     mapButton: "Map",
     viewFullMap: "View Full Map",
     brochureUrl: "https://www.flipsnack.com/swanhelleniccruises/sh-tg-v32-long-arc-to-antarctica-14-nov-25/full-view.html",
-    brochureButton: "Brochure",
+    brochureButton: "Voyage Brochure",
     description: "Starting in South Africa, this epic voyage across the southern Atlantic takes you to some of the world's most remote islands, including Tristan da Cunha and Gough Island.",
     detailedDescription: "Explore Antarctica and South Georgia, visiting unforgettable beaches crammed with penguins. Brave the notorious Drake Passage as we sail towards the wild Antarctic Peninsula. Cruising through this otherworldly icescape aboard SH Diana, we'll search for seabirds, seals, dolphins, and whales, ending in Ushuaia.",
     experienceButton: "Watch Experience",

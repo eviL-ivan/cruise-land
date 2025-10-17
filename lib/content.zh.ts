@@ -56,7 +56,7 @@ const baseContent = {
     mapButton: "地图",
     viewFullMap: "查看完整地图",
     brochureUrl: "https://www.flipsnack.com/swanhelleniccruises/sh-tg-v32-long-arc-to-antarctica-14-nov-25/full-view.html",
-    brochureButton: "宣传册",
+    brochureButton: "游轮手册",
     description: "从南非启航，这段史诗般的南大西洋航程将带您前往世界上最偏远的岛屿，包括特里斯坦-达库尼亚和戈夫岛。",
     detailedDescription: "探索南极洲和南乔治亚岛，造访挤满企鹅的难忘海滩。勇闯著名的德雷克海峡，驶向荒野的南极半岛。搭乘 SH Diana 号穿越超凡脱俗的冰雪仙境，我们将寻找海鸟、海豹、海豚和鲸鱼的踪迹，最终抵达乌斯怀亚。",
     experienceButton: "观看体验",
