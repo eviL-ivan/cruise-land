@@ -175,18 +175,6 @@ export function HeaderNew() {
         {/* Mobile Navigation */}
         <div className="xl:hidden flex flex-col px-4 py-4">
           <div className="flex items-center justify-between w-full">
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`p-2 ${textColor} ${hoverColor} transition-colors`}
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" style={{ color: iconColor }} />
-              ) : (
-                <Menu className="w-6 h-6" style={{ color: iconColor }} />
-              )}
-            </button>
-
             {/* Logo */}
             <Link
               href="/"
@@ -202,13 +190,27 @@ export function HeaderNew() {
               />
             </Link>
 
-            {/* Booking Button Mobile */}
-            <button
-              onClick={() => setShowBookingModal(true)}
-              className="font-display header-nav-text pt-2 pb-1.5 px-3 border border-white text-white rounded-md font-normal text-xs tracking-wide transition-all duration-300 uppercase hover:bg-white hover:text-[#2F2F2F]"
-            >
-              {content.header.bookButton}
-            </button>
+            <div className="flex items-center gap-3">
+              {/* Booking Button Mobile */}
+              <button
+                onClick={() => setShowBookingModal(true)}
+                className="font-display header-nav-text pt-2 pb-1.5 px-3 border border-white text-white rounded-md font-normal text-xs tracking-wide transition-all duration-300 uppercase hover:bg-white hover:text-[#2F2F2F]"
+              >
+                {content.header.bookButton}
+              </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={`p-2 ${textColor} ${hoverColor} transition-colors  -mr-3`}
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-6 h-6" style={{ color: iconColor }} />
+                ) : (
+                  <Menu className="w-6 h-6" style={{ color: iconColor }} />
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu */}
