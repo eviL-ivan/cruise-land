@@ -1,20 +1,20 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Noto_Sans_JP, Noto_Sans_SC } from "next/font/google"
-import localFont from "next/font/local"
-import { Analytics } from "@vercel/analytics/next"
-import "./globals.css"
-import { Suspense } from "react"
-import { content as contentEN } from "@/lib/content.en"
-import { LanguageProvider } from "@/lib/language-context"
-import { MicrosoftClarity } from "@/components/analytics/clarity"
+import type React from "react";
+import type { Metadata } from "next";
+import { Noto_Sans_JP, Noto_Sans_SC } from "next/font/google";
+import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
+import { Suspense } from "react";
+import { content as contentEN } from "@/lib/content.en";
+import { LanguageProvider } from "@/lib/language-context";
+import { MicrosoftClarity } from "@/components/analytics/clarity";
 
 // Non Natural Grotesque - для заголовков (300 DemiLight, 700 Bold)
 const nonNaturalGrotesk = localFont({
   src: "../fonts/non-natural-grotesque/NonNaturalGrotesk-Variable.woff2",
   variable: "--font-non-natural-grotesque",
   display: "swap",
-})
+});
 
 // PP Neue Montreal - для основного текста (без italic)
 const ppNeueMontreal = localFont({
@@ -42,41 +42,48 @@ const ppNeueMontreal = localFont({
   ],
   variable: "--font-pp-neue-montreal",
   display: "swap",
-})
+});
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
   variable: "--font-noto-jp",
   display: "swap",
-})
+});
 
 const notoSansSC = Noto_Sans_SC({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
   variable: "--font-noto-sc",
   display: "swap",
-})
+});
 
 export const metadata: Metadata = {
   title: "South Atlantic Expedition to Antarctica",
   description: contentEN.meta.description,
-  keywords: "South Atlantic Expedition to Antarctica, Antarctic Cruise Expedition, Expedition to Antarctica, South Atlantic Cruise, South Georgia Cruise",
+  keywords:
+    "South Atlantic Expedition to Antarctica, Antarctic Cruise Expedition, Expedition to Antarctica, South Atlantic Cruise, South Georgia Cruise",
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${nonNaturalGrotesk.variable} ${ppNeueMontreal.variable} ${notoSansJP.variable} ${notoSansSC.variable}`}>
+    <html
+      lang="en"
+      className={`${nonNaturalGrotesk.variable} ${ppNeueMontreal.variable} ${notoSansJP.variable} ${notoSansSC.variable}`}
+    >
       <head>
         {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MT7S1EMTCD"></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-MT7S1EMTCD"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -98,13 +105,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
         {/* End Google Tag Manager */}
-        <link rel="preconnect" href="https://api.mapbox.com" />
-        <link rel="dns-prefetch" href="https://api.mapbox.com" />
-        <link rel="preconnect" href="https://a.tiles.mapbox.com" />
-        <link rel="dns-prefetch" href="https://a.tiles.mapbox.com" />
+
         <link rel="preconnect" href="https://crm.swanhellenic.com" />
         <link rel="dns-prefetch" href="https://crm.swanhellenic.com" />
-        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+        <script
+          src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+          async
+          type="text/javascript"
+        ></script>
       </head>
       <body className="font-sans antialiased">
         {/* Google Tag Manager (noscript) */}
@@ -113,7 +121,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             src="https://www.googletagmanager.com/ns.html?id=GTM-P6R255M5"
             height="0"
             width="0"
-            style={{display: 'none', visibility: 'hidden'}}
+            style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
@@ -122,8 +130,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </LanguageProvider>
         <Analytics />
         <MicrosoftClarity />
-        <elevenlabs-convai agent-id="agent_3301k6ww61zgea1bhdm2nfvg9ka4" variant="expandable"></elevenlabs-convai>
+        <elevenlabs-convai
+          agent-id="agent_3301k6ww61zgea1bhdm2nfvg9ka4"
+          variant="expandable"
+        ></elevenlabs-convai>
       </body>
     </html>
-  )
+  );
 }

@@ -16,6 +16,13 @@ import { useLanguage } from "@/lib/language-context";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+{
+  /* <link rel="preconnect" href="https://api.mapbox.com" />
+        <link rel="dns-prefetch" href="https://api.mapbox.com" />
+        <link rel="preconnect" href="https://a.tiles.mapbox.com" />
+        <link rel="dns-prefetch" href="https://a.tiles.mapbox.com" /> */
+}
+
 // Catmull-Rom сплайн для плавной линии (оптимизированный)
 const createSmoothCurve = (points: number[][]): number[][] => {
   const smoothPoints: number[][] = [];
@@ -146,7 +153,11 @@ export default function AntarcticaMap() {
             animationFrameRef.current = null;
           }
           // Если карта стала видимой и не было взаимодействия, перезапустить анимацию
-          else if (entry.isIntersecting && !wasVisible && !isUserInteractingRef.current) {
+          else if (
+            entry.isIntersecting &&
+            !wasVisible &&
+            !isUserInteractingRef.current
+          ) {
             if (idleTimeoutRef.current) {
               clearTimeout(idleTimeoutRef.current);
             }
@@ -157,7 +168,8 @@ export default function AntarcticaMap() {
                   cancelAnimationFrame(animationFrameRef.current);
                 }
                 // Эта функция будет доступна после загрузки карты
-                const startIdleAnimation = (window as any).__mapStartIdleAnimation;
+                const startIdleAnimation = (window as any)
+                  .__mapStartIdleAnimation;
                 if (startIdleAnimation) startIdleAnimation();
               }
             }, 1000);
@@ -297,7 +309,7 @@ export default function AntarcticaMap() {
                 "case",
                 ["boolean", ["feature-state", "hover"], false],
                 11, // Размер при hover
-                8   // Обычный размер
+                8, // Обычный размер
               ],
               "circle-color": "#374151",
               "circle-stroke-width": 3,
@@ -420,13 +432,23 @@ export default function AntarcticaMap() {
 
           // Функция анимации покачивания
           const startIdleAnimation = () => {
-            if (!map.current || isUserInteractingRef.current || !isMapVisibleRef.current) return;
+            if (
+              !map.current ||
+              isUserInteractingRef.current ||
+              !isMapVisibleRef.current
+            )
+              return;
 
             const initialBearing = map.current.getBearing();
             let startTime: number | null = null;
 
             const animate = (timestamp: number) => {
-              if (!map.current || isUserInteractingRef.current || !isMapVisibleRef.current) return;
+              if (
+                !map.current ||
+                isUserInteractingRef.current ||
+                !isMapVisibleRef.current
+              )
+                return;
 
               if (!startTime) startTime = timestamp;
               const elapsed = timestamp - startTime;
