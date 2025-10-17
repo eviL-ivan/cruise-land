@@ -15,6 +15,7 @@ import { Promotions } from "@/components/promotions"
 import { Footer } from "@/components/footer"
 import { Awards } from "@/components/awards"
 import { CompanyShipSection } from "@/components/company-ship-section"
+import { NextYearBanner } from "@/components/next-year-banner"
 import { getCurrentCruiseConfig } from "@/lib/cruise-config"
 
 export default function Home() {
@@ -66,6 +67,9 @@ export default function Home() {
         <div id="contact">
           <CTA />
         </div>
+
+        {/* Next Year Banner - Показываем только если nextYearBanner.enabled = true */}
+        {cruiseConfig.nextYearBanner?.enabled && <NextYearBanner />}
 
         <Footer />
       </main>

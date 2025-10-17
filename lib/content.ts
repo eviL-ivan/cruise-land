@@ -230,6 +230,11 @@ const baseContent = {
 
   // Footer
   footer: {
+    nextYear: {
+      title: "Интересует 2026 год?",
+      description: "Откройте для себя экспедицию в Антарктиду 2026 года",
+      button: "Смотреть круиз 2026",
+    },
     aboutUs: {
       title: "О нас",
       links: [

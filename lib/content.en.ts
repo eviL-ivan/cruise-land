@@ -334,6 +334,11 @@ const baseContent = {
 
   // Footer
   footer: {
+    nextYear: {
+      title: "Interested in 2026?",
+      description: "Discover the 2026 expedition to Antarctica",
+      button: "View 2026 Voyage",
+    },
     aboutUs: {
       title: "About Us",
       links: [

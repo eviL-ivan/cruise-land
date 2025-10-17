@@ -35,6 +35,11 @@ export interface CruiseConfig {
     desktop: string
     mobile: string
   }
+  // Баннер следующего года
+  nextYearBanner?: {
+    enabled: boolean
+    url: string
+  }
 }
 
 // Конфигурации для разных круизов
@@ -54,6 +59,10 @@ export const CRUISE_CONFIGS: Record<string, CruiseConfig> = {
     duration: {
       days: 21,
       nights: 20,
+    },
+    nextYearBanner: {
+      enabled: true,
+      url: "https://cape-ushuaia26.swanhellenic.com/",
     },
   },
   "CPTUSH26": {

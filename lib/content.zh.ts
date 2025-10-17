@@ -323,6 +323,11 @@ const baseContent = {
 
   // 页脚
   footer: {
+    nextYear: {
+      title: "对2026年感兴趣？",
+      description: "探索2026年南极探险",
+      button: "查看2026年游轮",
+    },
     aboutUs: {
       title: "关于我们",
       links: [
