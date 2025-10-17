@@ -15,7 +15,7 @@ export function Company() {
         {/* Centered Header - All Screens */}
         <div className="max-w-4xl mx-auto text-center mb-12 lg:mb-16">
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-balance text-[#004155] tracking-tight leading-[1.1]">
-            Swan Hellenic
+            Discover Swan Hellenic
           </h2>
 
           <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#be8f74]/60 to-transparent mx-auto mt-6 mb-6" />
@@ -29,9 +29,9 @@ export function Company() {
         <div className="lg:hidden flex flex-col space-y-6">
 
           {/* Image */}
-          <div className="relative h-[50vh] rounded-lg overflow-hidden shadow-2xl">
+          <div className="relative h-[40vh] rounded-lg overflow-hidden shadow-2xl">
             <ImageWithBlur
-              src="/shipSlider/ship_slide6.jpg"
+              src="/swan_company.jpeg"
               alt="Swan Hellenic expedition vessel"
               fill
               className="object-cover object-center"
@@ -145,19 +145,6 @@ export function Company() {
                 </div>
               </div>
 
-              {/* Trustpilot Widget */}
-              <div className="pt-6">
-                <div
-                  className="trustpilot-widget"
-                  data-locale="en-GB"
-                  data-template-id="56278e9abfbbba0bdcd568bc"
-                  data-businessunit-id="64eef88a4e6226f5afa125f7"
-                  data-style-height="52px"
-                  data-style-width="100%"
-                >
-                  <a href="https://www.trustpilot.com/review/swanhellenic.com" target="_blank" rel="noopener">Trustpilot</a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -166,9 +153,9 @@ export function Company() {
         <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-stretch max-w-7xl mx-auto lg:py-8">
           {/* Desktop: Left Column - Image */}
           <div className="flex flex-col">
-            <div className="relative flex-1 min-h-[500px] rounded-lg overflow-hidden shadow-2xl">
+            <div className="relative flex-1 min-h-[400px] rounded-lg overflow-hidden shadow-2xl">
               <ImageWithBlur
-                src="/shipSlider/ship_slide6.jpg"
+                src="/swan_company.jpeg"
                 alt="Swan Hellenic expedition vessel"
                 fill
                 className="object-cover object-center"
@@ -286,19 +273,6 @@ export function Company() {
                 </div>
               </div>
 
-              {/* Trustpilot Widget */}
-              <div className="pt-6">
-                <div
-                  className="trustpilot-widget"
-                  data-locale="en-GB"
-                  data-template-id="56278e9abfbbba0bdcd568bc"
-                  data-businessunit-id="64eef88a4e6226f5afa125f7"
-                  data-style-height="52px"
-                  data-style-width="100%"
-                >
-                  <a href="https://www.trustpilot.com/review/swanhellenic.com" target="_blank" rel="noopener">Trustpilot</a>
-                </div>
-              </div>
             </div>
           </div>
         </div>

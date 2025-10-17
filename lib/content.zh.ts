@@ -55,7 +55,7 @@ const baseContent = {
     mapAlt: "邮轮航线图",
     mapButton: "地图",
     viewFullMap: "查看完整地图",
-    brochureUrl: "/brochures/SH_TG_D33_South Atlantic cruise from South Africa to Antarctica_13Nov-v1.pdf",
+    brochureUrl: "https://www.flipsnack.com/swanhelleniccruises/sh-tg-v32-long-arc-to-antarctica-14-nov-25/full-view.html",
     brochureButton: "宣传册",
     description: "从南非启航，这段史诗般的南大西洋航程将带您前往世界上最偏远的岛屿，包括特里斯坦-达库尼亚和戈夫岛。",
     detailedDescription: "探索南极洲和南乔治亚岛，造访挤满企鹅的难忘海滩。勇闯著名的德雷克海峡，驶向荒野的南极半岛。搭乘 SH Diana 号穿越超凡脱俗的冰雪仙境，我们将寻找海鸟、海豹、海豚和鲸鱼的踪迹，最终抵达乌斯怀亚。",
@@ -64,7 +64,7 @@ const baseContent = {
 
   // 主页横幅 (Hero)
   hero: {
-    title: "跨大西洋探险",
+    title: "南大西洋探险",
     titleAccent: "前往南极",
     subtitle: "搭乘 SH Diana 探险船，探索南大西洋群岛、南乔治亚岛和南极半岛",
     highlight: "3 大洲 & 2 大洋",
@@ -85,7 +85,7 @@ const baseContent = {
   highlights: [
     {
       number: "1",
-      title: "开普敦与好望角",
+      title: "开普敦",
       description: "探索世界上最美丽的城市之一：开普敦。参观好望角和桌山。",
       image: images.highlights[0],
     },
@@ -128,13 +128,13 @@ const baseContent = {
     },
     {
       number: "8",
-      title: "创意与灵感",
+      title: "公民科学实验室",
       description: "船上创意工作坊：摄影、绘画、艺术。",
       image: images.highlights[7],
     },
     {
       number: "9",
-      title: "南大洋畅泳",
+      title: "传奇极地跳水",
       description: "在南大洋畅泳（水温约 −2…+10 °C）。",
       image: images.highlights[8],
     },
@@ -245,9 +245,9 @@ const baseContent = {
   // 公司简介
   company: {
     title: "看见别人看不到的",
-    subtitle: "为那些在地平线之外寻找意义的人设计的精品奢华探险邮轮。",
-    description: "我们的冰级船只——SH Minerva、SH Vega 和 SH Diana——以北欧优雅、宁静与舒适的氛围，开启北极、南极和世界最偏远角落的探险之旅。",
-    quote: "在这里，奢华不是过度，而是更深层次的观察艺术。",
+    subtitle: "Swan Hellenic 专注于文化探险邮轮，为您提供前往偏远和历史目的地的沉浸式旅程。",
+    description: "我们拥有优雅的冰级船队，采用斯堪的纳维亚设计，提供豪华住宿和专家带领的体验。",
+    quote: "专注于独特的航线和高员工与宾客比例，Swan Hellenic 为挑剔的旅行者提供丰富的冒险体验。",
     awards: {
       bestInCruise: {
         title: "最佳邮轮",
@@ -269,14 +269,15 @@ const baseContent = {
     capacity: "最多200位宾客",
     crew: "140 名船员",
     description:
-      "一座真正的海上精品酒店。设有无边泳池（海景），由知名主厨掌勺的高端餐厅，以及以天然材质打造的时尚内饰。",
+      "SH Diana 将尖端技术与时尚精致完美融合。每个细节都旨在以极致舒适进行沉浸式探索，整艘船视野开阔无阻。无论是在全景桑拿中欣赏壮丽景色，在世界级餐厅用餐，还是在豪华客舱中放松，SH Diana 都能提供卓越体验——完美打造，满足现代冒险家对发现和享受的追求。",
+    brochureUrl: "https://www.flipsnack.com/swanhelleniccruises/sh-diana-welcome-aboard-1ni4388cjl/full-view.html",
+    brochureButton: "邮轮手册",
     amenities: [
-      { title: "最多200位宾客", description: "独家精品体验" },
-      { title: "无边泳池", description: "享有全景海景" },
-      { title: "精致餐饮", description: "Swan Hellenic 餐厅" },
-      { title: "Spa", description: "按摩浴缸、桑拿、美容院" },
+      { title: "192位宾客", description: "127名船员 • 独家精品体验" },
       { title: "PC6 极地级别", description: "专为极地区域设计" },
-      { title: "安全性", description: "所有船舶系统均有冗余备份" },
+      { title: "精致餐饮", description: "3个餐厅" },
+      { title: "2023年下水", description: "全新探险船" },
+      { title: "健康养生", description: "无边泳池、按摩浴缸、水疗、健身房桑拿和蒸汽房" },
     ],
     features: [
       "开放甲板上的无边泳池",

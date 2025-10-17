@@ -69,7 +69,7 @@ export function Overview() {
 
   return (
     <>
-      <section className="py-12 lg:py-16 bg-background">
+      <section id="route" className="py-12 lg:py-16 bg-background">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 lg:items-stretch">

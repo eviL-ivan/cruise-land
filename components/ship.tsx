@@ -155,7 +155,7 @@ export function Ship() {
               </h2>
               <p className="text-xl mb-8 text-white/90 leading-relaxed">{content.ship.description}</p>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
                 {content.ship.amenities.map((amenity, index) => {
                   return (
                     <div key={index} className="flex gap-4">
@@ -170,6 +170,21 @@ export function Ship() {
                   )
                 })}
               </div>
+
+              {content.ship.brochureUrl && (
+                <a
+                  href={content.ship.brochureUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-10 py-3 rounded-md text-white border-2 border-white/20 transition-all duration-300 font-semibold uppercase text-sm tracking-wider hover:border-white/40 no-underline"
+                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  {content.ship.brochureButton}
+                </a>
+              )}
             </div>
           </div>
 
@@ -179,7 +194,7 @@ export function Ship() {
           >
             <div className="space-y-4 lg:mx-0 flex-1 flex flex-col justify-center">
               {/* Main Slider */}
-              <div className="relative h-[380px] rounded-lg overflow-hidden shadow-2xl group">
+              <div className="relative h-[450px] rounded-lg overflow-hidden shadow-2xl group">
                 <div className="embla h-full" ref={mainEmblaRef}>
                   <div className="embla__container h-full" {...mainTouchHandlers}>
                     {sliderImages.map((image, index) => {
@@ -244,7 +259,7 @@ export function Ship() {
 
               <div className="grid grid-cols-2 gap-4">
                 {/* Exterior Mini Slider */}
-                <div className="relative h-[220px] rounded-lg overflow-hidden shadow-lg group">
+                <div className="relative h-[280px] rounded-lg overflow-hidden shadow-lg group">
                   <div className="embla h-full" ref={exteriorEmblaRef}>
                     <div className="embla__container h-full" {...exteriorTouchHandlers}>
                       {exteriorImages.map((image, index) => {
@@ -305,7 +320,7 @@ export function Ship() {
                 </div>
 
                 {/* Interior Mini Slider */}
-                <div className="relative h-[220px] rounded-lg overflow-hidden shadow-lg group">
+                <div className="relative h-[280px] rounded-lg overflow-hidden shadow-lg group">
                   <div className="embla h-full" ref={interiorEmblaRef}>
                     <div className="embla__container h-full" {...interiorTouchHandlers}>
                       {interiorImages.map((image, index) => {

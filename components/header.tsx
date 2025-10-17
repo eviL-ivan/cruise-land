@@ -70,8 +70,8 @@ export function Header() {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
             <a
-              href="#journey"
-              onClick={(e) => scrollToSection(e, '#journey')}
+              href="#route"
+              onClick={(e) => scrollToSection(e, '#route')}
               className="text-sm font-medium tracking-wide hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer"
               style={{color: '#004155'}}
             >
@@ -170,8 +170,8 @@ export function Header() {
               <nav className="lg:hidden mt-4 pb-4 border-t pt-4" style={{borderColor: '#0041551A'}}>
                 <div className="flex flex-col gap-4">
               <a
-                href="#journey"
-                onClick={(e) => scrollToSection(e, '#journey')}
+                href="#route"
+                onClick={(e) => scrollToSection(e, '#route')}
                 className="text-sm font-medium tracking-wide hover:text-[#be8f74] transition-colors duration-200 uppercase cursor-pointer py-2"
                 style={{color: '#004155'}}
               >
