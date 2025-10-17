@@ -309,12 +309,8 @@ const baseContent = {
 
   // Thank You Page
   thankYou: {
-    brochureTitle: "Брошюра круиза",
-    brochureButton: "Брошюра",
     brochureDescription: "Просмотр брошюры экспедиции",
-    mapTitle: "Карта маршрута",
-    mapButton: "Карта",
-    mapDescription: "Просмотр маршрута экспедиции",
+    shipBrochureDescription: "Просмотр информации о судне",
     backToHome: "Вернуться на главную",
   },
 

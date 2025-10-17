@@ -1,15 +1,11 @@
 "use client"
 
-import { useState } from "react"
 import { useLanguage } from "@/lib/language-context"
 import Link from "next/link"
 import Image from "next/image"
-import { FileText, Map } from "lucide-react"
-import { MapModal } from "@/components/MapModal"
 
 export default function SuccessPage() {
   const { content } = useLanguage()
-  const [showMapModal, setShowMapModal] = useState(false)
 
   return (
     <div className="min-h-screen bg-[#004657] flex items-center justify-center p-4 py-16">
@@ -37,7 +33,7 @@ export default function SuccessPage() {
               <div className="flex items-center gap-0">
                 <div className="flex-1 pr-8">
                   <h3 className="text-[24px] xl:text-[32px] font-light text-white mb-0 group-hover:text-[#BD966F] transition-colors duration-300">
-                    {content.thankYou.brochureButton}
+                    {content.overview.brochureButton}
                   </h3>
                   <p className="text-white/60 text-[14px] xl:text-[16px] mb-0">
                     {content.thankYou.brochureDescription}
@@ -55,31 +51,33 @@ export default function SuccessPage() {
             </a>
           )}
 
-          {/* Map */}
-          {content.overview.mapImage && (
-            <button
-              onClick={() => setShowMapModal(true)}
-              className="group w-full text-left border-t border-white/20 py-4 transition-all duration-500"
+          {/* Ship Brochure */}
+          {content.ship.brochureUrl && (
+            <a
+              href={content.ship.brochureUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block border-t border-white/20 py-4 no-underline transition-all duration-500"
             >
               <div className="flex items-center gap-0">
                 <div className="flex-1 pr-8">
                   <h3 className="text-[24px] xl:text-[32px] font-light text-white mb-0 group-hover:text-[#BD966F] transition-colors duration-300">
-                    {content.thankYou.mapButton}
+                    {content.ship.brochureButton}
                   </h3>
                   <p className="text-white/60 text-[14px] xl:text-[16px] mb-0">
-                    {content.thankYou.mapDescription}
+                    {content.thankYou.shipBrochureDescription}
                   </p>
                 </div>
                 <div className="relative w-32 xl:w-48 h-24 xl:h-32 flex-shrink-0 overflow-hidden">
                   <Image
-                    src="/map-2.png"
-                    alt="Map preview"
+                    src="/shipSlider/ship_slide5.jpg"
+                    alt="Ship brochure preview"
                     fill
                     className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
                   />
                 </div>
               </div>
-            </button>
+            </a>
           )}
         </div>
 
@@ -93,13 +91,6 @@ export default function SuccessPage() {
           </Link>
         </div>
       </div>
-
-      {/* Map Modal */}
-      <MapModal
-        isOpen={showMapModal}
-        onClose={() => setShowMapModal(false)}
-        mapSrc={content.overview.mapImage}
-      />
     </div>
   )
 }

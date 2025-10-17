@@ -402,12 +402,8 @@ const baseContent = {
 
   // Thank You Page
   thankYou: {
-    brochureTitle: "游轮手册",
-    brochureButton: "手册",
     brochureDescription: "查看探险手册",
-    mapTitle: "航线地图",
-    mapButton: "地图",
-    mapDescription: "查看探险航线",
+    shipBrochureDescription: "查看邮轮信息",
     backToHome: "返回首页",
   },
 
