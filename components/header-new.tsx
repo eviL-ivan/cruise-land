@@ -165,7 +165,7 @@ export function HeaderNew() {
             {/* CTA Button */}
             <button
               onClick={() => setShowBookingModal(true)}
-              className={`font-display header-nav-text ${textColor} ${hoverColor} uppercase text-[14px] leading-[16px] tracking-[0.05em] transition-colors cursor-pointer`}
+              className="font-display header-nav-text relative top-[5px] pt-2 pb-1.5 px-3 border border-white text-white rounded-md font-normal text-[14px] leading-[16px] tracking-[0.05em] transition-all duration-300 uppercase hover:bg-white hover:text-[#2F2F2F]"
             >
               {content.header.bookButton}
             </button>
