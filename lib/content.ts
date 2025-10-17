@@ -307,6 +307,17 @@ const baseContent = {
     title: "Специальное предложение",
   },
 
+  // Thank You Page
+  thankYou: {
+    brochureTitle: "Брошюра круиза",
+    brochureButton: "Брошюра",
+    brochureDescription: "Просмотр брошюры экспедиции",
+    mapTitle: "Карта маршрута",
+    mapButton: "Карта",
+    mapDescription: "Просмотр маршрута экспедиции",
+    backToHome: "Вернуться на главную",
+  },
+
   // Forms
   forms: {
     booking: {

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useLanguage } from "@/lib/language-context";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,8 +22,8 @@ interface ContactFormProps {
 
 export function ContactForm({ onSuccess, inCard = true, isCompact = false }: ContactFormProps) {
   const { language, content } = useLanguage();
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -174,8 +175,9 @@ export function ContactForm({ onSuccess, inCard = true, isCompact = false }: Con
       );
 
       if (response.data) {
-        setIsSuccess(true);
         if (onSuccess) onSuccess();
+        // Redirect to thank-you page
+        router.push("/thank-you");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -184,34 +186,6 @@ export function ContactForm({ onSuccess, inCard = true, isCompact = false }: Con
       setIsSubmitting(false);
     }
   };
-
-  if (isSuccess) {
-    return (
-      <div className="text-center py-12 px-4">
-        <div className="mb-6">
-          <svg
-            className="w-20 h-20 mx-auto text-green-500"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </div>
-        <h3 className="text-2xl md:text-3xl font-light mb-4">
-          {content.forms.contact.success}
-        </h3>
-        <p className="text-muted-foreground text-lg">
-          {content.forms.contact.successMessage}
-        </p>
-      </div>
-    );
-  }
 
   return (
     <form

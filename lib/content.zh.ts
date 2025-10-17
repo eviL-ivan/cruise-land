@@ -400,6 +400,17 @@ const baseContent = {
     title: "当前优惠",
   },
 
+  // Thank You Page
+  thankYou: {
+    brochureTitle: "游轮手册",
+    brochureButton: "手册",
+    brochureDescription: "查看探险手册",
+    mapTitle: "航线地图",
+    mapButton: "地图",
+    mapDescription: "查看探险航线",
+    backToHome: "返回首页",
+  },
+
   // 表单
   forms: {
     booking: {

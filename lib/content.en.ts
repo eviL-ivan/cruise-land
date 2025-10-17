@@ -415,6 +415,17 @@ const baseContent = {
     title: "Current Offer",
   },
 
+  // Thank You Page
+  thankYou: {
+    brochureTitle: "Voyage Brochure",
+    brochureButton: "Brochure",
+    brochureDescription: "View expedition brochure",
+    mapTitle: "Route Map",
+    mapButton: "Map",
+    mapDescription: "View expedition route",
+    backToHome: "Return to homepage",
+  },
+
   // Forms
   forms: {
     booking: {

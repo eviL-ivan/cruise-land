@@ -22,7 +22,9 @@
       "Bash(npx shadcn@latest add:*)",
       "Bash(identify:*)",
       "WebSearch",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Read(//c/dev/swanHellenic/landing-page/src/components/sections/HeroSection/**)",
+      "Read(//c/dev/swanHellenic/landing-page/src/components/sections/OverviewSection/**)"
     ],
     "deny": [],
     "ask": []
