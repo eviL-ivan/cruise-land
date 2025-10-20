@@ -2,7 +2,9 @@
 export const images = {
   hero: {
     image: "/places/hero-antarctica.jpg",
-    video: "/back.mp4",
+    video: "/back.mp4", // Legacy - не используется
+    videoDesktop: "/Back-desktop.mp4", // Оптимизированная версия для desktop
+    videoMobile: "/Back-mobile.mp4", // Оптимизированная версия для mobile
     poster: "/bg.webp",
   },
 

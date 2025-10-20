@@ -73,7 +73,10 @@ const baseContent = {
     learnMoreButton: "Узнать подробнее",
     imageAlt: "Антарктида",
     image: images.hero.image,
-    video: images.hero.video,
+    video: images.hero.video, // Legacy
+    videoDesktop: images.hero.videoDesktop,
+    videoMobile: images.hero.videoMobile,
+    poster: images.hero.poster,
   },
 
   // Секция "Путешествие" - импортируется из модуля

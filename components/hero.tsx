@@ -160,10 +160,26 @@ export function Hero() {
           muted
           playsInline
           preload="auto"
-          poster="/bg.webp"
+          poster={content.hero.poster}
           className="w-full h-full object-cover"
         >
-          <source src={content.hero.video} type="video/mp4" />
+          {/* Mobile video for screens < 768px */}
+          <source
+            src={content.hero.videoMobile}
+            type="video/mp4"
+            media="(max-width: 767px)"
+          />
+          {/* Desktop video for screens >= 768px */}
+          <source
+            src={content.hero.videoDesktop}
+            type="video/mp4"
+            media="(min-width: 768px)"
+          />
+          {/* Fallback for older browsers */}
+          <source
+            src={content.hero.videoDesktop}
+            type="video/mp4"
+          />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-primary/25 via-primary/35 to-primary/25 z-10" />
       </div>

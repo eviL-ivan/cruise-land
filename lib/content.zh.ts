@@ -72,7 +72,10 @@ const baseContent = {
     learnMoreButton: "了解更多",
     imageAlt: "南极洲",
     image: images.hero.image,
-    video: images.hero.video,
+    video: images.hero.video, // Legacy
+    videoDesktop: images.hero.videoDesktop,
+    videoMobile: images.hero.videoMobile,
+    poster: images.hero.poster,
   },
 
   // "旅程"部分 - 从模块导入

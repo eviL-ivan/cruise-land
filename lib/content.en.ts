@@ -73,7 +73,10 @@ const baseContent = {
     learnMoreButton: "Learn More",
     imageAlt: "Antarctica",
     image: images.hero.image,
-    video: images.hero.video,
+    video: images.hero.video, // Legacy
+    videoDesktop: images.hero.videoDesktop,
+    videoMobile: images.hero.videoMobile,
+    poster: images.hero.poster,
   },
 
   // Journey Section - imported from module
