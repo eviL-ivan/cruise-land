@@ -58,7 +58,7 @@ export const itinerary = {
         "Rest and enjoy the ocean. Relax with a spa treatment, head to the gym, or relax in the observation lounge over a boardgame or game of cards, or listen to one of our expert lecturers over a glass of wine. Over these days, there'll be the opportunity to visit the bridge and enjoy the panoramic view from the top deck, whilst keeping a look out for passing wildlife as we head towards South Georgia.",
       image: images.itinerary.day4,
       activities: [
-        "Visit the spa and gym",
+        "Visit the spa and gym ",
         "Meet the officers during a bridge visit",
         "Relax in the Observation Lounge",
         "Enjoy afternoon tea in the Club Lounge",
